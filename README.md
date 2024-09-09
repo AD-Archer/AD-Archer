@@ -1,4 +1,12 @@
-## Hi there 👋
+Hi there, I'm Antonio Archer 👋
+I'm an aspiring Python developer and future Full Stack Web Developer based in Philadelphia, PA. Working to make tech fun and practical to improve human lives, I'm passionate about building functional, efficient, and elegant software.
+
+Tech Stack
+Languages: Python, JavaScript, HTML, CSS
+Frameworks: Flask, React (learning)
+Tools: Git, GitHub, Linux, VS Code
+Feel free to check out my projects and contributions below!
+
 
 <!--
 **AD-Archer/AD-Archer** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
