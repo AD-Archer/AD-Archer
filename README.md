@@ -24,6 +24,23 @@ I'm an **Aspiring Python Developer** and **Future Full Stack Web Developer** bas
   ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
   ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
+# 📊 GitHub Stats
+
+- **Stats**  
+  ![Antonio's GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false)
+
+- **GitHub Streaks**  
+  ![GitHub Streaks](https://github-readme-streak-stats.herokuapp.com/?user=ad-archer&theme=dark&hide_border=false)
+
+- **Most used languages**  
+  ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+
+---
+
+## View Counter
+
+[![View Counter](https://visitcount.itsvg.in/api?id=ad-archer&icon=8&color=9)](https://visitcount.itsvg.in)
+
 
 ## Contact
 
