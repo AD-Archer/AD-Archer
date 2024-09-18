@@ -92,6 +92,12 @@
   <summary><h2>Activities</h2> </summary>
   <a href="https://github.com/ashutosh00710/github-readme-activity-graph"><img alt="ad-archers's Activity Graph" src="https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true" /></a>
 <!--START_SECTION:activity-->
+1. 💪 Opened PR [#1](https://github.com/MO-fr/MO-fr/pull/1) in [MO-fr/MO-fr](https://github.com/MO-fr/MO-fr)
+2. 🎉 Merged PR [#6](https://github.com/AD-Archer/PhotoFlip/pull/6) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+3. 💪 Opened PR [#6](https://github.com/AD-Archer/PhotoFlip/pull/6) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+4. 🔒 Closed issue [#3](https://github.com/AD-Archer/PhotoFlip/issues/3) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+5. 🔒 Closed issue [#4](https://github.com/AD-Archer/PhotoFlip/issues/4) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+<!--END_SECTION:activity-->
 
 
 
