@@ -30,8 +30,7 @@ I'm an **Aspiring Python Developer** and **Future Full Stack Web Developer** bas
   ![Antonio's GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false)
 
 - **GitHub Streaks**  
-  ![GitHub Streaks](https://github-readme-streak-stats.herokuapp.com/?user=ad-archer&theme=dark&hide_border=false)
-
+[![GitHub Streak](https://streak-stats.demolab.com?user=ad-archer&theme=dark&exclude_days=Sun%2CSat)](https://git.io/streak-stats)
 - **Most used languages**  
   ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
