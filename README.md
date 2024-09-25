@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#8](https://github.com/AD-Archer/PhotoFlip/issues/8) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
-2. ❗ Opened issue [#7](https://github.com/AD-Archer/PhotoFlip/issues/7) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
-3. ❗ Opened issue [#2](https://github.com/MO-fr/Manga--photo--flipper/issues/2) in [MO-fr/Manga--photo--flipper](https://github.com/MO-fr/Manga--photo--flipper)
-4. 💪 Opened PR [#1](https://github.com/MO-fr/MO-fr/pull/1) in [MO-fr/MO-fr](https://github.com/MO-fr/MO-fr)
-5. 🎉 Merged PR [#6](https://github.com/AD-Archer/PhotoFlip/pull/6) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+1. 🔒 Closed issue [#8](https://github.com/AD-Archer/PhotoFlip/issues/8) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+2. 🔒 Closed issue [#7](https://github.com/AD-Archer/PhotoFlip/issues/7) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+3. ❗ Opened issue [#8](https://github.com/AD-Archer/PhotoFlip/issues/8) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+4. ❗ Opened issue [#7](https://github.com/AD-Archer/PhotoFlip/issues/7) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+5. ❗ Opened issue [#2](https://github.com/MO-fr/Manga--photo--flipper/issues/2) in [MO-fr/Manga--photo--flipper](https://github.com/MO-fr/Manga--photo--flipper)
 <!--END_SECTION:activity-->
 
 
