@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#3](https://github.com/AD-Archer/3d-land-player/issues/3) in [AD-Archer/3d-land-player](https://github.com/AD-Archer/3d-land-player)
-2. 🔒 Closed issue [#1](https://github.com/AD-Archer/3d-land-player/issues/1) in [AD-Archer/3d-land-player](https://github.com/AD-Archer/3d-land-player)
-3. ❗ Opened issue [#2](https://github.com/AD-Archer/3d-land-player/issues/2) in [AD-Archer/3d-land-player](https://github.com/AD-Archer/3d-land-player)
-4. ❗ Opened issue [#1](https://github.com/AD-Archer/3d-land-player/issues/1) in [AD-Archer/3d-land-player](https://github.com/AD-Archer/3d-land-player)
-5. 🔒 Closed issue [#2](https://github.com/MO-fr/Manga--photo--flipper/issues/2) in [MO-fr/Manga--photo--flipper](https://github.com/MO-fr/Manga--photo--flipper)
+1. ❗ Opened issue [#20](https://github.com/AD-Archer/PhotoFlip/issues/20) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+2. ❗ Opened issue [#19](https://github.com/AD-Archer/PhotoFlip/issues/19) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+3. ❗ Opened issue [#18](https://github.com/AD-Archer/PhotoFlip/issues/18) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+4. ❗ Opened issue [#17](https://github.com/AD-Archer/PhotoFlip/issues/17) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+5. ❗ Opened issue [#16](https://github.com/AD-Archer/PhotoFlip/issues/16) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
 <!--END_SECTION:activity-->
 
 
