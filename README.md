@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#3](https://github.com/AD-Archer/Geocache-philly/issues/3) in [AD-Archer/Geocache-philly](https://github.com/AD-Archer/Geocache-philly)
-2. ❗ Opened issue [#2](https://github.com/AD-Archer/Geocache-philly/issues/2) in [AD-Archer/Geocache-philly](https://github.com/AD-Archer/Geocache-philly)
-3. ❗ Opened issue [#1](https://github.com/AD-Archer/Geocache-philly/issues/1) in [AD-Archer/Geocache-philly](https://github.com/AD-Archer/Geocache-philly)
-4. ❗ Opened issue [#20](https://github.com/AD-Archer/PhotoFlip/issues/20) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
-5. ❗ Opened issue [#19](https://github.com/AD-Archer/PhotoFlip/issues/19) in [AD-Archer/PhotoFlip](https://github.com/AD-Archer/PhotoFlip)
+1. 🔒 Closed issue [#3](https://github.com/AD-Archer/thePhillyWay/issues/3) in [AD-Archer/thePhillyWay](https://github.com/AD-Archer/thePhillyWay)
+2. 🔒 Closed issue [#2](https://github.com/AD-Archer/thePhillyWay/issues/2) in [AD-Archer/thePhillyWay](https://github.com/AD-Archer/thePhillyWay)
+3. 🔒 Closed issue [#1](https://github.com/AD-Archer/thePhillyWay/issues/1) in [AD-Archer/thePhillyWay](https://github.com/AD-Archer/thePhillyWay)
+4. ❗ Opened issue [#3](https://github.com/AD-Archer/Geocache-philly/issues/3) in [AD-Archer/Geocache-philly](https://github.com/AD-Archer/Geocache-philly)
+5. ❗ Opened issue [#2](https://github.com/AD-Archer/Geocache-philly/issues/2) in [AD-Archer/Geocache-philly](https://github.com/AD-Archer/Geocache-philly)
 <!--END_SECTION:activity-->
 
 
