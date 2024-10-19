@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 🔒 Closed issue [#3](https://github.com/AD-Archer/dynasty-defense/issues/3) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-2. ❗ Opened issue [#20](https://github.com/AD-Archer/dynasty-defense/issues/20) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-3. ❗ Opened issue [#19](https://github.com/AD-Archer/dynasty-defense/issues/19) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-4. ❗ Opened issue [#18](https://github.com/AD-Archer/dynasty-defense/issues/18) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-5. 🔒 Closed issue [#17](https://github.com/AD-Archer/dynasty-defense/issues/17) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+1. ❗ Opened issue [#23](https://github.com/AD-Archer/dynasty-defense/issues/23) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+2. ❗ Opened issue [#22](https://github.com/AD-Archer/dynasty-defense/issues/22) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+3. ❗ Opened issue [#21](https://github.com/AD-Archer/dynasty-defense/issues/21) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+4. 🔒 Closed issue [#3](https://github.com/AD-Archer/dynasty-defense/issues/3) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+5. ❗ Opened issue [#20](https://github.com/AD-Archer/dynasty-defense/issues/20) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
 <!--END_SECTION:activity-->
 
 
