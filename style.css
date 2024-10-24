@@ -1,0 +1,83 @@
+
+/* Green Theme Colors */
+:root {
+    --background: #e0f7e9;
+    --background-accent: #b8e2c8;
+    --text-color: #1f4d3b;
+    --title-shadow: #38b477;
+    --panel-bg: #dfffe0;
+    --social-icon-color: #de5313;
+    --social-icon-hover: #f45f1a;
+}
+
+
+/* Comic Book Style */
+body {
+    font-family: 'Permanent Marker', cursive;
+    background: linear-gradient(to bottom right, var(--background), var(--background-accent));
+    background-size: cover;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.comic-title {
+    font-size: 3rem;
+    text-shadow: 2px 2px var(--title-shadow);
+    color: var(--text-color);
+}
+
+.comic-subtitle {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px var(--title-shadow);
+    color: var(--text-color);
+}
+
+.profile-pic {
+    border: 5px solid var(--text-color);
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 var(--text-color);
+}
+
+.comic-panel {
+    border: 5px solid var(--text-color);
+    box-shadow: 5px 5px 0 var(--text-color);
+    background-color: var(--panel-bg);
+    position: relative;
+}
+
+.speech-bubble {
+    position: relative;
+    background: var(--panel-bg);
+    padding: 20px;
+    border: 3px solid var(--text-color);
+    border-radius: 15px;
+    box-shadow: 4px 4px 0 var(--text-color);
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-top-color: var(--panel-bg);
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -15px;
+    box-shadow: 3px 3px 0 var(--text-color);
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: var(--social-icon-color);
+    font-size: 2rem;
+    text-shadow: 2px 2px var(--text-color);
+    transition: transform 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+    color: var(--social-icon-hover);
+    transform: scale(1.2);
+}
