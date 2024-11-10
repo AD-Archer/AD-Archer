@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 🔒 Closed issue [#22](https://github.com/AD-Archer/FortifyNow/issues/22) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-2. 🔒 Closed issue [#46](https://github.com/AD-Archer/dynasty-defense/issues/46) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-3. ❗ Opened issue [#46](https://github.com/AD-Archer/dynasty-defense/issues/46) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-4. 🔒 Closed issue [#45](https://github.com/AD-Archer/dynasty-defense/issues/45) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-5. ❗ Opened issue [#45](https://github.com/AD-Archer/dynasty-defense/issues/45) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+1. ❗ Opened issue [#47](https://github.com/AD-Archer/dynasty-defense/issues/47) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+2. 🔒 Closed issue [#22](https://github.com/AD-Archer/FortifyNow/issues/22) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
+3. 🔒 Closed issue [#46](https://github.com/AD-Archer/dynasty-defense/issues/46) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+4. ❗ Opened issue [#46](https://github.com/AD-Archer/dynasty-defense/issues/46) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+5. 🔒 Closed issue [#45](https://github.com/AD-Archer/dynasty-defense/issues/45) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
 <!--END_SECTION:activity-->
 
 
