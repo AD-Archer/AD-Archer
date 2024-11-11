@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 💪 Opened PR [#60](https://github.com/t3dotgg/quickpic/pull/60) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
-2. ❌ Closed PR [#58](https://github.com/t3dotgg/quickpic/pull/58) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
-3. 💪 Opened PR [#58](https://github.com/t3dotgg/quickpic/pull/58) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
-4. 🔒 Closed issue [#53](https://github.com/AD-Archer/dynasty-defense/issues/53) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
-5. ❗ Opened issue [#53](https://github.com/AD-Archer/dynasty-defense/issues/53) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
+1. ❌ Closed PR [#1](https://github.com/MO-fr/Manga--photo--flipper/pull/1) in [MO-fr/Manga--photo--flipper](https://github.com/MO-fr/Manga--photo--flipper)
+2. 💪 Opened PR [#60](https://github.com/t3dotgg/quickpic/pull/60) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
+3. ❌ Closed PR [#58](https://github.com/t3dotgg/quickpic/pull/58) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
+4. 💪 Opened PR [#58](https://github.com/t3dotgg/quickpic/pull/58) in [t3dotgg/quickpic](https://github.com/t3dotgg/quickpic)
+5. 🔒 Closed issue [#53](https://github.com/AD-Archer/dynasty-defense/issues/53) in [AD-Archer/dynasty-defense](https://github.com/AD-Archer/dynasty-defense)
 <!--END_SECTION:activity-->
 
 
