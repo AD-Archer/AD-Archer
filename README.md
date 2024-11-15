@@ -39,22 +39,6 @@
     <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" style="display: inline-block;" />
   </p>
 
-<details open> 
-  <summary><h2>📘 My Top Open Source Projects</h2></summary>
-
-  <!-- Repo info cards -->
-  <p align="left">
-    <a href="https://github.com/AD-Archer/MoviesNoir-Movie-Generator"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=MoviesNoir-Movie-Generator&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="MoviesNoir-Movie-Generator"></a>
-    <a href="https://github.com/AD-Archer/3d-land-player"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=3d-land-player&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="3d-land-player"></a>
-    <a href="https://github.com/AD-Archer/Linehan-Family-Foundation-Preview-Site"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=Linehan-Family-Foundation-Preview-Site&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="Linehan-Family-Foundation-Preview-Site"></a>
-    <a href="https://github.com/AD-Archer/Wack-a-mole-man-rush"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=Wack-a-mole-man-rush&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="Wack-a-mole-man-rush"></a>
-    <a href="https://github.com/AD-Archer/Autoclicker"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=Autoclicker&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="Autoclicker"></a>
-    <a href="https://github.com/AD-Archer/PhotoFlip"><img width="278" src="https://github-readme-stats-five-gray-90.vercel.app/api/pin/?username=AD-Archer&repo=PhotoFlip&theme=dark&bg_color=1F222E&title_color=F85D7F&hide_border=true&icon_color=F8D866&show_icons=false" alt="PhotoFlip"></a>
-  </p>
-</details>
-  </div>
-
-
   <!-- Button for all repos -->
   <p align="center" style="margin-top: 20px;">
     <a href="https://github.com/AD-Archer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; color: white; background-color: #1F222E; border-radius: 5px; text-decoration: none; border: 2px solid #F85D7F; transition: background-color 0.3s, color 0.3s;">
@@ -63,53 +47,6 @@
   </p>
 </details>
 
-# 📊 GitHub Stats
-
-<p align="left">
-  <strong>Stats</strong>
-</p>
-<p align="left">
-  <img src="https://github-readme-stats-five-gray-90.vercel.app/api?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false" alt="Antonio's GitHub Stats" />
-</p>
-
-<p align="left">
-  <strong>GitHub Streaks</strong>
-</p>
-<p align="left">
-  <a href="https://git.io/streak-stats">
-    <img src="https://streak-stats.demolab.com?user=ad-archer&theme=dark&exclude_days=Sun%2CSat" alt="GitHub Streak" />
-  </a>
-</p>
-
-<p align="left">
-  <strong>Most used languages</strong>
-<b>Note:</b> Top languages is only a metric of the languages my public code consists of and doesn't reflect experience or skill level.
-</p>  
-<p align="left">
-  <img src="https://github-readme-stats-five-gray-90.vercel.app/api/top-langs/?username=ad-archer&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact" alt="Top Languages" />
-</p>
-<details>
-  <summary><h2>Activities</h2> </summary>
-
-  - <h3>Contribution chart</h3>
-  <a href="https://github.com/ashutosh00710/github-readme-activity-graph"><img alt="ad-archers's Activity Graph" src="https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true" /></a>
-
-- <h3>Activity</h3>
-<!--START_SECTION:activity-->
-1. 🔒 Closed issue [#17](https://github.com/AD-Archer/FortifyNow/issues/17) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-2. 🔒 Closed issue [#25](https://github.com/AD-Archer/FortifyNow/issues/25) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-3. 🔒 Closed issue [#31](https://github.com/AD-Archer/FortifyNow/issues/31) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-4. 🔒 Closed issue [#24](https://github.com/AD-Archer/FortifyNow/issues/24) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-5. 🔒 Closed issue [#23](https://github.com/AD-Archer/FortifyNow/issues/23) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-<!--END_SECTION:activity-->
-
-
-
-  
-</details>
-
-
----
 
 ## Contact
 
