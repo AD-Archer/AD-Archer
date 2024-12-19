@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#1](https://github.com/AD-Archer/fintech-app/issues/1) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-2. 🔒 Closed issue [#17](https://github.com/AD-Archer/FortifyNow/issues/17) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-3. 🔒 Closed issue [#25](https://github.com/AD-Archer/FortifyNow/issues/25) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-4. 🔒 Closed issue [#31](https://github.com/AD-Archer/FortifyNow/issues/31) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
-5. 🔒 Closed issue [#24](https://github.com/AD-Archer/FortifyNow/issues/24) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
+1. 🔒 Closed issue [#1](https://github.com/AD-Archer/fintech-app/issues/1) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+2. ❗ Opened issue [#1](https://github.com/AD-Archer/fintech-app/issues/1) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+3. 🔒 Closed issue [#17](https://github.com/AD-Archer/FortifyNow/issues/17) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
+4. 🔒 Closed issue [#25](https://github.com/AD-Archer/FortifyNow/issues/25) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
+5. 🔒 Closed issue [#31](https://github.com/AD-Archer/FortifyNow/issues/31) in [AD-Archer/FortifyNow](https://github.com/AD-Archer/FortifyNow)
 <!--END_SECTION:activity-->
 
 
