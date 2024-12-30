@@ -96,11 +96,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#5](https://github.com/AD-Archer/fintech-app/issues/5) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-2. ❗ Opened issue [#4](https://github.com/AD-Archer/fintech-app/issues/4) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-3. 🔒 Closed issue [#3](https://github.com/AD-Archer/fintech-app/issues/3) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-4. ❗ Opened issue [#3](https://github.com/AD-Archer/fintech-app/issues/3) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-5. ❗ Opened issue [#2](https://github.com/AD-Archer/fintech-app/issues/2) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+1. 🔒 Closed issue [#8](https://github.com/AD-Archer/fintech-app/issues/8) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+2. 🔒 Closed issue [#7](https://github.com/AD-Archer/fintech-app/issues/7) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+3. 🔒 Closed issue [#6](https://github.com/AD-Archer/fintech-app/issues/6) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+4. ❗ Opened issue [#8](https://github.com/AD-Archer/fintech-app/issues/8) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+5. ❗ Opened issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
 <!--END_SECTION:activity-->
 
 
