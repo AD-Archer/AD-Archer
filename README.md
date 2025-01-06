@@ -70,11 +70,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 🔒 Closed issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
-2. 🔓 Reopened issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
+1. 🚀 Published release [Linux v1.0.0](https://github.com/AD-Archer/godotplatformer/releases/tag/linux) in [AD-Archer/godotplatformer](https://github.com/AD-Archer/godotplatformer)
+2. 🚀 Published release [windows v1.0.0](https://github.com/AD-Archer/godotplatformer/releases/tag/windows) in [AD-Archer/godotplatformer](https://github.com/AD-Archer/godotplatformer)
 3. 🔒 Closed issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
-4. ❗ Opened issue [#9](https://github.com/AD-Archer/fintech-app/issues/9) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
-5. 🔒 Closed issue [#8](https://github.com/AD-Archer/fintech-app/issues/8) in [AD-Archer/fintech-app](https://github.com/AD-Archer/fintech-app)
+4. 🔓 Reopened issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
+5. 🔒 Closed issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
 <!--END_SECTION:activity-->
 
 
