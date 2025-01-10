@@ -70,11 +70,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 🚀 Published release [Linux v1.0.0](https://github.com/AD-Archer/godotplatformer/releases/tag/linux) in [AD-Archer/godotplatformer](https://github.com/AD-Archer/godotplatformer)
-2. 🚀 Published release [windows v1.0.0](https://github.com/AD-Archer/godotplatformer/releases/tag/windows) in [AD-Archer/godotplatformer](https://github.com/AD-Archer/godotplatformer)
-3. 🔒 Closed issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
-4. 🔓 Reopened issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
-5. 🔒 Closed issue [#1](https://github.com/AD-Archer/Task-Manager/issues/1) in [AD-Archer/Task-Manager](https://github.com/AD-Archer/Task-Manager)
+1. ❗ Opened issue [#8](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/8) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+2. ❗ Opened issue [#7](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/7) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+3. ❗ Opened issue [#6](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/6) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+4. ❗ Opened issue [#5](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/5) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+5. ❗ Opened issue [#4](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/4) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
 <!--END_SECTION:activity-->
 
 
