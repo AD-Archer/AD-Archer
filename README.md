@@ -70,11 +70,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. 🔒 Closed issue [#10](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/10) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-2. 🔒 Closed issue [#11](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/11) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-3. 🔒 Closed issue [#8](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/8) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-4. 🔒 Closed issue [#5](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/5) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-5. 🔒 Closed issue [#6](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/6) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+1. ❗ Opened issue [#16](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/16) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+2. ❗ Opened issue [#15](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/15) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+3. ❗ Opened issue [#14](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/14) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+4. ❗ Opened issue [#13](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/13) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+5. ❗ Opened issue [#12](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/12) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
 <!--END_SECTION:activity-->
 
 
