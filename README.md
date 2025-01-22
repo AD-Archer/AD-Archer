@@ -17,6 +17,7 @@
   <p align="center">
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" style="display: inline-block; margin-right: 5px;" />
     <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" style="display: inline-block; margin-right: 5px;" />
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" style="display: inline-block; margin-right: 5px;" />
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" style="display: inline-block; margin-right: 5px;" />
     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" style="display: inline-block;" />
   </p>
@@ -24,7 +25,8 @@
 - **Frameworks**:  
   <p align="center">
     <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" style="display: inline-block;" />
+    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" style="display: inline-block; margin-right: 5px;" />
+    <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" style="display: inline-block;" />
   </p>
 
 - **Tools**:  
@@ -35,17 +37,11 @@
     <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" style="display: inline-block;" />
   </p>
 
-
-  </div>
-
-
-  <!-- Button for all repos -->
-  <p align="center" style="margin-top: 20px;">
-    <a href="https://github.com/AD-Archer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; color: white; background-color: #1F222E; border-radius: 5px; text-decoration: none; border: 2px solid #F85D7F; transition: background-color 0.3s, color 0.3s;">
-      Click Here for All My Repos
-    </a>
-  </p>
-</details>
+<p align="center" style="margin-top: 20px;">
+  <a href="https://github.com/AD-Archer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; color: white; background-color: #1F222E; border-radius: 5px; text-decoration: none; border: 2px solid #F85D7F; transition: background-color 0.3s, color 0.3s;">
+    Click Here for All My Repos
+  </a>
+</p>
 
 # 📊 GitHub Stats
 
@@ -60,7 +56,6 @@
     <img src="https://streak-stats.demolab.com?user=ad-archer&theme=dark&exclude_days=Sun%2CSat" alt="GitHub Streak" />
   </a>
 </p>
-
 
 <details>
   <summary><h2>Activities</h2> </summary>
@@ -77,11 +72,7 @@
 5. ❗ Opened issue [#15](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/15) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
 <!--END_SECTION:activity-->
 
-
-
-  
 </details>
-
 
 ---
 
