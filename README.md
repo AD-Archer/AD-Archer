@@ -65,11 +65,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#18](https://github.com/AD-Archer/PlatePedia-recipeapp/issues/18) in [AD-Archer/PlatePedia-recipeapp](https://github.com/AD-Archer/PlatePedia-recipeapp)
-2. 🔒 Closed issue [#16](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/16) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-3. ❗ Opened issue [#17](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/17) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-4. ❗ Opened issue [#16](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/16) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
-5. ❗ Opened issue [#15](https://github.com/AD-Archer/FoodFinder-Recipeapp/issues/15) in [AD-Archer/FoodFinder-Recipeapp](https://github.com/AD-Archer/FoodFinder-Recipeapp)
+1. ❗ Opened issue [#4](https://github.com/AD-Archer/corra/issues/4) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
+2. 🔒 Closed issue [#2](https://github.com/AD-Archer/corra/issues/2) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
+3. 🔒 Closed issue [#1](https://github.com/AD-Archer/corra/issues/1) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
+4. ❗ Opened issue [#3](https://github.com/AD-Archer/corra/issues/3) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
+5. ❗ Opened issue [#2](https://github.com/AD-Archer/corra/issues/2) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
 <!--END_SECTION:activity-->
 
 </details>
