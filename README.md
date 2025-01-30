@@ -7,8 +7,7 @@
   </a>
 </p>
 
-[![View Counter](https://visitcount.itsvg.in/api?id=ad-archer&icon=8&color=9)](https://visitcount.itsvg.in)
-
+![](https://komarev.com/ghpvc/?username=ad-archer)
 ---
 
 ## 🚀 **Tech Stack**
@@ -53,8 +52,7 @@
 </p>
 <p align="left">
   <a href="https://git.io/streak-stats">
-[![GitHub Streak](https://streak-stats.demolab.com?user=Ad-archer&theme=dark&exclude_days=Sun%2CTue%2CSat)](https://git.io/streak-stats)
-  </a>
+<a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=ad-archer&theme=dark&exclude_days=Sun%2CTue%2CSat" alt="GitHub Streak" /></a>  </a>
 </p>
 
 <details>
