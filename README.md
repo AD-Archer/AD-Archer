@@ -63,11 +63,11 @@
 
 - <h3>Activity</h3>
 <!--START_SECTION:activity-->
-1. ❗ Opened issue [#5](https://github.com/AD-Archer/MoviesNoir-Movie-Generator/issues/5) in [AD-Archer/MoviesNoir-Movie-Generator](https://github.com/AD-Archer/MoviesNoir-Movie-Generator)
-2. ❗ Opened issue [#4](https://github.com/AD-Archer/MoviesNoir-Movie-Generator/issues/4) in [AD-Archer/MoviesNoir-Movie-Generator](https://github.com/AD-Archer/MoviesNoir-Movie-Generator)
-3. ❗ Opened issue [#20](https://github.com/AD-Archer/PlatePedia-recipeapp/issues/20) in [AD-Archer/PlatePedia-recipeapp](https://github.com/AD-Archer/PlatePedia-recipeapp)
-4. ❗ Opened issue [#19](https://github.com/AD-Archer/PlatePedia-recipeapp/issues/19) in [AD-Archer/PlatePedia-recipeapp](https://github.com/AD-Archer/PlatePedia-recipeapp)
-5. 🔒 Closed issue [#3](https://github.com/AD-Archer/corra/issues/3) in [AD-Archer/corra](https://github.com/AD-Archer/corra)
+1. 💪 Opened PR [#2](https://github.com/Zay2006/Greenland.EDU/pull/2) in [Zay2006/Greenland.EDU](https://github.com/Zay2006/Greenland.EDU)
+2. ❗ Opened issue [#5](https://github.com/AD-Archer/MoviesNoir-Movie-Generator/issues/5) in [AD-Archer/MoviesNoir-Movie-Generator](https://github.com/AD-Archer/MoviesNoir-Movie-Generator)
+3. ❗ Opened issue [#4](https://github.com/AD-Archer/MoviesNoir-Movie-Generator/issues/4) in [AD-Archer/MoviesNoir-Movie-Generator](https://github.com/AD-Archer/MoviesNoir-Movie-Generator)
+4. ❗ Opened issue [#20](https://github.com/AD-Archer/PlatePedia-recipeapp/issues/20) in [AD-Archer/PlatePedia-recipeapp](https://github.com/AD-Archer/PlatePedia-recipeapp)
+5. ❗ Opened issue [#19](https://github.com/AD-Archer/PlatePedia-recipeapp/issues/19) in [AD-Archer/PlatePedia-recipeapp](https://github.com/AD-Archer/PlatePedia-recipeapp)
 <!--END_SECTION:activity-->
 
 </details>
