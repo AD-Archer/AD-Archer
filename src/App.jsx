@@ -11,6 +11,7 @@ import LinkedInFeed from './components/LinkedInFeed';
 import GitHubProjects from './components/GitHubProjects';
 import ProfileSections from './components/profile/ProfileSections';
 import GitHubProfile from './components/GitHubProfile';
+import TechStack from './components/TechStack';
 
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
@@ -85,17 +86,24 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const SocialLinks = styled(motion.div)`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
-  justify-content: center;
   gap: 1rem;
-  margin: 2rem 0;
+  z-index: 1000;
+  
+  @media (max-width: 768px) {
+    bottom: 1rem;
+    right: 1rem;
+  }
 `;
 
 const SocialIcon = styled(motion.a)`
   background: ${props => props.theme.colors.secondary};
   color: black;
-  width: 3rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -104,6 +112,7 @@ const SocialIcon = styled(motion.a)`
   box-shadow: ${props => props.theme.shadows.comic};
   transition: transform 0.3s ease;
   position: relative;
+  backdrop-filter: blur(5px);
   
   &:hover {
     transform: scale(1.1) rotate(5deg);
@@ -125,6 +134,11 @@ const SocialIcon = styled(motion.a)`
 
   &:hover::before {
     transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    width: 3rem;
+    height: 3rem;
   }
 `;
 
@@ -167,29 +181,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <SocialLinks
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <SocialIcon 
-            href="https://linkedin.com/in/antonio-archer" 
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -3 }}
-          >
-            <FontAwesomeIcon icon={faLinkedin} size="lg" />
-          </SocialIcon>
-          <SocialIcon 
-            href="https://github.com/AD-Archer" 
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -3 }}
-          >
-            <FontAwesomeIcon icon={faGithub} size="lg" />
-          </SocialIcon>
-        </SocialLinks>
-
         <div className="container">
           <HeroTitle
             initial={{ scale: 0 }}
@@ -229,6 +220,8 @@ function App() {
             MY SUPER PROJECTS!
           </SectionTitle>
 
+          <TechStack />
+          
           <ProfileSections />
 
         
@@ -256,6 +249,29 @@ function App() {
         {showGitHubProfile && <GitHubProfile />}
         {showLinkedIn && <LinkedInFeed />}
       </Layout>
+      
+      <SocialLinks
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <SocialIcon 
+          href="https://linkedin.com/in/antonio-archer" 
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ y: -3 }}
+        >
+          <FontAwesomeIcon icon={faLinkedin} size="lg" />
+        </SocialIcon>
+        <SocialIcon 
+          href="https://github.com/AD-Archer" 
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ y: -3 }}
+        >
+          <FontAwesomeIcon icon={faGithub} size="lg" />
+        </SocialIcon>
+      </SocialLinks>
     </ThemeProvider>
   );
 }

@@ -1,5 +1,5 @@
 import { jobs } from './data';
-import { Section, Title, Item, ItemTitle, Subtitle, Description } from './styles';
+import { Section, Title, Item, ItemTitle, Subtitle } from './styles';
 import styled from 'styled-components';
 
 const AchievementList = styled.ul`

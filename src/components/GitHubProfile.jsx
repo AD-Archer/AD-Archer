@@ -1,37 +1,37 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const ProfileContainer = styled.div`
+const ProfileContainer = styled(motion.div)`
   padding: 2rem;
   background: white;
   border: 3px solid black;
   box-shadow: ${props => props.theme.shadows.comic};
   margin: 2rem auto;
-  max-width: 800px;
+  max-width: 1200px;
+  height: 800px;
+  overflow: hidden;
 `;
 
-const ProfileTitle = styled.h2`
-  font-family: ${props => props.theme.fonts.accent};
-  font-size: 2rem;
-  color: ${props => props.theme.colors.accent};
-  margin-bottom: 1rem;
-`;
-
-const ProfileLink = styled.a`
-  color: ${props => props.theme.colors.primary};
-  text-decoration: none;
-  font-weight: bold;
-  &:hover {
-    text-decoration: underline;
-  }
+const ProfileFrame = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
 `;
 
 const GitHubProfile = () => {
   return (
-    <ProfileContainer>
-      <ProfileTitle>Connect with Me on GitHub</ProfileTitle>
-      <ProfileLink href="https://github.com/AD-Archer" target="_blank" rel="noopener noreferrer">
-        Visit my GitHub Profile
-      </ProfileLink>
+    <ProfileContainer
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <ProfileFrame
+        src="https://github.com/AD-Archer"
+        title="Antonio Archer GitHub Profile"
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+      />
     </ProfileContainer>
   );
 };

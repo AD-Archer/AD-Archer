@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -44,14 +45,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  margin-top: auto;
-  background: white;
-  border-top: 1px solid #e0e0e0;
-  padding: 2rem 0;
-`;
-
 const Layout = ({ children }) => {
   return (
     <ComicPanel
@@ -64,6 +57,10 @@ const Layout = ({ children }) => {
       </ContentWrapper>
     </ComicPanel>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout; 
