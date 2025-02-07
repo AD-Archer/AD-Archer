@@ -27,30 +27,47 @@ export const certifications = [
     },
   ];
 
-export const jobs = [
+  export const jobs = [
     {
       title: "Full Stack Developer & Technical Mentor",
       company: "Launchpad Philly",
       duration: "Jan 2023 - Present",
       location: "Philadelphia, PA",
       achievements: [
-        "Led development of MoviesNoir, a full-stack React application with 1000+ active users",
-        "Mentored 90+ aspiring developers, with 85% successfully transitioning into tech roles",
-        "Implemented modern web development practices using React, Node.js, and Python",
-        "Created and delivered technical workshops on web development fundamentals"
+        "Developed muliple full stack applications to solve issues faced by organization",
+        "Engineered solutions using modern web stack (React, Node.js, MongoDB)",
+        "Led technical workshops on web development fundamentals and DevOps practices",
+        "Integrated AI tools (ChatGPT) to enhance development workflows",
+        "Collaborated on projects using Git/GitHub for version control",
+        "Earned PCEP Python certification with 200+ coding hours"
       ],
-      techStack: ["React", "Node.js", "Python", "MongoDB", "Git"]
+      techStack: ["React", "Node.js", "Python", "MongoDB", "Git", "AI/LLM", "DevOps"]
+    },
+
+    {
+      title: "Instructional Assistant & Career Mentor",
+      company: "Launchpad Philly",
+      duration: "Jan 2025 - Present",
+      location: "Philadelphia, PA",
+      achievements: [
+        "Supported 90+ students through personalized technical coaching",
+        "Developed curriculum for career transition workshops",
+        "Provided progress tracking and growth strategy development",
+        "Facilitated technical interview preparation sessions",
+        "Hosted professional development workshops"
+      ],
+      techStack: ["Career Coaching", "Technical Mentoring", "Workshop Development", "Progress Analytics"]
     },
     {
-      title: "Cybersecurity Solutions Engineer",
+      title: "Cybersecurity Solutions Engineer (Intern)",
       company: "Accenture",
       duration: "Jun 2024 - Aug 2024",
       location: "Philadelphia, PA",
       achievements: [
-        "Architected a password management solution that reduced security incidents by 40%",
-        "Led a team of 5 developers in implementing cybersecurity best practices",
-        "Presented technical solutions to C-level executives and stakeholders",
-        "Integrated Have I Been Pwned API for real-time security vulnerability detection"
+        "Led team development of password security solution",
+        "Integrated security APIs for vulnerability detection",
+        "Presented cybersecurity strategies to leadership",
+        "Implemented authentication best practices"
       ],
       techStack: ["Security APIs", "React", "Node.js", "Authentication Systems"]
     },
@@ -60,11 +77,11 @@ export const jobs = [
       duration: "Jun 2021 - Aug 2021",
       location: "Philadelphia, PA",
       achievements: [
-        "Optimized network infrastructure serving 1000+ users across multiple locations",
-        "Reduced system downtime by 60% through proactive monitoring and maintenance",
-        "Implemented automated backup solutions for critical systems",
-        "Developed documentation for IT processes and emergency procedures"
+        "Optimized multi-location network infrastructure",
+        "Implemented automated system backups",
+        "Developed IT documentation and procedures",
+        "Maintained enterprise-level device networks"
       ],
-      techStack: ["Network Administration", "Server Management", "IT Infrastructure"]
-    },
-  ];
+      techStack: ["Network Administration", "Server Management", "Windows Server"]
+    }
+];
