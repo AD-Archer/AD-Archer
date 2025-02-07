@@ -15,6 +15,7 @@ import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
 
+
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
   font-size: clamp(3rem, 8vw, 6rem);

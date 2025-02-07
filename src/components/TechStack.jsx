@@ -112,14 +112,14 @@ const PowerLevel = styled.div`
     content: '';
     display: block;
     height: 100%;
-    width: ${props => props.level}%;
+    width: ${props => props.$level}%;
     background: ${props => props.theme.colors.primary};
     animation: powerUp 1s ease-out;
   }
 
   @keyframes powerUp {
     from { width: 0; }
-    to { width: ${props => props.level}%; }
+    to { width: ${props => props.$level}%; }
   }
 `;
 
@@ -202,7 +202,7 @@ const TechStack = () => {
               >
                 <SkillIcon src={skill.icon} alt={skill.name} />
                 <SkillName>{skill.name}</SkillName>
-                <PowerLevel level={skill.power} />
+                <PowerLevel $level={skill.power} />
               </SkillBadge>
             ))}
           </SkillsGrid>
