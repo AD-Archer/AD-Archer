@@ -178,7 +178,9 @@ const TechStack = () => {
       >
         SUPER TECH POWERS
       </motion.h2>
-      
+
+
+
       {Object.entries(techStack).map(([category, skills], categoryIndex) => (
         <motion.div
           key={category}

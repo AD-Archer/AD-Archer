@@ -14,6 +14,7 @@ import GitHubProfile from './components/GitHubProfile';
 import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
+import GitHubStreak from './components/github-widgets/GitHubStreak';
 
 
 const HeroTitle = styled(motion.h1)`
@@ -222,7 +223,8 @@ function App() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              MY SUPER PROJECTS!
+              <GitHubStreak />
+
             </SectionTitle>
 
             <TechStack />
