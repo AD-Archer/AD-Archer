@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { theme } from './styles/theme';
 import Layout from './components/Layout';
-import Projects from './components/Projects';
 import antonioImage from './assets/images/antonioarcher.jpeg';
 import LinkedInFeed from './components/LinkedInFeed';
+import GitHubProjects from './components/GitHubProjects';
 
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
@@ -206,7 +206,7 @@ function App() {
           </SectionTitle>
         </div>
         
-        <Projects />
+        <GitHubProjects />
 
         <RevealButton
           onClick={() => setShowLinkedIn(!showLinkedIn)}
