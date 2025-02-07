@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import antonioImage from './assets/images/antonioarcher.jpeg';
 import LinkedInFeed from './components/LinkedInFeed';
 import GitHubProjects from './components/GitHubProjects';
+import ProfileSections from './components/profile/ProfileSections';
 
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
@@ -51,6 +52,13 @@ const SpeechBubble = styled(motion.div)`
   p {
     font-family: ${props => props.theme.fonts.body};
     font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+  }
+
+  .credentials {
+    margin-top: 1rem;
+    font-style: italic;
+    color: ${props => props.theme.colors.accent};
   }
 `;
 
@@ -144,6 +152,15 @@ const RevealButton = styled(motion.button)`
   }
 `;
 
+const ProfileImage = styled(motion.img)`
+  width: 200px;
+  border-radius: 10px;
+  margin: 0 auto 2rem;
+  display: block;
+  border: 3px solid black;
+  box-shadow: ${props => props.theme.shadows.comic};
+`;
+
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
 
@@ -182,19 +199,26 @@ function App() {
             ANTONIO ARCHER
           </HeroTitle>
           
-          <img 
-            src={antonioImage} 
-            alt="Antonio Archer" 
-            style={{ width: '200px', borderRadius: '10px', margin: '1rem auto', display: 'block' }} 
-          />
-
           <SpeechBubble
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h2>Web Developer Extraordinaire!</h2>
-            <p>Fighting bugs and crafting awesome web experiences!</p>
+            <ProfileImage 
+              src={antonioImage} 
+              alt="Antonio Archer"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            />
+            <h2>Full Stack Software Engineer</h2>
+            <p>
+              Crafting innovative web solutions with React.js, JavaScript, and Python. 
+              Dedicated to making technology both fun and practical while improving human lives.
+            </p>
+            <p className="credentials">
+              Certified in Python | React.js Expert | JavaScript Developer
+            </p>
           </SpeechBubble>
 
           <SectionTitle
@@ -204,6 +228,8 @@ function App() {
           >
             MY SUPER PROJECTS!
           </SectionTitle>
+
+          <ProfileSections />
         </div>
         
         <GitHubProjects />
