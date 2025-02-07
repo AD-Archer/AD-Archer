@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
@@ -7,6 +8,7 @@ import { theme } from './styles/theme';
 import Layout from './components/Layout';
 import Projects from './components/Projects';
 import antonioImage from './assets/images/antonioarcher.jpeg';
+import LinkedInFeed from './components/LinkedInFeed';
 
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
@@ -80,6 +82,12 @@ const SocialLinks = styled(motion.div)`
   z-index: 100;
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    position: static;
+    justify-content: center;
+    margin: 1rem 0;
+  }
 `;
 
 const SocialIcon = styled(motion.a)`
@@ -119,7 +127,26 @@ const SocialIcon = styled(motion.a)`
   }
 `;
 
+const RevealButton = styled(motion.button)`
+  background: ${props => props.theme.colors.secondary};
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 2rem auto;
+  display: block;
+  transition: background 0.3s;
+
+  &:hover {
+    background: ${props => props.theme.colors.primary};
+  }
+`;
+
 function App() {
+  const [showLinkedIn, setShowLinkedIn] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <Layout>
@@ -180,6 +207,16 @@ function App() {
         </div>
         
         <Projects />
+
+        <RevealButton
+          onClick={() => setShowLinkedIn(!showLinkedIn)}
+          initial={{ scale: 1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {showLinkedIn ? 'Hide LinkedIn Feed' : 'Unwrap the LinkedIn!'}
+        </RevealButton>
+
+        {showLinkedIn && <LinkedInFeed />}
       </Layout>
     </ThemeProvider>
   );

@@ -7,6 +7,9 @@ const ComicPanel = styled(motion.div)`
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
   &::before {
     content: '';
@@ -29,10 +32,24 @@ const ComicPanel = styled(motion.div)`
 
 const ContentWrapper = styled.div`
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   z-index: 2;
+  flex: 1;
+  
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+  }
+`;
+
+const Footer = styled.footer`
+  width: 100%;
+  margin-top: auto;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  padding: 2rem 0;
 `;
 
 const Layout = ({ children }) => {

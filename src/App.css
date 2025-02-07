@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -39,4 +39,50 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.sk-ww-linkedin-profile-post {
+  margin: 0 auto;
+  max-width: 100%;
+  border: none;
+  background: white;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.sk-ww-linkedin-profile-post:hover {
+  transform: none;
+}
+
+/* Remove any Juicer.io branding if present */
+.juicer-feed {
+  font-family: inherit !important;
+}
+
+.juicer-feed h1.referral,
+.juicer-feed .j-paginate,
+.juicer-feed .j-loading {
+  display: none !important;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .sk-ww-linkedin-profile-post {
+    padding: 0.5rem;
+  }
+
+  /* Adjust social links for mobile */
+  .social-links {
+    position: static;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }
