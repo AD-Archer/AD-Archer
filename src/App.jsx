@@ -129,7 +129,7 @@ function App() {
           transition={{ delay: 0.8 }}
         >
           <SocialIcon 
-            href="https://linkedin.com/in/your-linkedin-profile" 
+            href="https://linkedin.com/in/antonio-archer" 
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -3 }}
@@ -137,7 +137,7 @@ function App() {
             <FontAwesomeIcon icon={faLinkedin} size="lg" />
           </SocialIcon>
           <SocialIcon 
-            href="https://github.com/your-github-profile" 
+            href="https://github.com/AD-Archer" 
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -3 }}
