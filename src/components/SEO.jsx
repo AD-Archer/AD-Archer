@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 
 const SEO = ({ title, description, image }) => {
-  const siteUrl = 'https://antonioarcher.com'; // Replace with your actual domain
+  const siteUrl = 'https://antonioarcher.com'; 
   const defaultDescription = 'Full Stack Software Engineer crafting innovative web solutions with React.js, JavaScript, and Python.';
-  const defaultImage = '/antonioarcher.jpeg'; // Add a default social sharing image
+  const defaultImage = '/antonioarcher.jpeg';
 
   return (
     <Helmet>
