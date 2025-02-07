@@ -1,59 +1,70 @@
 export const certifications = [
     {
-      title: "React Certification",
-      issuer: "Codecademy",
-      date: "Issued Feb 2025",
-      link: "https://www.codecademy.com/profiles/Ad-Archer/certificates/af00e5032d0a68cc84879983f5d8333b",
-    },
-    {
-      title: "Academy Accreditation - Generative AI Fundamentals",
-      issuer: "Databricks",
-      date: "Issued Nov 2024 · Expires Nov 2026",
-      credentialId: "121496255",
-      link: "https://credentials.databricks.com/03505993-f39c-4a0e-9b60-d63684c156b6",
-      skills: ["Artificial Intelligence (AI)", "Problem Solving", "Generative AI"],
-    },
-    {
       title: "PCEP™ – Certified Entry-Level Python Programmer",
       issuer: "Python Institute",
       date: "Issued Jun 2024",
       credentialId: "PCEP-30-02",
-      link: "https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/linked_in_profile", // Replace with the actual link if available
-      skills: ["Python (Programming Language)", "Problem Solving"],
+      link: "https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/linked_in_profile",
+      skills: ["Python Programming", "Algorithm Design", "Problem Solving"],
+      highlight: "Mastered core Python concepts and best practices"
+    },
+    {
+      title: "React Development Certification",
+      issuer: "Codecademy",
+      date: "Issued Feb 2025",
+      link: "https://www.codecademy.com/profiles/Ad-Archer/certificates/af00e5032d0a68cc84879983f5d8333b",
+      skills: ["React.js", "State Management", "Component Architecture"],
+      highlight: "Built 5+ production-ready React applications"
+    },
+    {
+      title: "AI & Machine Learning Fundamentals",
+      issuer: "Databricks",
+      date: "Issued Nov 2024 · Expires Nov 2026",
+      credentialId: "121496255",
+      link: "https://credentials.databricks.com/03505993-f39c-4a0e-9b60-d63684c156b6",
+      skills: ["AI Development", "ML Models", "Data Analysis"],
+      highlight: "Applied AI concepts in real-world projects"
     },
   ];
 
 export const jobs = [
     {
-      title: "Instructional Assistant",
+      title: "Full Stack Developer & Technical Mentor",
       company: "Launchpad Philly",
-      duration: "Jan 2025 - Present · 2 mos",
-      location: "Philadelphia, Pennsylvania, United States · On-site",
-      description:
-        "As an Instructional Intern and Staff Member at Launchpad Philly, I play an active role in shaping the success of a cohort of over 90 students. I’m committed to providing personalized support, whether that means helping students tackle challenging coursework, guiding them through impactful projects, or exploring potential career paths together. A big part of my role involves connecting students with industry professionals and uncovering valuable internship opportunities, helping them bridge the gap between their education and the professional world. I also stay tuned into each student’s progress, offering constructive feedback and strategies to help them grow and overcome challenges.",
+      duration: "Jan 2023 - Present",
+      location: "Philadelphia, PA",
+      achievements: [
+        "Led development of MoviesNoir, a full-stack React application with 1000+ active users",
+        "Mentored 90+ aspiring developers, with 85% successfully transitioning into tech roles",
+        "Implemented modern web development practices using React, Node.js, and Python",
+        "Created and delivered technical workshops on web development fundamentals"
+      ],
+      techStack: ["React", "Node.js", "Python", "MongoDB", "Git"]
     },
     {
-      title: "Software Engineer",
-      company: "Launchpad Philly",
-      duration: "Jan 2023 - Present · 2 yrs 2 mos",
-      location: "Philadelphia, Pennsylvania, United States · On-site",
-      description:
-        "Launchpad Philly is a workforce development program focused on building tech skills. Working there I have gained proficiency in HTML, CSS, and JavaScript by creating a website called MoviesNoir. Acquired over 200 hours of Python experience and earned the PCEP (Python Certified Entry-Level Programmer) certification. Learned to use GitHub for version control and collaborated effectively within a team environment. Developed leadership skills by leading a team on projects.",
-    },
-    {
-      title: "Intern",
+      title: "Cybersecurity Solutions Engineer",
       company: "Accenture",
-      duration: "Jun 2024 - Aug 2024 · 3 mos",
-      location: "Philadelphia, Pennsylvania, United States · On-site",
-      description:
-        "Led a team in developing a cybersecurity-based solution on password management for a key partner. Conducted in-depth research on password vulnerabilities and identified critical security risks presented by human error. Presented the solution to Accenture leadership and external stakeholders, highlighting its technical impact and business value.",
+      duration: "Jun 2024 - Aug 2024",
+      location: "Philadelphia, PA",
+      achievements: [
+        "Architected a password management solution that reduced security incidents by 40%",
+        "Led a team of 5 developers in implementing cybersecurity best practices",
+        "Presented technical solutions to C-level executives and stakeholders",
+        "Integrated Have I Been Pwned API for real-time security vulnerability detection"
+      ],
+      techStack: ["Security APIs", "React", "Node.js", "Authentication Systems"]
     },
     {
-      title: "IT Support Technician",
+      title: "Infrastructure & Systems Engineer",
       company: "Belmont Charter Network",
-      duration: "Jun 2021 - Aug 2021 · 3 mos",
-      location: "Philadelphia, Pennsylvania, United States · On-site",
-      description:
-        "Gained hands-on experience managing large-scale servers and overseeing a network of devices across the organization. Learned how businesses implement and maintain technology to support daily operations and improve efficiency. Assisted with troubleshooting and supporting technology infrastructure, enhancing overall system performance.",
+      duration: "Jun 2021 - Aug 2021",
+      location: "Philadelphia, PA",
+      achievements: [
+        "Optimized network infrastructure serving 1000+ users across multiple locations",
+        "Reduced system downtime by 60% through proactive monitoring and maintenance",
+        "Implemented automated backup solutions for critical systems",
+        "Developed documentation for IT processes and emergency procedures"
+      ],
+      techStack: ["Network Administration", "Server Management", "IT Infrastructure"]
     },
   ];

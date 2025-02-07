@@ -10,6 +10,7 @@ import antonioImage from './assets/images/antonioarcher.jpeg';
 import LinkedInFeed from './components/LinkedInFeed';
 import GitHubProjects from './components/GitHubProjects';
 import ProfileSections from './components/profile/ProfileSections';
+import GitHubProfile from './components/GitHubProfile';
 
 const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.title};
@@ -84,18 +85,10 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const SocialLinks = styled(motion.div)`
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 100;
   display: flex;
+  justify-content: center;
   gap: 1rem;
-
-  @media (max-width: 768px) {
-    position: static;
-    justify-content: center;
-    margin: 1rem 0;
-  }
+  margin: 2rem 0;
 `;
 
 const SocialIcon = styled(motion.a)`
@@ -135,6 +128,14 @@ const SocialIcon = styled(motion.a)`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+`;
+
 const RevealButton = styled(motion.button)`
   background: ${props => props.theme.colors.secondary};
   color: white;
@@ -143,8 +144,6 @@ const RevealButton = styled(motion.button)`
   padding: 1rem 2rem;
   font-size: 1.2rem;
   cursor: pointer;
-  margin: 2rem auto;
-  display: block;
   transition: background 0.3s;
 
   &:hover {
@@ -163,6 +162,7 @@ const ProfileImage = styled(motion.img)`
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
+  const [showGitHubProfile, setShowGitHubProfile] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -230,18 +230,30 @@ function App() {
           </SectionTitle>
 
           <ProfileSections />
+
+        
         </div>
         
         <GitHubProjects />
+        <ButtonContainer>
+          <RevealButton
+            onClick={() => setShowGitHubProfile(!showGitHubProfile)}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {showGitHubProfile ? 'Hide GitHub Profile' : 'Show GitHub Profile'}
+          </RevealButton>
 
-        <RevealButton
-          onClick={() => setShowLinkedIn(!showLinkedIn)}
-          initial={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {showLinkedIn ? 'Hide LinkedIn Feed' : 'Unwrap the LinkedIn!'}
-        </RevealButton>
+          <RevealButton
+            onClick={() => setShowLinkedIn(!showLinkedIn)}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {showLinkedIn ? 'Hide LinkedIn Feed' : 'Unwrap the LinkedIn!'}
+          </RevealButton>
+        </ButtonContainer>
 
+        {showGitHubProfile && <GitHubProfile />}
         {showLinkedIn && <LinkedInFeed />}
       </Layout>
     </ThemeProvider>
