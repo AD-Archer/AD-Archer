@@ -29,7 +29,7 @@ export const certifications = [
 
   export const jobs = [
     {
-      title: "Full Stack Developer & Technical Mentor",
+      title: "Full Stack Developer",
       company: "Launchpad Philly",
       duration: "Jan 2023 - Present",
       location: "Philadelphia, PA",
@@ -45,12 +45,12 @@ export const certifications = [
     },
 
     {
-      title: "Instructional Assistant & Career Mentor",
+      title: "Technical Mentor",
       company: "Launchpad Philly",
       duration: "Jan 2025 - Present",
       location: "Philadelphia, PA",
       achievements: [
-        "Supported 90+ students through personalized technical coaching",
+        "Supported 90+ students through personalized technical learning",
         "Developed curriculum for career transition workshops",
         "Provided progress tracking and growth strategy development",
         "Facilitated technical interview preparation sessions",
