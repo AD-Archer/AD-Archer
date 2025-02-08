@@ -313,7 +313,7 @@ const GitHubProjects = () => {
 
   const handlePreviewClick = (url, title) => {
     if (title === "PlatePedia") {
-      alert("Please note: PlatePedia may take a bit longer to load.");
+      alert("Please note: PlatePedia may take a bit longer to load, after clicking please come back in a few seconds.");
     }
     setPreviewUrl(url);
     document.body.style.overflow = 'hidden';
