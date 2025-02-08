@@ -2,14 +2,19 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const TechStackContainer = styled(motion.section)`
-  padding: 2rem;
+  padding: 1.5rem;
   background: white;
   border: 3px solid black;
-  margin: 2rem auto;
-  max-width: 1200px;
+  margin: 1.5rem auto;
+  max-width: 1000px;
   box-shadow: ${props => props.theme.shadows.comic};
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
 
   &::before {
     content: '';
@@ -25,13 +30,19 @@ const TechStackContainer = styled(motion.section)`
 
 const CategoryTitle = styled.h3`
   font-family: ${props => props.theme.fonts.accent};
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: ${props => props.theme.colors.accent};
-  margin: 2rem 0 1rem;
+  margin: 1.5rem 0 1rem;
   text-transform: uppercase;
   text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
   position: relative;
-  padding-left: 2.5rem;
+  padding-left: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    padding-left: 1.75rem;
+    margin: 1rem 0 0.75rem;
+  }
 
   &::before {
     content: '⚡';
@@ -39,27 +50,42 @@ const CategoryTitle = styled.h3`
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
   }
 `;
 
 const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SkillBadge = styled(motion.div)`
   background: ${props => props.theme.colors.primary}10;
-  padding: 1.5rem;
-  border-radius: 15px;
+  padding: 1rem;
+  border-radius: 12px;
   text-align: center;
   border: 2px solid ${props => props.theme.colors.primary}30;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
 
   &::before {
     content: '';
@@ -81,11 +107,17 @@ const SkillBadge = styled(motion.div)`
 `;
 
 const SkillIcon = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-bottom: 1rem;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.75rem;
   filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
   transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 0.5rem;
+  }
 
   ${SkillBadge}:hover & {
     transform: scale(1.1) rotate(5deg);
@@ -95,9 +127,13 @@ const SkillIcon = styled.img`
 const SkillName = styled.span`
   display: block;
   font-family: ${props => props.theme.fonts.accent};
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${props => props.theme.colors.primary};
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const PowerLevel = styled.div`
@@ -169,17 +205,15 @@ const TechStack = () => {
         transition={{ delay: 0.2 }}
         style={{
           fontFamily: 'Bangers',
-          fontSize: '3rem',
+          fontSize: 'clamp(2rem, 5vw, 2.5rem)',
           color: '#333',
           textAlign: 'center',
-          marginBottom: '2rem',
-          textShadow: '3px 3px 0 rgba(0,0,0,0.2)',
+          marginBottom: '1.5rem',
+          textShadow: '2px 2px 0 rgba(0,0,0,0.2)',
         }}
       >
         SUPER TECH POWERS
       </motion.h2>
-
-
 
       {Object.entries(techStack).map(([category, skills], categoryIndex) => (
         <motion.div
