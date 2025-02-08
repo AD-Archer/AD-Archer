@@ -16,15 +16,18 @@ const ComicPanel = styled(motion.div)`
     transform: scale(0.8);
     transform-origin: top center;
     height: 125vh;
+
+    /* Ensure the scale doesn't affect modal */
+    .modal-open & {
+      transform: none;
+      height: auto;
+    }
   }
   
   &::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: repeating-linear-gradient(
       45deg,
       transparent,
@@ -47,7 +50,7 @@ const ContentWrapper = styled.div`
   flex: 1;
   
   @media (max-width: 768px) {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem;
   }
 `;
 

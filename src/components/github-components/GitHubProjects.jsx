@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
+  scroll-margin-top: 2rem;
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -130,28 +131,84 @@ const ModalOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 99999;
+  padding: 0;
+  transform-origin: center center;
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const ModalContent = styled(motion.div)`
-  background: white;
-  border: 3px solid black;
-  border-radius: 10px;
-  width: 90vw;
-  height: 90vh;
-  max-width: 1200px;
   position: relative;
-  box-shadow: ${props => props.theme.shadows.comic};
-  z-index: 1001;
+  width: 95vw;
+  height: 95vh;
+  background: white;
+  border: 3px solid ${props => props.theme.colors.primary};
+  border-radius: 10px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.comic};
+  z-index: 100000;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: 3px solid ${props => props.theme.colors.primary};
+  }
+`;
+
+const SitePreview = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: white;
+`;
+
+const CloseButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 20px);
+    padding: 1rem 2rem;
+    width: auto;
+    min-width: 150px;
+    font-size: 1.1rem;
+  }
 `;
 
 const FirstTimeMessage = styled(motion.div)`
@@ -159,12 +216,12 @@ const FirstTimeMessage = styled(motion.div)`
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   padding: 1rem 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
-  z-index: 2;
+  z-index: 100002;
   border: 2px solid ${props => props.theme.colors.primary};
 
   p {
@@ -172,44 +229,11 @@ const FirstTimeMessage = styled(motion.div)`
     font-size: 1.1rem;
     color: ${props => props.theme.colors.accent};
   }
-`;
 
-const CloseButton = styled.button`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FF084A;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1002;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    transform: translateX(-50%) translateY(-2px);
-    background: ${props => props.theme.colors.accent};
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 0.8rem 1rem;
   }
-
-  &:active {
-    transform: translateX(-50%) translateY(0);
-  }
-`;
-
-const SitePreview = styled.iframe`
-  width: 100%;
-  height: calc(100% - 80px); /* Account for close button space */
-  border: none;
-  margin: 0;
-  padding: 0;
 `;
 
 const projects = [
@@ -285,6 +309,7 @@ const GitHubProjects = () => {
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem('hasSeenPreview') === 'true';
   });
+  const projectsRef = useRef(null);
 
   const handlePreviewClick = (url, title) => {
     if (title === "PlatePedia") {
@@ -292,6 +317,7 @@ const GitHubProjects = () => {
     }
     setPreviewUrl(url);
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     
     if (!hasSeenPreview) {
       localStorage.setItem('hasSeenPreview', 'true');
@@ -299,14 +325,20 @@ const GitHubProjects = () => {
     }
   };
 
-  const handleClosePreview = () => {
+  const handleClosePreview = (e) => {
+    e?.preventDefault();
     setPreviewUrl(null);
     document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    
+    setTimeout(() => {
+      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   return (
     <>
-      <ProjectsGrid>
+      <ProjectsGrid ref={projectsRef}>
         {projects.map((project, index) => (
           <ProjectCard
             key={project.title}
@@ -353,6 +385,7 @@ const GitHubProjects = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleClosePreview}
+          onTouchEnd={handleClosePreview}
         >
           <ModalContent
             initial={{ scale: 0.5 }}
