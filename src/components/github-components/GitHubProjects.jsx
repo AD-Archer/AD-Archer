@@ -241,7 +241,7 @@ const projects = [
   {
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
-    techStack: ["React", "Node.js", "Express"],
+    techStack: ["React", "Node.js", "Express","Python",""],
     siteLink: "https://moviesnoir.vercel.app/",
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
 
@@ -271,7 +271,7 @@ const projects = [
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
-    techStack: ["React", "Gemini-AI", "Node.js"],
+    techStack: ["React", "Gemini-AI", "Node.js","Express"],
     siteLink: "https://corra-tau.vercel.app/",
     repoLink: "https://github.com/AD-Archer/corra"
   },
@@ -285,7 +285,7 @@ const projects = [
   {
     title: "Dynasty Defense",
     description: "A system for managing and creating custom alarms for fire, smoke, and security, built with React.",
-    techStack: ["React", "Firebase", "IoT"],
+    techStack: ["React", "Node.js", "IoT"],
     siteLink: "https://dynasty-defense.vercel.app/",
     repoLink: "https://github.com/AD-Archer/dynasty-defense"
   },
