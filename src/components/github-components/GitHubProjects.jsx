@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
 `;
@@ -14,17 +14,18 @@ const ProjectCard = styled(motion.div)`
   border: 3px solid black;
   padding: 2rem;
   position: relative;
-  transform: rotate(-1deg);
-  transition: transform 0.3s ease;
+  transform: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: ${props => props.theme.shadows.comic};
-  border-radius: 10px;
-
-  &:nth-child(even) {
-    transform: rotate(1deg);
-  }
+  border-radius: 8px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   &:hover {
-    transform: rotate(0) scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: ${props => props.theme.shadows.hover};
     z-index: 2;
   }
 
@@ -37,26 +38,25 @@ const ProjectCard = styled(motion.div)`
     bottom: -10px;
     background: ${props => props.theme.colors.secondary}40;
     z-index: -1;
+    border-radius: 8px;
   }
-`;
-
-const ProjectImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 1rem;
 `;
 
 const ProjectTitle = styled.h3`
   font-family: ${props => props.theme.fonts.accent};
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
   color: ${props => props.theme.colors.accent};
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid ${props => props.theme.colors.secondary}40;
 `;
 
 const ProjectDescription = styled.p`
   font-family: ${props => props.theme.fonts.body};
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  margin: 0;
 `;
 
 const ProjectLinks = styled.div`
@@ -80,51 +80,141 @@ const ProjectLink = styled.a`
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 2px solid ${props => props.theme.colors.secondary}40;
 `;
 
 const TechBadge = styled(motion.span)`
-  background: ${props => props.theme.colors.primary};
-  color: white;
+  background: ${props => props.theme.colors.primary}15;
+  color: ${props => props.theme.colors.primary};
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 25px;
   font-size: 0.9rem;
-  border: 2px solid black;
-`;
-
-const PreviewButton = styled.button`
-  background: ${props => props.theme.colors.primary};
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-top: 1rem;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 2px solid ${props => props.theme.colors.primary}30;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: ${props => props.theme.colors.accent};
+    background: ${props => props.theme.colors.primary};
+    color: white;
+    transform: translateY(-2px);
   }
 `;
 
-const PreviewIframe = styled.iframe`
-  width: 100%;
-  height: 400px;
+const PreviewButton = styled.button`
+  background: #2ECC71;
+  color: white;
   border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+
+  &:hover {
+    background: #27AE60;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+`;
+
+const ModalContent = styled(motion.div)`
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  background: white;
+  border: 5px solid #FF084A;
   border-radius: 10px;
-  margin-top: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+`;
+
+const FirstTimeMessage = styled(motion.div)`
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 2;
+  border: 2px solid ${props => props.theme.colors.primary};
+
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: ${props => props.theme.colors.accent};
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF084A;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    transform: translateX(-50%) translateY(-2px);
+    background: ${props => props.theme.colors.accent};
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateX(-50%) translateY(0);
+  }
+`;
+
+const SitePreview = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
 `;
 
 const projects = [
   {
     title: "MoviesNoir",
-    description: "A movie generator app built with modern web technologies",
+    description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
     techStack: ["React", "Node.js", "Express"],
     siteLink: "https://moviesnoir.vercel.app/",
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
-    image: "https://via.placeholder.com/300x200?text=MoviesNoir"
+
   },
   {
     title: "3D Land Music Player",
@@ -132,12 +222,12 @@ const projects = [
     techStack: ["React", "Node.js", "YouTube API"],
     siteLink: "https://ad-archer.github.io/3d-land-player/",
     repoLink: "https://github.com/AD-Archer/3d-land-player",
-    image: "https://via.placeholder.com/300x200?text=3D+Land+Music+Player"
+
   },
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
-    techStack: ["Next.js", "PostgreSQL", "TailwindCSS"],
+    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack"],
     siteLink: "https://university-orange-field.vercel.app/",
     repoLink: "https://github.com/AD-Archer/University-OrangeField"
   },
@@ -187,52 +277,106 @@ const projects = [
 
 const GitHubProjects = () => {
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [hasSeenPreview, setHasSeenPreview] = useState(() => {
+    return localStorage.getItem('hasSeenPreview') === 'true';
+  });
 
-  const handlePreviewClick = (url) => {
-    setPreviewUrl(previewUrl === url ? null : url);
+  const handlePreviewClick = (url, title) => {
+    if (title === "PlatePedia") {
+      alert("Please note: PlatePedia may take a bit longer to load.");
+    }
+    setPreviewUrl(url);
+    document.body.style.overflow = 'hidden';
+    
+    if (!hasSeenPreview) {
+      localStorage.setItem('hasSeenPreview', 'true');
+      setHasSeenPreview(true);
+    }
+  };
+
+  const handleClosePreview = () => {
+    setPreviewUrl(null);
+    document.body.style.overflow = 'unset';
   };
 
   return (
-    <ProjectsGrid>
-      {projects.map((project, index) => (
-        <ProjectCard
-          key={project.title}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.2 }}
+    <>
+      <ProjectsGrid>
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+          >
+            <ProjectTitle>{project.title}</ProjectTitle>
+            <ProjectDescription>{project.description}</ProjectDescription>
+            <ProjectLinks>
+              <ProjectLink href={project.siteLink} target="_blank" rel="noopener noreferrer">
+                Visit Site
+              </ProjectLink>
+              <ProjectLink href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                View Code
+              </ProjectLink>
+            </ProjectLinks>
+            <PreviewButton onClick={() => handlePreviewClick(project.siteLink, project.title)}>
+              Preview Site
+            </PreviewButton>
+            <TechStack>
+              {project.techStack.map((tech, techIndex) => (
+                <TechBadge
+                  key={tech}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ 
+                    delay: index * 0.1 + (techIndex * 0.05),
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
+                  {tech}
+                </TechBadge>
+              ))}
+            </TechStack>
+          </ProjectCard>
+        ))}
+      </ProjectsGrid>
+
+      {previewUrl && (
+        <ModalOverlay
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleClosePreview}
         >
-          <ProjectImage src={project.image} alt={project.title} />
-          <ProjectTitle>{project.title}</ProjectTitle>
-          <ProjectDescription>{project.description}</ProjectDescription>
-          <ProjectLinks>
-            <ProjectLink href={project.siteLink} target="_blank" rel="noopener noreferrer">
-              Visit Site
-            </ProjectLink>
-            <ProjectLink href={project.repoLink} target="_blank" rel="noopener noreferrer">
-              View Code
-            </ProjectLink>
-          </ProjectLinks>
-          <PreviewButton onClick={() => handlePreviewClick(project.siteLink)}>
-            {previewUrl === project.siteLink ? 'Hide Preview' : 'Preview on Site'}
-          </PreviewButton>
-          {previewUrl === project.siteLink && (
-            <PreviewIframe src={project.siteLink} title={`${project.title} Preview`} />
-          )}
-          <TechStack>
-            {project.techStack.map((tech, techIndex) => (
-              <TechBadge
-                key={tech}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: index * 0.2 + 0.5 + (techIndex * 0.1) }}
+          <ModalContent
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.5 }}
+            onClick={e => e.stopPropagation()}
+          >
+            {!hasSeenPreview && (
+              <FirstTimeMessage
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
               >
-                {tech}
-              </TechBadge>
-            ))}
-          </TechStack>
-        </ProjectCard>
-      ))}
-    </ProjectsGrid>
+                <p>Click outside the preview window or the button below to exit</p>
+              </FirstTimeMessage>
+            )}
+            <SitePreview 
+              src={previewUrl}
+              title="Site Preview"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+            <CloseButton onClick={handleClosePreview}>
+              Close Preview
+            </CloseButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </>
   );
 };
 
