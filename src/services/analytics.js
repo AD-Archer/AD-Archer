@@ -35,5 +35,22 @@ export const Analytics = {
       action: 'Site Entry',
       label: 'Initial Visit'
     });
+  },
+
+  // Contact form
+  trackContactFormOpen: () => {
+    ReactGA.event({
+      category: 'Contact',
+      action: 'Open Contact Form',
+      label: 'Contact Form'
+    });
+  },
+
+  trackContactFormSubmit: () => {
+    ReactGA.event({
+      category: 'Contact',
+      action: 'Submit Contact Form',
+      label: 'Contact Form'
+    });
   }
 }; 

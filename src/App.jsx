@@ -5,7 +5,6 @@ import Layout from './components/Layout';
 import LinkedInFeed from './components/LinkedInFeed';
 import GitHubProjects from './components/github-components/GitHubProjects';
 import ProfileSections from './components/profile/ProfileSections';
-import GitHubProfile from './components/github-components/GitHubProfile';
 import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
@@ -19,7 +18,6 @@ import { Analytics } from './services/analytics';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
-  const [showGitHubProfile, setShowGitHubProfile] = useState(false);
 
   useEffect(() => {
     // Track initial site visit
@@ -41,15 +39,10 @@ function App() {
               <ProfileSections />
               <TechStack />
               <GitHubProjects />
-              
               <SocialButtons 
-                showGitHubProfile={showGitHubProfile}
-                setShowGitHubProfile={setShowGitHubProfile}
                 showLinkedIn={showLinkedIn}
                 setShowLinkedIn={setShowLinkedIn}
               />
-
-              {showGitHubProfile && <GitHubProfile />}
               {showLinkedIn && <LinkedInFeed />}
             </div>
           </Layout>
