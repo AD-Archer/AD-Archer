@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './components/Layout';
 import LinkedInFeed from './components/LinkedInFeed';
 import GitHubProjects from './components/github-components/GitHubProjects';
 import ProfileSections from './components/profile/ProfileSections';
-import GitHubProfile from './components/github-components/GitHubProfile';
 import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
@@ -15,10 +14,16 @@ import SocialButtons from './components/social/SocialButtons';
 import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
+import { Analytics } from './services/analytics';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
-  const [showGitHubProfile, setShowGitHubProfile] = useState(false);
+
+  useEffect(() => {
+    // Track initial site visit
+    Analytics.trackSiteEntry();
+    Analytics.trackPageView(window.location.pathname);
+  }, []);
 
   return (
     <HelmetProvider>
@@ -34,15 +39,10 @@ function App() {
               <ProfileSections />
               <TechStack />
               <GitHubProjects />
-              
               <SocialButtons 
-                showGitHubProfile={showGitHubProfile}
-                setShowGitHubProfile={setShowGitHubProfile}
                 showLinkedIn={showLinkedIn}
                 setShowLinkedIn={setShowLinkedIn}
               />
-
-              {showGitHubProfile && <GitHubProfile />}
               {showLinkedIn && <LinkedInFeed />}
             </div>
           </Layout>

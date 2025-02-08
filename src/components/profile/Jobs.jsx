@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { jobs } from './data';
 import { Section, Title, Item, ItemTitle, Subtitle } from './styles';
 import styled from 'styled-components';
+import { Analytics } from '../../services/analytics';
 
 const AchievementList = styled.ul`
   list-style: none;
@@ -70,12 +71,23 @@ const JobDetails = styled.div`
 
 const Jobs = () => {
   const [visibleJobs, setVisibleJobs] = useState({});
+  const [expandedJob, setExpandedJob] = useState(null);
 
   const toggleJobVisibility = (index) => {
     setVisibleJobs(prev => ({
       ...prev,
       [index]: !prev[index]
     }));
+    if (expandedJob !== index) {
+      Analytics.trackJobView(jobs[index].title, jobs[index].company);
+    }
+  };
+
+  const handleJobClick = (job) => {
+    setExpandedJob(expandedJob === job.id ? null : job.id);
+    if (expandedJob !== job.id) {
+      Analytics.trackJobView(job.title, job.company);
+    }
   };
 
   return (
