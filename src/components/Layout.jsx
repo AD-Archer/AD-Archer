@@ -13,14 +13,13 @@ const ComicPanel = styled(motion.div)`
   justify-content: space-between;
   
   @media (min-width: 1024px) {
-    transform: scale(0.8);
-    transform-origin: top center;
-    height: 125vh;
+    transform: none;
+    min-height: 100vh;
+    margin-bottom: 0;
 
-    /* Ensure the scale doesn't affect modal */
-    .modal-open & {
+    &.modal-open {
       transform: none;
-      height: auto;
+      margin-bottom: 0;
     }
   }
   
@@ -41,17 +40,11 @@ const ComicPanel = styled(motion.div)`
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
   position: relative;
   z-index: 2;
   flex: 1;
-  
-  @media (max-width: 768px) {
-    padding: 0.5rem;
-  }
 `;
 
 const Layout = ({ children }) => {

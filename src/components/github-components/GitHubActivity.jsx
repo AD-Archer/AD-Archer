@@ -10,9 +10,9 @@ const GitHubActivity = () => {
       transition={{ delay: 0.4 }}
       style={{
         width: '100%',
-        maxWidth: '1200px',
-        margin: '4rem auto',
-        padding: '2rem',
+        maxWidth: '1000px',
+        margin: '2rem auto',
+        padding: '1.5rem',
         background: 'white',
         border: '3px solid black',
         boxShadow: theme.shadows.comic,
@@ -22,9 +22,9 @@ const GitHubActivity = () => {
       <motion.h2
         style={{
           fontFamily: theme.fonts.title,
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
           color: theme.colors.accent,
-          marginBottom: '2rem',
+          marginBottom: '1.5rem',
           textAlign: 'center'
         }}
       >

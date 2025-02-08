@@ -13,6 +13,7 @@ import Hero from './components/hero/Hero';
 import GitHubActivity from './components/github-components/GitHubActivity';
 import SocialButtons from './components/social/SocialButtons';
 import SocialIcons from './components/social/SocialIcons';
+import GlobalStyles from './styles/GlobalStyles';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -21,6 +22,7 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <SEO />
         <Layout>
           <SocialIcons />
