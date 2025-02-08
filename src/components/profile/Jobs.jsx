@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { jobs } from './data';
 import { Section, Title, Item, ItemTitle, Subtitle } from './styles';
 import styled from 'styled-components';
@@ -38,29 +39,47 @@ const TechBadge = styled.span`
   border: 1px solid ${props => props.theme.colors.primary};
 `;
 
-const Jobs = () => (
-  <Section>
-    <Title>Professional Journey</Title>
-    {jobs.map((job, index) => (
-      <Item key={index}>
-        <ItemTitle>{job.title}</ItemTitle>
-        <Subtitle>
-          {job.company} · {job.duration}
-        </Subtitle>
-        <Subtitle>{job.location}</Subtitle>
-        <AchievementList>
-          {job.achievements.map((achievement, i) => (
-            <Achievement key={i}>{achievement}</Achievement>
-          ))}
-        </AchievementList>
-        <TechStack>
-          {job.techStack.map((tech, i) => (
-            <TechBadge key={i}>{tech}</TechBadge>
-          ))}
-        </TechStack>
-      </Item>
-    ))}
-  </Section>
-);
+const Jobs = () => {
+  const [visibleJobs, setVisibleJobs] = useState({});
+
+  const toggleJobVisibility = (index) => {
+    setVisibleJobs(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
+  return (
+    <Section>
+      <Title>Professional Journey</Title>
+      {jobs.map((job, index) => (
+        <Item key={index}>
+          <ItemTitle>{job.title}</ItemTitle>
+          <Subtitle>
+            {job.company} · {job.duration}
+          </Subtitle>
+          <Subtitle>{job.location}</Subtitle>
+          <button onClick={() => toggleJobVisibility(index)}>
+            {visibleJobs[index] ? 'Hide Details' : 'View Details'}
+          </button>
+          {visibleJobs[index] && (
+            <>
+              <AchievementList>
+                {job.achievements.map((achievement, i) => (
+                  <Achievement key={i}>{achievement}</Achievement>
+                ))}
+              </AchievementList>
+              <TechStack>
+                {job.techStack.map((tech, i) => (
+                  <TechBadge key={i}>{tech}</TechBadge>
+                ))}
+              </TechStack>
+            </>
+          )}
+        </Item>
+      ))}
+    </Section>
+  );
+};
 
 export default Jobs; 
