@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -16,6 +17,7 @@ const ProjectCard = styled(motion.div)`
   transform: rotate(-1deg);
   transition: transform 0.3s ease;
   box-shadow: ${props => props.theme.shadows.comic};
+  border-radius: 10px;
 
   &:nth-child(even) {
     transform: rotate(1deg);
@@ -36,6 +38,13 @@ const ProjectCard = styled(motion.div)`
     background: ${props => props.theme.colors.secondary}40;
     z-index: -1;
   }
+`;
+
+const ProjectImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 `;
 
 const ProjectTitle = styled.h3`
@@ -84,20 +93,46 @@ const TechBadge = styled(motion.span)`
   border: 2px solid black;
 `;
 
+const PreviewButton = styled.button`
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${props => props.theme.colors.accent};
+  }
+`;
+
+const PreviewIframe = styled.iframe`
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1rem;
+`;
+
 const projects = [
   {
     title: "MoviesNoir",
     description: "A movie generator app built with modern web technologies",
     techStack: ["React", "Node.js", "Express"],
     siteLink: "https://moviesnoir.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/MoviesNoir"
+    repoLink: "https://github.com/AD-Archer/MoviesNoir",
+    image: "https://via.placeholder.com/300x200?text=MoviesNoir"
   },
   {
     title: "3D Land Music Player",
-    description: "A YouTube music player designed to play embedded YouTube playlists. Enjoy a seamless listening experience with a visually appealing 3D land interface.",
+    description: "A YouTube music player designed to play embedded YouTube playlists.",
     techStack: ["React", "Node.js", "YouTube API"],
     siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player"
+    repoLink: "https://github.com/AD-Archer/3d-land-player",
+    image: "https://via.placeholder.com/300x200?text=3D+Land+Music+Player"
   },
   {
     title: "Orange Field University",
@@ -151,6 +186,12 @@ const projects = [
 ];
 
 const GitHubProjects = () => {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  const handlePreviewClick = (url) => {
+    setPreviewUrl(previewUrl === url ? null : url);
+  };
+
   return (
     <ProjectsGrid>
       {projects.map((project, index) => (
@@ -160,6 +201,7 @@ const GitHubProjects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.2 }}
         >
+          <ProjectImage src={project.image} alt={project.title} />
           <ProjectTitle>{project.title}</ProjectTitle>
           <ProjectDescription>{project.description}</ProjectDescription>
           <ProjectLinks>
@@ -170,6 +212,12 @@ const GitHubProjects = () => {
               View Code
             </ProjectLink>
           </ProjectLinks>
+          <PreviewButton onClick={() => handlePreviewClick(project.siteLink)}>
+            {previewUrl === project.siteLink ? 'Hide Preview' : 'Preview on Site'}
+          </PreviewButton>
+          {previewUrl === project.siteLink && (
+            <PreviewIframe src={project.siteLink} title={`${project.title} Preview`} />
+          )}
           <TechStack>
             {project.techStack.map((tech, techIndex) => (
               <TechBadge
