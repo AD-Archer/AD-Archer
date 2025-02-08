@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './components/Layout';
@@ -15,10 +15,17 @@ import SocialButtons from './components/social/SocialButtons';
 import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
+import { Analytics } from './services/analytics';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
   const [showGitHubProfile, setShowGitHubProfile] = useState(false);
+
+  useEffect(() => {
+    // Track initial site visit
+    Analytics.trackSiteEntry();
+    Analytics.trackPageView(window.location.pathname);
+  }, []);
 
   return (
     <HelmetProvider>

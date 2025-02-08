@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
+import { Analytics } from '../../services/analytics';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -380,17 +381,12 @@ const GitHubProjects = () => {
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
-  const handlePreviewClick = (url, title) => {
-    if (title === "PlatePedia") {
-      alert("Please note: PlatePedia may take a bit longer to load, after clicking please come back in a few seconds.");
-    }
-    setPreviewUrl(url);
-    document.body.style.overflow = 'hidden';
-    document.body.classList.add('modal-open');
-    
+  const handlePreviewClick = (project) => {
+    setPreviewUrl(project.siteLink);
+    Analytics.trackProjectPreview(project.title);
     if (!hasSeenPreview) {
-      localStorage.setItem('hasSeenPreview', 'true');
       setHasSeenPreview(true);
+      localStorage.setItem('hasSeenPreview', 'true');
     }
   };
 
@@ -433,7 +429,7 @@ const GitHubProjects = () => {
                 View Code
               </ProjectLink>
             </ProjectLinks>
-            <PreviewButton onClick={() => handlePreviewClick(project.siteLink, project.title)}>
+            <PreviewButton onClick={() => handlePreviewClick(project)}>
               Preview Site
             </PreviewButton>
             <TechStack>
