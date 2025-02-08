@@ -130,25 +130,28 @@ const ModalOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
-  padding: 2rem;
 `;
 
 const ModalContent = styled(motion.div)`
-  position: relative;
+  background: white;
+  border: 3px solid black;
+  border-radius: 10px;
   width: 90vw;
   height: 90vh;
-  background: white;
-  border: 5px solid #FF084A;
-  border-radius: 10px;
+  max-width: 1200px;
+  position: relative;
+  box-shadow: ${props => props.theme.shadows.comic};
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 `;
 
 const FirstTimeMessage = styled(motion.div)`
@@ -186,7 +189,7 @@ const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 1002;
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
@@ -203,8 +206,10 @@ const CloseButton = styled.button`
 
 const SitePreview = styled.iframe`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 80px); /* Account for close button space */
   border: none;
+  margin: 0;
+  padding: 0;
 `;
 
 const projects = [

@@ -53,16 +53,19 @@ export const SpeechBubble = styled(motion.div)`
 `;
 
 export const SocialLinks = styled(motion.div)`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  position: sticky;
+  top: 20px;
+  margin-left: auto;
+  width: fit-content;
   display: flex;
   gap: 1rem;
   z-index: 1000;
+  padding-right: 20px;
   
   @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
+    top: 10px;
+    padding-right: 10px;
+    gap: 0.5rem;
   }
 `;
 
