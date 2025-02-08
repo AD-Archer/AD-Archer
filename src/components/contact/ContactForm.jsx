@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser';
 import { Analytics } from '../../services/analytics';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 const ModalOverlay = styled(motion.div)`
@@ -45,6 +46,36 @@ const Title = styled.h2`
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2.2rem;
+`;
+
+const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: ${props => props.theme.fonts.body};
+  color: ${props => props.theme.colors.textPrimary};
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+
+  svg {
+    color: ${props => props.theme.colors.primary};
+  }
+`;
+
+const BottomContactInfo = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  font-family: ${props => props.theme.fonts.body};
+  color: ${props => props.theme.colors.textPrimary};
 `;
 
 const Form = styled.form`
@@ -216,6 +247,8 @@ const ContactForm = ({ onClose }) => {
     }
   });
 
+  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
   return (
     <ModalOverlay
       initial={{ opacity: 0 }}
@@ -231,6 +264,16 @@ const ContactForm = ({ onClose }) => {
       >
         <CloseButton onClick={onClose}>×</CloseButton>
         <Title>Get in Touch</Title>
+        <ContactInfo>
+          <ContactItem>
+            <FontAwesomeIcon icon={faEnvelope} />
+            <span>adarcher21@gmail.com</span>
+          </ContactItem>
+          <ContactItem>
+            <FontAwesomeIcon icon={faPhone} />
+            <span>+1 (215) 437-2912</span>
+          </ContactItem>
+        </ContactInfo>
         <Form onSubmit={formik.handleSubmit}>
           <InputWrapper>
             <Input
@@ -274,7 +317,18 @@ const ContactForm = ({ onClose }) => {
             {formik.isSubmitting ? 'Sending...' : 'Send Message'}
           </SubmitButton>
         </Form>
-
+        
+        <BottomContactInfo>
+          <ContactItem>
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+            <span>Philadelphia, PA</span>
+          </ContactItem>
+          <ContactItem>
+            <FontAwesomeIcon icon={faClock} />
+            <span>{currentTime}</span>
+          </ContactItem>
+        </BottomContactInfo>
+            
         <SocialLinks>
           <SocialLink 
             href="https://github.com/AD-Archer" 
