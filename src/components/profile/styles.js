@@ -1,27 +1,29 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
-  padding: 1.5rem;
-  background: white;
-  border: 3px solid black;
-  margin-bottom: 2rem;
-  box-shadow: ${props => props.theme.shadows.comic};
-
-  @media (min-width: 1024px) {
-    margin-bottom: 0;
-    height: fit-content;
-    position: sticky;
-    top: 20px;
-  }
+export const Section = styled.div`
+  margin: 0;
+  padding: 0;
 `;
 
 export const Title = styled.h2`
   font-family: ${props => props.theme.fonts.accent};
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   color: ${props => props.theme.colors.accent};
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid ${props => props.theme.colors.secondary}40;
+  margin: 0 0 2rem 0;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: ${props => props.theme.colors.primary}40;
+  }
 `;
 
 export const Item = styled.div`
