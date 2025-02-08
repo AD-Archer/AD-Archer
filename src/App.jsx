@@ -14,6 +14,7 @@ import GitHubActivity from './components/github-components/GitHubActivity';
 import SocialButtons from './components/social/SocialButtons';
 import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
+import { TechFilterProvider } from './context/TechFilterContext';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -22,28 +23,30 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <SEO />
-        <Layout>
-          <SocialIcons />
-          <div className="container">
-            <Hero />
-            <GitHubActivity />
-            <TechStack />
-            <ProfileSections />
-            <GitHubProjects />
-            
-            <SocialButtons 
-              showGitHubProfile={showGitHubProfile}
-              setShowGitHubProfile={setShowGitHubProfile}
-              showLinkedIn={showLinkedIn}
-              setShowLinkedIn={setShowLinkedIn}
-            />
+        <TechFilterProvider>
+          <GlobalStyles />
+          <SEO />
+          <Layout>
+            <SocialIcons />
+            <div className="container">
+              <Hero />
+              <GitHubActivity />
+              <ProfileSections />
+              <TechStack />
+              <GitHubProjects />
+              
+              <SocialButtons 
+                showGitHubProfile={showGitHubProfile}
+                setShowGitHubProfile={setShowGitHubProfile}
+                showLinkedIn={showLinkedIn}
+                setShowLinkedIn={setShowLinkedIn}
+              />
 
-            {showGitHubProfile && <GitHubProfile />}
-            {showLinkedIn && <LinkedInFeed />}
-          </div>
-        </Layout>
+              {showGitHubProfile && <GitHubProfile />}
+              {showLinkedIn && <LinkedInFeed />}
+            </div>
+          </Layout>
+        </TechFilterProvider>
       </ThemeProvider>
     </HelmetProvider>
   );

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef } from 'react';
+import { useTechFilter } from '../../context/TechFilterContext';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -305,11 +306,18 @@ const projects = [
 ];
 
 const GitHubProjects = () => {
+  const { selectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem('hasSeenPreview') === 'true';
   });
   const projectsRef = useRef(null);
+
+  const filteredProjects = selectedTech 
+    ? projects.filter(project => 
+        project.techStack.includes(selectedTech)
+      )
+    : projects;
 
   const handlePreviewClick = (url, title) => {
     if (title === "PlatePedia") {
@@ -339,7 +347,7 @@ const GitHubProjects = () => {
   return (
     <>
       <ProjectsGrid ref={projectsRef}>
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <ProjectCard
             key={project.title}
             initial={{ opacity: 0, y: 50 }}

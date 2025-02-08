@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useTechFilter } from '../context/TechFilterContext';
+import { theme } from '../styles/theme';
 
 const TechStackContainer = styled(motion.section)`
   padding: 1.5rem;
@@ -82,6 +84,7 @@ const SkillBadge = styled(motion.div)`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     padding: 0.75rem;
@@ -193,6 +196,12 @@ const techStack = {
 };
 
 const TechStack = () => {
+  const { selectedTech, setSelectedTech } = useTechFilter();
+
+  const handleTechClick = (tech) => {
+    setSelectedTech(selectedTech === tech ? null : tech);
+  };
+
   return (
     <TechStackContainer
       initial={{ opacity: 0, y: 20 }}
@@ -227,12 +236,12 @@ const TechStack = () => {
             {skills.map((skill, skillIndex) => (
               <SkillBadge
                 key={skill.name}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  delay: 0.3 + categoryIndex * 0.1 + skillIndex * 0.05,
-                  type: "spring",
-                  stiffness: 200
+                onClick={() => handleTechClick(skill.name)}
+                style={{
+                  border: selectedTech === skill.name ? 
+                    `3px solid ${props => props.theme.colors.accent}` : 
+                    `2px solid ${props => props.theme.colors.primary}30`,
+                  transform: selectedTech === skill.name ? 'scale(1.05)' : 'scale(1)'
                 }}
                 whileHover={{ scale: 1.05 }}
               >
