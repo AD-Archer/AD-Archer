@@ -5,9 +5,15 @@ const TechFilterContext = createContext();
 
 export const TechFilterProvider = ({ children }) => {
   const [selectedTech, setSelectedTech] = useState(null);
+  const [availableTech, setAvailableTech] = useState([]);
 
   return (
-    <TechFilterContext.Provider value={{ selectedTech, setSelectedTech }}>
+    <TechFilterContext.Provider value={{ 
+      selectedTech, 
+      setSelectedTech,
+      availableTech,
+      setAvailableTech
+    }}>
       {children}
     </TechFilterContext.Provider>
   );

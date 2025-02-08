@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 
 const ProjectsGrid = styled.div`
@@ -89,15 +89,28 @@ const TechStack = styled.div`
 `;
 
 const TechBadge = styled(motion.span)`
-  background: ${props => props.theme.colors.primary}15;
-  color: ${props => props.theme.colors.primary};
+  background: ${props => 
+    props.isSelected 
+      ? props.theme.colors.primary 
+      : `${props.theme.colors.primary}15`
+  };
+  color: ${props => 
+    props.isSelected 
+      ? 'white' 
+      : props.theme.colors.primary
+  };
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border: 2px solid ${props => props.theme.colors.primary}30;
+  border: 2px solid ${props => 
+    props.isSelected 
+      ? props.theme.colors.accent 
+      : `${props.theme.colors.primary}30`
+  };
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     background: ${props => props.theme.colors.primary};
@@ -278,7 +291,7 @@ const projects = [
   {
     title: "Fintech App",
     description: "A modern financial technology application for managing personal finances and investments with real-time data visualization.",
-    techStack: ["React", "Node.js", "Express"],
+    techStack: ["React", "Node.js", "Express", "PostgreSQL"],
     siteLink: "https://fintech-app-blond.vercel.app/",
     repoLink: "https://github.com/AD-Archer/fintech-app"
   },
@@ -292,7 +305,7 @@ const projects = [
   {
     title: "FortifyNow",
     description: "An educational platform aimed at improving cybersecurity awareness. Teaches strong password creation, 2FA, and account protection with USB security keys.",
-    techStack: ["Next.js", "Have I Been Pwned API", "Cybersecurity"],
+    techStack: ["React", "Have I Been Pwned API", "Cybersecurity"],
     siteLink: "https://fortify-now.vercel.app/",
     repoLink: "https://github.com/AD-Archer/FortifyNow"
   },
@@ -306,18 +319,26 @@ const projects = [
 ];
 
 const GitHubProjects = () => {
-  const { selectedTech } = useTechFilter();
+  const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem('hasSeenPreview') === 'true';
   });
   const projectsRef = useRef(null);
 
+  useEffect(() => {
+    const uniqueTech = [...new Set(
+      projects.flatMap(project => project.techStack)
+    )].filter(tech => tech !== "");
+    
+    setAvailableTech(uniqueTech);
+  }, [setAvailableTech]);
+
   const filteredProjects = selectedTech 
-    ? projects.filter(project => 
-        project.techStack.includes(selectedTech)
-      )
+    ? projects.filter(project => project.techStack.includes(selectedTech)) || projects
     : projects;
+
+  const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
   const handlePreviewClick = (url, title) => {
     if (title === "PlatePedia") {
@@ -346,8 +367,9 @@ const GitHubProjects = () => {
 
   return (
     <>
+    
       <ProjectsGrid ref={projectsRef}>
-        {filteredProjects.map((project, index) => (
+        {displayProjects.map((project, index) => (
           <ProjectCard
             key={project.title}
             initial={{ opacity: 0, y: 50 }}
@@ -371,6 +393,7 @@ const GitHubProjects = () => {
               {project.techStack.map((tech, techIndex) => (
                 <TechBadge
                   key={tech}
+                  isSelected={selectedTech === tech}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ 
@@ -378,6 +401,7 @@ const GitHubProjects = () => {
                     type: "spring",
                     stiffness: 200
                   }}
+                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
                 >
                   {tech}
                 </TechBadge>

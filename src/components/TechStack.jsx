@@ -76,15 +76,24 @@ const SkillsGrid = styled.div`
 `;
 
 const SkillBadge = styled(motion.div)`
-  background: ${props => props.theme.colors.primary}10;
+  background: ${props => 
+    props.isSelected 
+      ? props.theme.colors.primary 
+      : `${props.theme.colors.primary}10`
+  };
   padding: 1rem;
   border-radius: 12px;
   text-align: center;
-  border: 2px solid ${props => props.theme.colors.primary}30;
+  border: 2px solid ${props => 
+    props.isSelected 
+      ? props.theme.colors.accent 
+      : `${props.theme.colors.primary}30`
+  };
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  transform: ${props => props.isSelected ? 'scale(1.05)' : 'scale(1)'};
 
   @media (max-width: 768px) {
     padding: 0.75rem;
@@ -102,10 +111,10 @@ const SkillBadge = styled(motion.div)`
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: ${props => props.isSelected ? 'scale(1.05)' : 'translateY(-5px)'};
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: ${props => props.theme.colors.primary};
-    background: ${props => props.theme.colors.primary}15;
+    border-color: ${props => props.isSelected ? props.theme.colors.accent : props.theme.colors.primary};
+    background: ${props => props.isSelected ? props.theme.colors.primary : `${props.theme.colors.primary}15`};
   }
 `;
 
@@ -131,7 +140,7 @@ const SkillName = styled.span`
   display: block;
   font-family: ${props => props.theme.fonts.accent};
   font-size: 0.9rem;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.isSelected ? 'white' : props.theme.colors.primary};
   font-weight: bold;
 
   @media (max-width: 768px) {
@@ -244,6 +253,7 @@ const TechStack = () => {
                   transform: selectedTech === skill.name ? 'scale(1.05)' : 'scale(1)'
                 }}
                 whileHover={{ scale: 1.05 }}
+                isSelected={selectedTech === skill.name}
               >
                 <SkillIcon src={skill.icon} alt={skill.name} />
                 <SkillName>{skill.name}</SkillName>
