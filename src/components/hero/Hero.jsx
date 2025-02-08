@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
 import { HeroTitle, SpeechBubble, ProfileImage } from '../../styles/AppStyles';
-import antonioImage from '../../assets/images/antonioarcher.jpeg';
+import antonioImage from '/images/antonioarcher.jpeg';
 
 const Hero = () => {
   return (
