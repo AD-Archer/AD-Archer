@@ -12,6 +12,12 @@ const ComicPanel = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   
+  @media (min-width: 1024px) {
+    transform: scale(0.8);
+    transform-origin: top center;
+    height: 125vh;
+  }
+  
   &::before {
     content: '';
     position: fixed;
