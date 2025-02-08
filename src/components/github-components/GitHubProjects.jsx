@@ -26,9 +26,15 @@ const ProjectCard = styled(motion.div)`
   gap: 1rem;
   cursor: pointer;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    box-shadow: ${props => props.theme.shadows.comicMobile};
+  }
+
   &:hover {
     transform: scale(1.02);
     z-index: 1;
+    box-shadow: ${props => props.theme.shadows.hover};
   }
 
   &::before {
@@ -38,9 +44,16 @@ const ProjectCard = styled(motion.div)`
     left: 10px;
     right: -10px;
     bottom: -10px;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.03);
     z-index: -1;
     border-radius: 8px;
+
+    @media (max-width: 768px) {
+      top: 4px;
+      left: 4px;
+      right: -4px;
+      bottom: -4px;
+    }
   }
 `;
 
@@ -168,7 +181,7 @@ const ModalContent = styled(motion.div)`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: ${props => props.theme.shadows.comic};
+  box-shadow: ${props => props.theme.shadows.strong};
   z-index: 100000;
 
   @media (max-width: 768px) {
@@ -202,13 +215,13 @@ const CloseButton = styled.button`
   font-weight: bold;
   cursor: pointer;
   z-index: 100001;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: ${props => props.theme.shadows.subtle};
   transition: all 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: ${props => props.theme.shadows.hover};
   }
 
   &:active {
@@ -233,7 +246,7 @@ const FirstTimeMessage = styled(motion.div)`
   background: white;
   padding: 1rem 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => props.theme.shadows.subtle};
   text-align: center;
   z-index: 100002;
   border: 2px solid ${props => props.theme.colors.primary};

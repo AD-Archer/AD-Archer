@@ -14,7 +14,12 @@ export const theme = {
     accent: '"Permanent Marker", cursive',
   },
   shadows: {
-    comic: '0.5rem 0.5rem 0 rgba(0, 0, 0, 0.9)',
-    hover: '0.7rem 0.7rem 0 rgba(0, 0, 0, 0.9)',
+    comic: '10px 10px 0 rgba(0, 0, 0, 0.15)',
+    comicMobile: '4px 4px 0 rgba(0, 0, 0, 0.1)',
+    hover: '0 8px 16px rgba(0, 0, 0, 0.1)',
+    subtle: '0 4px 6px rgba(0, 0, 0, 0.05)',
+    // Keep a stronger shadow option for elements that need it
+    strong: '0.5rem 0.5rem 0 rgba(0, 0, 0, 0.9)',
+    strongHover: '0.7rem 0.7rem 0 rgba(0, 0, 0, 0.9)',
   }
 }; 

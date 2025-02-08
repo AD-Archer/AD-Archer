@@ -15,7 +15,8 @@ const TechStackContainer = styled(motion.section)`
 
   @media (max-width: 768px) {
     padding: 1rem;
-    margin: 1rem auto;
+    margin: 1rem;
+    box-shadow: ${props => props.theme.shadows.comicMobile};
   }
 
   &::before {
@@ -112,7 +113,7 @@ const SkillBadge = styled(motion.div)`
 
   &:hover {
     transform: ${props => props.isSelected ? 'scale(1.05)' : 'translateY(-5px)'};
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: ${props => props.theme.shadows.hover};
     border-color: ${props => props.isSelected ? props.theme.colors.accent : props.theme.colors.primary};
     background: ${props => props.isSelected ? props.theme.colors.primary : `${props.theme.colors.primary}15`};
   }
