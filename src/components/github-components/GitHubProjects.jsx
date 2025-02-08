@@ -17,18 +17,18 @@ const ProjectCard = styled(motion.div)`
   padding: 2rem;
   position: relative;
   transform: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   box-shadow: ${props => props.theme.shadows.comic};
   border-radius: 8px;
   min-height: 400px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${props => props.theme.shadows.hover};
-    z-index: 2;
+    transform: scale(1.02);
+    z-index: 1;
   }
 
   &::before {
@@ -38,7 +38,7 @@ const ProjectCard = styled(motion.div)`
     left: 10px;
     right: -10px;
     bottom: -10px;
-    background: ${props => props.theme.colors.secondary}40;
+    background: rgba(0, 0, 0, 0.05);
     z-index: -1;
     border-radius: 8px;
   }
@@ -250,6 +250,33 @@ const FirstTimeMessage = styled(motion.div)`
   }
 `;
 
+const ProjectsSection = styled.section`
+  margin: 2rem auto;
+  max-width: 1400px;
+`;
+
+const ProjectsHeader = styled.div`
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
+const ProjectsTitle = styled.h2`
+  font-family: ${props => props.theme.fonts.accent};
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: ${props => props.theme.colors.accent};
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+`;
+
+const ProjectsDescription = styled.p`
+  font-family: ${props => props.theme.fonts.body};
+  font-size: 1.1rem;
+  color: ${props => props.theme.colors.primary};
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
 const projects = [
   {
     title: "MoviesNoir",
@@ -366,8 +393,15 @@ const GitHubProjects = () => {
   };
 
   return (
-    <>
-    
+    <ProjectsSection>
+      <ProjectsHeader>
+        <ProjectsTitle>Projects</ProjectsTitle>
+        <ProjectsDescription>
+          Filter through my projects by clicking the tech tags below each project 
+          or explore by tech stack powers above ⚡
+        </ProjectsDescription>
+      </ProjectsHeader>
+      
       <ProjectsGrid ref={projectsRef}>
         {displayProjects.map((project, index) => (
           <ProjectCard
@@ -446,7 +480,7 @@ const GitHubProjects = () => {
           </ModalContent>
         </ModalOverlay>
       )}
-    </>
+    </ProjectsSection>
   );
 };
 

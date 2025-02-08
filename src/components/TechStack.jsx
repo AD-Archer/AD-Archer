@@ -171,6 +171,16 @@ const PowerLevel = styled.div`
   }
 `;
 
+const TechStackDescription = styled.p`
+  font-family: ${props => props.theme.fonts.body};
+  font-size: 1.1rem;
+  color: ${props => props.theme.colors.primary};
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+`;
+
 const techStack = {
   frontend: [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', power: 100 },
@@ -226,12 +236,17 @@ const TechStack = () => {
           fontSize: 'clamp(2rem, 5vw, 2.5rem)',
           color: '#333',
           textAlign: 'center',
-          marginBottom: '1.5rem',
+          marginBottom: '0.5rem',
           textShadow: '2px 2px 0 rgba(0,0,0,0.2)',
         }}
       >
         SUPER TECH POWERS
       </motion.h2>
+      
+      <TechStackDescription>
+        Power bars indicate my frequency of use and comfort level with each technology. 
+        Click any tech to filter related projects below! ⚡
+      </TechStackDescription>
 
       {Object.entries(techStack).map(([category, skills], categoryIndex) => (
         <motion.div
