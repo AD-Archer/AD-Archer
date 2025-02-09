@@ -331,14 +331,6 @@ const projects = [
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
   },
   {
-    title: "3D Land Music Player",
-    description: "A YouTube music player designed to play embedded YouTube playlists.",
-    techStack: ["React", "Node.js", "YouTube API"],
-    category: "Frontend Apps",
-    siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player",
-  },
-  {
     title: "Win or Lose Philly",
     description: "A web-based game created to celebrate the 2025 Super Bowl, based off the joke that philly gets destroyed if we win or lose.",
     techStack: ["Node.js", "Express", "Phaser"],
@@ -402,13 +394,26 @@ const projects = [
     siteLink: "https://ad-archer.github.io/Linehan-Family-Foundation-Preview-Site/",
     repoLink: "https://github.com/AD-Archer/Linehan-Family-Foundation-Preview-Site",
   },
+  
+ 
+];
+
+const hiddenProjects = [
   {
-    title: "Quick Convert",
-    description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
-    techStack: ["Next.js", "File Conversion", "T3 Stack"],
+    title: "Qr Code Generator",
+    description: "Every should have their own QR Code Generator right, I Created this while creating the slides for OrangeField University",
+    techStack: ["JavaScript", "HTML"],
     category: "Utilities",
-    siteLink: "https://quick-convert-chi.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/Quick-Convert",
+    siteLink: "https://ad-archer.github.io/Qr-code-generator/",
+    repoLink: "https://github.com/AD-Archer/Qr-code-generator",
+  },
+  {
+    title: "3D Land Music Player",
+    description: "A YouTube music player designed to play embedded YouTube playlists.",
+    techStack: ["React", "Node.js", "YouTube API"],
+    category: "Frontend Apps",
+    siteLink: "https://ad-archer.github.io/3d-land-player/",
+    repoLink: "https://github.com/AD-Archer/3d-land-player",
   },
   {
     title: "Retro Audio Maker",
@@ -418,51 +423,78 @@ const projects = [
     siteLink: "https://retroaudiomaker.vercel.app/",
     repoLink: "https://github.com/AD-Archer/retroaudiomaker",
   },
+  {
+    title: "Quick Convert",
+    description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
+    techStack: ["Next.js", "File Conversion", "T3 Stack"],
+    category: "Utilities",
+    siteLink: "https://quick-convert-chi.vercel.app/",
+    repoLink: "https://github.com/AD-Archer/Quick-Convert",
+  },
 ];
 
 const GitHubProjects = () => {
   const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
-    return localStorage.getItem('hasSeenPreview') === 'true';
+    return localStorage.getItem("hasSeenPreview") === "true";
   });
-  const [selectedCategory, setSelectedCategory] = useState(null); // State for category filter
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    const uniqueTech = [...new Set(projects.flatMap(project => project.techStack))].filter(tech => tech !== "");
+    // Get unique tech stack and set available tech
+    const uniqueTech = [
+      ...new Set(projects.flatMap((project) => project.techStack)),
+    ].filter((tech) => tech !== "");
     setAvailableTech(uniqueTech);
   }, [setAvailableTech]);
 
-  // Get unique categories for the filter
-  const categories = [...new Set(projects.map(project => project.category))];
+  // Get unique categories for the category filter
+  const categories = [ "Frontend Apps", "Full-stack Apps","Utilities"];
 
-  // Filter projects by selected category and tech stack
-  const filteredProjects = projects.filter(project => {
+  // Determine if any filter is applied (category or tech)
+  const filterApplied = selectedCategory || selectedTech;
+
+  // Filter regular projects based on selected category and tech stack
+  const filteredProjects = projects.filter((project) => {
     const matchesCategory = !selectedCategory || project.category === selectedCategory;
     const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
     return matchesCategory && matchesTech;
   });
 
-  const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
+  // Filter hidden projects only if a filter is applied; otherwise, keep hidden projects excluded.
+  const filteredHiddenProjects = filterApplied
+    ? hiddenProjects.filter((project) => {
+        const matchesCategory = !selectedCategory || project.category === selectedCategory;
+        const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
+        return matchesCategory && matchesTech;
+      })
+    : [];
+
+  // If no filter is applied, show only regular projects.
+  // If a filter is active, include hidden projects that match the filter.
+  const displayProjects = filterApplied
+    ? [...filteredProjects, ...filteredHiddenProjects]
+    : projects;
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
     Analytics.trackProjectPreview(project.title);
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
-      localStorage.setItem('hasSeenPreview', 'true');
+      localStorage.setItem("hasSeenPreview", "true");
     }
   };
 
   const handleClosePreview = (e) => {
     e?.preventDefault();
     setPreviewUrl(null);
-    document.body.style.overflow = 'unset';
-    document.body.classList.remove('modal-open');
+    document.body.style.overflow = "unset";
+    document.body.classList.remove("modal-open");
 
     setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -483,7 +515,7 @@ const GitHubProjects = () => {
         >
           All
         </CategoryButton>
-        {categories.map(category => (
+        {categories.map((category) => (
           <CategoryButton
             key={category}
             isSelected={selectedCategory === category}
@@ -505,10 +537,18 @@ const GitHubProjects = () => {
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
             <ProjectLinks>
-              <ProjectLink href={project.siteLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={project.siteLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Visit Site
               </ProjectLink>
-              <ProjectLink href={project.repoLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={project.repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View Code
               </ProjectLink>
             </ProjectLinks>
@@ -523,11 +563,13 @@ const GitHubProjects = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{
-                    delay: index * 0.1 + (techIndex * 0.05),
+                    delay: index * 0.1 + techIndex * 0.05,
                     type: "spring",
                     stiffness: 200,
                   }}
-                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                  onClick={() =>
+                    setSelectedTech(selectedTech === tech ? null : tech)
+                  }
                 >
                   {tech}
                 </TechBadge>
@@ -549,7 +591,7 @@ const GitHubProjects = () => {
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.5 }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             {!hasSeenPreview && (
               <FirstTimeMessage
@@ -557,7 +599,9 @@ const GitHubProjects = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <p>Click outside the preview window or the button below to exit</p>
+                <p>
+                  Click outside the preview window or the button below to exit
+                </p>
               </FirstTimeMessage>
             )}
             <SitePreview
@@ -566,15 +610,15 @@ const GitHubProjects = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-            <CloseButton onClick={handleClosePreview}>
-              Close Preview
-            </CloseButton>
+            <CloseButton onClick={handleClosePreview}>Close Preview</CloseButton>
           </ModalContent>
         </ModalOverlay>
       )}
     </ProjectsSection>
   );
 };
+
+
 
 export default GitHubProjects;
 
