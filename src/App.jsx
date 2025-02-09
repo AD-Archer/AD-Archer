@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './components/Layout';
 import LinkedInFeed from './components/LinkedInFeed';
-import GitHubProjects from './components/github-components/GitHubProjects';
+import GitHubProjects from './components/github-components/HomepageProjects.jsx';
 import ProfileSections from './components/profile/ProfileSections';
 import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
@@ -15,7 +15,9 @@ import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Update the import in App.jsx
+import ProjectsPage from "./components/pages/ProjectsPage.jsx";
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
 
@@ -26,29 +28,39 @@ function App() {
   }, []);
 
   return (
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <TechFilterProvider>
-          <GlobalStyles />
-          <SEO />
-          <Layout>
-            <SocialIcons />
-            <div className="container">
-              <Hero />
-              <GitHubActivity />
-              <ProfileSections />
-              <TechStack />
-              <GitHubProjects />
-              <SocialButtons 
-                showLinkedIn={showLinkedIn}
-                setShowLinkedIn={setShowLinkedIn}
-              />
-              {showLinkedIn && <LinkedInFeed />}
-            </div>
-          </Layout>
-        </TechFilterProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+    <Router>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <TechFilterProvider>
+            <GlobalStyles />
+            <SEO />
+            <Layout>
+              <SocialIcons />
+              <Routes>
+                {/* Home Page */}
+                <Route path="/" element={
+                  <div className="container">
+                    <Hero />
+                    <GitHubActivity />
+                    <ProfileSections />
+                    <TechStack />
+                    <GitHubProjects />
+                    <SocialButtons 
+                      showLinkedIn={showLinkedIn}
+                      setShowLinkedIn={setShowLinkedIn}
+                    />
+                    {showLinkedIn && <LinkedInFeed />}
+                  </div>
+                } />
+                
+                {/* Projects Page */}
+                <Route path="/projects" element={<ProjectsPage />} />
+              </Routes>
+            </Layout>
+          </TechFilterProvider>
+        </ThemeProvider>
+      </HelmetProvider>
+    </Router>
   );
 }
 

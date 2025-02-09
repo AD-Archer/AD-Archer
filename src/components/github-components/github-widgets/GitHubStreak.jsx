@@ -1,3 +1,5 @@
+// Do not use this file this is used to create github activity component
+
 const GitHubStreak = () => {
   return (
     <div style={{ 
