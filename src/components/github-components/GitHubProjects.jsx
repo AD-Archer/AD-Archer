@@ -291,72 +291,133 @@ const ProjectsDescription = styled.p`
   margin: 0 auto;
 `;
 
+// Styled components for the category filter
+const CategoryFilter = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
+
+const CategoryButton = styled.button`
+  background: ${({ isSelected, theme }) =>
+    isSelected ? theme.colors.primary : `${theme.colors.primary}15`};
+  color: ${({ isSelected, theme }) =>
+    isSelected ? 'white' : theme.colors.primary};
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
+    color: white;
+    transform: translateY(-2px);
+  }
+`;
+
+
 const projects = [
   {
     title: "MoviesNoir",
-    description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
-    techStack: ["React", "Node.js", "Express","Python"],
+    description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show. Movies are stored in a json file, which is the only reason this is not a full stack application.",
+    techStack: ["React", "Node.js", "Express", "Python"],
+    category: "Frontend Apps",
     siteLink: "https://moviesnoir.vercel.app/",
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
-
   },
   {
     title: "3D Land Music Player",
     description: "A YouTube music player designed to play embedded YouTube playlists.",
     techStack: ["React", "Node.js", "YouTube API"],
+    category: "Frontend Apps",
     siteLink: "https://ad-archer.github.io/3d-land-player/",
     repoLink: "https://github.com/AD-Archer/3d-land-player",
-
+  },
+  {
+    title: "Win or Lose Philly",
+    description: "A web-based game created to celebrate the 2025 Super Bowl, based off the joke that philly gets destroyed if we win or lose.",
+    techStack: ["Node.js", "Express", "Phaser"],
+    category: "Frontend Apps",
+    siteLink: "https://winorlosephilly.vercel.app/",
+    repoLink: "https://github.com/AD-Archer/winorlosephilly",
   },
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
     techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack"],
+    category: "Full-stack Apps",
     siteLink: "https://university-orange-field.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/University-OrangeField"
+    repoLink: "https://github.com/AD-Archer/University-OrangeField",
   },
   {
     title: "PlatePedia",
     description: "A modern recipe management web application built with Node.js, Express, and PostgreSQL. Create, discover, and share recipes while connecting with other food enthusiasts.",
     techStack: ["Node.js", "Express", "PostgreSQL"],
+    category: "Full-stack Apps",
     siteLink: "https://platepedia.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/PlatePedia-recipeapp"
+    repoLink: "https://github.com/AD-Archer/PlatePedia-recipeapp",
   },
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
-    techStack: ["React", "Gemini-AI", "Node.js","Express"],
+    techStack: ["React", "Gemini-AI", "Node.js", "Express"],
+    category: "Frontend Apps",
     siteLink: "https://corra-tau.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/corra"
+    repoLink: "https://github.com/AD-Archer/corra",
   },
   {
     title: "Fintech App",
     description: "A modern financial technology application for managing personal finances and investments with real-time data visualization.",
     techStack: ["React", "Node.js", "Express", "PostgreSQL"],
+    category: "Full-stack Apps",
     siteLink: "https://fintech-app-blond.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/fintech-app"
+    repoLink: "https://github.com/AD-Archer/fintech-app",
   },
   {
     title: "Dynasty Defense",
     description: "A system for managing and creating custom alarms for fire, smoke, and security, built with React.",
     techStack: ["React", "Node.js", "IoT"],
+    category: "Frontend Apps",
     siteLink: "https://dynasty-defense.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/dynasty-defense"
+    repoLink: "https://github.com/AD-Archer/dynasty-defense",
   },
   {
     title: "FortifyNow",
     description: "An educational platform aimed at improving cybersecurity awareness. Teaches strong password creation, 2FA, and account protection with USB security keys.",
     techStack: ["React", "Have I Been Pwned API", "Cybersecurity"],
+    category: "Frontend Apps",
     siteLink: "https://fortify-now.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/FortifyNow"
+    repoLink: "https://github.com/AD-Archer/FortifyNow",
+  },
+  {
+    title: "Linehan Family Foundation Preview Site",
+    description: "A simple webpage created for the Linehan Family Foundation.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    category: "Frontend Apps",
+    siteLink: "https://ad-archer.github.io/Linehan-Family-Foundation-Preview-Site/",
+    repoLink: "https://github.com/AD-Archer/Linehan-Family-Foundation-Preview-Site",
   },
   {
     title: "Quick Convert",
     description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
     techStack: ["Next.js", "File Conversion", "T3 Stack"],
+    category: "Utilities",
     siteLink: "https://quick-convert-chi.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/Quick-Convert"
-  }
+    repoLink: "https://github.com/AD-Archer/Quick-Convert",
+  },
+  {
+    title: "Retro Audio Maker",
+    description: "Transform your own audio files into a distorted version of itself to give it a retro feel. This application was created to aid with creating the music for Win or Lose Philly.",
+    techStack: ["Express", "Node.js"],
+    category: "Utilities",
+    siteLink: "https://retroaudiomaker.vercel.app/",
+    repoLink: "https://github.com/AD-Archer/retroaudiomaker",
+  },
 ];
 
 const GitHubProjects = () => {
@@ -365,19 +426,23 @@ const GitHubProjects = () => {
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem('hasSeenPreview') === 'true';
   });
+  const [selectedCategory, setSelectedCategory] = useState(null); // State for category filter
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    const uniqueTech = [...new Set(
-      projects.flatMap(project => project.techStack)
-    )].filter(tech => tech !== "");
-    
+    const uniqueTech = [...new Set(projects.flatMap(project => project.techStack))].filter(tech => tech !== "");
     setAvailableTech(uniqueTech);
   }, [setAvailableTech]);
 
-  const filteredProjects = selectedTech 
-    ? projects.filter(project => project.techStack.includes(selectedTech)) || projects
-    : projects;
+  // Get unique categories for the filter
+  const categories = [...new Set(projects.map(project => project.category))];
+
+  // Filter projects by selected category and tech stack
+  const filteredProjects = projects.filter(project => {
+    const matchesCategory = !selectedCategory || project.category === selectedCategory;
+    const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
+    return matchesCategory && matchesTech;
+  });
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
@@ -395,7 +460,7 @@ const GitHubProjects = () => {
     setPreviewUrl(null);
     document.body.style.overflow = 'unset';
     document.body.classList.remove('modal-open');
-    
+
     setTimeout(() => {
       projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
@@ -406,11 +471,29 @@ const GitHubProjects = () => {
       <ProjectsHeader>
         <ProjectsTitle>Projects</ProjectsTitle>
         <ProjectsDescription>
-          Filter through my projects by clicking the tech tags below each project 
-          or explore by tech stack powers above ⚡
+          Filter through my projects by category or tech stack ⚡
         </ProjectsDescription>
       </ProjectsHeader>
-      
+
+      {/* Category Filter Buttons */}
+      <CategoryFilter>
+        <CategoryButton
+          isSelected={!selectedCategory}
+          onClick={() => setSelectedCategory(null)}
+        >
+          All
+        </CategoryButton>
+        {categories.map(category => (
+          <CategoryButton
+            key={category}
+            isSelected={selectedCategory === category}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </CategoryButton>
+        ))}
+      </CategoryFilter>
+
       <ProjectsGrid ref={projectsRef}>
         {displayProjects.map((project, index) => (
           <ProjectCard
@@ -439,10 +522,10 @@ const GitHubProjects = () => {
                   isSelected={selectedTech === tech}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
+                  transition={{
                     delay: index * 0.1 + (techIndex * 0.05),
                     type: "spring",
-                    stiffness: 200
+                    stiffness: 200,
                   }}
                   onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
                 >
@@ -477,7 +560,7 @@ const GitHubProjects = () => {
                 <p>Click outside the preview window or the button below to exit</p>
               </FirstTimeMessage>
             )}
-            <SitePreview 
+            <SitePreview
               src={previewUrl}
               title="Site Preview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -494,3 +577,4 @@ const GitHubProjects = () => {
 };
 
 export default GitHubProjects;
+
