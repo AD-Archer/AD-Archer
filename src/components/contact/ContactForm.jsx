@@ -271,7 +271,7 @@ const ContactForm = ({ onClose }) => {
           </ContactItem>
           <ContactItem>
             <FontAwesomeIcon icon={faPhone} />
-            <span>+1 (215) 437-2912</span>
+            <span>+1 (267) 225-6778</span>
           </ContactItem>
         </ContactInfo>
         <Form onSubmit={formik.handleSubmit}>
