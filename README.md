@@ -52,7 +52,7 @@
 </p>
 <p align="left">
   <a href="https://git.io/streak-stats">
-<a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=ad-archer&theme=dark&mode=weekly" alt="GitHub Streak" /></a></p>
+<a href="https://git.io/streak-stats"><img src="https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly" alt="GitHub Streak" /></a></p>
 
 <details>
   <summary><h2>Activities</h2> </summary>
