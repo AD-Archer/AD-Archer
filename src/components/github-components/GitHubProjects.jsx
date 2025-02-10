@@ -431,6 +431,22 @@ const hiddenProjects = [
     siteLink: "https://quick-convert-chi.vercel.app/",
     repoLink: "https://github.com/AD-Archer/Quick-Convert",
   },
+  {
+    title: "LinkTree",
+    description: "I wanted my own linktree to make sharing important links alot easier.",
+    techStack: ["React"],
+    category: "Utilities",
+    siteLink: "https://tree.antonioarcher.com/",
+    repoLink: "https://github.com/AD-Archer/tree",
+  },
+  {
+    title: "LinkTree",
+    description: "I wanted my own linktree to make sharing important links alot easier.",
+    techStack: ["React"],
+    category: "Frontend Apps",
+    siteLink: "https://tree.antonioarcher.com/",
+    repoLink: "https://github.com/AD-Archer/tree",
+  }, // I didn't feel like adding the logic required to have muliple categories so i made 2
 ];
 
 const GitHubProjects = () => {
