@@ -52,7 +52,21 @@
 </p>
 <p align="left">
   <a href="https://git.io/streak-stats">
-<a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=ad-archer&theme=dark&mode=weekly" alt="GitHub Streak" /></a></p>
+   <img src="https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly&background=00000000" alt="GitHub Streak" />
+</a>
+</p>
+
+<p align="left">
+  <strong>Top Laguages</strong>
+</p>
+
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
+
+<strong>GitHub Stats</strong>
+
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
+
+
 
 <details>
   <summary><h2>Activities</h2> </summary>

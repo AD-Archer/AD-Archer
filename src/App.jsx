@@ -9,15 +9,16 @@ import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
 import Hero from './components/hero/Hero';
-import GitHubActivity from './components/github-components/GitHubActivity';
 import SocialButtons from './components/social/SocialButtons';
 import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 // Update the import in App.jsx
 import ProjectsPage from "./components/pages/ProjectsPage.jsx";
+import GitHubStats from './components/github-components/GitHubStats.jsx';
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
 
@@ -41,7 +42,8 @@ function App() {
                 <Route path="/" element={
                   <div className="container">
                     <Hero />
-                    <GitHubActivity />
+                    <GitHubStats />
+                    
                     <ProfileSections />
                     <TechStack />
                     <GitHubProjects />

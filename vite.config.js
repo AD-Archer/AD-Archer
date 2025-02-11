@@ -3,9 +3,6 @@ import react from '@vitejs/plugin-react'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import path from 'path'
 
-// Use import.meta.url to resolve paths in Vite
-const resolvePath = (...segments) => path.resolve(new URL('.', import.meta.url).pathname, ...segments);
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -27,7 +24,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolvePath('src')
+      '@': path.resolve(__dirname, './src')  // Point @ to the src directory this will make it easier for me to find components
     }
   },
   build: {
