@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import { useTechFilter } from '../../context/TechFilterContext';
-import { Analytics } from '../../services/analytics';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -93,7 +91,7 @@ const ProjectLink = styled.a`
   }
 `;
 
-const TechStack = styled.div`
+const TechStackContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -103,28 +101,16 @@ const TechStack = styled.div`
 `;
 
 const TechBadge = styled(motion.span)`
-  background: ${props => 
-    props.isSelected 
-      ? props.theme.colors.primary 
-      : `${props.theme.colors.primary}15`
-  };
-  color: ${props => 
-    props.isSelected 
-      ? 'white' 
-      : props.theme.colors.primary
-  };
+  background: ${props => `${props.theme.colors.primary}15`};
+  color: ${props => props.theme.colors.primary};
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border: 2px solid ${props => 
-    props.isSelected 
-      ? props.theme.colors.accent 
-      : `${props.theme.colors.primary}30`
-  };
+  border: 2px solid ${props => `${props.theme.colors.primary}30`};
   transition: all 0.2s ease;
-  cursor: pointer;
+  cursor: default;
 
   &:hover {
     background: ${props => props.theme.colors.primary};
@@ -291,7 +277,7 @@ const ProjectsDescription = styled.p`
   margin: 0 auto;
 `;
 
-// Styled components for the category filter
+// Category filter UI (kept as is, filtering by category only)
 const CategoryFilter = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -320,11 +306,10 @@ const CategoryButton = styled.button`
   }
 `;
 
-
 const projects = [
   {
     title: "MoviesNoir",
-    description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show. Movies are stored in a json file, which is the only reason this is not a full stack application.",
+    description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Movies are stored in a json file, which is the only reason this is not a full stack application.",
     techStack: ["React", "Node.js", "Express", "Python"],
     category: "Frontend Apps",
     siteLink: "https://moviesnoir.vercel.app/",
@@ -394,8 +379,6 @@ const projects = [
     siteLink: "https://ad-archer.github.io/Linehan-Family-Foundation-Preview-Site/",
     repoLink: "https://github.com/AD-Archer/Linehan-Family-Foundation-Preview-Site",
   },
-  
- 
 ];
 
 const hiddenProjects = [
@@ -446,11 +429,11 @@ const hiddenProjects = [
     category: "Frontend Apps",
     siteLink: "https://www.antonioarcher.com/",
     repoLink: "https://github.com/AD-Archer/tree",
-  }, // I didn't feel like adding the logic required to have muliple categories so i made 2
+  },
 ];
 
 const GitHubProjects = () => {
-  const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
+  // Removed tech filter functionality
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem("hasSeenPreview") === "true";
@@ -459,44 +442,28 @@ const GitHubProjects = () => {
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    // Get unique tech stack and set available tech
-    const uniqueTech = [
-      ...new Set(projects.flatMap((project) => project.techStack)),
-    ].filter((tech) => tech !== "");
-    setAvailableTech(uniqueTech);
-  }, [setAvailableTech]);
+    // No longer setting available tech as tech filtering has been removed
+  }, []);
 
-  // Get unique categories for the category filter
-  const categories = [ "Frontend Apps", "Full-stack Apps","Utilities"];
-
-  // Determine if any filter is applied (category or tech)
-  const filterApplied = selectedCategory || selectedTech;
-
-  // Filter regular projects based on selected category and tech stack
+  // Use only category filtering
   const filteredProjects = projects.filter((project) => {
     const matchesCategory = !selectedCategory || project.category === selectedCategory;
-    const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
-    return matchesCategory && matchesTech;
+    return matchesCategory;
   });
 
-  // Filter hidden projects only if a filter is applied; otherwise, keep hidden projects excluded.
-  const filteredHiddenProjects = filterApplied
+  const filteredHiddenProjects = selectedCategory
     ? hiddenProjects.filter((project) => {
-        const matchesCategory = !selectedCategory || project.category === selectedCategory;
-        const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
-        return matchesCategory && matchesTech;
+        const matchesCategory = project.category === selectedCategory;
+        return matchesCategory;
       })
     : [];
 
-  // If no filter is applied, show only regular projects.
-  // If a filter is active, include hidden projects that match the filter.
-  const displayProjects = filterApplied
+  const displayProjects = selectedCategory
     ? [...filteredProjects, ...filteredHiddenProjects]
     : projects;
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
-    Analytics.trackProjectPreview(project.title);
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
       localStorage.setItem("hasSeenPreview", "true");
@@ -519,7 +486,7 @@ const GitHubProjects = () => {
       <ProjectsHeader>
         <ProjectsTitle>Projects</ProjectsTitle>
         <ProjectsDescription>
-          Filter through my projects by category or tech stack ⚡
+          Filter through my projects by category ⚡
         </ProjectsDescription>
       </ProjectsHeader>
 
@@ -531,7 +498,7 @@ const GitHubProjects = () => {
         >
           All
         </CategoryButton>
-        {categories.map((category) => (
+        {["Frontend Apps", "Full-stack Apps", "Utilities"].map((category) => (
           <CategoryButton
             key={category}
             isSelected={selectedCategory === category}
@@ -571,26 +538,22 @@ const GitHubProjects = () => {
             <PreviewButton onClick={() => handlePreviewClick(project)}>
               Preview Site
             </PreviewButton>
-            <TechStack>
-              {project.techStack.map((tech, techIndex) => (
+            <TechStackContainer>
+              {project.techStack.map((tech) => (
                 <TechBadge
                   key={tech}
-                  isSelected={selectedTech === tech}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{
-                    delay: index * 0.1 + techIndex * 0.05,
+                    delay: 0.1,
                     type: "spring",
                     stiffness: 200,
                   }}
-                  onClick={() =>
-                    setSelectedTech(selectedTech === tech ? null : tech)
-                  }
                 >
                   {tech}
                 </TechBadge>
               ))}
-            </TechStack>
+            </TechStackContainer>
           </ProjectCard>
         ))}
       </ProjectsGrid>
@@ -633,8 +596,6 @@ const GitHubProjects = () => {
     </ProjectsSection>
   );
 };
-
-
 
 export default GitHubProjects;
 

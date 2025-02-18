@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { HeroTitle, SpeechBubble, ProfileImage } from '../../styles/AppStyles';
-import antonioImage from '/images/antonioarcher.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'; // Import necessary icons
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const ContactInfo = styled.div`
@@ -53,9 +53,11 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <ProfileImage 
-          src={antonioImage} 
+        <ProfileImage as={Image} 
+          src="/images/antonioarcher.jpeg" 
           alt="Antonio Archer"
+          width={300} // adjust widths as needed
+          height={300} // adjust heights as needed
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.5 }}

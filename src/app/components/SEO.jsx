@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 const SEO = ({ title, description, image }) => {
@@ -7,7 +7,7 @@ const SEO = ({ title, description, image }) => {
   const defaultImage = '/antonioarcher.jpeg';
 
   return (
-    <Helmet>
+    <Head>
       {/* Basic meta tags */}
       <title>{title ? `${title} | Antonio Archer` : 'Antonio Archer | Full Stack Developer'}</title>
       <meta name="description" content={description || defaultDescription} />
@@ -33,7 +33,7 @@ const SEO = ({ title, description, image }) => {
       {/* Additional meta tags */}
       <meta name="author" content="Antonio Archer" />
       <meta name="robots" content="index, follow" />
-    </Helmet>
+    </Head>
   );
 };
 
@@ -43,4 +43,4 @@ SEO.propTypes = {
   image: PropTypes.string,
 };
 
-export default SEO; 
+export default SEO;

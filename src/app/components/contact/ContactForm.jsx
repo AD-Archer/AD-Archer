@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Analytics } from '../../services/analytics';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
@@ -234,7 +233,6 @@ const ContactForm = ({ onClose }) => {
           import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         );
 
-        Analytics.trackContactFormSubmit();
         resetForm();
         alert('Message sent successfully!');
         onClose();
@@ -361,4 +359,4 @@ ContactForm.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default ContactForm; 
+export default ContactForm;

@@ -1,7 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Footer from './Footer';
+
 const ComicPanel = styled(motion.div)`
   background: ${props => props.theme.colors.panelBg};
   min-height: 100vh;
@@ -59,7 +61,6 @@ const Layout = ({ children }) => {
         <Footer />
       </ContentWrapper>
     </ComicPanel>
-    
   );
 };
 
@@ -67,4 +68,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout; 
+export default Layout;

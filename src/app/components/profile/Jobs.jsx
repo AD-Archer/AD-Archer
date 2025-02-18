@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { jobs } from './data';
 import { Section, Title, Item, ItemTitle, Subtitle } from './styles';
 import styled from 'styled-components';
-import { Analytics } from '../../services/analytics';
 
 const AchievementList = styled.ul`
   list-style: none;

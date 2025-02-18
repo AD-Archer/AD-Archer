@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import { useTechFilter } from '../../context/TechFilterContext';
-import { Analytics } from '../../services/analytics';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -103,28 +101,16 @@ const TechStack = styled.div`
 `;
 
 const TechBadge = styled(motion.span)`
-  background: ${props => 
-    props.isSelected 
-      ? props.theme.colors.primary 
-      : `${props.theme.colors.primary}15`
-  };
-  color: ${props => 
-    props.isSelected 
-      ? 'white' 
-      : props.theme.colors.primary
-  };
+  background: ${props => `${props.theme.colors.primary}15`};
+  color: ${props => props.theme.colors.primary};
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border: 2px solid ${props => 
-    props.isSelected 
-      ? props.theme.colors.accent 
-      : `${props.theme.colors.primary}30`
-  };
+  border: 2px solid ${props => `${props.theme.colors.primary}30`};
   transition: all 0.2s ease;
-  cursor: pointer;
+  cursor: default;
 
   &:hover {
     background: ${props => props.theme.colors.primary};
@@ -295,18 +281,16 @@ const projects = [
   {
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
-    techStack: ["React", "Node.js", "Express","Python"],
+    techStack: ["React", "Node.js", "Express", "Python"],
     siteLink: "https://moviesnoir.adarcher.app/",
-    repoLink: "https://github.com/AD-Archer/MoviesNoir",
-
+    repoLink: "https://github.com/AD-Archer/MoviesNoir"
   },
   {
     title: "3D Land Music Player",
     description: "A YouTube music player designed to play embedded YouTube playlists.",
     techStack: ["React", "Node.js", "YouTube API"],
     siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player",
-
+    repoLink: "https://github.com/AD-Archer/3d-land-player"
   },
   {
     title: "Orange Field University",
@@ -325,7 +309,7 @@ const projects = [
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
-    techStack: ["React", "Gemini-AI", "Node.js","Express"],
+    techStack: ["React", "Gemini-AI", "Node.js", "Express"],
     siteLink: "https://corra.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/corra"
   },
@@ -360,44 +344,38 @@ const projects = [
 ];
 
 const GitHubProjects = () => {
-  const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
-    return localStorage.getItem('hasSeenPreview') === 'true';
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("hasSeenPreview") === "true";
+    }
+    return false;
   });
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const projectsRef = useRef(null);
 
-  useEffect(() => {
-    const uniqueTech = [...new Set(
-      projects.flatMap(project => project.techStack)
-    )].filter(tech => tech !== "");
-    
-    setAvailableTech(uniqueTech);
-  }, [setAvailableTech]);
-
-  const filteredProjects = selectedTech 
-    ? projects.filter(project => project.techStack.includes(selectedTech)) || projects
+  const filteredProjects = selectedCategory
+    ? projects.filter(project => project.category === selectedCategory)
     : projects;
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
-    Analytics.trackProjectPreview(project.title);
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
-      localStorage.setItem('hasSeenPreview', 'true');
+      localStorage.setItem("hasSeenPreview", "true");
     }
   };
 
   const handleClosePreview = (e) => {
     e?.preventDefault();
     setPreviewUrl(null);
-    document.body.style.overflow = 'unset';
-    document.body.classList.remove('modal-open');
+    document.body.style.overflow = "unset";
+    document.body.classList.remove("modal-open");
     
     setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -406,11 +384,14 @@ const GitHubProjects = () => {
       <ProjectsHeader>
         <ProjectsTitle>Projects</ProjectsTitle>
         <ProjectsDescription>
-          Filter through my projects by clicking the tech tags below each project 
-          or explore by tech stack powers above ⚡
+          {selectedCategory
+            ? `Projects in ${selectedCategory}`
+            : "Explore all projects"}
         </ProjectsDescription>
       </ProjectsHeader>
       
+
+
       <ProjectsGrid ref={projectsRef}>
         {displayProjects.map((project, index) => (
           <ProjectCard
@@ -433,18 +414,12 @@ const GitHubProjects = () => {
               Preview Site
             </PreviewButton>
             <TechStack>
-              {project.techStack.map((tech, techIndex) => (
+              {project.techStack.map((tech) => (
                 <TechBadge
                   key={tech}
-                  isSelected={selectedTech === tech}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
-                    delay: index * 0.1 + (techIndex * 0.05),
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                  transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                 >
                   {tech}
                 </TechBadge>

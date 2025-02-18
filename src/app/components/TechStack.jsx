@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useTechFilter } from '../context/TechFilterContext';
 import { theme } from '../styles/theme';
 
 const TechStackContainer = styled(motion.section)`
@@ -26,7 +25,7 @@ const TechStackContainer = styled(motion.section)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.05) 100%);
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
     pointer-events: none;
   }
 `;
@@ -37,7 +36,7 @@ const CategoryTitle = styled.h3`
   color: ${props => props.theme.colors.accent};
   margin: 1.5rem 0 1rem;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   padding-left: 2rem;
 
@@ -77,45 +76,25 @@ const SkillsGrid = styled.div`
 `;
 
 const SkillBadge = styled(motion.div)`
-  background: ${props => 
-    props.isSelected 
-      ? props.theme.colors.primary 
-      : `${props.theme.colors.primary}10`
-  };
+  background: ${props => `${props.theme.colors.primary}10`};
   padding: 1rem;
   border-radius: 12px;
   text-align: center;
-  border: 2px solid ${props => 
-    props.isSelected 
-      ? props.theme.colors.accent 
-      : `${props.theme.colors.primary}30`
-  };
+  border: 2px solid ${props => `${props.theme.colors.primary}30`};
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transform: ${props => props.isSelected ? 'scale(1.05)' : 'scale(1)'};
 
   @media (max-width: 768px) {
     padding: 0.75rem;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 100%);
-    pointer-events: none;
-  }
-
   &:hover {
-    transform: ${props => props.isSelected ? 'scale(1.05)' : 'translateY(-5px)'};
+    transform: translateY(-5px);
     box-shadow: ${props => props.theme.shadows.hover};
-    border-color: ${props => props.isSelected ? props.theme.colors.accent : props.theme.colors.primary};
-    background: ${props => props.isSelected ? props.theme.colors.primary : `${props.theme.colors.primary}15`};
+    border-color: ${props => props.theme.colors.primary};
+    background: ${props => `${props.theme.colors.primary}15`};
   }
 `;
 
@@ -123,7 +102,7 @@ const SkillIcon = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 0.75rem;
-  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
   transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
@@ -141,7 +120,7 @@ const SkillName = styled.span`
   display: block;
   font-family: ${props => props.theme.fonts.accent};
   font-size: 0.9rem;
-  color: ${props => props.isSelected ? 'white' : props.theme.colors.primary};
+  color: ${props => props.theme.colors.primary};
   font-weight: bold;
 
   @media (max-width: 768px) {
@@ -152,7 +131,7 @@ const SkillName = styled.span`
 const PowerLevel = styled.div`
   width: 100%;
   height: 4px;
-  background: ${props => props.theme.colors.primary}20;
+  background: ${props => `${props.theme.colors.primary}20`};
   border-radius: 2px;
   margin-top: 0.5rem;
   overflow: hidden;
@@ -216,12 +195,6 @@ const techStack = {
 };
 
 const TechStack = () => {
-  const { selectedTech, setSelectedTech } = useTechFilter();
-
-  const handleTechClick = (tech) => {
-    setSelectedTech(selectedTech === tech ? null : tech);
-  };
-
   return (
     <TechStackContainer
       initial={{ opacity: 0, y: 20 }}
@@ -258,19 +231,8 @@ const TechStack = () => {
         >
           <CategoryTitle>{category}</CategoryTitle>
           <SkillsGrid>
-            {skills.map((skill, skillIndex) => (
-              <SkillBadge
-                key={skill.name}
-                onClick={() => handleTechClick(skill.name)}
-                style={{
-                  border: selectedTech === skill.name ? 
-                    `3px solid ${props => props.theme.colors.accent}` : 
-                    `2px solid ${props => props.theme.colors.primary}30`,
-                  transform: selectedTech === skill.name ? 'scale(1.05)' : 'scale(1)'
-                }}
-                whileHover={{ scale: 1.05 }}
-                isSelected={selectedTech === skill.name}
-              >
+            {skills.map((skill) => (
+              <SkillBadge key={skill.name} whileHover={{ scale: 1.05 }}>
                 <SkillIcon src={skill.icon} alt={skill.name} />
                 <SkillName>{skill.name}</SkillName>
                 <PowerLevel $level={skill.power} />
@@ -283,4 +245,4 @@ const TechStack = () => {
   );
 };
 
-export default TechStack; 
+export default TechStack;

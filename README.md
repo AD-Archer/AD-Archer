@@ -1,82 +1,36 @@
-<p align="center">
-  <a href="https://github.com/ad-archer">
-    <img src="images/My name SVG.svg" alt="Antonio Archer" style="max-width: 100%; height: auto; width: 100%; max-width: 400px; display: inline-block; margin-right: 5px;" />
-  </a>
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=900&size=22&pause=1000&color=D60000&center=true&width=435&lines=A+full+stack+developer;A+future+full+stack+developer*" alt="Typing SVG" />
-  </a>
-</p>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-![](https://komarev.com/ghpvc/?username=ad-archer)
----
+## Getting Started
 
-## 🚀 **Tech Stack**
+First, run the development server:
 
-- **Languages**:
-  <p align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" style="display: inline-block;" />
-  </p>
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Frameworks**:  
-  <p align="center">
-    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" style="display: inline-block;" />
-  </p>
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Tools**:  
-  <p align="center">
-    <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" style="display: inline-block; margin-right: 5px;" />
-    <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" style="display: inline-block;" />
-  </p>
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-<p align="center" style="margin-top: 20px;">
-  <a href="https://github.com/AD-Archer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; color: white; background-color: #1F222E; border-radius: 5px; text-decoration: none; border: 2px solid #F85D7F; transition: background-color 0.3s, color 0.3s;">
-    Click Here for All My Repos
-  </a>
-</p>
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-# 📊 GitHub Stats
+## Learn More
 
-<p align="left">
-</p>
+To learn more about Next.js, take a look at the following resources:
 
-<p align="left">
-  <strong>GitHub Streaks</strong>
-</p>
-<p align="left">
-  <a href="https://git.io/streak-stats">
-   <img src="https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly&background=00000000" alt="GitHub Streak" />
-</a>
-</p>
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-<p align="left">
-  <strong>Top Laguages</strong>
-</p>
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
+## Deploy on Vercel
 
-<strong>GitHub Stats</strong>
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
-
-
-
-<details>
-  <summary><h2>Activities</h2> </summary>
-
-  - <h3>Contribution chart</h3>
-  <a href="https://github.com/ashutosh00710/github-readme-activity-graph"><img alt="ad-archers's Activity Graph" src="https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true" /></a>
-</details>
-
----
-
-## Contact
-
-Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/antonio-archer/) or [GitHub](https://github.com/AD-Archer)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -1,8 +1,8 @@
 // src/components/Footer.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SocialIcons from './social/SocialIcons'; // Reuse your existing SocialIcons component
 import styled from 'styled-components';
+import Link from 'next/link';
+import SocialIcons from './social/SocialIcons';
 
 // Styled components for the footer
 const FooterContainer = styled.footer`
@@ -15,10 +15,12 @@ const FooterContainer = styled.footer`
 
 const FooterLinks = styled.div`
   margin-bottom: 1rem;
+  
   a {
     color: ${({ theme }) => theme.colors.text};
     margin: 0 1rem;
     text-decoration: none;
+    
     &:hover {
       color: ${({ theme }) => theme.colors.primary};
     }
@@ -34,9 +36,8 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterLinks>
-        <Link to="/">Home</Link>
-        <Link to="/projects">Projects</Link>
-        {/* Add more links as needed */}
+        <Link href="/">Home</Link>
+        <Link href="/projects">Projects</Link>
       </FooterLinks>
       <SocialIcons />
       <FooterText>

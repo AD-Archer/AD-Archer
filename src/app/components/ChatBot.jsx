@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send } from "lucide-react";
 
