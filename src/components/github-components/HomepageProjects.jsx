@@ -296,7 +296,7 @@ const projects = [
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
     techStack: ["React", "Node.js", "Express","Python"],
-    siteLink: "https://moviesnoir.vercel.app/",
+    siteLink: "https://moviesnoir.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
 
   },
@@ -319,42 +319,42 @@ const projects = [
     title: "PlatePedia",
     description: "A modern recipe management web application built with Node.js, Express, and PostgreSQL. Create, discover, and share recipes while connecting with other food enthusiasts.",
     techStack: ["Node.js", "Express", "PostgreSQL"],
-    siteLink: "https://platepedia.vercel.app/",
+    siteLink: "https://platepedia.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/PlatePedia-recipeapp"
   },
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
     techStack: ["React", "Gemini-AI", "Node.js","Express"],
-    siteLink: "https://corra-tau.vercel.app/",
+    siteLink: "https://corra.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/corra"
   },
   {
     title: "Fintech App",
     description: "A modern financial technology application for managing personal finances and investments with real-time data visualization.",
     techStack: ["React", "Node.js", "Express", "PostgreSQL"],
-    siteLink: "https://fintech-app-blond.vercel.app/",
+    siteLink: "https://fintech.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/fintech-app"
   },
   {
     title: "Dynasty Defense",
     description: "A system for managing and creating custom alarms for fire, smoke, and security, built with React.",
     techStack: ["React", "Node.js", "IoT"],
-    siteLink: "https://dynasty-defense.vercel.app/",
+    siteLink: "https://dynasty-defense.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/dynasty-defense"
   },
   {
     title: "FortifyNow",
     description: "An educational platform aimed at improving cybersecurity awareness. Teaches strong password creation, 2FA, and account protection with USB security keys.",
     techStack: ["React", "Have I Been Pwned API", "Cybersecurity"],
-    siteLink: "https://fortify-now.vercel.app/",
+    siteLink: "https://fortifynow.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/FortifyNow"
   },
   {
     title: "Quick Convert",
     description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
     techStack: ["Next.js", "File Conversion", "T3 Stack"],
-    siteLink: "https://quick-convert-chi.vercel.app/",
+    siteLink: "https://quickconvert.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Quick-Convert"
   }
 ];
