@@ -9,7 +9,7 @@ const ChatBot = () => {
     {
       role: "assistant",
       content:
-        "Hi! I'm Antonio's AI assistant. Ask me anything about his experience, skills, or background!, unfortunately I am not up to date on his projects so you should ask Antonio himself",
+        "Hi! I'm Antonio's AI assistant. Ask me anything about his experience, skills, or background! Unfortunately, I am not up to date on his projects so you should ask Antonio himself.",
     },
   ]);
   const [inputMessage, setInputMessage] = useState("");
@@ -26,21 +26,23 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Handle click outside the chat container
+  // Handle click or touch outside the chat container
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isOpen && chatContainerRef.current && 
-          !chatContainerRef.current.contains(event.target)) {
+      if (chatContainerRef.current && !chatContainerRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener("click", handleClickOutside);
+      // Use capture phase for more reliable detection
+      document.addEventListener("mousedown", handleClickOutside, true);
+      document.addEventListener("touchstart", handleClickOutside, true);
     }
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
     };
   }, [isOpen]);
 
@@ -58,9 +60,7 @@ const ChatBot = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          message: inputMessage,
-        }),
+        body: JSON.stringify({ message: inputMessage }),
       });
 
       const data = await response.json();
@@ -99,7 +99,7 @@ const ChatBot = () => {
     >
       {/* Chat Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
         className="btn btn-danger rounded-circle p-3 shadow"
         style={{ backgroundColor: "#FF6B6B", borderColor: "#FF6B6B" }}
       >
@@ -132,15 +132,13 @@ const ChatBot = () => {
                 >
                   <div
                     className={`p-3 rounded ${
-                      message.role === "user"
-                        ? "text-white"
-                        : "bg-light text-dark"
+                      message.role === "user" ? "text-white" : "bg-light text-dark"
                     }`}
                     style={{
                       maxWidth: "80%",
-                      backgroundColor: message.role === "user" ? "#FF6B6B" : null,
-                      borderBottomRightRadius: message.role === "user" ? 0 : null,
-                      borderBottomLeftRadius: message.role === "assistant" ? 0 : null
+                      backgroundColor: message.role === "user" ? "#FF6B6B" : undefined,
+                      borderBottomRightRadius: message.role === "user" ? 0 : undefined,
+                      borderBottomLeftRadius: message.role === "assistant" ? 0 : undefined,
                     }}
                   >
                     {message.content}
@@ -175,7 +173,7 @@ const ChatBot = () => {
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && handleSend()}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Ask me anything..."
                 className="form-control"
                 style={{ borderRadius: '0.375rem 0 0 0.375rem' }}
