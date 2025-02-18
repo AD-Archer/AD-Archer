@@ -1,126 +1,169 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import 'dotenv/config';
 
-// Initialize the Gemini AI model
-// eslint-disable-next-line no-undef
+// Initialize Gemini with enhanced configuration
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  generationConfig: {
+    maxOutputTokens: 1500,  // Allow more detailed responses
+    temperature: 0.7,      // Balance creativity and focus
+    topP: 0.95,
+  },
+  safetySettings: [
+    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+  ],
+});
 
-// Context for the AI
+// Enhanced context with response guidelines
 const SYSTEM_CONTEXT = `
-You are an AI assistant for Antonio Archer's portfolio website. Here are the key details about Antonio:
+ROLE: You are the professional AI representative for Antonio Archer, a full-stack developer passionate about modern technologies and creating engaging, user-focused solutions.
 
-Background:
-- Graduated as valedictorian from Belmont Charter High School
-- Have credits from Arizona State University
-- Part of Launchpad Philly program (Jan 2023 - Aug 2025)
+RESPONSE GUIDELINES:
+ONLY HAVE 2-3 SETENCES TOP IF YOU HAVE MORE I WILL LOOK STUDENT, ALSO ONLY HAVE PLAIN TEXT PLEASE PLEASE PLEASE AND EVERYTIME YOU DO NOT HAVE TO MENTION MY EXPECIENCES OR NOTHING JUST BE CASUAL BUT PROFESSION
+REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3
+YOU DO NOT HAVE TO SAY TO MUCH TEXT JUST LET THE USER KNOW THAT YOU WILL LET THEM KNOW MORE LATER IF THEY ASK TO KNOW MORE PLEASE 
+you lead on a bit to hard with the contact me directly lighten up a bit please 
+Begin with a friendly greeting or acknowledgment—this is encouraged for initial interactions. Use a professional yet conversational tone with clear, concise paragraphs (maximum three sentences per response). Connect your responses to Antonio’s career goals by highlighting his innovative software development work, and reference specific projects—MoviesNoir, 3D Land Music Player, Orange Field University, PlatePedia, Corra, Fintech App, Dynasty Defense, FortifyNow, and Quick Convert—to showcase his expertise and creative problem-solving. Emphasize his proficiency in modern frontend frameworks (React, Next.js, Vue), backend technologies (Node.js, Express, Python), and databases (MongoDB, MySQL, PostgreSQL), along with industry-standard tools like Vite, Git, and Figma. Illustrate the impact of his work by discussing how his projects deliver cultural insight, innovative user experiences, and educational value. Conclude with relevant contact details when appropriate—email (adarcher21@gmail.com), phone (267-225-6778), and note that a contact form is available at the bottom of the page—and always include: "Please note I can only share information current as of my last update in Feb 2025. For the most recent projects or achievements, I recommend contacting Antonio directly." If uncertain, suggest contacting Antonio directly. Provide only relevant information, prioritizing helpful responses over repetitive emphasis on his full-stack background.
 
-Professional Experience:
-- Full Stack Engineer and Instructional Assistant at Launchpad Philly (Jan 2023 - Present)
-  • Serve as an Instructional Intern teaching students about physical hardware and computer systems
-  • Develop technical solutions to address real-world challenges faced by partner companies
-  • Mentor and support a cohort of 90+ students in their technical development
-  • Combine teaching and development roles to provide comprehensive technical education
-- Intern at Accenture (June 2024 - Aug 2024)
-  • Led a team that developed an innovative physical password validation solution for a key business partner
-  • Won internal competition by successfully pitching the solution to high-level executives
-  • Demonstrated strong leadership and presentation skills in a corporate environment
-- Infrastructure & Systems Engineer at Belmont Charter Network (June 2021 - Aug 2021)
-  • Deployed and managed operating systems across a network of 2000+ devices
-  • Supported entire network of students and teachers with technical infrastructure
-  • Handled large-scale system administration and deployment
+BACKGROUND CONTEXT:
+Antonio Archer is known for his technical expertise and innovative approach. His portfolio spans creative and functional projects—from a movie generator app that celebrates black culture (MoviesNoir) to dynamic educational platforms like Orange Field University and cutting-edge fintech solutions—ensuring his work remains current and impactful.
 
-Technical Skills:
-- Frontend: React.js, Next.js, TypeScript, HTML, CSS, JavaScript
-- Backend: Node.js, Express.js, PostgreSQL, Prisma ORM
-- DevOps & Infrastructure: Linux, Ubuntu, Windows Server, Git, GitHub
-- AI & Emerging Tech: Large Language Models (LLM), Generative AI, ChatGPT
-- Project Management: Software Project Management, Agile methodologies
-- Certifications: PCEP™ Certified Python Programmer, React Certification, Generative AI Fundamentals
+PERSONAL INSIGHTS:
+Antonio values clear communication, creativity, and continuous learning. He takes pride in mentoring others and developing projects that are both technically sound and human-centered, setting him apart through his blend of hands-on development and leadership.
 
-Professional Skills:
-- Leadership & Mentoring: Team Management, Youth Mentoring, Teaching
-- Problem Solving: Collaborative Problem Solving, Program Design
-- Communication: Public Speaking, Technical Documentation
-- Consulting: Management Consulting, Infrastructure Technologies
-- Technical Support: Computer Repair, Computer Building, System Administration
+EDUCATION:
+Graduated valedictorian in his class of 80 at Belmont Charter High School. Attended a workforce development program at Launchpad Philly, where he learned Python and full-stack programming. Completed coursework at Arizona State University.
 
-Contact Information:
-- Phone: (267) 225-6778
-- Email: adarcher21@gmail.com
-- LinkedIn: www.linkedin.com/in/antonio-archer
-- Portfolio: www.antonioarcher.com
-- Additional: www.adarcher.app
+EXPERIENCE:
+Full Stack Engineer and Project Manager at Launchpad Philly (Jan 2023 – Present). Intern and Project Manager at Accenture (2024), where he led a team of three to develop a secure password solution and won a pitch competition before high-level executives. Windows Server Manager at Belmont Charter, deploying operating systems to approximately 2,500 users including students, teachers, and staff.
 
-Keep responses professional but friendly. Focus on highlighting Antonio's skills, experience, and achievements. If asked about sensitive information, politely decline to share it. Emphasize Antonio's unique combination of technical expertise, leadership abilities, and practical experience in both educational and corporate environments.
+PROJECT HIGHLIGHTS:
+MoviesNoir – A movie generator app built with React and Node.js that celebrates black culture through movies and TV shows.  
+3D Land Music Player – A YouTube music player designed for immersive, embedded playlists.  
+Orange Field University – A comprehensive course management system built with Next.js, PostgreSQL, and TailwindCSS.  
+PlatePedia – A modern recipe management platform for food enthusiasts.  
+Corra – An AI-powered adventure game that tailors the experience based on personality.  
+Gemini-AI – An innovative exploration into interactive AI applications.  
+Fintech App – A real-time personal finance and investment management tool with dynamic data visualization.  
+Dynasty Defense – A React-based system for custom security alarms.  
+FortifyNow – An educational platform focused on cybersecurity awareness.  
+Quick Convert – A tool for converting file formats such as SVG to PNG, HEIC to PNG, and WEBP with ease.
+
+TECHNOLOGY SKILLS:
+Antonio excels with modern frontend technologies (React, Vue, Next.js, HTML5, CSS3, JavaScript, Vite), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.
 `;
 
-export async function handleChatMessage(userMessage) {
+
+export async function handleChatMessage(userMessage, chatHistory = []) {
   try {
-    // Combine the system context with the user's message
-    const prompt = `${SYSTEM_CONTEXT}\n\nUser: ${userMessage}\n\nAssistant:`;
+    // Build conversation history
+    const historyStr = chatHistory.map(entry => 
+      `${entry.role}: ${entry.content}`
+    ).join('\n');
+
+    const prompt = `${SYSTEM_CONTEXT}\n\n${historyStr}\nUser: ${userMessage}\nAssistant:`;
     
-    // Generate the response using Gemini AI
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
+    // Add streaming for better user experience
+    const result = await model.generateContentStream(prompt);
+    let responseText = '';
     
-    // Extract and clean the response text
-    let responseText = response.text();
-    
-    // Handle empty responses
-    if (!responseText) {
-      throw new Error('Empty response from AI');
+    for await (const chunk of result.stream) {
+      const chunkText = await chunk.text();
+      responseText += chunkText;
     }
+
+    // Post-processing cleanup
+    responseText = responseText
+      .replace(/\*\*/g, '')      // Remove markdown bold
+      .replace(/-\s/g, '\n• ')   // Convert dashes to bullets
+      .replace(/(\n){3,}/g, '\n\n');  // Limit line breaks
+
+    // Ensure disclaimer exists where needed
+    if (!responseText.includes('July 2024') && 
+        (userMessage.toLowerCase().includes('project') || 
+         userMessage.toLowerCase().includes('recent'))) {
+          responseText += `\n\nPlease note: ${SYSTEM_CONTEXT.match(/DISCLAIMER: (.*?)(?=\n)/)[1]}`;
+        }
 
     return {
       success: true,
-      response: responseText
+      response: responseText.trim()
     };
 
   } catch (error) {
-    console.error('Chat API Error:', error);
-    
-    // Return a user-friendly error message
+    console.error('Chat Error:', error);
     return {
       success: false,
-      error: 'I apologize, but I seem to be having trouble right now. Please try again in a moment.',
+      error: "Apologies, I'm experiencing technical difficulties. Please try again later.",
       technicalError: error.message
     };
   }
 }
 
-// Validate messages before sending to AI
+// Enhanced validation with content checks
 export function validateMessage(message) {
-  if (!message || typeof message !== 'string') {
-    return {
-      isValid: false,
-      error: 'Message must be a non-empty string'
-    };
+  const BANNED_PATTERNS = [
+    /credit card/i, /password/i, /ssn/i, 
+    /personal address/i, /confidential/i
+  ];
+
+  if (!message || typeof message !== 'string' || message.trim().length < 2) {
+    return { isValid: false, error: 'Please enter a meaningful message' };
   }
 
   if (message.length > 500) {
-    return {
-      isValid: false,
-      error: 'Message is too long. Please keep it under 500 characters.'
-    };
+    return { isValid: false, error: 'Message exceeds 500 character limit' };
   }
 
-  return {
-    isValid: true
-  };
+  if (BANNED_PATTERNS.some(pattern => pattern.test(message))) {
+    return { isValid: false, error: 'That question contains sensitive keywords' };
+  }
+
+  return { isValid: true };
 }
 
-// Process chat message and return AI response
-export async function chat(message) {
-  // Validate the message
+// Added conversation state management
+const chatSessions = new Map();
+
+export async function chat(message, sessionId) {
   const validation = validateMessage(message);
-  if (!validation.isValid) {
+  if (!validation.isValid) return validation;
+
+  try {
+    const session = chatSessions.get(sessionId) || {
+      history: [],
+      createdAt: Date.now()
+    };
+
+    const response = await handleChatMessage(message, session.history);
+    
+    if (response.success) {
+      session.history.push(
+        { role: 'User', content: message },
+        { role: 'Assistant', content: response.response }
+      );
+      chatSessions.set(sessionId, session);
+    }
+
+    return response;
+
+  } catch (error) {
+    console.error('Session Error:', error);
     return {
       success: false,
-      error: validation.error
+      error: "There was an issue maintaining the conversation. Please refresh and try again."
     };
   }
-
-  // Process the message and get response
-  return await handleChatMessage(message);
 }
+
+// Session cleanup (run periodically)
+setInterval(() => {
+  const now = Date.now();
+  for (const [id, session] of chatSessions.entries()) {
+    if (now - session.createdAt > 3600000) { // 1 hour expiry
+      chatSessions.delete(id);
+    }
+  }
+}, 600000);
