@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const HeroTitle = styled(motion.h1)`
@@ -143,23 +143,32 @@ export const ProfileImage = styled(motion.img)`
   border: 3px solid black;
   box-shadow: ${props => props.theme.shadows.comic};
 `; 
-// const SectionTitle = styled(motion.h2)`
-//   font-family: ${props => props.theme.fonts.title};
-//   font-size: clamp(2rem, 6vw, 4rem);
-//   color: ${props => props.theme.colors.accent};
-//   text-align: center;
-//   margin: 4rem 0;
-//   text-shadow: 2px 2px 0 #000;
-//   position: relative;
-  
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     bottom: -10px;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     width: min(150px, 50%);
-//     height: 3px;
-//     background: ${props => props.theme.colors.primary};
-//   }
-// `;
+
+const AppStyles = createGlobalStyle`
+  /* Your additional global app styles */
+  body {
+    font-family: ${props => props.theme.fonts.body};
+    /* Other app-level styles can go here */
+  }
+
+  /* Example: A reusable heading style */
+  .app-heading {
+    text-align: center;
+    margin: 4rem 0;
+    text-shadow: 2px 2px 0 #000;
+    position: relative;
+  }
+
+  .app-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(150px, 50%);
+    height: 3px;
+    background: ${props => props.theme.colors.primary};
+  }
+`;
+
+export default AppStyles;

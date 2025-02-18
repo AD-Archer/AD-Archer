@@ -1,3 +1,4 @@
+'use client'
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
@@ -436,7 +437,10 @@ const GitHubProjects = () => {
   // Removed tech filter functionality
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
-    return localStorage.getItem("hasSeenPreview") === "true";
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("hasSeenPreview") === "true";
+    }
+    return false;
   });
   const [selectedCategory, setSelectedCategory] = useState(null);
   const projectsRef = useRef(null);

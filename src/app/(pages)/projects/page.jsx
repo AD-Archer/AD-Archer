@@ -1,6 +1,6 @@
 // src/components/pages/ProjectsPage.js
 import React from 'react';
-import GitHubProjects from '../github-components/GitHubProjects';
+import GitHubProjects from '../../components/github-components/GitHubProjects';
 
 
 const ProjectsPage = () => {
