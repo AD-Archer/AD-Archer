@@ -404,7 +404,7 @@ const hiddenProjects = [
     description: "Every should have their own QR Code Generator right, I Created this while creating the slides for OrangeField University",
     techStack: ["JavaScript", "HTML"],
     category: "Utilities",
-    siteLink: "https://ad-archer.github.io/Qr-code-generator/",
+    siteLink: "https://qr.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Qr-code-generator",
   },
   {
@@ -420,7 +420,7 @@ const hiddenProjects = [
     description: "Transform your own audio files into a distorted version of itself to give it a retro feel. This application was created to aid with creating the music for Win or Lose Philly.",
     techStack: ["Express", "Node.js"],
     category: "Utilities",
-    siteLink: "https://retroaudiomaker.vercel.app/",
+    siteLink: "https://retroaudiomaker.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/retroaudiomaker",
   },
   {
@@ -428,7 +428,7 @@ const hiddenProjects = [
     description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
     techStack: ["Next.js", "File Conversion", "T3 Stack"],
     category: "Utilities",
-    siteLink: "https://quick-convert-chi.vercel.app/",
+    siteLink: "https://quickconvert.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Quick-Convert",
   },
   {
@@ -436,7 +436,7 @@ const hiddenProjects = [
     description: "I wanted my own linktree to make sharing important links alot easier.",
     techStack: ["React"],
     category: "Utilities",
-    siteLink: "https://tree.antonioarcher.com/",
+    siteLink: "https://www.antonioarcher.com/",
     repoLink: "https://github.com/AD-Archer/tree",
   },
   {
@@ -444,7 +444,7 @@ const hiddenProjects = [
     description: "I wanted my own linktree to make sharing important links alot easier.",
     techStack: ["React"],
     category: "Frontend Apps",
-    siteLink: "https://tree.antonioarcher.com/",
+    siteLink: "https://www.antonioarcher.com/",
     repoLink: "https://github.com/AD-Archer/tree",
   }, // I didn't feel like adding the logic required to have muliple categories so i made 2
 ];
