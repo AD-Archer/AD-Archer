@@ -16,9 +16,11 @@ import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
 // Update the import in App.jsx
 import ProjectsPage from "./components/pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
+import ChatBot from './components/ChatBot.jsx';
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
 
@@ -52,6 +54,7 @@ function App() {
                       setShowLinkedIn={setShowLinkedIn}
                     />
                     {showLinkedIn && <LinkedInFeed />}
+                    <ChatBot />
                   </div>
                 } />
                 
