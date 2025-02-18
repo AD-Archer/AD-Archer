@@ -9,7 +9,7 @@ const ChatBot = () => {
     {
       role: "assistant",
       content:
-        "Hi! I'm Antonio's AI assistant. Ask me anything about his experience, skills, or background! Unfortunately, I am not up to date on his projects so you should ask Antonio himself.",
+        "Hi! I'm Charmi. Antonio's AI assistant. Ask me anything about his experience, skills, or background! Unfortunately, I am not up to date on his projects so you should ask Antonio himself.",
     },
   ]);
   const [inputMessage, setInputMessage] = useState("");
@@ -111,7 +111,7 @@ const ChatBot = () => {
         <div className="position-absolute bottom-0 start-0 mb-16 bg-white rounded shadow-lg border" style={{ width: '350px', maxWidth: '90vw' }}>
           {/* Header with close button */}
           <div className="p-3 text-white rounded-top d-flex justify-content-between align-items-center" style={{ backgroundColor: "#FF6B6B" }}>
-            <h5 className="mb-0 fw-semibold">Chat with {myname} AI Assistant</h5>
+            <h5 className="mb-0 fw-semibold">Chat with Charmi. {myname} AI Assistant</h5>
             <button
               onClick={() => setIsOpen(false)}
               className="btn btn-link p-0 text-white"
