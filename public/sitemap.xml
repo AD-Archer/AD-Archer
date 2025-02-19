@@ -6,4 +6,10 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-</urlset> 
+  <url>
+    <loc>https://antonioarcher.com/projects</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
