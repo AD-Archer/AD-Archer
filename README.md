@@ -2,9 +2,7 @@
   <a href="https://github.com/ad-archer">
     <img src="images/My name SVG.svg" alt="Antonio Archer" style="max-width: 100%; height: auto; width: 100%; max-width: 400px; display: inline-block; margin-right: 5px;" />
   </a>
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=900&size=22&pause=1000&color=D60000&center=true&width=435&lines=A+full+stack+developer;A+future+full+stack+developer*" alt="Typing SVG" />
-  </a>
+ <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73700&width=435&lines=A+full+stack+Developer" alt="Typing SVG" /></a>
 </p>
 
 ![](https://komarev.com/ghpvc/?username=ad-archer)
