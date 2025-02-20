@@ -301,12 +301,11 @@ const projects = [
 
   },
   {
-    title: "3D Land Music Player",
-    description: "A YouTube music player designed to play embedded YouTube playlists.",
+    title: "TimeWise",
+    description: "A cozy time management tool with a pomodoro timer and youtube playlists for music.",
     techStack: ["React", "Node.js", "YouTube API"],
-    siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player",
-
+    siteLink: "https://timewise.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/TimeWise",
   },
   {
     title: "Orange Field University",
