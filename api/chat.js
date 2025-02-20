@@ -75,6 +75,7 @@ Fintech App – A real-time personal finance and investment management tool with
 Dynasty Defense – A React-based system for custom security alarms.  
 FortifyNow – An educational platform focused on cybersecurity awareness.  
 Quick Convert – A nextjs tool for converting file formats such as SVG to PNG, HEIC to PNG, and WEBP with ease.
+TimeWise – A time management tool that helps users track their time and productivity using a cute and cozy UI and pomodoro timer with youtube playlists for music.
 
 TECHNOLOGY SKILLS:
 Antonio excels with modern frontend technologies (React, Vue, Next.js, HTML5, CSS3, JavaScript, Vite), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.

@@ -326,23 +326,31 @@ const projects = [
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show. Movies are stored in a json file, which is the only reason this is not a full stack application.",
     techStack: ["React", "Node.js", "Express", "Python"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://moviesnoir.vercel.app/",
     repoLink: "https://github.com/AD-Archer/MoviesNoir",
   },
   {
-    title: "Win or Lose Philly",
-    description: "A web-based game created to celebrate the 2025 Super Bowl, based off the joke that philly gets destroyed if we win or lose.",
-    techStack: ["Node.js", "Express", "Phaser"],
-    category: "Frontend Apps",
-    siteLink: "https://winorlosephilly.vercel.app/",
-    repoLink: "https://github.com/AD-Archer/winorlosephilly",
+    title: "TimeWise",
+    description: "A cozy time management tool with a pomodoro timer and youtube playlists for music.",
+    techStack: ["React", "Node.js", "YouTube API"],
+    categories: ["Frontend Apps", "Utilities"],
+    siteLink: "https://timewise.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/TimeWise",
+  },
+  {
+    title: "LinkTree",
+    description: "I wanted my own linktree to make sharing important links alot easier.",
+    techStack: ["React"],
+    categories: ["Utilities", "Frontend Apps"],
+    siteLink: "https://www.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/tree",
   },
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
     techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack"],
-    category: "Full-stack Apps",
+    categories: ["Full-stack Apps"],
     siteLink: "https://university-orange-field.vercel.app/",
     repoLink: "https://github.com/AD-Archer/University-OrangeField",
   },
@@ -350,7 +358,7 @@ const projects = [
     title: "PlatePedia",
     description: "A modern recipe management web application built with Node.js, Express, and PostgreSQL. Create, discover, and share recipes while connecting with other food enthusiasts.",
     techStack: ["Node.js", "Express", "PostgreSQL"],
-    category: "Full-stack Apps",
+    categories: ["Full-stack Apps"],
     siteLink: "https://platepedia.vercel.app/",
     repoLink: "https://github.com/AD-Archer/PlatePedia-recipeapp",
   },
@@ -358,7 +366,7 @@ const projects = [
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
     techStack: ["React", "Gemini-AI", "Node.js", "Express"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://corra-tau.vercel.app/",
     repoLink: "https://github.com/AD-Archer/corra",
   },
@@ -366,7 +374,7 @@ const projects = [
     title: "Fintech App",
     description: "A modern financial technology application for managing personal finances and investments with real-time data visualization.",
     techStack: ["React", "Node.js", "Express", "PostgreSQL"],
-    category: "Full-stack Apps",
+    categories: ["Full-stack Apps"],
     siteLink: "https://fintech-app-blond.vercel.app/",
     repoLink: "https://github.com/AD-Archer/fintech-app",
   },
@@ -374,7 +382,7 @@ const projects = [
     title: "Dynasty Defense",
     description: "A system for managing and creating custom alarms for fire, smoke, and security, built with React.",
     techStack: ["React", "Node.js", "IoT"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://dynasty-defense.vercel.app/",
     repoLink: "https://github.com/AD-Archer/dynasty-defense",
   },
@@ -382,7 +390,7 @@ const projects = [
     title: "FortifyNow",
     description: "An educational platform aimed at improving cybersecurity awareness. Teaches strong password creation, 2FA, and account protection with USB security keys.",
     techStack: ["React", "Have I Been Pwned API", "Cybersecurity"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://fortify-now.vercel.app/",
     repoLink: "https://github.com/AD-Archer/FortifyNow",
   },
@@ -390,12 +398,19 @@ const projects = [
     title: "Linehan Family Foundation Preview Site",
     description: "A simple webpage created for the Linehan Family Foundation.",
     techStack: ["HTML", "CSS", "JavaScript"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://ad-archer.github.io/Linehan-Family-Foundation-Preview-Site/",
     repoLink: "https://github.com/AD-Archer/Linehan-Family-Foundation-Preview-Site",
   },
   
- 
+  {
+    title: "Win or Lose Philly",
+    description: "A web-based game created to celebrate the 2025 Super Bowl, based off the joke that philly gets destroyed if we win or lose.",
+    techStack: ["Node.js", "Express", "Phaser"],
+    categories: ["Frontend Apps"],
+    siteLink: "https://winorlosephilly.vercel.app/",
+    repoLink: "https://github.com/AD-Archer/winorlosephilly",
+  },
 ];
 
 const hiddenProjects = [
@@ -403,7 +418,7 @@ const hiddenProjects = [
     title: "Qr Code Generator",
     description: "Every should have their own QR Code Generator right, I Created this while creating the slides for OrangeField University",
     techStack: ["JavaScript", "HTML"],
-    category: "Utilities",
+    categories: ["Utilities"],
     siteLink: "https://qr.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Qr-code-generator",
   },
@@ -411,7 +426,7 @@ const hiddenProjects = [
     title: "3D Land Music Player",
     description: "A YouTube music player designed to play embedded YouTube playlists.",
     techStack: ["React", "Node.js", "YouTube API"],
-    category: "Frontend Apps",
+    categories: ["Frontend Apps"],
     siteLink: "https://ad-archer.github.io/3d-land-player/",
     repoLink: "https://github.com/AD-Archer/3d-land-player",
   },
@@ -419,7 +434,7 @@ const hiddenProjects = [
     title: "Retro Audio Maker",
     description: "Transform your own audio files into a distorted version of itself to give it a retro feel. This application was created to aid with creating the music for Win or Lose Philly.",
     techStack: ["Express", "Node.js"],
-    category: "Utilities",
+    categories: ["Utilities"],
     siteLink: "https://retroaudiomaker.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/retroaudiomaker",
   },
@@ -427,26 +442,11 @@ const hiddenProjects = [
     title: "Quick Convert",
     description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
     techStack: ["Next.js", "File Conversion", "T3 Stack"],
-    category: "Utilities",
+    categories: ["Utilities"],
     siteLink: "https://quickconvert.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Quick-Convert",
   },
-  {
-    title: "LinkTree",
-    description: "I wanted my own linktree to make sharing important links alot easier.",
-    techStack: ["React"],
-    category: "Utilities",
-    siteLink: "https://www.antonioarcher.com/",
-    repoLink: "https://github.com/AD-Archer/tree",
-  },
-  {
-    title: "LinkTree",
-    description: "I wanted my own linktree to make sharing important links alot easier.",
-    techStack: ["React"],
-    category: "Frontend Apps",
-    siteLink: "https://www.antonioarcher.com/",
-    repoLink: "https://github.com/AD-Archer/tree",
-  }, // I didn't feel like adding the logic required to have muliple categories so i made 2
+  
 ];
 
 const GitHubProjects = () => {
@@ -455,7 +455,7 @@ const GitHubProjects = () => {
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
     return localStorage.getItem("hasSeenPreview") === "true";
   });
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState(new Set());
   const projectsRef = useRef(null);
 
   useEffect(() => {
@@ -466,33 +466,48 @@ const GitHubProjects = () => {
     setAvailableTech(uniqueTech);
   }, [setAvailableTech]);
 
-  // Get unique categories for the category filter
-  const categories = [ "Frontend Apps", "Full-stack Apps","Utilities"];
+  // Update the categories array
+  const categories = ["Frontend Apps", "Full-stack Apps", "Utilities"];
 
-  // Determine if any filter is applied (category or tech)
-  const filterApplied = selectedCategory || selectedTech;
+  // Determine if any filter is applied (categories or tech)
+  const filterApplied = selectedCategories.size > 0 || selectedTech;
 
-  // Filter regular projects based on selected category and tech stack
-  const filteredProjects = projects.filter((project) => {
-    const matchesCategory = !selectedCategory || project.category === selectedCategory;
-    const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
-    return matchesCategory && matchesTech;
-  });
+  // Updated filter logic to handle multiple categories
+  const filterProjects = (projectsList) => {
+    return projectsList.filter((project) => {
+      const matchesCategories = selectedCategories.size === 0 || 
+        project.categories.some(cat => selectedCategories.has(cat));
+      const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
+      return matchesCategories && matchesTech;
+    });
+  };
 
-  // Filter hidden projects only if a filter is applied; otherwise, keep hidden projects excluded.
-  const filteredHiddenProjects = filterApplied
-    ? hiddenProjects.filter((project) => {
-        const matchesCategory = !selectedCategory || project.category === selectedCategory;
-        const matchesTech = !selectedTech || project.techStack.includes(selectedTech);
-        return matchesCategory && matchesTech;
-      })
-    : [];
+  // Filter both regular and hidden projects
+  const filteredProjects = filterProjects(projects);
+  const filteredHiddenProjects = filterApplied ? filterProjects(hiddenProjects) : [];
 
-  // If no filter is applied, show only regular projects.
-  // If a filter is active, include hidden projects that match the filter.
+  // Combine filtered projects
   const displayProjects = filterApplied
     ? [...filteredProjects, ...filteredHiddenProjects]
     : projects;
+
+  // Handle category selection
+  const handleCategoryClick = (category) => {
+    setSelectedCategories(prev => {
+      const newCategories = new Set(prev);
+      if (newCategories.has(category)) {
+        newCategories.delete(category);
+      } else {
+        newCategories.add(category);
+      }
+      return newCategories;
+    });
+  };
+
+  // Clear all category filters
+  const clearCategories = () => {
+    setSelectedCategories(new Set());
+  };
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
@@ -523,19 +538,19 @@ const GitHubProjects = () => {
         </ProjectsDescription>
       </ProjectsHeader>
 
-      {/* Category Filter Buttons */}
+      {/* Updated Category Filter Buttons */}
       <CategoryFilter>
         <CategoryButton
-          isSelected={!selectedCategory}
-          onClick={() => setSelectedCategory(null)}
+          isSelected={selectedCategories.size === 0}
+          onClick={clearCategories}
         >
           All
         </CategoryButton>
         {categories.map((category) => (
           <CategoryButton
             key={category}
-            isSelected={selectedCategory === category}
-            onClick={() => setSelectedCategory(category)}
+            isSelected={selectedCategories.has(category)}
+            onClick={() => handleCategoryClick(category)}
           >
             {category}
           </CategoryButton>
@@ -633,8 +648,6 @@ const GitHubProjects = () => {
     </ProjectsSection>
   );
 };
-
-
 
 export default GitHubProjects;
 
