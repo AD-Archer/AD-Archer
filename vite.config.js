@@ -18,13 +18,17 @@ export default defineConfig({
         {
           src: 'public/sitemap.xml',
           dest: ''
+        },
+        {
+          src: 'public/resume.pdf',
+          dest: '',
         }
       ]
     })
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')  // Point @ to the src directory this will make it easier for me to find components
+      '@': path.resolve(__dirname, './src')  
     }
   },
   build: {

@@ -30,6 +30,11 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// Redirect /resume to /resume.pdf this is needed because i could not figure out how to do it in the frontend
+app.get('/resume', (req, res) => {
+  res.redirect('/resume.pdf');
+});
+
 // Serve static files from the "dist" directory (built assets)
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
