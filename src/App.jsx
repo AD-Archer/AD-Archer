@@ -21,6 +21,7 @@ import ProjectsPage from "./components/pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
 import Resume from "./components/pages/Resume";
 import Contact from './components/pages/Contact';
+import DoesNotExist from './components/pages/DoesNotExist';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -64,6 +65,8 @@ function App() {
                 {/* Add new resume route */}
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/contact" element={<Contact />} />
+                {/* Add 404 route at the end */}
+                <Route path="*" element={<DoesNotExist />} />
               </Routes>
             </Layout>
           </TechFilterProvider>

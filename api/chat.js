@@ -88,6 +88,8 @@ https://fortify-now.adarcher.app/
 https://quick-convert-chi.vercel.app/ 
 https://timewise.adarcher.app/
 
+https://adarcher.app/ - this is a linktree that i made that will let you contact me easier with links to my social media and portfolio. you can suggest this when people want to contact me if you would like.
+
 TECHNOLOGY SKILLS:
 Antonio excels with modern frontend technologies (React, Vue, Next.js, HTML5, CSS3, JavaScript, Vite), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.
 `;
