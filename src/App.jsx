@@ -17,11 +17,11 @@ import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBot from './layouts/ChatBot.jsx';
 // Update the import in App.jsx
-import ProjectsPage from "./components/pages/ProjectsPage.jsx";
+import ProjectsPage from "./pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
-import Resume from "./components/pages/Resume";
-import Contact from './components/pages/Contact';
-import DoesNotExist from './components/pages/DoesNotExist';
+import Resume from "./pages/Resume.jsx";
+import Contact from './pages/Contact.jsx';
+import DoesNotExist from './pages/DoesNotExist.jsx';
 import { ChatProvider } from './context/ChatContext';
 
 function App() {
