@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import MainFooter from '../layouts/MainFooter';
-import MainHeader from '../layouts/MainHeader';
+import MainFooter from './MainFooter';
+import MainHeader from './MainHeader';
 import { useLocation } from 'react-router-dom';
 import { useChatContext } from '../context/ChatContext';
 
