@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Footer from './Footer';
+import Header from './Header';
+import { useLocation } from 'react-router-dom';
+
 const ComicPanel = styled(motion.div)`
-  background: ${props => props.theme.colors.panelBg};
+  background: ${props => props.pathname === '/resume' ? 'white' : props.theme.colors.panelBg};
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -27,13 +30,13 @@ const ComicPanel = styled(motion.div)`
     content: '';
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(
+    background: ${props => props.pathname === '/resume' ? 'none' : `repeating-linear-gradient(
       45deg,
       transparent,
       transparent 10px,
       rgba(0,0,0,0.03) 10px,
       rgba(0,0,0,0.03) 20px
-    );
+    )`};
     pointer-events: none;
     z-index: 1;
   }
@@ -45,21 +48,30 @@ const ContentWrapper = styled.div`
   position: relative;
   z-index: 2;
   flex: 1;
+  padding-top: ${props => props.pathname === '/resume' ? '0' : '4rem'};
+
+  @media (max-width: 768px) {
+    padding-top: ${props => props.pathname === '/resume' ? '0' : '3rem'};
+  }
 `;
 
 const Layout = ({ children }) => {
+  const location = useLocation();
+  const isSpecialPage = location.pathname === '/resume' || location.pathname === '/contact';
+
   return (
     <ComicPanel
+      pathname={location.pathname}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <ContentWrapper>
+      <Header />
+      <ContentWrapper pathname={location.pathname}>
         {children}
-        <Footer />
+        {!isSpecialPage && <Footer />}
       </ContentWrapper>
     </ComicPanel>
-    
   );
 };
 

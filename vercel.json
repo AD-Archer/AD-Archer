@@ -1,9 +1,12 @@
 {
-    "rewrites": [
-      {
-        "source": "/:path*",
-        "destination": "/index.html"
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/resume",
+      "destination": "/resume.pdf"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}

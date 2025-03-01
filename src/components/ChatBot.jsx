@@ -2,21 +2,208 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send } from "lucide-react";
+import DOMPurify from 'dompurify';
+import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const ChatContainer = styled(motion.div)`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 1rem;
+  z-index: 1050;
+`;
+
+const ChatButton = styled.button`
+  background-color: ${props => props.theme.colors.primary};
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: ${props => props.theme.shadows.subtle};
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: ${props => props.theme.shadows.hover};
+  }
+`;
+
+const ChatWindow = styled(motion.div)`
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  width: 350px;
+  max-width: 90vw;
+  background: white;
+  border-radius: 12px;
+  box-shadow: ${props => props.theme.shadows.comic};
+  border: 2px solid ${props => props.theme.colors.primary};
+  overflow: hidden;
+`;
+
+const ChatHeader = styled.div`
+  background-color: ${props => props.theme.colors.primary};
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const MessageContainer = styled.div`
+  height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  * {
+    pointer-events: auto;
+  }
+`;
+
+const MessageWrapper = styled.div`
+  display: flex;
+  justify-content: ${props => props.isUser ? 'flex-end' : 'flex-start'};
+  margin: 0;
+  width: 100%;
+`;
+
+const Message = styled.div`
+  max-width: 85%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: ${props => props.isUser ? props.theme.colors.primary : props.theme.colors.background};
+  color: ${props => props.isUser ? 'white' : props.theme.colors.text};
+  border-bottom-right-radius: ${props => props.isUser ? '4px' : '12px'};
+  border-bottom-left-radius: ${props => !props.isUser ? '4px' : '12px'};
+  line-height: 1.5;
+  font-size: 0.95rem;
+  box-shadow: ${props => props.theme.shadows.subtle};
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: ${props => props.isUser ? 'white' : props.theme.colors.primary};
+    text-decoration: underline;
+    cursor: pointer;
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    font-weight: 500;
+    
+    &:hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+    
+    &:focus {
+      outline: 2px solid ${props => props.theme.colors.accent};
+      outline-offset: 2px;
+    }
+  }
+
+  code {
+    background: ${props => props.isUser ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'};
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+`;
+
+const InputContainer = styled.div`
+  border-top: 1px solid ${props => props.theme.colors.border};
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const Input = styled.input`
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 8px;
+  font-size: 1rem;
+  color: ${props => props.theme.colors.text};
+  background: white;
+  font-family: ${props => props.theme.fonts.body};
+
+  &::placeholder {
+    color: ${props => props.theme.colors.textSecondary};
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 0 2px ${props => `${props.theme.colors.primary}20`};
+  }
+`;
+
+const SendButton = styled.button`
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+`;
+
+const LoadingDots = styled.div`
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.8rem 1rem;
+  background: ${props => props.theme.colors.background};
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  box-shadow: ${props => props.theme.shadows.subtle};
+  
+  span {
+    width: 6px;
+    height: 6px;
+    background: ${props => props.theme.colors.primary};
+    border-radius: 50%;
+    animation: bounce 0.5s infinite alternate;
+
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+
+  @keyframes bounce {
+    to { transform: translateY(-4px); }
+  }
+`;
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content:
-        "Hi! I'm Charmi. Antonio's AI assistant. Ask me anything about his experience, skills, or background! Unfortunately, I am not up to date on his projects so you should ask Antonio himself.",
-    },
+      content: "Hi! I'm Charmi. Antonio's AI assistant. Ask me anything about his experience, skills, or background!",
+      type: "text"
+    }
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
-  const myname = "Antonio's"; // i dont want to have an escaped characters
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,7 +213,6 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Handle click or touch outside the chat container
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (chatContainerRef.current && !chatContainerRef.current.contains(event.target)) {
@@ -35,7 +221,6 @@ const ChatBot = () => {
     };
 
     if (isOpen) {
-      // Use capture phase for more reliable detection
       document.addEventListener("mousedown", handleClickOutside, true);
       document.addEventListener("touchstart", handleClickOutside, true);
     }
@@ -46,11 +231,33 @@ const ChatBot = () => {
     };
   }, [isOpen]);
 
+  const parseMessageContent = (content) => {
+    // Convert markdown-style links to HTML with specific styling
+    content = content.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g, 
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>'
+    );
+    
+    // Convert code blocks
+    content = content.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Convert line breaks while preserving link functionality
+    content = content.replace(/\n/g, '<br>');
+    
+    // Use DOMPurify with specific config to allow links
+    return DOMPurify.sanitize(content, {
+      ALLOWED_TAGS: ['a', 'br', 'code', 'strong', 'em', 'p'],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
+      ALLOW_DATA_ATTR: false,
+      ADD_ATTR: ['target']
+    });
+  };
+
   const handleSend = async () => {
     if (!inputMessage.trim()) return;
 
-    const userMessage = { role: "user", content: inputMessage };
-    setMessages((prev) => [...prev, userMessage]);
+    const userMessage = { role: "user", content: inputMessage, type: "text" };
+    setMessages(prev => [...prev, userMessage]);
     setInputMessage("");
     setIsLoading(true);
 
@@ -66,131 +273,92 @@ const ChatBot = () => {
       const data = await response.json();
 
       if (data.success) {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: data.response },
-        ]);
+        const parsedContent = parseMessageContent(data.response);
+        setMessages(prev => [...prev, { 
+          role: "assistant", 
+          content: parsedContent,
+          type: "html"
+        }]);
       } else {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: data.error },
-        ]);
+        setMessages(prev => [...prev, { 
+          role: "assistant", 
+          content: data.error,
+          type: "text"
+        }]);
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "I apologize, but I'm having trouble connecting right now. Please try again later.",
-        },
-      ]);
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: "I apologize, but I'm having trouble connecting right now. Please try again later.",
+        type: "text"
+      }]);
     }
 
     setIsLoading(false);
   };
 
   return (
-    <div 
-      ref={chatContainerRef} 
-      className="position-fixed bottom-0 start-0 mb-4 ms-4" 
-      style={{ zIndex: 1050 }}
-    >
-      {/* Chat Button */}
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="btn btn-danger rounded-circle p-3 shadow"
-        style={{ backgroundColor: "#FF6B6B", borderColor: "#FF6B6B" }}
-      >
+    <ChatContainer ref={chatContainerRef}>
+      <ChatButton onClick={() => setIsOpen(prev => !prev)}>
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-      </button>
+      </ChatButton>
 
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="position-absolute bottom-0 start-0 mb-16 bg-white rounded shadow-lg border" style={{ width: '350px', maxWidth: '90vw' }}>
-          {/* Header with close button */}
-          <div className="p-3 text-white rounded-top d-flex justify-content-between align-items-center" style={{ backgroundColor: "#FF6B6B" }}>
-            <h5 className="mb-0 fw-semibold">Chat with Charmi. {myname} AI Assistant</h5>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="btn btn-link p-0 text-white"
-            >
-              <X size={20} />
-            </button>
-          </div>
+      <AnimatePresence>
+        {isOpen && (
+          <ChatWindow
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            <ChatHeader>
+              <h5>Chat with Charmi</h5>
+              <button onClick={() => setIsOpen(false)}>
+                <X size={20} />
+              </button>
+            </ChatHeader>
 
-          {/* Messages */}
-          <div className="p-3" style={{ height: '400px', overflowY: 'auto' }}>
-            <div className="d-flex flex-column gap-3">
+            <MessageContainer>
               {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`d-flex ${
-                    message.role === "user" ? "justify-content-end" : "justify-content-start"
-                  }`}
-                >
-                  <div
-                    className={`p-3 rounded ${
-                      message.role === "user" ? "text-white" : "bg-light text-dark"
-                    }`}
-                    style={{
-                      maxWidth: "80%",
-                      backgroundColor: message.role === "user" ? "#FF6B6B" : undefined,
-                      borderBottomRightRadius: message.role === "user" ? 0 : undefined,
-                      borderBottomLeftRadius: message.role === "assistant" ? 0 : undefined,
+                <MessageWrapper key={index} isUser={message.role === "user"}>
+                  <Message
+                    isUser={message.role === "user"}
+                    dangerouslySetInnerHTML={{
+                      __html: message.type === "html" 
+                        ? message.content 
+                        : DOMPurify.sanitize(message.content)
                     }}
-                  >
-                    {message.content}
-                  </div>
-                </div>
+                  />
+                </MessageWrapper>
               ))}
               {isLoading && (
-                <div className="d-flex justify-content-start">
-                  <div className="bg-light p-3 rounded" style={{ borderBottomLeftRadius: 0 }}>
-                    <div className="d-flex gap-2">
-                      <div className="spinner-grow spinner-grow-sm text-secondary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
-                      <div className="spinner-grow spinner-grow-sm text-secondary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
-                      <div className="spinner-grow spinner-grow-sm text-secondary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <MessageWrapper>
+                  <LoadingDots>
+                    <span />
+                    <span />
+                    <span />
+                  </LoadingDots>
+                </MessageWrapper>
               )}
               <div ref={messagesEndRef} />
-            </div>
-          </div>
+            </MessageContainer>
 
-          {/* Input */}
-          <div className="border-top p-3">
-            <div className="input-group">
-              <input
+            <InputContainer>
+              <Input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Ask me anything..."
-                className="form-control"
-                style={{ borderRadius: '0.375rem 0 0 0.375rem' }}
               />
-              <button
-                onClick={handleSend}
-                disabled={isLoading}
-                className="btn btn-danger"
-                style={{ backgroundColor: "#FF6B6B", borderColor: "#FF6B6B" }}
-              >
+              <SendButton onClick={handleSend} disabled={isLoading}>
                 <Send size={20} />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+              </SendButton>
+            </InputContainer>
+          </ChatWindow>
+        )}
+      </AnimatePresence>
+    </ChatContainer>
   );
 };
 

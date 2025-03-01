@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.9",
+    "dompurify": "^3.2.4",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "formik": "^2.4.6",
