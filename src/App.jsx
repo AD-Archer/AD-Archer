@@ -19,7 +19,8 @@ import ChatBot from './components/ChatBot.jsx';
 // Update the import in App.jsx
 import ProjectsPage from "./components/pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
-import Resume from './components/Resume';
+import Resume from "./components/pages/Resume";
+import Contact from './components/pages/Contact';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/projects" element={<ProjectsPage />} />
                 {/* Add new resume route */}
                 <Route path="/resume" element={<Resume />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </Layout>
           </TechFilterProvider>

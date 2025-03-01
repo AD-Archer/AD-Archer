@@ -8,14 +8,26 @@
   </url>
   <url>
     <loc>https://antonioarcher.com/projects</loc>
-    <lastmod>2025-02-25</lastmod>
+    <lastmod>2024-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-    <url>
-    <loc>https://antonioarcher.com/resume.pdf</loc>
-    <lastmod>2025-02-25</lastmod>
+  <url>
+    <loc>https://antonioarcher.com/resume</loc>
+    <lastmod>2024-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://antonioarcher.com/contact</loc>
+    <lastmod>2024-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://antonioarcher.com/resume.pdf</loc>
+    <lastmod>2024-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

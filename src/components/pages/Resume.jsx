@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 
 const ResumeContainer = styled(motion.div)`
   width: 100%;
@@ -33,27 +32,22 @@ const PDFFrame = styled.iframe`
 `;
 
 const Resume = () => {
-  const location = useLocation();
-  const isResumePage = location.pathname === '/resume';
-
   useEffect(() => {
-    // Update document title when component mounts
     document.title = 'Antonio Archer - Resume';
     return () => {
-      // Reset title when component unmounts
       document.title = 'Antonio Archer';
     };
   }, []);
 
   return (
     <ResumeContainer
-      isResumePage={isResumePage}
+      isResumePage={true}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
       <PDFFrame
-        isResumePage={isResumePage}
+        isResumePage={true}
         src="/resume.pdf"
         title="Antonio Archer Resume"
         type="application/pdf"
