@@ -19,7 +19,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { HeroTitle, ProfileImage } from '../styles/AppStyles';
 import antonioImage from '/images/antonioarcher.jpeg';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';  
 import ContactForm from '../components/contact/ContactForm';
 
 const ContactContainer = styled(motion.div)`

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Footer from './Footer';
-import Header from './Header';
+import MainFooter from './MainFooter';
+import MainHeader from './MainHeader';
 import { useLocation } from 'react-router-dom';
+import { useChatContext } from '../context/ChatContext';
 
 const ComicPanel = styled(motion.div)`
   background: ${props => props.pathname === '/resume' ? 'white' : props.theme.colors.panelBg};
@@ -55,9 +56,21 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Layout = ({ children }) => {
+const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  transform: translateY(${props => props.hideHeader ? '-100%' : '0'});
+`;
+
+const MainLayout = ({ children }) => {
   const location = useLocation();
+  const { isChatOpen } = useChatContext();
   const isSpecialPage = location.pathname === '/resume' || location.pathname === '/contact';
+  const isNotFoundPage = location.pathname === '/404' || location.pathname === '/does-not-exist'; // Adjust this line based on your routing
 
   return (
     <ComicPanel
@@ -66,17 +79,19 @@ const Layout = ({ children }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Header />
+      <HeaderWrapper hideHeader={isChatOpen}>
+        <MainHeader />
+      </HeaderWrapper>
       <ContentWrapper pathname={location.pathname}>
         {children}
-        {!isSpecialPage && <Footer />}
+        {!isSpecialPage && !isNotFoundPage && <MainFooter />}
       </ContentWrapper>
     </ComicPanel>
   );
 };
 
-Layout.propTypes = {
+MainLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout; 
+export default MainLayout; 
