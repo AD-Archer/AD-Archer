@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Footer from './Footer';
-import Header from './Header';
+import MainFooter from '../layouts/MainFooter';
+import MainHeader from '../layouts/MainHeader';
 import { useLocation } from 'react-router-dom';
 import { useChatContext } from '../context/ChatContext';
 
@@ -79,11 +79,11 @@ const Layout = ({ children }) => {
       transition={{ duration: 0.5 }}
     >
       <HeaderWrapper hideHeader={isChatOpen}>
-        <Header />
+        <MainHeader />
       </HeaderWrapper>
       <ContentWrapper pathname={location.pathname}>
         {children}
-        {!isSpecialPage && <Footer />}
+        {!isSpecialPage && <MainFooter />}
       </ContentWrapper>
     </ComicPanel>
   );
