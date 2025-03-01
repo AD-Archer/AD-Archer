@@ -22,6 +22,7 @@ import GitHubStats from './components/github-components/GitHubStats.jsx';
 import Resume from "./components/pages/Resume";
 import Contact from './components/pages/Contact';
 import DoesNotExist from './components/pages/DoesNotExist';
+import { ChatProvider } from './context/ChatContext';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -36,40 +37,42 @@ function App() {
     <Router>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
-          <TechFilterProvider>
-            <GlobalStyles />
-            <SEO />
-            <Layout>
-              <ChatBot />
-              {window.location.pathname !== '/resume' && <SocialIcons />}
-              <Routes>
-                {/* Home Page */}
-                <Route path="/" element={
-                  <div className="container">
-                    <Hero />
-                    <GitHubStats />
-                    
-                    <ProfileSections />
-                    <TechStack />
-                    <GitHubProjects />
-                    <SocialButtons 
-                      showLinkedIn={showLinkedIn}
-                      setShowLinkedIn={setShowLinkedIn}
-                    />
-                    {showLinkedIn && <LinkedInFeed />}
-                  </div>
-                } />
-                
-                {/* Projects Page */}
-                <Route path="/projects" element={<ProjectsPage />} />
-                {/* Add new resume route */}
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/contact" element={<Contact />} />
-                {/* Add 404 route at the end */}
-                <Route path="*" element={<DoesNotExist />} />
-              </Routes>
-            </Layout>
-          </TechFilterProvider>
+          <ChatProvider>
+            <TechFilterProvider>
+              <GlobalStyles />
+              <SEO />
+              <Layout>
+                <ChatBot />
+                {window.location.pathname !== '/resume' && <SocialIcons />}
+                <Routes>
+                  {/* Home Page */}
+                  <Route path="/" element={
+                    <div className="container">
+                      <Hero />
+                      <GitHubStats />
+                      
+                      <ProfileSections />
+                      <TechStack />
+                      <GitHubProjects />
+                      <SocialButtons 
+                        showLinkedIn={showLinkedIn}
+                        setShowLinkedIn={setShowLinkedIn}
+                      />
+                      {showLinkedIn && <LinkedInFeed />}
+                    </div>
+                  } />
+                  
+                  {/* Projects Page */}
+                  <Route path="/projects" element={<ProjectsPage />} />
+                  {/* Add new resume route */}
+                  <Route path="/resume" element={<Resume />} />
+                  <Route path="/contact" element={<Contact />} />
+                  {/* Add 404 route at the end */}
+                  <Route path="*" element={<DoesNotExist />} />
+                </Routes>
+              </Layout>
+            </TechFilterProvider>
+          </ChatProvider>
         </ThemeProvider>
       </HelmetProvider>
     </Router>

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Footer from './Footer';
 import Header from './Header';
 import { useLocation } from 'react-router-dom';
+import { useChatContext } from '../context/ChatContext';
 
 const ComicPanel = styled(motion.div)`
   background: ${props => props.pathname === '/resume' ? 'white' : props.theme.colors.panelBg};
@@ -55,8 +56,19 @@ const ContentWrapper = styled.div`
   }
 `;
 
+const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  transform: translateY(${props => props.hideHeader ? '-100%' : '0'});
+`;
+
 const Layout = ({ children }) => {
   const location = useLocation();
+  const { isChatOpen } = useChatContext();
   const isSpecialPage = location.pathname === '/resume' || location.pathname === '/contact';
 
   return (
@@ -66,7 +78,9 @@ const Layout = ({ children }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Header />
+      <HeaderWrapper hideHeader={isChatOpen}>
+        <Header />
+      </HeaderWrapper>
       <ContentWrapper pathname={location.pathname}>
         {children}
         {!isSpecialPage && <Footer />}

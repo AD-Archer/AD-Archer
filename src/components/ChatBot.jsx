@@ -5,6 +5,7 @@ import { MessageSquare, X, Send } from "lucide-react";
 import DOMPurify from 'dompurify';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useChatContext } from '../context/ChatContext';
 
 const ChatContainer = styled(motion.div)`
   position: fixed;
@@ -12,6 +13,10 @@ const ChatContainer = styled(motion.div)`
   left: 0;
   margin: 1rem;
   z-index: 1050;
+
+  @media (max-width: 768px) {
+    margin: 0.5rem;
+  }
 `;
 
 const ChatButton = styled.button`
@@ -21,10 +26,21 @@ const ChatButton = styled.button`
   padding: 1rem;
   box-shadow: ${props => props.theme.shadows.subtle};
   transition: all 0.3s ease;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.1);
     box-shadow: ${props => props.theme.shadows.hover};
+  }
+
+  @media (max-width: 768px) {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.75rem;
   }
 `;
 
@@ -39,6 +55,15 @@ const ChatWindow = styled(motion.div)`
   box-shadow: ${props => props.theme.shadows.comic};
   border: 2px solid ${props => props.theme.colors.primary};
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+    max-height: calc(100vh - 7rem); // Prevent overlap with header
+  }
 `;
 
 const ChatHeader = styled.div`
@@ -48,6 +73,29 @@ const ChatHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  h5 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 const MessageContainer = styled.div`
@@ -61,6 +109,11 @@ const MessageContainer = styled.div`
   
   * {
     pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 13rem); // Adjust for mobile header and input
+    padding: 0.75rem;
   }
 `;
 
@@ -122,6 +175,15 @@ const InputContainer = styled.div`
   padding: 1rem;
   display: flex;
   gap: 0.5rem;
+  background: white; // Ensure background is visible
+  position: relative; // Keep input on top
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    position: sticky;
+    bottom: 0;
+  }
 `;
 
 const Input = styled.input`
@@ -130,9 +192,11 @@ const Input = styled.input`
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: 8px;
   font-size: 1rem;
-  color: ${props => props.theme.colors.text};
+  color: ${props => props.theme.colors.primary};
   background: white;
   font-family: ${props => props.theme.fonts.body};
+  -webkit-appearance: none;
+  appearance: none;
 
   &::placeholder {
     color: ${props => props.theme.colors.textSecondary};
@@ -143,6 +207,11 @@ const Input = styled.input`
     outline: none;
     border-color: ${props => props.theme.colors.primary};
     box-shadow: 0 0 0 2px ${props => `${props.theme.colors.primary}20`};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    padding: 0.6rem;
   }
 `;
 
@@ -192,7 +261,7 @@ const LoadingDots = styled.div`
 `;
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isChatOpen, setIsChatOpen } = useChatContext();
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -216,11 +285,11 @@ const ChatBot = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (chatContainerRef.current && !chatContainerRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsChatOpen(false);
       }
     };
 
-    if (isOpen) {
+    if (isChatOpen) {
       document.addEventListener("mousedown", handleClickOutside, true);
       document.addEventListener("touchstart", handleClickOutside, true);
     }
@@ -229,7 +298,7 @@ const ChatBot = () => {
       document.removeEventListener("mousedown", handleClickOutside, true);
       document.removeEventListener("touchstart", handleClickOutside, true);
     };
-  }, [isOpen]);
+  }, [isChatOpen]);
 
   const parseMessageContent = (content) => {
     // Convert markdown-style links to HTML with specific styling
@@ -300,12 +369,12 @@ const ChatBot = () => {
 
   return (
     <ChatContainer ref={chatContainerRef}>
-      <ChatButton onClick={() => setIsOpen(prev => !prev)}>
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+      <ChatButton onClick={() => setIsChatOpen(prev => !prev)}>
+        {isChatOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </ChatButton>
 
       <AnimatePresence>
-        {isOpen && (
+        {isChatOpen && (
           <ChatWindow
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -313,7 +382,7 @@ const ChatBot = () => {
           >
             <ChatHeader>
               <h5>Chat with Charmi</h5>
-              <button onClick={() => setIsOpen(false)}>
+              <button onClick={() => setIsChatOpen(false)}>
                 <X size={20} />
               </button>
             </ChatHeader>
