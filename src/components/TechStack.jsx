@@ -85,10 +85,10 @@ const SkillBadge = styled(motion.div)`
   padding: 1rem;
   border-radius: 12px;
   text-align: center;
-  border: 2px solid ${props => 
+  border: ${props => 
     props.isSelected 
-      ? props.theme.colors.accent 
-      : `${props.theme.colors.primary}30`
+      ? `3px solid ${props.theme.colors.accent}`
+      : `2px solid ${props.theme.colors.primary}30`
   };
   transition: all 0.3s ease;
   position: relative;
@@ -152,7 +152,7 @@ const SkillName = styled.span`
 const PowerLevel = styled.div`
   width: 100%;
   height: 4px;
-  background: ${props => props.theme.colors.primary}20;
+  background: ${props => props.isSelected ? 'rgba(255,255,255,0.3)' : props.theme.colors.primary}20;
   border-radius: 2px;
   margin-top: 0.5rem;
   overflow: hidden;
@@ -162,7 +162,7 @@ const PowerLevel = styled.div`
     display: block;
     height: 100%;
     width: ${props => props.$level}%;
-    background: ${props => props.theme.colors.primary};
+    background: ${props => props.isSelected ? 'white' : props.theme.colors.primary};
     animation: powerUp 1s ease-out;
   }
 
@@ -264,18 +264,15 @@ const TechStack = () => {
               <SkillBadge
                 key={skill.name}
                 onClick={() => handleTechClick(skill.name)}
-                style={{
-                  border: selectedTech === skill.name ? 
-                    `3px solid ${props => props.theme.colors.accent}` : 
-                    `2px solid ${props => props.theme.colors.primary}30`,
-                  transform: selectedTech === skill.name ? 'scale(1.05)' : 'scale(1)'
-                }}
                 whileHover={{ scale: 1.05 }}
                 isSelected={selectedTech === skill.name}
               >
                 <SkillIcon src={skill.icon} alt={skill.name} />
-                <SkillName>{skill.name}</SkillName>
-                <PowerLevel $level={skill.power} />
+                <SkillName isSelected={selectedTech === skill.name}>{skill.name}</SkillName>
+                <PowerLevel 
+                  $level={skill.power} 
+                  isSelected={selectedTech === skill.name}
+                />
               </SkillBadge>
             ))}
           </SkillsGrid>
