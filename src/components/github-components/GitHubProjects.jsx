@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
+import PropTypes from 'prop-types';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -291,36 +292,6 @@ const ProjectsDescription = styled.p`
   margin: 0 auto;
 `;
 
-// Styled components for the category filter
-const CategoryFilter = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-`;
-
-const CategoryButton = styled.button`
-  background: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.primary : `${theme.colors.primary}15`};
-  color: ${({ isSelected, theme }) =>
-    isSelected ? 'white' : theme.colors.primary};
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    color: white;
-    transform: translateY(-2px);
-  }
-`;
-
-
 const projects = [
   {
     title: "MoviesNoir",
@@ -449,7 +420,7 @@ const hiddenProjects = [
   
 ];
 
-const GitHubProjects = () => {
+const GitHubProjects = ({ initialCategory }) => {
   const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(() => {
@@ -465,6 +436,14 @@ const GitHubProjects = () => {
     ].filter((tech) => tech !== "");
     setAvailableTech(uniqueTech);
   }, [setAvailableTech]);
+
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategories(new Set([initialCategory]));
+    } else {
+      setSelectedCategories(new Set());
+    }
+  }, [initialCategory]);
 
   // Update the categories array
   const categories = ["Frontend Apps", "Full-stack Apps", "Utilities"];
@@ -491,24 +470,6 @@ const GitHubProjects = () => {
     ? [...filteredProjects, ...filteredHiddenProjects]
     : projects;
 
-  // Handle category selection
-  const handleCategoryClick = (category) => {
-    setSelectedCategories(prev => {
-      const newCategories = new Set(prev);
-      if (newCategories.has(category)) {
-        newCategories.delete(category);
-      } else {
-        newCategories.add(category);
-      }
-      return newCategories;
-    });
-  };
-
-  // Clear all category filters
-  const clearCategories = () => {
-    setSelectedCategories(new Set());
-  };
-
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
     Analytics.trackProjectPreview(project.title);
@@ -531,32 +492,6 @@ const GitHubProjects = () => {
 
   return (
     <ProjectsSection>
-      <ProjectsHeader>
-        <ProjectsTitle>Projects</ProjectsTitle>
-        <ProjectsDescription>
-          Filter through my projects by category or tech stack ⚡
-        </ProjectsDescription>
-      </ProjectsHeader>
-
-      {/* Updated Category Filter Buttons */}
-      <CategoryFilter>
-        <CategoryButton
-          isSelected={selectedCategories.size === 0}
-          onClick={clearCategories}
-        >
-          All
-        </CategoryButton>
-        {categories.map((category) => (
-          <CategoryButton
-            key={category}
-            isSelected={selectedCategories.has(category)}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category}
-          </CategoryButton>
-        ))}
-      </CategoryFilter>
-
       <ProjectsGrid ref={projectsRef}>
         {displayProjects.map((project, index) => (
           <ProjectCard
@@ -647,6 +582,10 @@ const GitHubProjects = () => {
       )}
     </ProjectsSection>
   );
+};
+
+GitHubProjects.propTypes = {
+  initialCategory: PropTypes.string
 };
 
 export default GitHubProjects;
