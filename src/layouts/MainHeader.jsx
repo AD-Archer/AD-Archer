@@ -7,7 +7,7 @@ const HeaderContainer = styled(motion.header)`
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem;
+  padding: 1.5rem;
   z-index: 1000;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -22,10 +22,10 @@ const NavLinks = styled.nav`
 `;
 
 const NavLink = styled(Link)`
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.textSecondary};
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   transition: all 0.3s ease;
   position: relative;
 

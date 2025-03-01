@@ -66,10 +66,11 @@ const HeaderWrapper = styled.div`
   transform: translateY(${props => props.hideHeader ? '-100%' : '0'});
 `;
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   const location = useLocation();
   const { isChatOpen } = useChatContext();
   const isSpecialPage = location.pathname === '/resume' || location.pathname === '/contact';
+  const isNotFoundPage = location.pathname === '/404' || location.pathname === '/does-not-exist'; // Adjust this line based on your routing
 
   return (
     <ComicPanel
@@ -83,14 +84,14 @@ const Layout = ({ children }) => {
       </HeaderWrapper>
       <ContentWrapper pathname={location.pathname}>
         {children}
-        {!isSpecialPage && <MainFooter />}
+        {!isSpecialPage && !isNotFoundPage && <MainFooter />}
       </ContentWrapper>
     </ComicPanel>
   );
 };
 
-Layout.propTypes = {
+MainLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout; 
+export default MainLayout; 
