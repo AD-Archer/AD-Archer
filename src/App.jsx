@@ -15,7 +15,7 @@ import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ChatBot from './components/ChatBot.jsx';
+import ChatBot from './layouts/ChatBot.jsx';
 // Update the import in App.jsx
 import ProjectsPage from "./components/pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
