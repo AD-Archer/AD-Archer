@@ -49,10 +49,10 @@ const ContentWrapper = styled.div`
   position: relative;
   z-index: 2;
   flex: 1;
-  padding-top: ${props => props.pathname === '/resume' ? '0' : '4rem'};
+  padding-top: ${props => props.pathname === '/resume' ? '0' : '3.5rem'};
 
   @media (max-width: 768px) {
-    padding-top: ${props => props.pathname === '/resume' ? '0' : '3rem'};
+    padding-top: ${props => props.pathname === '/resume' ? '0' : '2rem'};
   }
 `;
 
@@ -64,6 +64,11 @@ const HeaderWrapper = styled.div`
   z-index: 1000;
   transition: transform 0.3s ease;
   transform: translateY(${props => props.hideHeader ? '-100%' : '0'});
+  height: auto;
+  
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 const MainLayout = ({ children }) => {
