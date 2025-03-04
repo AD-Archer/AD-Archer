@@ -294,6 +294,14 @@ const ProjectsDescription = styled.p`
 
 const projects = [
   {
+    title: "Philly Social",
+    description: "A social media platform for the city of Philadelphia. It has bulit in public and private channels as well as events and rss news feed as well as places to support local businesses. bulit with nextjs typescript and firebase. It was made in 30 hours for philly codefest 2025 with the help of Mohamed Souare, Bryan Gunawan, and Sianni Strikland.",
+    techStack: ["Next.js", "Typescript", "Firebase"],
+    categories: ["Full-stack Apps"],
+    siteLink: "https://phillysocial.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/Philly-Social",
+  },
+  {
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show. Movies are stored in a json file, which is the only reason this is not a full stack application.",
     techStack: ["React", "Node.js", "Express", "Python"],
@@ -320,7 +328,7 @@ const projects = [
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
-    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack"],
+    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack", "Typescript"],
     categories: ["Full-stack Apps"],
     siteLink: "https://university-orange-field.vercel.app/",
     repoLink: "https://github.com/AD-Archer/University-OrangeField",
@@ -412,7 +420,7 @@ const hiddenProjects = [
   {
     title: "Quick Convert",
     description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
-    techStack: ["Next.js", "File Conversion", "T3 Stack"],
+    techStack: ["Next.js", "File Conversion", "T3 Stack", "Typescript"],
     categories: ["Utilities"],
     siteLink: "https://quickconvert.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Quick-Convert",
