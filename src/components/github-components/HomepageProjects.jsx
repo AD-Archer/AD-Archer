@@ -384,9 +384,16 @@ const GitHubProjects = () => {
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
     Analytics.trackProjectPreview(project.title);
+    
+    project.techStack.forEach(tech => {
+      Analytics.trackTechFilter(tech);
+    });
+    
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
       localStorage.setItem('hasSeenPreview', 'true');
+      
+      Analytics.trackFeatureUse('First Project Preview');
     }
   };
 
@@ -396,9 +403,19 @@ const GitHubProjects = () => {
     document.body.style.overflow = 'unset';
     document.body.classList.remove('modal-open');
     
+    Analytics.trackEvent({
+      category: 'Projects',
+      action: 'Close Preview',
+      label: previewUrl
+    });
+    
     setTimeout(() => {
       projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+  };
+
+  const handleExternalLinkClick = (url, projectTitle, linkType) => {
+    Analytics.trackExternalLink(url, `${projectTitle} - ${linkType}`);
   };
 
   return (
@@ -422,10 +439,20 @@ const GitHubProjects = () => {
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
             <ProjectLinks>
-              <ProjectLink href={project.siteLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink 
+                href={project.siteLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.siteLink, project.title, 'Visit Site')}
+              >
                 Visit Site
               </ProjectLink>
-              <ProjectLink href={project.repoLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink 
+                href={project.repoLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.repoLink, project.title, 'View Code')}
+              >
                 View Code
               </ProjectLink>
             </ProjectLinks>
@@ -444,7 +471,14 @@ const GitHubProjects = () => {
                     type: "spring",
                     stiffness: 200
                   }}
-                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                  onClick={() => {
+                    const newTech = selectedTech === tech ? null : tech;
+                    setSelectedTech(newTech);
+                    
+                    if (newTech) {
+                      Analytics.trackTechFilter(tech);
+                    }
+                  }}
                 >
                   {tech}
                 </TechBadge>

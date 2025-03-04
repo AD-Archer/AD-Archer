@@ -330,11 +330,7 @@ const Resume = () => {
     document.body.removeChild(link);
     
     // Track download event
-    Analytics.trackEvent({
-      category: 'Resume',
-      action: 'Download',
-      label: 'Resume PDF'
-    });
+    Analytics.trackResumeDownload();
   };
 
   const handlePrevPage = () => {
@@ -369,11 +365,7 @@ const Resume = () => {
   
   const handleExternalView = () => {
     // Track event
-    Analytics.trackEvent({
-      category: 'Resume',
-      action: 'View External',
-      label: 'External Resume View'
-    });
+    Analytics.trackResumeExternalView();
     
     // Open in new tab
     window.open('https://adarcher.app/resume', '_blank');
@@ -382,11 +374,7 @@ const Resume = () => {
   
   const handleContact = () => {
     // Track event
-    Analytics.trackEvent({
-      category: 'Resume',
-      action: 'Navigate to Contact',
-      label: 'Resume to Contact'
-    });
+    Analytics.trackNavigation('Resume', 'Contact');
     
     // Navigate to contact page
     navigate('/contact');
@@ -396,11 +384,7 @@ const Resume = () => {
     setShowMobilePopup(false);
     
     // Track event
-    Analytics.trackEvent({
-      category: 'Resume',
-      action: 'Continue Viewing',
-      label: 'Mobile Resume View'
-    });
+    Analytics.trackMobileInteraction('Continue Viewing', 'Mobile Resume View');
   };
 
   return (

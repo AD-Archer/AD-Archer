@@ -448,6 +448,13 @@ const GitHubProjects = ({ initialCategory }) => {
   useEffect(() => {
     if (initialCategory) {
       setSelectedCategories(new Set([initialCategory]));
+      
+      // Track initial category selection
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: 'Initial Category Filter',
+        label: initialCategory
+      });
     } else {
       setSelectedCategories(new Set());
     }
@@ -481,9 +488,27 @@ const GitHubProjects = ({ initialCategory }) => {
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
     Analytics.trackProjectPreview(project.title);
+    
+    // Track if hidden project is revealed
+    if (hiddenProjects.some(p => p.title === project.title)) {
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: 'Hidden Project Revealed',
+        label: project.title
+      });
+    }
+    
+    // Track tech stack used in the previewed project
+    project.techStack.forEach(tech => {
+      Analytics.trackTechFilter(tech);
+    });
+    
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
       localStorage.setItem("hasSeenPreview", "true");
+      
+      // Track first-time preview
+      Analytics.trackFeatureUse('First Project Preview');
     }
   };
 
@@ -493,13 +518,53 @@ const GitHubProjects = ({ initialCategory }) => {
     document.body.style.overflow = "unset";
     document.body.classList.remove("modal-open");
 
+    // Track preview close action
+    Analytics.trackEvent({
+      category: 'Projects',
+      action: 'Close Preview',
+      label: previewUrl
+    });
+
     setTimeout(() => {
       projectsRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
+  
+  const handleCategoryToggle = (category) => {
+    setSelectedCategories(prev => {
+      const newCategories = new Set(prev);
+      if (newCategories.has(category)) {
+        newCategories.delete(category);
+      } else {
+        newCategories.add(category);
+      }
+      
+      // Track category filter changes
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: newCategories.has(category) ? 'Add Category Filter' : 'Remove Category Filter',
+        label: category
+      });
+      
+      return newCategories;
+    });
+  };
+  
+  const handleExternalLinkClick = (url, projectTitle, linkType) => {
+    // Track external link clicks with specific data
+    Analytics.trackExternalLink(url, `${projectTitle} - ${linkType}`);
+  };
 
   return (
     <ProjectsSection>
+      <ProjectsHeader>
+        <ProjectsTitle>Projects</ProjectsTitle>
+        <ProjectsDescription>
+          Filter through my projects by clicking the tech tags below each project 
+          or explore by tech stack powers above ⚡
+        </ProjectsDescription>
+      </ProjectsHeader>
+      
       <ProjectsGrid ref={projectsRef}>
         {displayProjects.map((project, index) => (
           <ProjectCard
@@ -515,6 +580,7 @@ const GitHubProjects = ({ initialCategory }) => {
                 href={project.siteLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.siteLink, project.title, 'Visit Site')}
               >
                 Visit Site
               </ProjectLink>
@@ -522,6 +588,7 @@ const GitHubProjects = ({ initialCategory }) => {
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.repoLink, project.title, 'View Code')}
               >
                 View Code
               </ProjectLink>
@@ -541,9 +608,15 @@ const GitHubProjects = ({ initialCategory }) => {
                     type: "spring",
                     stiffness: 200,
                   }}
-                  onClick={() =>
-                    setSelectedTech(selectedTech === tech ? null : tech)
-                  }
+                  onClick={() => {
+                    const newTech = selectedTech === tech ? null : tech;
+                    setSelectedTech(newTech);
+                    
+                    // Track tech filter changes
+                    if (newTech) {
+                      Analytics.trackTechFilter(tech);
+                    }
+                  }}
                 >
                   {tech}
                 </TechBadge>
@@ -552,7 +625,7 @@ const GitHubProjects = ({ initialCategory }) => {
           </ProjectCard>
         ))}
       </ProjectsGrid>
-
+     
       {previewUrl && (
         <ModalOverlay
           initial={{ opacity: 0 }}
