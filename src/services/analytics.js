@@ -52,5 +52,10 @@ export const Analytics = {
       action: 'Submit Contact Form',
       label: 'Contact Form'
     });
+  },
+
+  // Add this method to your existing Analytics object
+  trackEvent: (eventData) => {
+    ReactGA.event(eventData);
   }
 }; 
