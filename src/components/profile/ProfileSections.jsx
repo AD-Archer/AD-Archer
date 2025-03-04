@@ -1,6 +1,8 @@
 import Certifications from './Certifications';
 import Jobs from './Jobs';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { Analytics } from '../../services/analytics';
 
 const ProfileGrid = styled.div`
   display: grid;
@@ -62,15 +64,50 @@ const Panel = styled.div`
   }
 `;
 
-const ProfileSections = () => (
-  <ProfileGrid>
-    <Panel>
-      <Certifications />
-    </Panel>
-    <Panel>
-      <Jobs />
-    </Panel>
-  </ProfileGrid>
-);
+const ProfileSections = () => {
+  useEffect(() => {
+    // Track profile section view
+    Analytics.trackEvent({
+      category: 'Profile',
+      action: 'View',
+      label: 'Profile Sections'
+    });
+    
+    // Set up intersection observer for scroll depth tracking
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            Analytics.trackScrollDepth(50); // Approximate middle of page
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    
+    // Observe the profile grid
+    const profileGrid = document.querySelector('#profile-grid');
+    if (profileGrid) {
+      observer.observe(profileGrid);
+    }
+    
+    return () => {
+      if (profileGrid) {
+        observer.unobserve(profileGrid);
+      }
+    };
+  }, []);
+
+  return (
+    <ProfileGrid id="profile-grid">
+      <Panel>
+        <Certifications />
+      </Panel>
+      <Panel>
+        <Jobs />
+      </Panel>
+    </ProfileGrid>
+  );
+};
 
 export default ProfileSections; 

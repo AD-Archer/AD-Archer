@@ -74,18 +74,34 @@ const Jobs = () => {
   const [expandedJob, setExpandedJob] = useState(null);
 
   const toggleJobVisibility = (index) => {
+    const newState = !visibleJobs[index];
     setVisibleJobs(prev => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: newState
     }));
-    if (expandedJob !== index) {
-      Analytics.trackJobView(jobs[index].title, jobs[index].company);
+    
+    const job = jobs[index];
+    
+    // Track job view with specialized method
+    if (newState) {
+      Analytics.trackJobView(job.title, job.company);
+      
+      // Track tech stack exposure
+      job.techStack.forEach(tech => {
+        Analytics.trackEvent({
+          category: 'Job Tech',
+          action: 'Exposure',
+          label: tech
+        });
+      });
     }
   };
 
   const handleJobClick = (job) => {
-    setExpandedJob(expandedJob === job.id ? null : job.id);
-    if (expandedJob !== job.id) {
+    const newState = expandedJob !== job.id;
+    setExpandedJob(newState ? job.id : null);
+    
+    if (newState) {
       Analytics.trackJobView(job.title, job.company);
     }
   };

@@ -6,6 +6,7 @@ import DOMPurify from 'dompurify';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useChatContext } from '../context/ChatContext';
+import { Analytics } from '../services/analytics';
 
 const ChatContainer = styled(motion.div)`
   position: fixed;
@@ -273,6 +274,7 @@ const ChatBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
+  const [sessionStartTime, setSessionStartTime] = useState(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -292,13 +294,28 @@ const ChatBot = () => {
     if (isChatOpen) {
       document.addEventListener("mousedown", handleClickOutside, true);
       document.addEventListener("touchstart", handleClickOutside, true);
+      
+      // Track chat open event
+      if (!sessionStartTime) {
+        setSessionStartTime(Date.now());
+        Analytics.trackEvent({
+          category: 'Chat',
+          action: 'Open',
+          label: 'Chat Window'
+        });
+      }
+    } else if (sessionStartTime) {
+      // Track chat session duration when closing
+      const sessionDuration = Math.floor((Date.now() - sessionStartTime) / 1000);
+      Analytics.trackTimeOnPage('Chat Window', sessionDuration);
+      setSessionStartTime(null);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside, true);
       document.removeEventListener("touchstart", handleClickOutside, true);
     };
-  }, [isChatOpen]);
+  }, [isChatOpen, sessionStartTime]);
 
   const parseMessageContent = (content) => {
     // Convert markdown-style links to HTML with specific styling
@@ -327,6 +344,14 @@ const ChatBot = () => {
 
     const userMessage = { role: "user", content: inputMessage, type: "text" };
     setMessages(prev => [...prev, userMessage]);
+    
+    // Track user message
+    Analytics.trackEvent({
+      category: 'Chat',
+      action: 'Send Message',
+      label: inputMessage.length > 30 ? `${inputMessage.substring(0, 30)}...` : inputMessage
+    });
+    
     setInputMessage("");
     setIsLoading(true);
 
@@ -348,12 +373,22 @@ const ChatBot = () => {
           content: parsedContent,
           type: "html"
         }]);
+        
+        // Track successful response
+        Analytics.trackEvent({
+          category: 'Chat',
+          action: 'Received Response',
+          label: 'Success'
+        });
       } else {
         setMessages(prev => [...prev, { 
           role: "assistant", 
           content: data.error,
           type: "text"
         }]);
+        
+        // Track error response
+        Analytics.trackError(data.error, 'Chat API');
       }
     } catch (error) {
       console.error("Error:", error);
@@ -362,17 +397,32 @@ const ChatBot = () => {
         content: "I apologize, but I'm having trouble connecting right now. Please try again later.",
         type: "text"
       }]);
+      
+      // Track connection error
+      Analytics.trackError('Connection Error', 'Chat API');
     }
 
     setIsLoading(false);
   };
 
+  const handleToggleChat = () => {
+    const newState = !isChatOpen;
+    setIsChatOpen(newState);
+    
+    // Track toggle action
+    Analytics.trackEvent({
+      category: 'Chat',
+      action: newState ? 'Open' : 'Close',
+      label: 'Chat Button'
+    });
+  };
+
   return (
     <ChatContainer ref={chatContainerRef}>
-      <ChatButton onClick={() => setIsChatOpen(prev => !prev)}>
+      <ChatButton onClick={handleToggleChat}>
         {isChatOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </ChatButton>
-
+     
       <AnimatePresence>
         {isChatOpen && (
           <ChatWindow

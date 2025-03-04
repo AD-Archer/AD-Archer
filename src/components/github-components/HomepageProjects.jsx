@@ -293,6 +293,13 @@ const ProjectsDescription = styled.p`
 
 const projects = [
   {
+    title: "Philly Social",
+    description: "A social media platform for the city of Philadelphia. It has bulit in public and private channels as well as events and rss news feed as well as places to support local businesses. bulit with nextjs typescript and firebase. It was made in 30 hours for philly codefest 2025 with the help of Mohamed Souare, Bryan Gunawan, and Sianni Strikland.",
+    techStack: ["Next.js", "Typescript", "Firebase"],
+    siteLink: "https://phillysocial.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/Philly-Social",
+  },
+  {
     title: "MoviesNoir",
     description: "A movie generator app built with react and node.js to share black culture through movies and tv shows. Find your next favorite movie or tv show.",
     techStack: ["React", "Node.js", "Express","Python"],
@@ -310,7 +317,7 @@ const projects = [
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
-    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack"],
+    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack", "Typescript"],
     siteLink: "https://university-orange-field.vercel.app/",
     repoLink: "https://github.com/AD-Archer/University-OrangeField"
   },
@@ -349,13 +356,7 @@ const projects = [
     siteLink: "https://fortifynow.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/FortifyNow"
   },
-  {
-    title: "Quick Convert",
-    description: "Convert SVGs to high-resolution PNGs, HEICs to PNGs, and WEBPs in a few clicks. Built to simplify file format conversions.",
-    techStack: ["Next.js", "File Conversion", "T3 Stack"],
-    siteLink: "https://quickconvert.adarcher.app/",
-    repoLink: "https://github.com/AD-Archer/Quick-Convert"
-  }
+ 
 ];
 
 const GitHubProjects = () => {
@@ -383,9 +384,16 @@ const GitHubProjects = () => {
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
     Analytics.trackProjectPreview(project.title);
+    
+    project.techStack.forEach(tech => {
+      Analytics.trackTechFilter(tech);
+    });
+    
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
       localStorage.setItem('hasSeenPreview', 'true');
+      
+      Analytics.trackFeatureUse('First Project Preview');
     }
   };
 
@@ -395,9 +403,19 @@ const GitHubProjects = () => {
     document.body.style.overflow = 'unset';
     document.body.classList.remove('modal-open');
     
+    Analytics.trackEvent({
+      category: 'Projects',
+      action: 'Close Preview',
+      label: previewUrl
+    });
+    
     setTimeout(() => {
       projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+  };
+
+  const handleExternalLinkClick = (url, projectTitle, linkType) => {
+    Analytics.trackExternalLink(url, `${projectTitle} - ${linkType}`);
   };
 
   return (
@@ -421,10 +439,20 @@ const GitHubProjects = () => {
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
             <ProjectLinks>
-              <ProjectLink href={project.siteLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink 
+                href={project.siteLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.siteLink, project.title, 'Visit Site')}
+              >
                 Visit Site
               </ProjectLink>
-              <ProjectLink href={project.repoLink} target="_blank" rel="noopener noreferrer">
+              <ProjectLink 
+                href={project.repoLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => handleExternalLinkClick(project.repoLink, project.title, 'View Code')}
+              >
                 View Code
               </ProjectLink>
             </ProjectLinks>
@@ -443,7 +471,14 @@ const GitHubProjects = () => {
                     type: "spring",
                     stiffness: 200
                   }}
-                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                  onClick={() => {
+                    const newTech = selectedTech === tech ? null : tech;
+                    setSelectedTech(newTech);
+                    
+                    if (newTech) {
+                      Analytics.trackTechFilter(tech);
+                    }
+                  }}
                 >
                   {tech}
                 </TechBadge>
