@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faArrowLeft, faArrowRight, faExternalLinkAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Analytics } from '../services/analytics';
+import { useNavigate } from 'react-router-dom';
 
 const ResumeContainer = styled(motion.div)`
   width: 100%;
@@ -182,22 +183,100 @@ const LoadingText = styled.div`
   border: 2px solid ${props => props.theme.colors.primary}30;
 `;
 
+// Mobile popup styles
+const MobilePopupOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+`;
+
+const MobilePopupContent = styled(motion.div)`
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 90%;
+  width: 350px;
+  box-shadow: ${props => props.theme.shadows.comic};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const PopupTitle = styled.h2`
+  font-family: ${props => props.theme.fonts.accent};
+  color: ${props => props.theme.colors.accent};
+  margin-top: 0;
+  margin-bottom: 1rem;
+`;
+
+const PopupText = styled.p`
+  font-family: ${props => props.theme.fonts.body};
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+`;
+
+const PopupButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+`;
+
+const PopupButton = styled(motion.button)`
+  background: ${props => props.secondary ? 'white' : props.theme.colors.primary};
+  color: ${props => props.secondary ? props.theme.colors.primary : 'white'};
+  border: ${props => props.secondary ? `2px solid ${props.theme.colors.primary}` : 'none'};
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: ${props => props.theme.fonts.body};
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: ${props => props.secondary ? props.theme.colors.primary + '20' : props.theme.colors.accent};
+    transform: translateY(-2px);
+  }
+`;
+
 const Resume = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showMobilePopup, setShowMobilePopup] = useState(false);
   const iframeRef = useRef(null);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     document.title = 'Antonio Archer - Resume';
     
     // Track page view
     Analytics.trackPageView('/resume');
     
+    // Check if on mobile
+    const checkMobile = () => {
+      if (window.innerWidth <= 768) {
+        setShowMobilePopup(true);
+      }
+    };
+    
     // Add PDF.js script to the document
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-    script.integrity = 'sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydVKCaiX7jxmFkBZ7ZLCwRMJTlG0fJSYAGdKKYHURgCFypA==';
+    script.integrity = 'sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydVKCaiX7jxmFkBZ7ZLCwRMJTlG0fJSYAGdKYHURgCFypA==';
     script.crossOrigin = 'anonymous';
     script.referrerPolicy = 'no-referrer';
     
@@ -208,10 +287,15 @@ const Resume = () => {
     
     document.head.appendChild(script);
     
+    // Check if mobile after a short delay to ensure everything is loaded
+    setTimeout(checkMobile, 500);
+    
     return () => {
       document.title = 'Antonio Archer';
       // Clean up script
-      document.head.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
@@ -222,8 +306,8 @@ const Resume = () => {
     iframe.src = '/resume.pdf';
     
     iframe.onload = () => {
-      // PDF is loaded, set total pages 
-      setTotalPages(2); // i know its 3 but i dont want it to load all 3
+      // PDF is loaded, set total pages (assuming it's a 1-page resume)
+      setTotalPages(1);
       setIsLoading(false);
     };
     
@@ -231,7 +315,9 @@ const Resume = () => {
     
     // Clean up after loading
     setTimeout(() => {
-      document.body.removeChild(iframe);
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
     }, 1000);
   };
 
@@ -279,6 +365,42 @@ const Resume = () => {
 
   const handleIframeLoad = () => {
     setIsLoading(false);
+  };
+  
+  const handleExternalView = () => {
+    // Track event
+    Analytics.trackEvent({
+      category: 'Resume',
+      action: 'View External',
+      label: 'External Resume View'
+    });
+    
+    // Open in new tab
+    window.open('https://adarcher.app/resume', '_blank');
+    setShowMobilePopup(false);
+  };
+  
+  const handleContact = () => {
+    // Track event
+    Analytics.trackEvent({
+      category: 'Resume',
+      action: 'Navigate to Contact',
+      label: 'Resume to Contact'
+    });
+    
+    // Navigate to contact page
+    navigate('/contact');
+  };
+  
+  const handleContinueViewing = () => {
+    setShowMobilePopup(false);
+    
+    // Track event
+    Analytics.trackEvent({
+      category: 'Resume',
+      action: 'Continue Viewing',
+      label: 'Mobile Resume View'
+    });
   };
 
   return (
@@ -351,6 +473,57 @@ const Resume = () => {
           </PageButton>
         </PageNavigation>
       )}
+      
+      {/* Mobile Popup */}
+      <AnimatePresence>
+        {showMobilePopup && (
+          <MobilePopupOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <MobilePopupContent
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+            >
+              <PopupTitle>Resume Viewing Options</PopupTitle>
+              <PopupText>
+                For the best experience on mobile devices, you can:
+              </PopupText>
+              
+              <PopupButtonsContainer>
+                <PopupButton 
+                  onClick={handleExternalView}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <FontAwesomeIcon icon={faExternalLinkAlt} />
+                  View on adarcher.app
+                </PopupButton>
+                
+                <PopupButton 
+                  onClick={handleContact}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <FontAwesomeIcon icon={faEnvelope} />
+                  Contact Me Directly
+                </PopupButton>
+                
+                <PopupButton 
+                  secondary
+                  onClick={handleContinueViewing}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Continue Viewing Here
+                </PopupButton>
+              </PopupButtonsContainer>
+            </MobilePopupContent>
+          </MobilePopupOverlay>
+        )}
+      </AnimatePresence>
     </ResumeContainer>
   );
 };
