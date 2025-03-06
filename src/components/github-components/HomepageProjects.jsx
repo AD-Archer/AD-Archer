@@ -382,12 +382,17 @@ const HomepageProjects = () => {
   const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const projectsRef = useRef(null);
   const gridRef = useRef(null);
   const { setIsPreviewActive } = usePreview();
   
-  // Check if the grid is in view to trigger animations
-  const gridInView = useInView(gridRef, { amount: 0.2, once: true });
+  // Check if the grid is in view to trigger animations - lower threshold for mobile
+  const gridInView = useInView(gridRef, { 
+    amount: isMobile ? 0.05 : 0.2, 
+    once: true,
+    rootMargin: isMobile ? '0px 0px -50px 0px' : '0px'
+  });
 
   useEffect(() => {
     const uniqueTech = [...new Set(
@@ -397,24 +402,51 @@ const HomepageProjects = () => {
     setAvailableTech(uniqueTech);
   }, [setAvailableTech]);
 
+  // Handle resize events to update mobile state
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Force a re-render after component mounts to ensure proper layout on mobile
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      
+      // Force another re-render after a bit longer time to ensure animations work
+      setTimeout(() => {
+        if (gridRef.current) {
+          const event = new CustomEvent('scroll');
+          window.dispatchEvent(event);
+        }
+      }, 500);
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
+    };
+  }, []);
+
   const filteredProjects = selectedTech 
     ? projects.filter(project => project.techStack.includes(selectedTech)) || projects
     : projects;
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
-  // Animation variants for the project cards
+  // Animation variants for the project cards - simplified for mobile
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
     visible: (index) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: Math.min(index * 0.1, 0.5),
-        duration: 0.4,
-        type: "spring",
-        stiffness: 100,
-        damping: 15
+        delay: isMobile ? Math.min(index * 0.05, 0.3) : Math.min(index * 0.1, 0.5),
+        duration: isMobile ? 0.3 : 0.4,
+        type: isMobile ? "tween" : "spring",
+        stiffness: isMobile ? 70 : 100,
+        damping: isMobile ? 10 : 15
       }
     })
   };
@@ -470,10 +502,25 @@ const HomepageProjects = () => {
     // Force a re-render after component mounts to ensure proper layout
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
-    }, 100);
+      
+      // Remove the scroll position adjustment that might be causing issues
+      // Only check visibility without scrolling
+      if (isMobile && projectsRef.current) {
+        const rect = projectsRef.current.getBoundingClientRect();
+        // Just check visibility without scrolling
+        if (rect.top < 0 || rect.bottom > window.innerHeight) {
+          // Don't scroll, just log for debugging
+          console.log('Projects section visibility:', { 
+            top: rect.top, 
+            bottom: rect.bottom,
+            windowHeight: window.innerHeight
+          });
+        }
+      }
+    }, 300);
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [isMobile, displayProjects.length]);
 
   return (
     <ProjectsSection>

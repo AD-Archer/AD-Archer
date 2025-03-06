@@ -1,7 +1,7 @@
 import Certifications from './Certifications';
 import Jobs from './Jobs';
 import styled from 'styled-components';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Analytics } from '../../services/analytics';
 import { motion, useInView } from 'framer-motion';
 
@@ -31,6 +31,11 @@ const ProfileGrid = styled.div`
       );
       transform: translateX(-50%);
     }
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+    gap: 1.5rem;
   }
 `;
 
@@ -68,10 +73,11 @@ const Panel = styled(motion.div)`
 const ProfileSections = () => {
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
-  // Set threshold to 0.5 to trigger when half of the element is visible
-  const leftPanelInView = useInView(leftPanelRef, { amount: 0.5, once: true });
-  const rightPanelInView = useInView(rightPanelRef, { amount: 0.5, once: true });
+  // Set threshold to 0.1 for mobile to trigger earlier
+  const leftPanelInView = useInView(leftPanelRef, { amount: isMobile ? 0.1 : 0.5, once: true });
+  const rightPanelInView = useInView(rightPanelRef, { amount: isMobile ? 0.1 : 0.5, once: true });
 
   useEffect(() => {
     // Track profile section view
@@ -99,38 +105,57 @@ const ProfileSections = () => {
       observer.observe(profileGrid);
     }
     
+    // Handle resize events to update mobile state
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Force a re-render after component mounts to ensure proper layout on mobile
+    // but don't affect scroll position
+    const timer = setTimeout(() => {
+      // Just trigger resize without affecting scroll
+      const currentScrollPosition = window.scrollY;
+      window.dispatchEvent(new Event('resize'));
+      // Restore scroll position if it changed
+      window.scrollTo(0, currentScrollPosition);
+    }, 100);
+    
     return () => {
       if (profileGrid) {
         observer.unobserve(profileGrid);
       }
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
     };
   }, []);
 
   // Animation variants
   const leftPanelVariants = {
-    hidden: { x: -100, opacity: 0 },
+    hidden: { x: isMobile ? -50 : -100, opacity: 0 },
     visible: { 
       x: 0, 
       opacity: 1,
       transition: { 
         type: "spring", 
-        stiffness: 100, 
-        damping: 15,
-        duration: 0.5
+        stiffness: isMobile ? 70 : 100, 
+        damping: isMobile ? 10 : 15,
+        duration: isMobile ? 0.3 : 0.5
       }
     }
   };
 
   const rightPanelVariants = {
-    hidden: { x: 100, opacity: 0 },
+    hidden: { x: isMobile ? 50 : 100, opacity: 0 },
     visible: { 
       x: 0, 
       opacity: 1,
       transition: { 
         type: "spring", 
-        stiffness: 100, 
-        damping: 15,
-        duration: 0.5
+        stiffness: isMobile ? 70 : 100, 
+        damping: isMobile ? 10 : 15,
+        duration: isMobile ? 0.3 : 0.5
       }
     }
   };
