@@ -8,10 +8,16 @@ import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
   scroll-margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -23,14 +29,15 @@ const ProjectCard = styled(motion.div)`
   transition: all 0.3s ease;
   box-shadow: ${props => props.theme.shadows.comic};
   border-radius: 8px;
-  min-height: 400px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   cursor: pointer;
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 1.2rem;
+    min-height: auto;
     box-shadow: ${props => props.theme.shadows.comicMobile};
   }
 
@@ -62,11 +69,16 @@ const ProjectCard = styled(motion.div)`
 
 const ProjectTitle = styled.h3`
   font-family: ${props => props.theme.fonts.accent};
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   color: ${props => props.theme.colors.accent};
   margin: 0;
   padding-bottom: 0.5rem;
   border-bottom: 3px solid ${props => props.theme.colors.secondary}40;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    padding-bottom: 0.3rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
@@ -75,6 +87,11 @@ const ProjectDescription = styled.p`
   line-height: 1.6;
   flex-grow: 1;
   margin: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 `;
 
 const ProjectLinks = styled.div`
@@ -388,13 +405,13 @@ const HomepageProjects = () => {
 
   // Animation variants for the project cards
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: (index) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: index * 0.1,
-        duration: 0.5,
+        delay: Math.min(index * 0.1, 0.5),
+        duration: 0.4,
         type: "spring",
         stiffness: 100,
         damping: 15
@@ -447,6 +464,16 @@ const HomepageProjects = () => {
   const handleExternalLinkClick = (url, projectTitle, linkType) => {
     Analytics.trackExternalLink(url, `${projectTitle} - ${linkType}`);
   };
+
+  // Add this useEffect to ensure proper rendering on mobile
+  useEffect(() => {
+    // Force a re-render after component mounts to ensure proper layout
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <ProjectsSection>
