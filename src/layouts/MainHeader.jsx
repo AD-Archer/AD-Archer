@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import { usePreview } from '../context/PreviewContext';
 
 const HeaderContainer = styled(motion.header)`
@@ -68,6 +68,12 @@ const NavLink = styled(RouterNavLink)`
 const MainHeader = () => {
   const { scrollY } = useScroll();
   const { isPreviewActive } = usePreview();
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Scroll to top when location changes
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   
   useEffect(() => {
     console.log("Preview active state:", isPreviewActive);
