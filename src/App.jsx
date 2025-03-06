@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './layouts/MainLayout.jsx';
@@ -29,7 +29,17 @@ function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  // Use useLayoutEffect to ensure scroll position is reset before rendering
+  // This runs synchronously before the browser paints
+  useLayoutEffect(() => {
+    // Reset scroll position to top immediately
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
+    // Reset scroll position to top on page load
+    window.scrollTo(0, 0);
+    
     // Track initial site visit
     Analytics.trackSiteEntry();
     Analytics.trackPageView(window.location.pathname);
@@ -61,11 +71,36 @@ function App() {
     // Force a re-render after component mounts to ensure proper layout
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
+      // Make sure we're at the top of the page
+      window.scrollTo(0, 0);
     }, 100);
+    
+    // Add a more aggressive approach for mobile
+    if (window.innerWidth <= 768) {
+      // Try multiple times to ensure we're at the top
+      const scrollIntervals = [200, 500, 1000];
+      scrollIntervals.forEach(delay => {
+        setTimeout(() => window.scrollTo(0, 0), delay);
+      });
+    }
     
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timer);
+    };
+  }, []);
+
+  // Add a useEffect to handle route changes and scroll to top
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
     };
   }, []);
 

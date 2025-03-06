@@ -503,11 +503,18 @@ const HomepageProjects = () => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
       
-      // Check if we need to scroll to make elements visible
+      // Remove the scroll position adjustment that might be causing issues
+      // Only check visibility without scrolling
       if (isMobile && projectsRef.current) {
         const rect = projectsRef.current.getBoundingClientRect();
+        // Just check visibility without scrolling
         if (rect.top < 0 || rect.bottom > window.innerHeight) {
-          projectsRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          // Don't scroll, just log for debugging
+          console.log('Projects section visibility:', { 
+            top: rect.top, 
+            bottom: rect.bottom,
+            windowHeight: window.innerHeight
+          });
         }
       }
     }, 300);

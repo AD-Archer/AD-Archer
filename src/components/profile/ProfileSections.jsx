@@ -113,8 +113,13 @@ const ProfileSections = () => {
     window.addEventListener('resize', handleResize);
     
     // Force a re-render after component mounts to ensure proper layout on mobile
+    // but don't affect scroll position
     const timer = setTimeout(() => {
+      // Just trigger resize without affecting scroll
+      const currentScrollPosition = window.scrollY;
       window.dispatchEvent(new Event('resize'));
+      // Restore scroll position if it changed
+      window.scrollTo(0, currentScrollPosition);
     }, 100);
     
     return () => {

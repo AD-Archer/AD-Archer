@@ -8,9 +8,11 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 16px;
     -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+    scroll-behavior: auto; /* Disable smooth scrolling to prevent scroll issues */
     
     @media (min-width: 768px) {
       font-size: 16px; // Keep standard size for tablets
+      scroll-behavior: smooth; // Enable smooth scrolling on larger screens
     }
     
     @media (min-width: 1024px) {
@@ -27,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     max-width: 100vw;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    position: relative; /* Ensure position context */
   }
 
   body {
@@ -35,6 +38,18 @@ const GlobalStyles = createGlobalStyle`
       position: fixed;
       width: 100%;
       height: 100%;
+    }
+  }
+
+  /* Fix for mobile scroll position issues */
+  @media (max-width: 768px) {
+    html, body {
+      height: auto !important;
+      overflow-y: auto !important;
+    }
+    
+    body {
+      position: relative !important;
     }
   }
 
