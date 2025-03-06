@@ -1,8 +1,10 @@
+import React from 'react';
 import { HeroTitle, SpeechBubble, ProfileImage } from '../../styles/AppStyles';
 import antonioImage from '/images/antonioarcher.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'; // Import necessary icons
 import styled from 'styled-components';
+import AnimatedElement from '../animations/AnimatedElement';
 
 const ContactInfo = styled.div`
   margin-top: 1rem;
@@ -40,46 +42,50 @@ const ContactInfo = styled.div`
 const Hero = () => {
   return (
     <>
-      <HeroTitle
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        ANTONIO ARCHER
-      </HeroTitle>
+      <AnimatedElement animation="fadeIn" delay="0.2s">
+        <HeroTitle
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          ANTONIO ARCHER
+        </HeroTitle>
+      </AnimatedElement>
       
-      <SpeechBubble
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        <ProfileImage 
-          src={antonioImage} 
-          alt="Antonio Archer"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        />
-        <h2>Full Stack Software Engineer</h2>
-        <p>
-          Crafting innovative web solutions with React.js, JavaScript, and Python. 
-          Dedicated to making technology both fun and practical while improving human lives.
-        </p>
-        <p className="credentials">
-          Certified in Python | React.js Expert | JavaScript Developer
-        </p>
-        
-        <ContactInfo>
+      <AnimatedElement animation="slideIn" delay="0.4s">
+        <SpeechBubble
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <ProfileImage 
+            src={antonioImage} 
+            alt="Antonio Archer"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          />
+          <h2>Full Stack Software Engineer</h2>
           <p>
-            <FontAwesomeIcon icon={faEnvelope} />
-            <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
+            Crafting innovative web solutions with React.js, JavaScript, and Python. 
+            Dedicated to making technology both fun and practical while improving human lives.
           </p>
-          <p>
-            <FontAwesomeIcon icon={faPhone} /> 
-            <a href="tel:+12672256778">267-225-6778</a>
+          <p className="credentials">
+            Certified in Python | React.js Expert | JavaScript Developer
           </p>
-        </ContactInfo>
-      </SpeechBubble>
+          
+          <ContactInfo>
+            <p>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faPhone} /> 
+              <a href="tel:+12672256778">267-225-6778</a>
+            </p>
+          </ContactInfo>
+        </SpeechBubble>
+      </AnimatedElement>
     </>
   );
 };

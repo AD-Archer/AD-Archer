@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTechFilter } from '../context/TechFilterContext';
 import { theme } from '../styles/theme';
+import AnimatedElement from './animations/AnimatedElement';
 
 const TechStackContainer = styled(motion.section)`
   padding: 1.5rem;
@@ -78,7 +79,7 @@ const SkillsGrid = styled.div`
 
 const SkillBadge = styled(motion.div)`
   background: ${props => 
-    props.isSelected 
+    props.$isSelected 
       ? props.theme.colors.primary 
       : `${props.theme.colors.primary}10`
   };
@@ -86,7 +87,7 @@ const SkillBadge = styled(motion.div)`
   border-radius: 12px;
   text-align: center;
   border: ${props => 
-    props.isSelected 
+    props.$isSelected 
       ? `3px solid ${props.theme.colors.accent}`
       : `2px solid ${props.theme.colors.primary}30`
   };
@@ -94,7 +95,7 @@ const SkillBadge = styled(motion.div)`
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transform: ${props => props.isSelected ? 'scale(1.05)' : 'scale(1)'};
+  transform: ${props => props.$isSelected ? 'scale(1.05)' : 'scale(1)'};
 
   @media (max-width: 768px) {
     padding: 0.75rem;
@@ -112,10 +113,10 @@ const SkillBadge = styled(motion.div)`
   }
 
   &:hover {
-    transform: ${props => props.isSelected ? 'scale(1.05)' : 'translateY(-5px)'};
+    transform: ${props => props.$isSelected ? 'scale(1.05)' : 'translateY(-5px)'};
     box-shadow: ${props => props.theme.shadows.hover};
-    border-color: ${props => props.isSelected ? props.theme.colors.accent : props.theme.colors.primary};
-    background: ${props => props.isSelected ? props.theme.colors.primary : `${props.theme.colors.primary}15`};
+    border-color: ${props => props.$isSelected ? props.theme.colors.accent : props.theme.colors.primary};
+    background: ${props => props.$isSelected ? props.theme.colors.primary : `${props.theme.colors.primary}15`};
   }
 `;
 
@@ -141,7 +142,7 @@ const SkillName = styled.span`
   display: block;
   font-family: ${props => props.theme.fonts.accent};
   font-size: 0.9rem;
-  color: ${props => props.isSelected ? 'white' : props.theme.colors.primary};
+  color: ${props => props.$isSelected ? 'white' : props.theme.colors.primary};
   font-weight: bold;
 
   @media (max-width: 768px) {
@@ -152,7 +153,7 @@ const SkillName = styled.span`
 const PowerLevel = styled.div`
   width: 100%;
   height: 4px;
-  background: ${props => props.isSelected ? 'rgba(255,255,255,0.3)' : props.theme.colors.primary}20;
+  background: ${props => props.$isSelected ? 'rgba(255,255,255,0.3)' : props.theme.colors.primary}20;
   border-radius: 2px;
   margin-top: 0.5rem;
   overflow: hidden;
@@ -162,7 +163,7 @@ const PowerLevel = styled.div`
     display: block;
     height: 100%;
     width: ${props => props.$level}%;
-    background: ${props => props.isSelected ? 'white' : props.theme.colors.primary};
+    background: ${props => props.$isSelected ? 'white' : props.theme.colors.primary};
     animation: powerUp 1s ease-out;
   }
 
@@ -185,18 +186,16 @@ const TechStackDescription = styled.p`
 const techStack = {
   frontend: [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', power: 100 },
-    { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', power: 100 },
-    { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', power: 90 },
-    { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', power: 100 },
+    { name: 'EJS', icon: '/icons/ejs.svg', power: 85 },
     { name: 'Vite', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg', power: 99 },
     { name: 'TailwindCSS', icon: '/images/tailwindcss-original.svg', power: 99 },
     { name: 'Typescript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', power: 99 },
   ],
   backend: [
     { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', power: 100 },
-    { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', power: 70 },
+    { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', power: 90 },
     { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', power: 99 },
-    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', power: 80 },
+    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', power: 90 },
   ],
   databases: [
     { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', power: 85 },
@@ -209,7 +208,6 @@ const techStack = {
     { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', power: 95 },
     { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg', power: 75 },
     { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg', power: 75 },
-
   ],
   hosting: [
     { name: 'AWS', icon: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', power: 70 },
@@ -231,53 +229,69 @@ const TechStack = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.h2
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{
-          fontFamily: 'Bangers',
-          fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-          color: '#333',
-          textAlign: 'center',
-          marginBottom: '0.5rem',
-          textShadow: '2px 2px 0 rgba(0,0,0,0.2)',
-        }}
-      >
-        SUPER TECH POWERS
-      </motion.h2>
-      
-      <TechStackDescription>
-        Power bars indicate my frequency of use and comfort level with each technology. 
-        Click any tech to filter related projects below! ⚡
-      </TechStackDescription>
-
-      {Object.entries(techStack).map(([category, skills], categoryIndex) => (
-        <motion.div
-          key={category}
+      <AnimatedElement animation="fadeIn">
+        <motion.h2
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 + categoryIndex * 0.1 }}
+          transition={{ delay: 0.2 }}
+          style={{
+            fontFamily: 'Bangers',
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+            color: '#333',
+            textAlign: 'center',
+            marginBottom: '0.5rem',
+            textShadow: '2px 2px 0 rgba(0,0,0,0.2)',
+          }}
         >
-          <CategoryTitle>{category}</CategoryTitle>
-          <SkillsGrid>
-            {skills.map((skill, skillIndex) => (
-              <SkillBadge
-                key={skill.name}
-                onClick={() => handleTechClick(skill.name)}
-                whileHover={{ scale: 1.05 }}
-                isSelected={selectedTech === skill.name}
-              >
-                <SkillIcon src={skill.icon} alt={skill.name} />
-                <SkillName isSelected={selectedTech === skill.name}>{skill.name}</SkillName>
-                <PowerLevel 
-                  $level={skill.power} 
-                  isSelected={selectedTech === skill.name}
-                />
-              </SkillBadge>
-            ))}
-          </SkillsGrid>
-        </motion.div>
+          SUPER TECH POWERS
+        </motion.h2>
+      </AnimatedElement>
+      
+      <AnimatedElement animation="fadeIn">
+        <TechStackDescription>
+          Power bars indicate my frequency of use and comfort level with each technology. 
+          Click any tech to filter related projects below! ⚡
+        </TechStackDescription>
+      </AnimatedElement>
+
+      {Object.entries(techStack).map(([category, skills], categoryIndex) => (
+        <AnimatedElement 
+          key={category} 
+          animation="scaleIn" 
+          delay={`${0.1 * categoryIndex}s`}
+          threshold={0.05}
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 + categoryIndex * 0.1 }}
+          >
+            <CategoryTitle>{category}</CategoryTitle>
+            <SkillsGrid>
+              {skills.map((skill, skillIndex) => (
+                <AnimatedElement 
+                  key={skill.name} 
+                  animation="scaleIn" 
+                  delay={`${0.1 * skillIndex}s`}
+                  threshold={0.05}
+                >
+                  <SkillBadge
+                    onClick={() => handleTechClick(skill.name)}
+                    whileHover={{ scale: 1.05 }}
+                    $isSelected={selectedTech === skill.name}
+                  >
+                    <SkillIcon src={skill.icon} alt={skill.name} />
+                    <SkillName $isSelected={selectedTech === skill.name}>{skill.name}</SkillName>
+                    <PowerLevel 
+                      $level={skill.power} 
+                      $isSelected={selectedTech === skill.name}
+                    />
+                  </SkillBadge>
+                </AnimatedElement>
+              ))}
+            </SkillsGrid>
+          </motion.div>
+        </AnimatedElement>
       ))}
     </TechStackContainer>
   );
