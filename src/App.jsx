@@ -10,7 +10,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
 import Hero from './components/hero/Hero';
 import SocialButtons from './components/social/SocialButtons';
-import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
@@ -49,7 +48,6 @@ function App() {
                   <SEO />
                   <Layout>
                     <ChatBot />
-                    {window.location.pathname !== '/resume' && <SocialIcons />}
                     <Routes>
                       {/* Home Page */}
                       <Route path="/" element={
