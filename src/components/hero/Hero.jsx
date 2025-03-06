@@ -1,92 +1,547 @@
-import React from 'react';
-import { HeroTitle, SpeechBubble, ProfileImage } from '../../styles/AppStyles';
-import antonioImage from '/images/antonioarcher.jpeg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'; // Import necessary icons
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import AnimatedElement from '../animations/AnimatedElement';
+import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faCode, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import antonioImage from '/images/antonioarcher.jpeg';
 
-const ContactInfo = styled.div`
-  margin-top: 1rem;
-  font-family: ${props => props.theme.fonts.body}; 
-  font-size: clamp(1rem, 2vw, 1.2rem); 
+// Main container with a transparent background
+const HeroContainer = styled.section`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  color: ${props => props.theme.colors.accent};
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 2rem 2rem;
+  background: transparent;
+  
+  @media (max-width: 768px) {
+    padding: 6rem 1rem 2rem;
+  }
+`;
 
-  p {
-    display: flex;
+// Animated background elements
+const BackgroundCircle = styled(motion.div)`
+  position: absolute;
+  border-radius: 50%;
+  background: ${props => props.theme.colors.accent}10;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  filter: blur(2px);
+`;
+
+// Card containing profile content
+const ProfileCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1rem;
+    text-align: center;
+  }
+`;
+
+// Left column with image
+const ImageColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
+`;
+
+// Right column with text content
+const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  @media (max-width: 768px) {
     align-items: center;
-    gap: 10px;
+  }
+`;
+
+// Profile image with border
+const ProfileImg = styled(motion.img)`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+    border-width: 3px;
+  }
+`;
+
+// Name heading with gradient text
+const Name = styled(motion.h1)`
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(to right, ${props => props.theme.colors.primary}, ${props => props.theme.colors.accent});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+`;
+
+// Role title
+const Role = styled(motion.h2)`
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  color: ${props => props.theme.colors.primary};
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+  }
+`;
+
+// Bio text
+const Bio = styled(motion.p)`
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #555;
+  
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+`;
+
+// Skills tags container
+const SkillsContainer = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+`;
+
+// Individual skill tag
+const SkillTag = styled(motion.span)`
+  background: ${props => props.theme.colors.accent}15;
+  color: ${props => props.theme.colors.accent};
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${props => props.theme.colors.primary}20;
+    color: ${props => props.theme.colors.primary};
+    transform: translateY(-3px);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+`;
+
+// Social links container
+const SocialContainer = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
+  }
+`;
+
+// Social media icon links
+const SocialLink = styled(motion.a)`
+  color: ${props => props.theme.colors.primary};
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: ${props => props.theme.colors.accent};
+    transform: translateY(-3px) rotate(5deg);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+// Credentials text
+const Credentials = styled(motion.p)`
+  font-size: 1rem;
+  color: #777;
+  margin-top: 1rem;
+  font-style: italic;
+  
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+`;
+
+// Project teaser section at the bottom
+const ProjectTeaser = styled(motion.div)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4rem 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0 1rem;
+  }
+`;
+
+const TeaserContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+`;
+
+const TeaserIcon = styled(motion.div)`
+  font-size: 2rem;
+  color: ${props => props.theme.colors.accent};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+`;
+
+const TeaserText = styled.div`
+  h3 {
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem 0;
+    color: ${props => props.theme.colors.primary};
+  }
+  
+  p {
+    font-size: 1rem;
     margin: 0;
+    color: #555;
   }
-
-  i {
-    font-size: 1.5rem; 
-    color: ${props => props.theme.colors.accent};
-  }
-
-  a {
-    color: ${props => props.theme.colors.accent};
-    text-decoration: none;
-    font-weight: bold; 
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: ${props => props.theme.colors.primary};
+  
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    p {
+      font-size: 0.9rem;
     }
   }
 `;
 
+const ScrollArrow = styled(motion.div)`
+  color: ${props => props.theme.colors.accent};
+  font-size: 1.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+`;
+
+// Floating particles
+const Particle = styled(motion.div)`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${props => props.theme.colors.accent}40;
+  z-index: 0;
+`;
+
 const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    // Delay visibility for entrance animation
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const scrollToNextSection = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+  
+  // Skills to display
+  const skills = ['Next.js', 'TypeScript', 'Python', 'MongoDB', 'Express'];
+  
+  // Generate random positions for particles
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 10 + 5,
+    duration: Math.random() * 20 + 10
+  }));
+  
+  // Detect if we're on mobile
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Check on mount
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   return (
-    <>
-      <AnimatedElement animation="fadeIn" delay="0.2s">
-        <HeroTitle
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          ANTONIO ARCHER
-        </HeroTitle>
-      </AnimatedElement>
+    <HeroContainer>
+      {/* Floating particles - reduce number on mobile */}
+      {particles.slice(0, isMobile ? 10 : 20).map(particle => (
+        <Particle
+          key={particle.id}
+          initial={{ 
+            x: `${particle.x}vw`, 
+            y: `${particle.y}vh`, 
+            opacity: 0 
+          }}
+          animate={{ 
+            y: [`${particle.y}vh`, `${particle.y - 30}vh`, `${particle.y}vh`],
+            opacity: [0, 0.7, 0]
+          }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: particle.duration,
+            delay: particle.id * 0.2
+          }}
+          style={{ width: particle.size, height: particle.size }}
+        />
+      ))}
       
-      <AnimatedElement animation="slideIn" delay="0.4s">
-        <SpeechBubble
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <ProfileImage 
+      {/* Main profile card */}
+      <ProfileCard
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <ImageColumn>
+          <ProfileImg 
             src={antonioImage} 
             alt="Antonio Archer"
             initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            animate={{ 
+              scale: isVisible ? 1 : 0.8, 
+              opacity: isVisible ? 1 : 0,
+              rotate: [0, 2, 0, -2, 0]
+            }}
+            transition={{ 
+              delay: 0.3, 
+              duration: 0.5,
+              rotate: { repeat: Infinity, duration: 6, ease: "easeInOut" }
+            }}
           />
-          <h2>Full Stack Software Engineer</h2>
-          <p>
+        </ImageColumn>
+        
+        <ContentColumn>
+          <Name
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -20 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            ANTONIO ARCHER
+          </Name>
+          
+          <Role
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -20 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            Full Stack Software Engineer
+          </Role>
+          
+          <Bio
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
             Crafting innovative web solutions with React.js, JavaScript, and Python. 
             Dedicated to making technology both fun and practical while improving human lives.
-          </p>
-          <p className="credentials">
-            Certified in Python | React.js Expert | JavaScript Developer
-          </p>
+          </Bio>
           
-          <ContactInfo>
-            <p>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
-            </p>
-            <p>
-              <FontAwesomeIcon icon={faPhone} /> 
-              <a href="tel:+12672256778">267-225-6778</a>
-            </p>
-          </ContactInfo>
-        </SpeechBubble>
-      </AnimatedElement>
-    </>
+          <SkillsContainer
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isVisible ? 1 : 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            {skills.map((skill, index) => (
+              <SkillTag 
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ 
+                  opacity: isVisible ? 1 : 0, 
+                  scale: isVisible ? 1 : 0.8,
+                  y: [0, -3, 0]
+                }}
+                transition={{ 
+                  delay: 0.9 + (index * 0.1),
+                  y: { 
+                    repeat: Infinity, 
+                    duration: 2 + index, 
+                    ease: "easeInOut",
+                    repeatDelay: index * 0.2
+                  }
+                }}
+                whileHover={{ scale: 1.1 }}
+              >
+                {skill}
+              </SkillTag>
+            ))}
+          </SkillsContainer>
+          
+          <Credentials
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isVisible ? 1 : 0 }}
+            transition={{ delay: 1.1 }}
+          >
+            Certified in Python | React.js Expert | JavaScript Developer
+          </Credentials>
+          
+          <SocialContainer
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ delay: 1.2 }}
+          >
+            <SocialLink 
+              href="https://github.com/ad-archer" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </SocialLink>
+            
+            <SocialLink 
+              href="https://linkedin.com/in/antonio-archer" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </SocialLink>
+            
+            <SocialLink 
+              href="https://twitter.com/ad_archer_" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faTwitter} />
+            </SocialLink>
+          </SocialContainer>
+        </ContentColumn>
+      </ProfileCard>
+      
+      {/* Project teaser section */}
+      <ProjectTeaser
+        onClick={scrollToNextSection}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+        transition={{ delay: 1.5, duration: 0.5 }}
+        whileHover={{ y: -5 }}
+      >
+        <TeaserContent>
+          <TeaserIcon
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, 0, -5, 0]
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 3,
+              ease: "easeInOut"
+            }}
+          >
+            <FontAwesomeIcon icon={faLaptopCode} />
+          </TeaserIcon>
+          <TeaserText>
+            <h3>Hey you should look down here</h3>
+            <p>Scroll down to see what I've been working on</p>
+          </TeaserText>
+        </TeaserContent>
+        <ScrollArrow
+          animate={{ y: [0, 10, 0] }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 1.5,
+            ease: "easeInOut"
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowDown} />
+        </ScrollArrow>
+      </ProjectTeaser>
+    </HeroContainer>
   );
 };
 

@@ -15,17 +15,15 @@ import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBot from './layouts/ChatBot.jsx';
-// Update the import in App.jsx
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
 import Resume from "./pages/Resume.jsx";
 import Contact from './pages/Contact.jsx';
 import DoesNotExist from './pages/DoesNotExist.jsx';
 import { ChatProvider } from './context/ChatContext';
-// Add animation context provider
 import { AnimationProvider } from './context/AnimationContext';
-// Add preview context provider
 import { PreviewProvider } from './context/PreviewContext';
+import BackgroundBubbles from './components/BackgroundBubbles';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -46,6 +44,7 @@ function App() {
                 <TechFilterProvider>
                   <GlobalStyles />
                   <SEO />
+                  <BackgroundBubbles />
                   <Layout>
                     <ChatBot />
                     <Routes>
