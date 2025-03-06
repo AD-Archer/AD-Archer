@@ -1,8 +1,9 @@
 import Certifications from './Certifications';
 import Jobs from './Jobs';
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Analytics } from '../../services/analytics';
+import { motion, useInView } from 'framer-motion';
 
 const ProfileGrid = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ const ProfileGrid = styled.div`
   }
 `;
 
-const Panel = styled.div`
+const Panel = styled(motion.div)`
   position: relative;
   background: white;
   border: 3px solid black;
@@ -65,6 +66,13 @@ const Panel = styled.div`
 `;
 
 const ProfileSections = () => {
+  const leftPanelRef = useRef(null);
+  const rightPanelRef = useRef(null);
+  
+  // Set threshold to 0.5 to trigger when half of the element is visible
+  const leftPanelInView = useInView(leftPanelRef, { amount: 0.5, once: true });
+  const rightPanelInView = useInView(rightPanelRef, { amount: 0.5, once: true });
+
   useEffect(() => {
     // Track profile section view
     Analytics.trackEvent({
@@ -98,12 +106,51 @@ const ProfileSections = () => {
     };
   }, []);
 
+  // Animation variants
+  const leftPanelVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 15,
+        duration: 0.5
+      }
+    }
+  };
+
+  const rightPanelVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 15,
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <ProfileGrid id="profile-grid">
-      <Panel>
+      <Panel
+        ref={leftPanelRef}
+        initial="hidden"
+        animate={leftPanelInView ? "visible" : "hidden"}
+        variants={leftPanelVariants}
+      >
         <Certifications />
       </Panel>
-      <Panel>
+      <Panel
+        ref={rightPanelRef}
+        initial="hidden"
+        animate={rightPanelInView ? "visible" : "hidden"}
+        variants={rightPanelVariants}
+      >
         <Jobs />
       </Panel>
     </ProfileGrid>

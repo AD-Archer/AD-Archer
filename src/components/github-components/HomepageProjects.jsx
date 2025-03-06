@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
@@ -366,7 +366,11 @@ const HomepageProjects = () => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [hasSeenPreview, setHasSeenPreview] = useState(false);
   const projectsRef = useRef(null);
+  const gridRef = useRef(null);
   const { setIsPreviewActive } = usePreview();
+  
+  // Check if the grid is in view to trigger animations
+  const gridInView = useInView(gridRef, { amount: 0.2, once: true });
 
   useEffect(() => {
     const uniqueTech = [...new Set(
@@ -381,6 +385,22 @@ const HomepageProjects = () => {
     : projects;
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
+
+  // Animation variants for the project cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    })
+  };
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
@@ -438,13 +458,14 @@ const HomepageProjects = () => {
         </ProjectsDescription>
       </ProjectsHeader>
       
-      <ProjectsGrid ref={projectsRef}>
+      <ProjectsGrid ref={(el) => { projectsRef.current = el; gridRef.current = el; }}>
         {displayProjects.map((project, index) => (
           <ProjectCard
             key={project.title}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
+            custom={index}
+            initial="hidden"
+            animate={gridInView ? "visible" : "hidden"}
+            variants={cardVariants}
           >
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
