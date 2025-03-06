@@ -27,11 +27,46 @@ import BackgroundBubbles from './components/BackgroundBubbles';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     // Track initial site visit
     Analytics.trackSiteEntry();
     Analytics.trackPageView(window.location.pathname);
+    
+    // Set proper viewport for mobile devices
+    const setViewportMeta = () => {
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta) {
+        if (window.innerWidth <= 768) {
+          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+        } else {
+          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
+        }
+      }
+    };
+    
+    // Handle resize events
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      setViewportMeta();
+    };
+    
+    // Set initial viewport
+    setViewportMeta();
+    
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    // Force a re-render after component mounts to ensure proper layout
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -54,9 +89,9 @@ function App() {
                           <Hero />
                           <GitHubStats />
                           
-                          <ProfileSections />
+                          <ProfileSections key={`profile-${isMobile}`} />
                           <TechStack />
-                          <GitHubProjects />
+                          <GitHubProjects key={`projects-${isMobile}`} />
                           <SocialButtons 
                             showLinkedIn={showLinkedIn}
                             setShowLinkedIn={setShowLinkedIn}
