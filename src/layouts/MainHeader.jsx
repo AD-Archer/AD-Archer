@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import { usePreview } from '../context/PreviewContext';
+import { useChatContext } from '../context/ChatContext';
 
 const HeaderContainer = styled(motion.header)`
   position: fixed;
@@ -13,11 +14,15 @@ const HeaderContainer = styled(motion.header)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: ${props => props.$isPreviewActive ? -1 : 10}; /* Hide behind content when preview is active */
+  z-index: ${props => props.$isPreviewActive ? -1 : 10};
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  pointer-events: ${props => props.$isPreviewActive ? 'none' : 'auto'}; /* Disable interactions when preview is active */
-  opacity: ${props => props.$isPreviewActive ? 0 : 1}; /* Hide visually when preview is active */
+  pointer-events: ${props => props.$isPreviewActive ? 'none' : 'auto'};
+  opacity: ${props => {
+    if (props.$isPreviewActive) return 0;
+    if (props.$isContactFormOpen) return 0;
+    return 1;
+  }};
   
   @media (max-width: 768px) {
     padding: 0.75rem 1rem;
@@ -68,7 +73,9 @@ const NavLink = styled(RouterNavLink)`
 const MainHeader = () => {
   const { scrollY } = useScroll();
   const { isPreviewActive } = usePreview();
+  const { isChatOpen } = useChatContext();
   const location = useLocation();
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   
   useEffect(() => {
     // Scroll to top when location changes
@@ -78,6 +85,23 @@ const MainHeader = () => {
   useEffect(() => {
     console.log("Preview active state:", isPreviewActive);
   }, [isPreviewActive]);
+  
+  // Check if contact form is open by looking for the modal overlay
+  useEffect(() => {
+    const checkForContactForm = () => {
+      const modalOverlay = document.querySelector('[data-contact-form-modal="true"]');
+      setIsContactFormOpen(!!modalOverlay);
+    };
+    
+    // Initial check
+    checkForContactForm();
+    
+    // Set up a mutation observer to detect when the contact form is added or removed
+    const observer = new MutationObserver(checkForContactForm);
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+    return () => observer.disconnect();
+  }, []);
   
   const headerBackground = useTransform(
     scrollY,
@@ -94,6 +118,8 @@ const MainHeader = () => {
   return (
     <HeaderContainer
       $isPreviewActive={isPreviewActive}
+      $isContactFormOpen={isContactFormOpen}
+      $isChatOpen={isChatOpen}
       style={{
         backgroundColor: headerBackground,
         boxShadow: headerShadow,
