@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useChatContext } from '../context/ChatContext';
 
 const ComicPanel = styled(motion.div)`
-  background: ${props => props.pathname === '/resume' ? 'white' : props.theme.colors.panelBg};
+  background: ${props => props.$pathname === '/resume' ? 'white' : props.theme.colors.panelBg};
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -31,7 +31,7 @@ const ComicPanel = styled(motion.div)`
     content: '';
     position: fixed;
     inset: 0;
-    background: ${props => props.pathname === '/resume' ? 'none' : `repeating-linear-gradient(
+    background: ${props => props.$pathname === '/resume' ? 'none' : `repeating-linear-gradient(
       45deg,
       transparent,
       transparent 10px,
@@ -49,10 +49,10 @@ const ContentWrapper = styled.div`
   position: relative;
   z-index: 2;
   flex: 1;
-  padding-top: ${props => props.pathname === '/resume' ? '0' : '3.5rem'};
+  padding-top: ${props => props.$pathname === '/resume' ? '0' : '3.5rem'};
 
   @media (max-width: 768px) {
-    padding-top: ${props => props.pathname === '/resume' ? '0' : '2rem'};
+    padding-top: ${props => props.$pathname === '/resume' ? '0' : '2rem'};
   }
 `;
 
@@ -63,7 +63,7 @@ const HeaderWrapper = styled.div`
   right: 0;
   z-index: 1000;
   transition: transform 0.3s ease;
-  transform: translateY(${props => props.hideHeader ? '-100%' : '0'});
+  transform: translateY(${props => props.$hideHeader ? '-100%' : '0'});
   height: auto;
   
   @media (max-width: 768px) {
@@ -74,29 +74,28 @@ const HeaderWrapper = styled.div`
 const MainLayout = ({ children }) => {
   const location = useLocation();
   const { isChatOpen } = useChatContext();
-  const isSpecialPage = location.pathname === '/resume' || location.pathname === '/contact';
-  const isNotFoundPage = location.pathname === '/404' || location.pathname === '/does-not-exist'; // Adjust this line based on your routing
-
+  const pathname = location.pathname;
+  
   return (
-    <ComicPanel
-      pathname={location.pathname}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <ComicPanel 
+      $pathname={pathname}
+      className={isChatOpen ? 'chat-open' : ''}
     >
-      <HeaderWrapper hideHeader={isChatOpen}>
+      <HeaderWrapper $hideHeader={pathname === '/resume'}>
         <MainHeader />
       </HeaderWrapper>
-      <ContentWrapper pathname={location.pathname}>
+      
+      <ContentWrapper $pathname={pathname}>
         {children}
-        {!isSpecialPage && !isNotFoundPage && <MainFooter />}
       </ContentWrapper>
+      
+      <MainFooter />
     </ComicPanel>
   );
 };
 
 MainLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default MainLayout; 

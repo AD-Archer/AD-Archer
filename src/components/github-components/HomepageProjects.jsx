@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
+import AnimatedElement from '../animations/AnimatedElement';
+import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -165,7 +167,7 @@ const ModalOverlay = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99999;
+  z-index: 9999;
   padding: 0;
   transform-origin: center center;
   touch-action: none;
@@ -183,7 +185,7 @@ const ModalContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   box-shadow: ${props => props.theme.shadows.strong};
-  z-index: 100000;
+  z-index: 10000;
 
   @media (max-width: 768px) {
     width: 100vw;
@@ -359,13 +361,12 @@ const projects = [
  
 ];
 
-const GitHubProjects = () => {
+const HomepageProjects = () => {
   const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [hasSeenPreview, setHasSeenPreview] = useState(() => {
-    return localStorage.getItem('hasSeenPreview') === 'true';
-  });
+  const [hasSeenPreview, setHasSeenPreview] = useState(false);
   const projectsRef = useRef(null);
+  const { setIsPreviewActive } = usePreview();
 
   useEffect(() => {
     const uniqueTech = [...new Set(
@@ -383,23 +384,32 @@ const GitHubProjects = () => {
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
-    Analytics.trackProjectPreview(project.title);
+    setIsPreviewActive(true);
     
-    project.techStack.forEach(tech => {
-      Analytics.trackTechFilter(tech);
-    });
+    document.documentElement.style.setProperty('--header-visibility', 'hidden');
     
     if (!hasSeenPreview) {
       setHasSeenPreview(true);
       localStorage.setItem('hasSeenPreview', 'true');
-      
-      Analytics.trackFeatureUse('First Project Preview');
     }
+    
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
+    
+    Analytics.trackEvent({
+      category: 'Projects',
+      action: 'Preview Site',
+      label: project.title
+    });
   };
 
   const handleClosePreview = (e) => {
     e?.preventDefault();
     setPreviewUrl(null);
+    setIsPreviewActive(false);
+    
+    document.documentElement.style.setProperty('--header-visibility', 'visible');
+    
     document.body.style.overflow = 'unset';
     document.body.classList.remove('modal-open');
     
@@ -527,4 +537,4 @@ const GitHubProjects = () => {
   );
 };
 
-export default GitHubProjects;
+export default HomepageProjects;

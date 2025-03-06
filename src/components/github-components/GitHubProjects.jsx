@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
 import PropTypes from 'prop-types';
+import AnimatedElement from '../animations/AnimatedElement';
+import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -135,22 +137,23 @@ const TechBadge = styled(motion.span)`
 `;
 
 const PreviewButton = styled.button`
-  background: #2ECC71;
+  background-color: ${props => props.theme.colors.accent};
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: ${props => props.theme.fonts.accent};
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: 1.5rem;
-  transition: background 0.3s ease, transform 0.2s ease;
-  font-weight: 600;
-
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  z-index: 20;
+  
   &:hover {
-    background: #27AE60;
+    background-color: ${props => props.theme.colors.primary};
     transform: translateY(-2px);
   }
-
+  
   &:active {
     transform: translateY(0);
   }
@@ -436,6 +439,7 @@ const GitHubProjects = ({ initialCategory }) => {
   });
   const [selectedCategories, setSelectedCategories] = useState(new Set());
   const projectsRef = useRef(null);
+  const { setIsPreviewActive } = usePreview();
 
   useEffect(() => {
     // Get unique tech stack and set available tech
@@ -486,7 +490,52 @@ const GitHubProjects = ({ initialCategory }) => {
     : projects;
 
   const handlePreviewClick = (project) => {
-    setPreviewUrl(project.siteLink);
+    // Set preview active to hide header
+    setIsPreviewActive(true);
+    
+    // Create a modal or preview overlay with even higher z-index
+    const previewContainer = document.createElement('div');
+    previewContainer.style.position = 'fixed';
+    previewContainer.style.top = '0';
+    previewContainer.style.left = '0';
+    previewContainer.style.width = '100%';
+    previewContainer.style.height = '100%';
+    previewContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    previewContainer.style.zIndex = '100'; // Very high z-index
+    previewContainer.style.display = 'flex';
+    previewContainer.style.justifyContent = 'center';
+    previewContainer.style.alignItems = 'center';
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = project.siteLink;
+    iframe.style.width = '90%';
+    iframe.style.height = '90%';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '8px';
+    
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close Preview';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.padding = '10px 20px';
+    closeButton.style.backgroundColor = '#e74c3c';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '4px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontWeight = 'bold';
+    
+    closeButton.addEventListener('click', () => {
+      document.body.removeChild(previewContainer);
+      // Set preview inactive to show header again
+      setIsPreviewActive(false);
+    });
+    
+    previewContainer.appendChild(iframe);
+    previewContainer.appendChild(closeButton);
+    document.body.appendChild(previewContainer);
+
     Analytics.trackProjectPreview(project.title);
     
     // Track if hidden project is revealed

@@ -1,75 +1,77 @@
-import { useScroll, useTransform, motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink as RouterNavLink } from 'react-router-dom';
+import { usePreview } from '../context/PreviewContext';
 
 const HeaderContainer = styled(motion.header)`
-  width: 100%;
-  padding: 0.75rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: ${props => props.$isPreviewActive ? -1 : 10}; /* Hide behind content when preview is active */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: ${props => props.$isPreviewActive ? 'none' : 'auto'}; /* Disable interactions when preview is active */
+  opacity: ${props => props.$isPreviewActive ? 0 : 1}; /* Hide visually when preview is active */
+  
   @media (max-width: 768px) {
-    padding: 0.35rem 0.25rem;
+    padding: 0.75rem 1rem;
   }
 `;
 
 const NavLinks = styled.nav`
   display: flex;
-  justify-content: center;
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-
+  
   @media (max-width: 768px) {
-    gap: 0.15rem;
-    width: 100%;
-    justify-content: space-between;
-    padding: 0 0.35rem;
+    gap: 0.75rem;
   }
 `;
 
-const NavLink = styled(Link)`
-  color: ${props => props.theme.colors.textSecondary};
+const NavLink = styled(RouterNavLink)`
+  font-family: ${props => props.theme.fonts.accent};
+  font-size: 1.1rem;
+  color: ${props => props.theme.colors.primary};
   text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.3s ease;
   position: relative;
-  padding: 0.15rem 0.25rem;
-  white-space: nowrap;
-
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-    padding: 0.15rem;
-    font-weight: 600;
-  }
-
-  &:hover {
+  transition: color 0.3s ease;
+  
+  &:hover, &.active {
     color: ${props => props.theme.colors.accent};
   }
-
+  
   &::after {
     content: '';
     position: absolute;
-    bottom: -1px;
+    bottom: -5px;
     left: 0;
     width: 0;
-    height: 1px;
-    background: ${props => props.theme.colors.accent};
+    height: 3px;
+    background-color: ${props => props.theme.colors.accent};
     transition: width 0.3s ease;
-
-    @media (max-width: 768px) {
-      bottom: -1px;
-    }
   }
-
-  &:hover::after {
+  
+  &:hover::after, &.active::after {
     width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
   }
 `;
 
 const MainHeader = () => {
   const { scrollY } = useScroll();
+  const { isPreviewActive } = usePreview();
+  
+  useEffect(() => {
+    console.log("Preview active state:", isPreviewActive);
+  }, [isPreviewActive]);
   
   const headerBackground = useTransform(
     scrollY,
@@ -85,6 +87,7 @@ const MainHeader = () => {
 
   return (
     <HeaderContainer
+      $isPreviewActive={isPreviewActive}
       style={{
         backgroundColor: headerBackground,
         boxShadow: headerShadow,

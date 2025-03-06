@@ -25,6 +25,8 @@ import DoesNotExist from './pages/DoesNotExist.jsx';
 import { ChatProvider } from './context/ChatContext';
 // Add animation context provider
 import { AnimationProvider } from './context/AnimationContext';
+// Add preview context provider
+import { PreviewProvider } from './context/PreviewContext';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -40,42 +42,44 @@ function App() {
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <ChatProvider>
-            <AnimationProvider>
-              <TechFilterProvider>
-                <GlobalStyles />
-                <SEO />
-                <Layout>
-                  <ChatBot />
-                  {window.location.pathname !== '/resume' && <SocialIcons />}
-                  <Routes>
-                    {/* Home Page */}
-                    <Route path="/" element={
-                      <div className="container">
-                        <Hero />
-                        <GitHubStats />
-                        
-                        <ProfileSections />
-                        <TechStack />
-                        <GitHubProjects />
-                        <SocialButtons 
-                          showLinkedIn={showLinkedIn}
-                          setShowLinkedIn={setShowLinkedIn}
-                        />
-                        {showLinkedIn && <LinkedInFeed />}
-                      </div>
-                    } />
-                    
-                    {/* Projects Page */}
-                    <Route path="/projects" element={<ProjectsPage />} />
-                    {/* Add new resume route */}
-                    <Route path="/resume" element={<Resume />} />
-                    <Route path="/contact" element={<Contact />} />
-                    {/* Add 404 route at the end */}
-                    <Route path="*" element={<DoesNotExist />} />
-                  </Routes>
-                </Layout>
-              </TechFilterProvider>
-            </AnimationProvider>
+            <PreviewProvider>
+              <AnimationProvider>
+                <TechFilterProvider>
+                  <GlobalStyles />
+                  <SEO />
+                  <Layout>
+                    <ChatBot />
+                    {window.location.pathname !== '/resume' && <SocialIcons />}
+                    <Routes>
+                      {/* Home Page */}
+                      <Route path="/" element={
+                        <div className="container">
+                          <Hero />
+                          <GitHubStats />
+                          
+                          <ProfileSections />
+                          <TechStack />
+                          <GitHubProjects />
+                          <SocialButtons 
+                            showLinkedIn={showLinkedIn}
+                            setShowLinkedIn={setShowLinkedIn}
+                          />
+                          {showLinkedIn && <LinkedInFeed />}
+                        </div>
+                      } />
+                      
+                      {/* Projects Page */}
+                      <Route path="/projects" element={<ProjectsPage />} />
+                      {/* Add new resume route */}
+                      <Route path="/resume" element={<Resume />} />
+                      <Route path="/contact" element={<Contact />} />
+                      {/* Add 404 route at the end */}
+                      <Route path="*" element={<DoesNotExist />} />
+                    </Routes>
+                  </Layout>
+                </TechFilterProvider>
+              </AnimationProvider>
+            </PreviewProvider>
           </ChatProvider>
         </ThemeProvider>
       </HelmetProvider>
