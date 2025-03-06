@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
 import PropTypes from 'prop-types';
+import AnimatedElement from '../animations/AnimatedElement';
+import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -319,7 +321,7 @@ const projects = [
   },
   {
     title: "LinkTree",
-    description: "I wanted my own linktree to make sharing important links alot easier.",
+    description: "I wanted my own linktree to make sharing important links alot easier. If you would like to contact me, or find my social media this is the best way to do so. other than the contact page on this site of course.",
     techStack: ["React"],
     categories: ["Utilities", "Frontend Apps"],
     siteLink: "https://www.adarcher.app/",
@@ -436,6 +438,7 @@ const GitHubProjects = ({ initialCategory }) => {
   });
   const [selectedCategories, setSelectedCategories] = useState(new Set());
   const projectsRef = useRef(null);
+  const { setIsPreviewActive } = usePreview();
 
   useEffect(() => {
     // Get unique tech stack and set available tech
@@ -487,6 +490,18 @@ const GitHubProjects = ({ initialCategory }) => {
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
+    setIsPreviewActive(true);
+    
+    document.documentElement.style.setProperty('--header-visibility', 'hidden');
+    
+    if (!hasSeenPreview) {
+      setHasSeenPreview(true);
+      localStorage.setItem('hasSeenPreview', 'true');
+    }
+    
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
+    
     Analytics.trackProjectPreview(project.title);
     
     // Track if hidden project is revealed
@@ -515,18 +530,21 @@ const GitHubProjects = ({ initialCategory }) => {
   const handleClosePreview = (e) => {
     e?.preventDefault();
     setPreviewUrl(null);
-    document.body.style.overflow = "unset";
-    document.body.classList.remove("modal-open");
-
-    // Track preview close action
+    setIsPreviewActive(false);
+    
+    document.documentElement.style.setProperty('--header-visibility', 'visible');
+    
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('modal-open');
+    
     Analytics.trackEvent({
       category: 'Projects',
       action: 'Close Preview',
       label: previewUrl
     });
-
+    
     setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   };
   

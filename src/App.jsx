@@ -10,19 +10,20 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
 import Hero from './components/hero/Hero';
 import SocialButtons from './components/social/SocialButtons';
-import SocialIcons from './components/social/SocialIcons';
 import GlobalStyles from './styles/GlobalStyles';
 import { TechFilterProvider } from './context/TechFilterContext';
 import { Analytics } from './services/analytics';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBot from './layouts/ChatBot.jsx';
-// Update the import in App.jsx
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
 import Resume from "./pages/Resume.jsx";
 import Contact from './pages/Contact.jsx';
 import DoesNotExist from './pages/DoesNotExist.jsx';
 import { ChatProvider } from './context/ChatContext';
+import { AnimationProvider } from './context/AnimationContext';
+import { PreviewProvider } from './context/PreviewContext';
+import BackgroundBubbles from './components/BackgroundBubbles';
 
 function App() {
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -38,40 +39,44 @@ function App() {
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <ChatProvider>
-            <TechFilterProvider>
-              <GlobalStyles />
-              <SEO />
-              <Layout>
-                <ChatBot />
-                {window.location.pathname !== '/resume' && <SocialIcons />}
-                <Routes>
-                  {/* Home Page */}
-                  <Route path="/" element={
-                    <div className="container">
-                      <Hero />
-                      <GitHubStats />
+            <PreviewProvider>
+              <AnimationProvider>
+                <TechFilterProvider>
+                  <GlobalStyles />
+                  <SEO />
+                  <BackgroundBubbles />
+                  <Layout>
+                    <ChatBot />
+                    <Routes>
+                      {/* Home Page */}
+                      <Route path="/" element={
+                        <div className="container">
+                          <Hero />
+                          <GitHubStats />
+                          
+                          <ProfileSections />
+                          <TechStack />
+                          <GitHubProjects />
+                          <SocialButtons 
+                            showLinkedIn={showLinkedIn}
+                            setShowLinkedIn={setShowLinkedIn}
+                          />
+                          {showLinkedIn && <LinkedInFeed />}
+                        </div>
+                      } />
                       
-                      <ProfileSections />
-                      <TechStack />
-                      <GitHubProjects />
-                      <SocialButtons 
-                        showLinkedIn={showLinkedIn}
-                        setShowLinkedIn={setShowLinkedIn}
-                      />
-                      {showLinkedIn && <LinkedInFeed />}
-                    </div>
-                  } />
-                  
-                  {/* Projects Page */}
-                  <Route path="/projects" element={<ProjectsPage />} />
-                  {/* Add new resume route */}
-                  <Route path="/resume" element={<Resume />} />
-                  <Route path="/contact" element={<Contact />} />
-                  {/* Add 404 route at the end */}
-                  <Route path="*" element={<DoesNotExist />} />
-                </Routes>
-              </Layout>
-            </TechFilterProvider>
+                      {/* Projects Page */}
+                      <Route path="/projects" element={<ProjectsPage />} />
+                      {/* Add new resume route */}
+                      <Route path="/resume" element={<Resume />} />
+                      <Route path="/contact" element={<Contact />} />
+                      {/* Add 404 route at the end */}
+                      <Route path="*" element={<DoesNotExist />} />
+                    </Routes>
+                  </Layout>
+                </TechFilterProvider>
+              </AnimationProvider>
+            </PreviewProvider>
           </ChatProvider>
         </ThemeProvider>
       </HelmetProvider>

@@ -9,7 +9,9 @@ import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-
 import { faEnvelope, faPhone, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
-const ModalOverlay = styled(motion.div)`
+const ModalOverlay = styled(motion.div).attrs({
+  'data-contact-form-modal': 'true'
+})`
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +21,7 @@ const ModalOverlay = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem;
 `;
 
@@ -32,6 +34,7 @@ const FormContainer = styled(motion.div)`
   width: 90%;
   position: relative;
   box-shadow: ${props => props.theme.shadows.comic};
+  z-index: 10000;
 
   @media (max-width: 768px) {
     padding: 2rem;

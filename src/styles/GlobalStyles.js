@@ -1,15 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  :root {
+    --header-visibility: visible;
+  }
+  
   html {
     font-size: 16px;
     
     @media (min-width: 768px) {
-      font-size: 14px; // Slightly more zoomed out for tablets
+      font-size: 16px; // Keep standard size for tablets
     }
     
     @media (min-width: 1024px) {
-      font-size: 11px; // More zoom out for desktop (~80%)
+      font-size: 16px; // Keep standard size for desktop
     }
   }
 
@@ -44,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
 
     @media (min-width: 1024px) {
       width: 90%;
-      max-width: 2000px; // Increased max-width to accommodate smaller font
+      max-width: 1800px;
     }
   }
 
@@ -61,6 +65,13 @@ const GlobalStyles = createGlobalStyle`
     @media (min-width: 1024px) {
       padding: 2rem;
     }
+  }
+
+  /* Add this rule to hide the header when preview is active */
+  body.modal-open header {
+    visibility: var(--header-visibility) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 `;
 

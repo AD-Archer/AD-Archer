@@ -13,7 +13,7 @@ const ChatContainer = styled(motion.div)`
   bottom: 0;
   left: 0;
   margin: 1rem;
-  z-index: 1050;
+  z-index: 9500;
 
   @media (max-width: 768px) {
     margin: 0.5rem;
@@ -56,6 +56,7 @@ const ChatWindow = styled(motion.div)`
   box-shadow: ${props => props.theme.shadows.comic};
   border: 2px solid ${props => props.theme.colors.primary};
   overflow: hidden;
+  z-index: 9600;
 
   @media (max-width: 768px) {
     position: fixed;
@@ -76,7 +77,7 @@ const ChatHeader = styled.div`
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 9700;
 
   h5 {
     margin: 0;
