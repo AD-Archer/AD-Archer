@@ -321,8 +321,8 @@ const projects = [
   },
   {
     title: "LinkTree",
-    description: "I wanted my own linktree to make sharing important links alot easier. If you would like to contact me, or find my social media this is the best way to do so. other than the contact page on this site of course.",
-    techStack: ["React"],
+    description: "I wanted my own linktree to make sharing important links alot easier. If you would like to contact me, or find my social media this is the best way to do so. other than the contact page on this site of course. I later bulit this tree into a react native application which isn't hosted anywhere but can we found as a branch within the repo.",
+    techStack: ["React", "React Native"],
     categories: ["Utilities", "Frontend Apps"],
     siteLink: "https://www.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/tree",
