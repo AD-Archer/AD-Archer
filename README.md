@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://github.com/ad-archer">
-    <img src="images/My name SVG.svg" alt="Antonio Archer" style="max-width: 100%; height: auto; width: 100%; max-width: 400px; display: inline-block; margin-right: 5px;" />
-  </a>
+ </a>
  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73700&width=435&lines=A+full+stack+Developer" alt="Typing SVG" /></a>
 </p>
 
@@ -62,8 +60,7 @@
 
 <strong>GitHub Stats</strong>
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
-
+  <a href="https://awesome-github-stats.azurewebsites.net/index.html??cardType=level&theme=github-dark&preferLogin=false">    <img  alt="ad-archer's GitHub Stats" src="https://awesome-github-stats.azurewebsites.net/user-stats/ad-archer?cardType=level&theme=github-dark&preferLogin=false" />  </a>
 
 
 <details>
