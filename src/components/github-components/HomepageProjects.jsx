@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
-import AnimatedElement from '../animations/AnimatedElement';
 import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
@@ -414,11 +413,16 @@ const HomepageProjects = () => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
       
-      // Force another re-render after a bit longer time to ensure animations work
+      // Instead of dispatching a scroll event which causes errors,
+      // directly trigger any layout updates needed
       setTimeout(() => {
         if (gridRef.current) {
-          const event = new CustomEvent('scroll');
-          window.dispatchEvent(event);
+          // Force a repaint/reflow if needed
+          // This is safer than dispatching a scroll event
+          const _ = gridRef.current.offsetHeight;
+          
+          // If you need to run specific animations or updates that
+          // were previously triggered by the scroll event, do them directly here
         }
       }, 500);
     }, 100);

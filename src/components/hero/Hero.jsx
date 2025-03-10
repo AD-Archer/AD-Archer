@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faCode, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import antonioImage from '/images/antonioarcher.jpeg';
 
@@ -24,14 +24,7 @@ const HeroContainer = styled.section`
 `;
 
 // Animated background elements
-const BackgroundCircle = styled(motion.div)`
-  position: absolute;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.accent}10;
-  z-index: 0;
-  mix-blend-mode: multiply;
-  filter: blur(2px);
-`;
+// Removed unused BackgroundCircle styled component
 
 // Card containing profile content
 const ProfileCard = styled(motion.div)`
@@ -527,7 +520,7 @@ const Hero = () => {
           </TeaserIcon>
           <TeaserText>
             <h3>Hey you should look down here</h3>
-            <p>Scroll down to see what I've been working on</p>
+            <p>Scroll down to see what I&apos;ve been working on</p>
           </TeaserText>
         </TeaserContent>
         <ScrollArrow

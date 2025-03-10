@@ -1,5 +1,5 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 import { useAnimation } from '../../context/AnimationContext';
 
 // Animation styles
@@ -75,6 +75,16 @@ const AnimatedElement = ({
       {children}
     </StyledAnimatedElement>
   );
+};
+
+// Add prop type validation
+AnimatedElement.propTypes = {
+  children: PropTypes.node.isRequired,
+  animation: PropTypes.string,
+  delay: PropTypes.string,
+  threshold: PropTypes.number,
+  rootMargin: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default AnimatedElement; 

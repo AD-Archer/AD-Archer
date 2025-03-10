@@ -252,7 +252,7 @@ const Contact = () => {
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          Let's Connect!
+          Let&apos;s Connect!
         </HeroTitle>
 
         <ContactGrid>

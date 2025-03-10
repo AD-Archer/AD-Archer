@@ -1,5 +1,5 @@
 // src/components/pages/ProjectsPage.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import GitHubProjects from '../components/github-components/GitHubProjects';

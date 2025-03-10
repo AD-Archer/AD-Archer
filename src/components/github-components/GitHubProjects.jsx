@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
 import PropTypes from 'prop-types';
-import AnimatedElement from '../animations/AnimatedElement';
 import { usePreview } from '../../context/PreviewContext';
 
 const ProjectsGrid = styled.div`
@@ -13,6 +12,12 @@ const ProjectsGrid = styled.div`
   gap: 2rem;
   padding: 2rem 0;
   scroll-margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -294,6 +299,34 @@ const ProjectsDescription = styled.p`
   margin: 0 auto;
 `;
 
+const CategoryFilters = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
+`;
+
+const CategoryButton = styled.button`
+  background: ${props => props.$isSelected ? props.theme.colors.primary : 'white'};
+  color: ${props => props.$isSelected ? 'white' : props.theme.colors.primary};
+  border: 2px solid ${props => props.theme.colors.primary};
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${props => props.$isSelected ? props.theme.colors.primary : props.theme.colors.primary + '20'};
+    transform: translateY(-2px);
+  }
+`;
+
 const projects = [
   {
     title: "Philly Social",
@@ -463,7 +496,7 @@ const GitHubProjects = ({ initialCategory }) => {
     }
   }, [initialCategory]);
 
-  // Update the categories array
+  // Update the categories array - used in the UI for category filtering
   const categories = ["Frontend Apps", "Full-stack Apps", "Utilities"];
 
   // Determine if any filter is applied (categories or tech)
@@ -548,6 +581,7 @@ const GitHubProjects = ({ initialCategory }) => {
     }, 100);
   };
   
+  // Category toggle handler - used for filtering projects by category
   const handleCategoryToggle = (category) => {
     setSelectedCategories(prev => {
       const newCategories = new Set(prev);
@@ -558,11 +592,7 @@ const GitHubProjects = ({ initialCategory }) => {
       }
       
       // Track category filter changes
-      Analytics.trackEvent({
-        category: 'Projects',
-        action: newCategories.has(category) ? 'Add Category Filter' : 'Remove Category Filter',
-        label: category
-      });
+      Analytics.trackEvent('Projects', 'Filter by Category', category);
       
       return newCategories;
     });
@@ -574,7 +604,7 @@ const GitHubProjects = ({ initialCategory }) => {
   };
 
   return (
-    <ProjectsSection>
+    <ProjectsSection id="projects" ref={projectsRef}>
       <ProjectsHeader>
         <ProjectsTitle>Projects</ProjectsTitle>
         <ProjectsDescription>
@@ -583,7 +613,20 @@ const GitHubProjects = ({ initialCategory }) => {
         </ProjectsDescription>
       </ProjectsHeader>
       
-      <ProjectsGrid ref={projectsRef}>
+      {/* Category filters */}
+      <CategoryFilters>
+        {categories.map(category => (
+          <CategoryButton 
+            key={category}
+            $isSelected={selectedCategories.has(category)}
+            onClick={() => handleCategoryToggle(category)}
+          >
+            {category}
+          </CategoryButton>
+        ))}
+      </CategoryFilters>
+      
+      <ProjectsGrid>
         {displayProjects.map((project, index) => (
           <ProjectCard
             key={project.title}

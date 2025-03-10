@@ -70,39 +70,15 @@ const JobDetails = styled.div`
 `;
 
 const Jobs = () => {
-  const [visibleJobs, setVisibleJobs] = useState({});
   const [expandedJob, setExpandedJob] = useState(null);
 
   const toggleJobVisibility = (index) => {
-    const newState = !visibleJobs[index];
-    setVisibleJobs(prev => ({
-      ...prev,
-      [index]: newState
-    }));
+    setExpandedJob(expandedJob === index ? null : index);
     
-    const job = jobs[index];
-    
-    // Track job view with specialized method
-    if (newState) {
-      Analytics.trackJobView(job.title, job.company);
-      
-      // Track tech stack exposure
-      job.techStack.forEach(tech => {
-        Analytics.trackEvent({
-          category: 'Job Tech',
-          action: 'Exposure',
-          label: tech
-        });
-      });
-    }
-  };
-
-  const handleJobClick = (job) => {
-    const newState = expandedJob !== job.id;
-    setExpandedJob(newState ? job.id : null);
-    
-    if (newState) {
-      Analytics.trackJobView(job.title, job.company);
+    if (expandedJob !== index) {
+      // Track job expansion in analytics
+      const job = jobs[index];
+      Analytics.trackEvent('Profile', 'View Job Details', `${job.company} - ${job.title}`);
     }
   };
 
@@ -117,9 +93,9 @@ const Jobs = () => {
           </Subtitle>
           <Subtitle>{job.location}</Subtitle>
           <DetailsButton onClick={() => toggleJobVisibility(index)}>
-            {visibleJobs[index] ? 'Hide Details' : 'View Details'}
+            {expandedJob === index ? 'Hide Details' : 'View Details'}
           </DetailsButton>
-          {visibleJobs[index] && (
+          {expandedJob === index && (
             <JobDetails>
               <AchievementList>
                 {job.achievements.map((achievement, i) => (
