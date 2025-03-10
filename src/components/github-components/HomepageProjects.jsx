@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTechFilter } from '../../context/TechFilterContext';
 import { Analytics } from '../../services/analytics';
 import { usePreview } from '../../context/PreviewContext';
+import ProjectPreview from './ProjectPreview';
 
 const ProjectsGrid = styled.div`
   display: grid;
@@ -173,115 +174,6 @@ const PreviewButton = styled.button`
   }
 `;
 
-const ModalOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 0;
-  transform-origin: center center;
-  touch-action: none;
-  -webkit-overflow-scrolling: touch;
-`;
-
-const ModalContent = styled(motion.div)`
-  position: relative;
-  width: 95vw;
-  height: 95vh;
-  background: white;
-  border: 3px solid ${props => props.theme.colors.primary};
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: ${props => props.theme.shadows.strong};
-  z-index: 10000;
-
-  @media (max-width: 768px) {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    border: 3px solid ${props => props.theme.colors.primary};
-  }
-`;
-
-const SitePreview = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: none;
-  margin: 0;
-  padding: 0;
-  background: white;
-`;
-
-const CloseButton = styled.button`
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: ${props => props.theme.colors.primary};
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 100001;
-  box-shadow: ${props => props.theme.shadows.subtle};
-  transition: all 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: ${props => props.theme.shadows.hover};
-  }
-
-  &:active {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  @media (max-width: 768px) {
-    position: fixed;
-    bottom: env(safe-area-inset-bottom, 20px);
-    padding: 1rem 2rem;
-    width: auto;
-    min-width: 150px;
-    font-size: 1.1rem;
-  }
-`;
-
-const FirstTimeMessage = styled(motion.div)`
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  box-shadow: ${props => props.theme.shadows.subtle};
-  text-align: center;
-  z-index: 100002;
-  border: 2px solid ${props => props.theme.colors.primary};
-
-  p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: ${props => props.theme.colors.accent};
-  }
-
-  @media (max-width: 768px) {
-    width: 90%;
-    padding: 0.8rem 1rem;
-  }
-`;
-
 const ProjectsSection = styled.section`
   margin: 2rem auto;
   max-width: 1400px;
@@ -380,7 +272,10 @@ const projects = [
 const HomepageProjects = () => {
   const { selectedTech, setAvailableTech, setSelectedTech } = useTechFilter();
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [hasSeenPreview, setHasSeenPreview] = useState(false);
+  const [previewTitle, setPreviewTitle] = useState('');
+  const [hasSeenPreview, setHasSeenPreview] = useState(() => {
+    return localStorage.getItem("hasSeenPreview") === "true";
+  });
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const projectsRef = useRef(null);
   const gridRef = useRef(null);
@@ -419,7 +314,7 @@ const HomepageProjects = () => {
         if (gridRef.current) {
           // Force a repaint/reflow if needed
           // This is safer than dispatching a scroll event
-          const _ = gridRef.current.offsetHeight;
+          gridRef.current.offsetHeight; // Access property to force reflow without storing in unused variable
           
           // If you need to run specific animations or updates that
           // were previously triggered by the scroll event, do them directly here
@@ -457,17 +352,8 @@ const HomepageProjects = () => {
 
   const handlePreviewClick = (project) => {
     setPreviewUrl(project.siteLink);
+    setPreviewTitle(project.title);
     setIsPreviewActive(true);
-    
-    document.documentElement.style.setProperty('--header-visibility', 'hidden');
-    
-    if (!hasSeenPreview) {
-      setHasSeenPreview(true);
-      localStorage.setItem('hasSeenPreview', 'true');
-    }
-    
-    document.body.style.overflow = 'hidden';
-    document.body.classList.add('modal-open');
     
     Analytics.trackEvent({
       category: 'Projects',
@@ -476,21 +362,9 @@ const HomepageProjects = () => {
     });
   };
 
-  const handleClosePreview = (e) => {
-    e?.preventDefault();
+  const handleClosePreview = () => {
     setPreviewUrl(null);
     setIsPreviewActive(false);
-    
-    document.documentElement.style.setProperty('--header-visibility', 'visible');
-    
-    document.body.style.overflow = 'unset';
-    document.body.classList.remove('modal-open');
-    
-    Analytics.trackEvent({
-      category: 'Projects',
-      action: 'Close Preview',
-      label: previewUrl
-    });
     
     setTimeout(() => {
       projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -597,41 +471,15 @@ const HomepageProjects = () => {
         ))}
       </ProjectsGrid>
 
-      {previewUrl && (
-        <ModalOverlay
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={handleClosePreview}
-          onTouchEnd={handleClosePreview}
-        >
-          <ModalContent
-            initial={{ scale: 0.5 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0.5 }}
-            onClick={e => e.stopPropagation()}
-          >
-            {!hasSeenPreview && (
-              <FirstTimeMessage
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <p>Click outside the preview window or the button below to exit</p>
-              </FirstTimeMessage>
-            )}
-            <SitePreview 
-              src={previewUrl}
-              title="Site Preview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            <CloseButton onClick={handleClosePreview}>
-              Close Preview
-            </CloseButton>
-          </ModalContent>
-        </ModalOverlay>
-      )}
+      <ProjectPreview 
+        previewUrl={previewUrl}
+        isOpen={!!previewUrl}
+        onClose={handleClosePreview}
+        projectTitle={previewTitle}
+        hasSeenPreview={hasSeenPreview}
+        setHasSeenPreview={setHasSeenPreview}
+        analyticsCategory="Projects"
+      />
     </ProjectsSection>
   );
 };

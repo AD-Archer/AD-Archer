@@ -18,6 +18,8 @@ const ModalOverlay = styled(motion.div)`
   justify-content: center;
   padding: 2rem;
   backdrop-filter: blur(5px);
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 `;
 
 // Modal content container
@@ -32,6 +34,7 @@ const ModalContent = styled(motion.div)`
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  border: 3px solid ${props => props.theme?.colors?.primary || '#333'};
   
   @media (max-width: 768px) {
     width: 100%;
@@ -52,7 +55,7 @@ const SitePreview = styled.iframe`
 const CloseButton = styled.button`
   width: 100%;
   padding: 1.2rem;
-  background: #1a1a1a;
+  background: ${props => props.theme?.colors?.primary || '#1a1a1a'};
   color: white;
   font-weight: bold;
   border: none;
@@ -63,35 +66,19 @@ const CloseButton = styled.button`
   letter-spacing: 1px;
   
   &:hover {
-    background: #333;
+    background: ${props => props.theme?.colors?.accent || '#333'};
   }
   
   @media (max-width: 768px) {
     padding: 1rem;
-  }
-`;
-
-// Close button at the top right
-const TopCloseButton = styled.button`
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: white;
-  border: none;
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 5;
-  
-  &:hover {
-    background: #f0f0f0;
-    transform: scale(1.05);
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 150px;
+    border-radius: 25px;
+    box-shadow: ${props => props.theme?.shadows?.subtle || '0 4px 6px rgba(0, 0, 0, 0.1)'};
   }
 `;
 
@@ -101,7 +88,7 @@ const FirstTimeMessage = styled(motion.div)`
   top: 60px;
   left: 0;
   right: 0;
-  background: #4a4a4a;
+  background: ${props => props.theme?.colors?.accent || '#4a4a4a'};
   color: white;
   padding: 10px;
   text-align: center;
@@ -111,8 +98,27 @@ const FirstTimeMessage = styled(motion.div)`
     margin: 0;
     font-size: 0.9rem;
   }
+  
+  @media (max-width: 768px) {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+  }
 `;
 
+/**
+ * ProjectPreview component for displaying website previews in a modal
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.previewUrl - URL of the site to preview
+ * @param {boolean} props.isOpen - Whether the preview is open
+ * @param {Function} props.onClose - Function to call when preview is closed
+ * @param {string} props.projectTitle - Title of the project being previewed
+ * @param {boolean} props.hasSeenPreview - Whether the user has seen a preview before
+ * @param {Function} props.setHasSeenPreview - Function to update hasSeenPreview state
+ * @param {string} props.analyticsCategory - Category for analytics tracking
+ */
 const ProjectPreview = ({ 
   previewUrl, 
   isOpen, 
@@ -152,6 +158,9 @@ const ProjectPreview = ({
       if (!hasSeenPreview && setHasSeenPreview) {
         setHasSeenPreview(true);
         localStorage.setItem('hasSeenPreview', 'true');
+        
+        // Track first-time preview
+        Analytics.trackEvent(analyticsCategory, 'First Preview Experience', projectTitle);
       }
     } else if (previewUrl) {
       // Cleanup when preview closes
@@ -215,6 +224,7 @@ const ProjectPreview = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={handleClose}
+      onTouchEnd={handleClose}
     >
       <ModalContent
         initial={{ scale: 0.95 }}
@@ -238,7 +248,6 @@ const ProjectPreview = ({
           allowFullScreen
         />
         <CloseButton onClick={handleClose}>Close Preview</CloseButton>
-        <TopCloseButton onClick={handleClose} aria-label="Close preview">✕</TopCloseButton>
       </ModalContent>
     </ModalOverlay>
   );
