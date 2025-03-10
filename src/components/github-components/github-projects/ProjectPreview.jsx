@@ -33,11 +33,11 @@ const ModalOverlay = styled(motion.div)`
 // Modal content container
 const ModalContent = styled(motion.div)`
   background: white;
-  width: 90%;
-  max-width: 1200px;
-  height: 80vh;
-  height: calc(var(--vh, 1vh) * 80); /* Mobile viewport height fix */
-  max-height: calc(var(--vh, 1vh) * 80);
+  width: 95%;
+  max-width: 1400px;
+  height: 90vh;
+  height: calc(var(--vh, 1vh) * 90);
+  max-height: calc(var(--vh, 1vh) * 90);
   border-radius: 12px;
   position: relative;
   display: flex;
@@ -49,10 +49,10 @@ const ModalContent = styled(motion.div)`
   
   /* Adjust for mobile */
   @media (max-width: 768px) {
-    width: 92%;
-    height: 70vh;
-    height: calc(var(--vh, 1vh) * 70);
-    max-height: calc(var(--vh, 1vh) * 70);
+    width: 96%;
+    height: 92vh;
+    height: calc(var(--vh, 1vh) * 92);
+    max-height: calc(var(--vh, 1vh) * 92);
     border-radius: 10px;
     transform: none !important; /* Prevent any transforms affecting position */
   }
