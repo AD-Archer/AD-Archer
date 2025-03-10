@@ -1,12 +1,36 @@
 # Antonio Archer
 
-[![Antonio Archer](images/My%20name%20SVG.svg)](https://github.com/ad-archer)
-
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73700&width=435&lines=A+full+stack+Developer)](https://git.io/typing-svg)
 
 ![Profile Views](https://komarev.com/ghpvc/?username=ad-archer)
 
+## Table of Contents
+
+- [Featured Projects](#featured-projects)
+- [Tech Stack](#tech-stack)
+- [Certifications](#certifications)
+- [Profile Statistics](#profile-statistics)
+- [Activities](#activities)
+- [Contact](#contact)
+
 ---
+
+## Featured Projects
+
+### PhillySocial
+
+A social networking platform designed specifically for Philadelphia residents and enthusiasts.
+[Live Demo](https://phillysocial.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/phillysocial)
+
+### MoviesNoir
+
+An app to share black culture through movies and films.
+[Live Demo](https://moviesnoir.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/moviesnoir)
+
+### TimeWise
+
+Efficient time management, mood tracker and productivity tracking tool.
+[Live Demo](https://timewise.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/timewise)
 
 ## Tech Stack
 
@@ -16,7 +40,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 ### Frameworks
 
@@ -31,7 +55,31 @@
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
 [![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
 
+### Currently Learning
+
+[![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://golang.org/)
+[![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org/)
+[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+
 [![Click Here for All My Repos](https://img.shields.io/badge/All_My_Repositories-1F222E?style=for-the-badge&logo=github&logoColor=white&border=2px+solid+%23F85D7F)](https://github.com/AD-Archer)
+
+## Certifications
+
+### PCEP™ – Certified Entry-Level Python Programmer
+
+- **Issuer**: Python Institute
+- **Date**: June 2024
+
+### React Development Certification
+
+- **Issuer**: Codecademy
+- **Date**: February 2025
+
+### AI & Machine Learning Fundamentals
+
+- **Issuer**: Databricks
+- **Date**: November 2024
+- **Expires**: November 2026
 
 ## Profile Statistics
 
@@ -57,4 +105,9 @@
 
 ## Contact
 
-Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/antonio-archer/) or [GitHub](https://github.com/AD-Archer)
+### Connect With Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/antonio-archer/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=todoist&logoColor=white)](https://antonioarcher.com)
+
+I'm open to freelance projects, collaboration opportunities, and full-time positions. Feel free to reach out if you'd like to work together!
