@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import styled from 'styled-components';
 import { NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import { usePreview } from '../context/PreviewContext';

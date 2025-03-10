@@ -113,8 +113,8 @@ const DoesNotExist = () => {
       <ErrorCode variants={itemVariants}>404</ErrorCode>
       <Title variants={itemVariants}>Page Not Found</Title>
       <Description variants={itemVariants}>
-        Oops! Looks like you've ventured into uncharted territory. 
-        Don't worry though, let's get you back on track!
+        Oops! Looks like you&apos;ve ventured into uncharted territory. 
+        Don&apos;t worry though, let&apos;s get you back on track!
       </Description>
 
       <NavigationGrid variants={itemVariants}>

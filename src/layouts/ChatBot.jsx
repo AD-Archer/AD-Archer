@@ -316,7 +316,7 @@ const ChatBot = () => {
       document.removeEventListener("mousedown", handleClickOutside, true);
       document.removeEventListener("touchstart", handleClickOutside, true);
     };
-  }, [isChatOpen, sessionStartTime]);
+  }, [isChatOpen, sessionStartTime, setIsChatOpen]);
 
   const parseMessageContent = (content) => {
     // Convert markdown-style links to HTML with specific styling

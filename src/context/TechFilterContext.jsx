@@ -1,7 +1,10 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 const TechFilterContext = createContext();
+
+// This is a fallback for any imports that haven't been updated yet
+export const useTechFilter = () => useContext(TechFilterContext);
 
 export const TechFilterProvider = ({ children }) => {
   const [selectedTech, setSelectedTech] = useState(null);
@@ -23,4 +26,5 @@ TechFilterProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const useTechFilter = () => useContext(TechFilterContext); 
+// Export the context for use in the hook file
+export { TechFilterContext }; 

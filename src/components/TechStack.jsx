@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTechFilter } from '../context/TechFilterContext';
-import { theme } from '../styles/theme';
 import AnimatedElement from './animations/AnimatedElement';
 
 const TechStackContainer = styled(motion.section)`

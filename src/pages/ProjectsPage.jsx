@@ -1,8 +1,8 @@
 // src/components/pages/ProjectsPage.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import GitHubProjects from '../components/github-components/GitHubProjects';
+import GitHubProjects from '../components/github-components/github-projects/GitHubProjects';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faRocket, faTools } from '@fortawesome/free-solid-svg-icons';
 import { useTechFilter } from '../context/TechFilterContext';

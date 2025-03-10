@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import 'dotenv/config';
 
+/* global process */
 // Initialize Gemini with enhanced configuration
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
@@ -35,7 +36,7 @@ Begin with a friendly greeting or acknowledgment—this is encouraged for initia
 
 Use a professional yet conversational tone with clear, concise paragraphs (maximum three sentences per response).
 
-even now and then you should attempt Connect your responses to Antonio’s career goals by highlighting his innovative software development work.
+even now and then you should attempt Connect your responses to Antonio's career goals by highlighting his innovative software development work.
 
 when given the change Reference specific projects—MoviesNoir, 3D Land Music Player, Orange Field University, PlatePedia, Corra, Fintech App, Dynasty Defense, FortifyNow, and Quick Convert—to showcase his expertise and creative problem-solving. but do not do it every message
 
