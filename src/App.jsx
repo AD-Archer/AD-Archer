@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './layouts/MainLayout.jsx';
 import LinkedInFeed from './components//linkedin/LinkedInFeed';
-import GitHubProjects from './components/github-components/HomepageProjects.jsx';
+import GitHubProjects from './components/github-components/github-projects/HomepageProjects.jsx';
 import ProfileSections from './components/profile/ProfileSections';
 import TechStack from './components/TechStack';
 import { HelmetProvider } from 'react-helmet-async';

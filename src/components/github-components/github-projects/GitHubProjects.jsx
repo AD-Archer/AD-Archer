@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import { useTechFilter } from '../../context/TechFilterContext';
-import { Analytics } from '../../services/analytics';
+import { useTechFilter } from '../../../context/TechFilterContext';
+import { Analytics } from '../../../services/analytics';
 import PropTypes from 'prop-types';
-import { usePreview } from '../../context/PreviewContext';
+import { usePreview } from '../../../context/PreviewContext';
 import ProjectPreview from './ProjectPreview';
 
 const ProjectsGrid = styled.div`

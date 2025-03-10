@@ -1,9 +1,9 @@
 import { motion, useInView } from 'framer-motion';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import { useTechFilter } from '../../context/TechFilterContext';
-import { Analytics } from '../../services/analytics';
-import { usePreview } from '../../context/PreviewContext';
+import { useTechFilter } from '../../../context/TechFilterContext';
+import { Analytics } from '../../../services/analytics';
+import { usePreview } from '../../../context/PreviewContext';
 import ProjectPreview from './ProjectPreview';
 
 const ProjectsGrid = styled.div`
@@ -366,9 +366,17 @@ const HomepageProjects = () => {
     setPreviewUrl(null);
     setIsPreviewActive(false);
     
+    // Fix: Don't try to scroll immediately after closing preview
+    // Delay scrolling until after modal cleanup is complete
     setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+      // Only scroll if we're not on mobile, to avoid positioning issues
+      if (!isMobile && projectsRef.current) {
+        projectsRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'nearest' // Only scroll the minimum amount needed
+        });
+      }
+    }, 300); // Longer timeout to ensure modal cleanup is complete
   };
 
   const handleExternalLinkClick = (url, projectTitle, linkType) => {
@@ -381,24 +389,29 @@ const HomepageProjects = () => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
       
-      // Remove the scroll position adjustment that might be causing issues
-      // Only check visibility without scrolling
+      // Remove scroll adjustment for mobile
       if (isMobile && projectsRef.current) {
-        const rect = projectsRef.current.getBoundingClientRect();
         // Just check visibility without scrolling
-        if (rect.top < 0 || rect.bottom > window.innerHeight) {
-          // Don't scroll, just log for debugging
-          console.log('Projects section visibility:', { 
-            top: rect.top, 
-            bottom: rect.bottom,
-            windowHeight: window.innerHeight
-          });
-        }
+        const rect = projectsRef.current.getBoundingClientRect();
+        console.log('Projects section visibility:', rect);
       }
     }, 300);
     
-    return () => clearTimeout(timer);
-  }, [isMobile, displayProjects.length]);
+    // Handle orientation changes
+    const handleOrientationChange = () => {
+      // Force layout recalculation on orientation change
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 200);
+    };
+    
+    window.addEventListener('orientationchange', handleOrientationChange);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, [isMobile]);
 
   return (
     <ProjectsSection>
