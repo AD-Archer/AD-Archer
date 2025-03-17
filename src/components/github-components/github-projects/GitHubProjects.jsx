@@ -223,7 +223,7 @@ const projects = [
   {
     title: "Philly Social",
     description: "A social media platform for the city of Philadelphia. It has bulit in public and private channels as well as events and rss news feed as well as places to support local businesses. bulit with nextjs typescript and firebase. It was made in 30 hours for philly codefest 2025 with the help of Mohamed Souare, Bryan Gunawan, and Sianni Strikland.",
-    techStack: ["Next.js", "Typescript", "Firebase"],
+    techStack: ["Next.js", "Typescript", "Firebase", "Redis"],
     categories: ["Full-stack Apps"],
     siteLink: "https://phillysocial.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Philly-Social",
@@ -239,8 +239,8 @@ const projects = [
   {
     title: "TimeWise",
     description: "A mental health app with a mood tracker, meditation mode, and a cozy time management tool with a pomodoro timer with youtube or spotify playlists for music.",
-    techStack: ["React", "Node.js", "YouTube API", "Spotify API", "AI"],
-    categories: ["Full-stack", "Utilities"],
+    techStack: ["React", "Next.js", "YouTube API", "Spotify API", "AI"],
+    categories: ["Full-stack Apps", "Utilities"],
     siteLink: "https://timewise.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/TimeWise",
   },
@@ -255,7 +255,7 @@ const projects = [
   {
     title: "AI Stock Market Analysis",
     description: "A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns.",
-    techStack: ["React", "Flask", "Python", "OpenAI API", "AI"],
+    techStack: ["React", "Flask", "Python", "OpenAI API", "AI", "Typescript"],
     categories: ["Full-stack Apps"],
     siteLink: "https://stocks.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/ai-stock-market-analysis",
@@ -335,14 +335,6 @@ const hiddenProjects = [
     categories: ["Utilities"],
     siteLink: "https://qr.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Qr-code-generator",
-  },
-  {
-    title: "3D Land Music Player",
-    description: "A YouTube music player designed to play embedded YouTube playlists.",
-    techStack: ["React", "Node.js", "YouTube API"],
-    categories: ["Frontend Apps"],
-    siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player",
   },
   {
     title: "Retro Audio Maker",

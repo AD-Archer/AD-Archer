@@ -101,12 +101,33 @@ TECHNOLOGY SKILLS:
 Antonio excels with modern frontend technologies (React, Next.js, HTML5, CSS3, JavaScript, Vite, flask, python, node, postgres, mysql, mongodb, firebase, vercel, linux selfhosting, caddy, duckdns, ), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.
 `;
 
-async function handleChatMessage(userMessage) {
-  // Combine the system context with the user's message
-  const prompt = `${SYSTEM_CONTEXT}\n\nUser: ${userMessage}\n\nAssistant:`;
+// Store conversation history for each session
+const sessions = new Map();
+
+async function handleChatMessage(userMessage, sessionId) {
+  // Create a new session if it doesn't exist
+  if (!sessions.has(sessionId)) {
+    sessions.set(sessionId, []);
+  }
   
-  // Generate the response using Gemini AI
-  const result = await model.generateContent(prompt);
+  // Get the conversation history for this session
+  const history = sessions.get(sessionId);
+  
+  // Add the user message to history
+  history.push({ role: "user", parts: userMessage });
+  
+  // Create the chat with history
+  const chat = model.startChat({
+    history: history.slice(0, -1), // Use previous messages as history
+    generationConfig: {
+      maxOutputTokens: 1500,
+      temperature: 0.7,
+      topP: 0.95,
+    },
+  });
+  
+  // Send the system context and user message
+  const result = await chat.sendMessage(`${SYSTEM_CONTEXT}\n\nUser: ${userMessage}\n\nAssistant:`);
   const response = await result.response;
   
   // Extract response text
@@ -114,6 +135,14 @@ async function handleChatMessage(userMessage) {
   
   if (!responseText) {
     throw new Error('Empty response from AI');
+  }
+  
+  // Add the assistant's response to history
+  history.push({ role: "model", parts: responseText });
+  
+  // Limit history to last 10 messages to prevent token limit issues
+  if (history.length > 20) {
+    history.splice(0, 2); // Remove oldest user-assistant pair
   }
   
   return {
@@ -140,7 +169,7 @@ function validateMessage(message) {
   return { isValid: true };
 }
 
-async function chatHandler(message) {
+async function chatHandler(message, sessionId) {
   const validation = validateMessage(message);
   if (!validation.isValid) {
     return {
@@ -148,12 +177,12 @@ async function chatHandler(message) {
       error: validation.error,
     };
   }
-  return await handleChatMessage(message);
+  return await handleChatMessage(message, sessionId);
 }
 
 // Named export for local/integrated usage
-export async function chat(message) {
-  return await chatHandler(message);
+export async function chat(message, sessionId = 'default') {
+  return await chatHandler(message, sessionId);
 }
 
 // Vercel Serverless API handler (default export)
@@ -162,8 +191,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
   try {
-    const { message } = req.body;
-    const result = await chatHandler(message);
+    const { message, sessionId = req.headers['x-session-id'] || 'default' } = req.body;
+    const result = await chatHandler(message, sessionId);
     res.status(200).json(result);
   } catch (error) {
     console.error("Chat API Error:", error);

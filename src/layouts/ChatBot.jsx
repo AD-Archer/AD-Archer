@@ -263,7 +263,15 @@ const LoadingDots = styled.div`
 `;
 
 const ChatBot = () => {
-  const { isChatOpen, setIsChatOpen } = useChatContext();
+  const { 
+    isChatOpen, 
+    setIsChatOpen, 
+    sessionId, 
+    chatHistory, 
+    setChatHistory,
+    resetSession 
+  } = useChatContext();
+  
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -276,6 +284,28 @@ const ChatBot = () => {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const [sessionStartTime, setSessionStartTime] = useState(null);
+
+  useEffect(() => {
+    if (sessionId) {
+      if (chatHistory[sessionId]) {
+        setMessages(chatHistory[sessionId]);
+      } else if (messages.length > 1) {
+        setChatHistory(prev => ({
+          ...prev,
+          [sessionId]: messages
+        }));
+      }
+    }
+  }, [sessionId, chatHistory, setChatHistory]);
+
+  useEffect(() => {
+    if (sessionId && messages.length > 0) {
+      setChatHistory(prev => ({
+        ...prev,
+        [sessionId]: messages
+      }));
+    }
+  }, [messages, sessionId, setChatHistory]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -296,7 +326,6 @@ const ChatBot = () => {
       document.addEventListener("mousedown", handleClickOutside, true);
       document.addEventListener("touchstart", handleClickOutside, true);
       
-      // Track chat open event
       if (!sessionStartTime) {
         setSessionStartTime(Date.now());
         Analytics.trackEvent({
@@ -306,7 +335,6 @@ const ChatBot = () => {
         });
       }
     } else if (sessionStartTime) {
-      // Track chat session duration when closing
       const sessionDuration = Math.floor((Date.now() - sessionStartTime) / 1000);
       Analytics.trackTimeOnPage('Chat Window', sessionDuration);
       setSessionStartTime(null);
@@ -319,19 +347,15 @@ const ChatBot = () => {
   }, [isChatOpen, sessionStartTime, setIsChatOpen]);
 
   const parseMessageContent = (content) => {
-    // Convert markdown-style links to HTML with specific styling
     content = content.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g, 
       '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>'
     );
     
-    // Convert code blocks
     content = content.replace(/`([^`]+)`/g, '<code>$1</code>');
     
-    // Convert line breaks while preserving link functionality
     content = content.replace(/\n/g, '<br>');
     
-    // Use DOMPurify with specific config to allow links
     return DOMPurify.sanitize(content, {
       ALLOWED_TAGS: ['a', 'br', 'code', 'strong', 'em', 'p'],
       ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
@@ -341,12 +365,11 @@ const ChatBot = () => {
   };
 
   const handleSend = async () => {
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || !sessionId) return;
 
     const userMessage = { role: "user", content: inputMessage, type: "text" };
     setMessages(prev => [...prev, userMessage]);
     
-    // Track user message
     Analytics.trackEvent({
       category: 'Chat',
       action: 'Send Message',
@@ -357,13 +380,16 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      // Use the correct API endpoint URL
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Session-ID": sessionId
         },
-        body: JSON.stringify({ message: inputMessage }),
+        body: JSON.stringify({ 
+          message: inputMessage,
+          sessionId: sessionId
+        }),
       });
 
       if (!response.ok) {
@@ -380,7 +406,6 @@ const ChatBot = () => {
           type: "html"
         }]);
         
-        // Track successful response
         Analytics.trackEvent({
           category: 'Chat',
           action: 'Received Response',
@@ -392,14 +417,12 @@ const ChatBot = () => {
     } catch (error) {
       console.error("Chat API Error:", error);
       
-      // Add error message to chat
       setMessages(prev => [...prev, { 
         role: "assistant", 
         content: "Sorry, I'm having trouble connecting right now. Please try again later or contact Antonio directly.",
         type: "text"
       }]);
       
-      // Track error
       Analytics.trackEvent({
         category: 'Chat',
         action: 'Error',
@@ -414,11 +437,28 @@ const ChatBot = () => {
     const newState = !isChatOpen;
     setIsChatOpen(newState);
     
-    // Track toggle action
     Analytics.trackEvent({
       category: 'Chat',
       action: newState ? 'Open' : 'Close',
       label: 'Chat Button'
+    });
+  };
+
+  const clearChatHistory = () => {
+    setMessages([
+      {
+        role: "assistant",
+        content: "Hi! I'm Charmi. Antonio's AI assistant. Ask me anything about his experience, skills, or background!",
+        type: "text"
+      }
+    ]);
+    
+    resetSession();
+    
+    Analytics.trackEvent({
+      category: 'Chat',
+      action: 'Clear History',
+      label: 'Chat History'
     });
   };
 
@@ -437,9 +477,24 @@ const ChatBot = () => {
           >
             <ChatHeader>
               <h5>Chat with Charmi</h5>
-              <button onClick={() => setIsChatOpen(false)}>
-                <X size={20} />
-              </button>
+              <div>
+                {messages.length > 1 && (
+                  <button 
+                    onClick={clearChatHistory}
+                    style={{ marginRight: '10px' }}
+                    title="Clear chat history"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                )}
+                <button onClick={() => setIsChatOpen(false)}>
+                  <X size={20} />
+                </button>
+              </div>
             </ChatHeader>
 
             <MessageContainer>
