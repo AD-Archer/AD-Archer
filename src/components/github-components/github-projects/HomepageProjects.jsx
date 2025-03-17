@@ -218,16 +218,24 @@ const projects = [
 
   },
   {
+    title: "AI Stock Market Analysis",
+    description: "A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns.",
+    techStack: ["React", "Flask", "Python", "OpenAI API", "AI"],
+    categories: ["Full-stack Apps"],
+    siteLink: "https://stocks.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/ai-stock-market-analysis",
+  },
+  {
     title: "TimeWise",
-    description: "A cozy time management tool with a pomodoro timer and youtube playlists for music.",
-    techStack: ["React", "Node.js", "YouTube API"],
+    description: "A mental health app with a mood tracker, meditation mode, and a cozy time management tool with a pomodoro timer with youtube or spotify playlists for music.",
+    techStack: ["React", "Node.js", "YouTube API", "Spotify API", "AI"],
     siteLink: "https://timewise.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/TimeWise",
   },
   {
     title: "Orange Field University",
     description: "A Next.js web application for managing student courses and academic progress. Features user authentication, course enrollment, academic progress tracking, and responsive design.",
-    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack", "Typescript"],
+    techStack: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack", "Typescript", "AI"],
     siteLink: "https://university-orange-field.vercel.app/",
     repoLink: "https://github.com/AD-Archer/University-OrangeField"
   },
@@ -241,7 +249,7 @@ const projects = [
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
-    techStack: ["React", "Gemini-AI", "Node.js","Express"],
+    techStack: ["React", "AI", "Node.js","Express"],
     siteLink: "https://corra.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/corra"
   },
@@ -351,15 +359,26 @@ const HomepageProjects = () => {
   };
 
   const handlePreviewClick = (project) => {
-    setPreviewUrl(project.siteLink);
-    setPreviewTitle(project.title);
-    setIsPreviewActive(true);
+    // DISABLED: Preview functionality is temporarily disabled
+    // Display a message to the user instead
+    // alert('Preview functionality is temporarily disabled. Please visit the live site directly.');
     
-    Analytics.trackEvent({
-      category: 'Projects',
-      action: 'Preview Site',
-      label: project.title
-    });
+    // Directly open the site in a new tab instead of showing preview
+    if (project.siteLink) {
+      window.open(project.siteLink, '_blank', 'noopener,noreferrer');
+      
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: 'External Link Click',
+        label: `${project.title} - Site Link (Preview Disabled)`
+      });
+    } else {
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: 'Preview Site (Disabled)',
+        label: project.title
+      });
+    }
   };
 
   const handleClosePreview = () => {

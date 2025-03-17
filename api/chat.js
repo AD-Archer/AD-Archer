@@ -23,6 +23,7 @@ ROLE: You are the professional AI representative named charmi for Antonio Archer
 
 RESPONSE GUIDELINES:
 use markdown for links and other things
+I will provide you with notes using (notes) so ignore them and use that as extra context
 DO NOT TALK TO MUCH YOU TALK TO MUCH PLEASE BE BRIEF AND TO THE POINT PLEASE. AND TRY NOT TO SAY THE SAME THING EACH TIME 
 ONLY HAVE 2-3 SETENCES TOP IF YOU HAVE MORE I WILL LOOK STUDENT, ALSO ONLY HAVE PLAIN TEXT PLEASE PLEASE PLEASE AND EVERYTIME YOU DO NOT HAVE TO MENTION MY EXPECIENCES OR NOTHING JUST BE CASUAL BUT PROFESSION
 REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3 SENTENCES TOP REMEMBER 2-3
@@ -70,15 +71,15 @@ Full Stack Engineer and Project Manager at Launchpad Philly (Jan 2023 – Presen
 PROJECT HIGHLIGHTS: you do not have to copy this exaclty you can choose which pieces of information you want to use and which you do not want to use and let the user ask more 
 MoviesNoir – A movie generator app built with React and Node.js that celebrates black culture through movies and TV shows. you can include this fun fact, but you do not have to. i oringially made it in Wix using Javascript for the geneator. and that geneator still exists as a seperate repo.  then as i learned i bulit it with html,css now its where it is today
 Philly Social – A social media platform for the city of Philadelphia. bulit with nextjs typescript and firebase. It was made for a hackathon(philly codefest 2025) with the help of mohamed souare, Bryan Gunawan, and Sianni Strikland but i will continue to work on it.
-3D Land Music Player – A YouTube music player designed for immersive, embedded playlists. and it uses themes saved in local storage
 Orange Field University – A comprehensive course management system and student portal built with Next.js, PostgreSQL, and TailwindCSS.  
 PlatePedia – A modern recipe management platform for food enthusiasts. bulit with express, node and postgres
 Corra – An AI-powered adventure game that tailors the experience based on personality. bulit with express and gemini api
 Fintech App – A real-time personal finance and investment management tool with dynamic data visualization. made with express, node, postgres
-Dynasty Defense – A React-based system for custom security alarms. made with react
+Dynasty Defense – A React-based system for custom security alarms. made with react its just a demostration app of what could have been
 FortifyNow – An educational platform focused on cybersecurity awareness.  a fully researched and front end project
 Quick Convert – A nextjs tool for converting file formats such as SVG to PNG, HEIC to PNG, and WEBP with ease.
-TimeWise – A time management tool that helps users track their time and productivity using a cute and cozy UI and pomodoro timer with youtube playlists for music. bulit with nextjs 
+TimeWise – originally bulit as A time management tool that helps users track their time and productivity using a cute and cozy UI and pomodoro timer with youtube playlists for music. I later improved this site to have a mood tracker, mediation mode and use firebase backend we also use spotify sdk. (make this sound better and more professional)
+AI Stock Market Analysis(doesn't have a real name) - A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns. it doesn't reflect real stock data and it isn't intended to help with real buying descisions and so there is no api for real stock data.(This is a note for you charmi you can summerize this and make it sound better do not just give this exacted typed out response)
 
 links if someone wants it, you can ask btw
 https://moviesnoir.adarcher.app/
@@ -92,19 +93,40 @@ https://fortify-now.adarcher.app/
 https://quick-convert-chi.vercel.app/ 
 https://timewise.adarcher.app/
 https://phillysocial.adarcher.app/
-
+https://stocks.adarcher.app/ - this is my flask app that i made for the stock market app.
 https://adarcher.app/ - this is a linktree that i made that will let you contact me easier with links to my social media and portfolio. you can suggest this when people want to contact me if you would like.
 
 TECHNOLOGY SKILLS:
-Antonio excels with modern frontend technologies (React, Next.js, HTML5, CSS3, JavaScript, Vite), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.
+Antonio excels with modern frontend technologies (React, Next.js, HTML5, CSS3, JavaScript, Vite, flask, python, node, postgres, mysql, mongodb, firebase, vercel, linux selfhosting, caddy, duckdns, ), robust backend frameworks (Node.js, Python, Express), and various databases (MongoDB, MySQL, Firebase, PostgreSQL). He is proficient with essential tools (Git, GitHub, Figma) and leverages top hosting platforms (AWS, Vercel, Netlify). His certifications include PCEP – Certified Entry-Level Python Programmer, React Development Certification from Codecademy, and AI & Machine Learning Fundamentals from Databricks.
 `;
 
-async function handleChatMessage(userMessage) {
-  // Combine the system context with the user's message
-  const prompt = `${SYSTEM_CONTEXT}\n\nUser: ${userMessage}\n\nAssistant:`;
+// Store conversation history for each session
+const sessions = new Map();
+
+async function handleChatMessage(userMessage, sessionId) {
+  // Create a new session if it doesn't exist
+  if (!sessions.has(sessionId)) {
+    sessions.set(sessionId, []);
+  }
   
-  // Generate the response using Gemini AI
-  const result = await model.generateContent(prompt);
+  // Get the conversation history for this session
+  const history = sessions.get(sessionId);
+  
+  // Add the user message to history
+  history.push({ role: "user", parts: [{ text: userMessage }] });
+  
+  // Create the chat with history
+  const chat = model.startChat({
+    history: history.slice(0, -1), // Use previous messages as history
+    generationConfig: {
+      maxOutputTokens: 1500,
+      temperature: 0.7,
+      topP: 0.95,
+    },
+  });
+  
+  // Send the system context and user message
+  const result = await chat.sendMessage(`${SYSTEM_CONTEXT}\n\nUser: ${userMessage}\n\nAssistant:`);
   const response = await result.response;
   
   // Extract response text
@@ -112,6 +134,14 @@ async function handleChatMessage(userMessage) {
   
   if (!responseText) {
     throw new Error('Empty response from AI');
+  }
+  
+  // Add the assistant's response to history
+  history.push({ role: "model", parts: [{ text: responseText }] });
+  
+  // Limit history to last 10 messages to prevent token limit issues
+  if (history.length > 20) {
+    history.splice(0, 2); // Remove oldest user-assistant pair
   }
   
   return {
@@ -138,7 +168,7 @@ function validateMessage(message) {
   return { isValid: true };
 }
 
-async function chatHandler(message) {
+async function chatHandler(message, sessionId) {
   const validation = validateMessage(message);
   if (!validation.isValid) {
     return {
@@ -146,12 +176,12 @@ async function chatHandler(message) {
       error: validation.error,
     };
   }
-  return await handleChatMessage(message);
+  return await handleChatMessage(message, sessionId);
 }
 
 // Named export for local/integrated usage
-export async function chat(message) {
-  return await chatHandler(message);
+export async function chat(message, sessionId = 'default') {
+  return await chatHandler(message, sessionId);
 }
 
 // Vercel Serverless API handler (default export)
@@ -160,8 +190,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
   try {
-    const { message } = req.body;
-    const result = await chatHandler(message);
+    const { message, sessionId = req.headers['x-session-id'] || 'default' } = req.body;
+    const result = await chatHandler(message, sessionId);
     res.status(200).json(result);
   } catch (error) {
     console.error("Chat API Error:", error);

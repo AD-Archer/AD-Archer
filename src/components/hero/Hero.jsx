@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import antonioImage from '/images/antonioarcher.jpeg';
 
@@ -221,62 +221,8 @@ const ProjectTeaser = styled(motion.div)`
   }
 `;
 
-const TeaserContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-`;
 
-const TeaserIcon = styled(motion.div)`
-  font-size: 2rem;
-  color: ${props => props.theme.colors.accent};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  
-  @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-`;
 
-const TeaserText = styled.div`
-  h3 {
-    font-size: 1.3rem;
-    margin: 0 0 0.3rem 0;
-    color: ${props => props.theme.colors.primary};
-  }
-  
-  p {
-    font-size: 1rem;
-    margin: 0;
-    color: #555;
-  }
-  
-  @media (max-width: 768px) {
-    h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    p {
-      font-size: 0.9rem;
-    }
-  }
-`;
 
 const ScrollArrow = styled(motion.div)`
   color: ${props => props.theme.colors.accent};
@@ -504,25 +450,7 @@ const Hero = () => {
         transition={{ delay: 1.5, duration: 0.5 }}
         whileHover={{ y: -5 }}
       >
-        <TeaserContent>
-          <TeaserIcon
-            animate={{ 
-              scale: [1, 1.1, 1],
-              rotate: [0, 5, 0, -5, 0]
-            }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 3,
-              ease: "easeInOut"
-            }}
-          >
-            <FontAwesomeIcon icon={faLaptopCode} />
-          </TeaserIcon>
-          <TeaserText>
-            <h3>Hey you should look down here</h3>
-            <p>Scroll down to see what I&apos;ve been working on</p>
-          </TeaserText>
-        </TeaserContent>
+        
         <ScrollArrow
           animate={{ y: [0, 10, 0] }}
           transition={{ 

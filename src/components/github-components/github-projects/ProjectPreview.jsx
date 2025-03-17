@@ -152,6 +152,9 @@ const ProjectPreview = ({
   setHasSeenPreview = () => {},
   analyticsCategory = 'Projects'
 }) => {
+  // Early return if preview is not open (this will always be the case when preview is disabled)
+  if (!isOpen) return null;
+  
   // Create a ref for the content wrapper
   const contentRef = useRef(null);
   
@@ -347,8 +350,6 @@ const ProjectPreview = ({
       handleClose(e);
     }
   }, [handleClose]);
-  
-  if (!isOpen) return null;
   
   return (
     <ModalOverlay

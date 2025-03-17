@@ -223,7 +223,7 @@ const projects = [
   {
     title: "Philly Social",
     description: "A social media platform for the city of Philadelphia. It has bulit in public and private channels as well as events and rss news feed as well as places to support local businesses. bulit with nextjs typescript and firebase. It was made in 30 hours for philly codefest 2025 with the help of Mohamed Souare, Bryan Gunawan, and Sianni Strikland.",
-    techStack: ["Next.js", "Typescript", "Firebase"],
+    techStack: ["Next.js", "Typescript", "Firebase", "Redis"],
     categories: ["Full-stack Apps"],
     siteLink: "https://phillysocial.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Philly-Social",
@@ -238,9 +238,9 @@ const projects = [
   },
   {
     title: "TimeWise",
-    description: "A cozy time management tool with a pomodoro timer and youtube playlists for music.",
-    techStack: ["React", "Node.js", "YouTube API"],
-    categories: ["Frontend Apps", "Utilities"],
+    description: "A mental health app with a mood tracker, meditation mode, and a cozy time management tool with a pomodoro timer with youtube or spotify playlists for music.",
+    techStack: ["React", "Next.js", "YouTube API", "Spotify API", "AI"],
+    categories: ["Full-stack Apps", "Utilities"],
     siteLink: "https://timewise.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/TimeWise",
   },
@@ -251,6 +251,14 @@ const projects = [
     categories: ["Utilities", "Frontend Apps"],
     siteLink: "https://www.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/tree",
+  },
+  {
+    title: "AI Stock Market Analysis",
+    description: "A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns.",
+    techStack: ["React", "Flask", "Python", "OpenAI API", "AI", "Typescript"],
+    categories: ["Full-stack Apps"],
+    siteLink: "https://stocks.adarcher.app/",
+    repoLink: "https://github.com/AD-Archer/ai-stock-market-analysis",
   },
   {
     title: "Orange Field University",
@@ -271,7 +279,7 @@ const projects = [
   {
     title: "Corra",
     description: "Create your Own Really Real Adventure game using AI to figure out your personality test and create an adventure for you based off of it.",
-    techStack: ["React", "Gemini-AI", "Node.js", "Express"],
+    techStack: ["React", "AI", "Node.js", "Express"],
     categories: ["Frontend Apps"],
     siteLink: "https://corra-tau.vercel.app/",
     repoLink: "https://github.com/AD-Archer/corra",
@@ -327,14 +335,6 @@ const hiddenProjects = [
     categories: ["Utilities"],
     siteLink: "https://qr.adarcher.app/",
     repoLink: "https://github.com/AD-Archer/Qr-code-generator",
-  },
-  {
-    title: "3D Land Music Player",
-    description: "A YouTube music player designed to play embedded YouTube playlists.",
-    techStack: ["React", "Node.js", "YouTube API"],
-    categories: ["Frontend Apps"],
-    siteLink: "https://ad-archer.github.io/3d-land-player/",
-    repoLink: "https://github.com/AD-Archer/3d-land-player",
   },
   {
     title: "Retro Audio Maker",
@@ -415,11 +415,23 @@ const GitHubProjects = ({ initialCategory }) => {
     : projects;
 
   const handlePreviewClick = (project) => {
-    setPreviewUrl(project.siteLink);
-    setPreviewTitle(project.title);
-    setIsPreviewActive(true);
+    // DISABLED: Preview functionality is temporarily disabled
+    // Display a message to the user instead
+    // alert('Preview functionality is temporarily disabled. Please visit the live site directly.');
     
+    // Track the click event
     Analytics.trackProjectPreview(project.title);
+    
+    // Directly open the site in a new tab instead of showing preview
+    if (project.siteLink) {
+      window.open(project.siteLink, '_blank', 'noopener,noreferrer');
+      
+      Analytics.trackEvent({
+        category: 'Projects',
+        action: 'External Link Click',
+        label: `${project.title} - Site Link (Preview Disabled)`
+      });
+    }
     
     // Track if hidden project is revealed
     if (hiddenProjects.some(p => p.title === project.title)) {
