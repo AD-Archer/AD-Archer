@@ -71,16 +71,15 @@ Full Stack Engineer and Project Manager at Launchpad Philly (Jan 2023 – Presen
 PROJECT HIGHLIGHTS: you do not have to copy this exaclty you can choose which pieces of information you want to use and which you do not want to use and let the user ask more 
 MoviesNoir – A movie generator app built with React and Node.js that celebrates black culture through movies and TV shows. you can include this fun fact, but you do not have to. i oringially made it in Wix using Javascript for the geneator. and that geneator still exists as a seperate repo.  then as i learned i bulit it with html,css now its where it is today
 Philly Social – A social media platform for the city of Philadelphia. bulit with nextjs typescript and firebase. It was made for a hackathon(philly codefest 2025) with the help of mohamed souare, Bryan Gunawan, and Sianni Strikland but i will continue to work on it.
-3D Land Music Player – A YouTube music player designed for immersive, embedded playlists. and it uses themes saved in local storage
 Orange Field University – A comprehensive course management system and student portal built with Next.js, PostgreSQL, and TailwindCSS.  
 PlatePedia – A modern recipe management platform for food enthusiasts. bulit with express, node and postgres
 Corra – An AI-powered adventure game that tailors the experience based on personality. bulit with express and gemini api
 Fintech App – A real-time personal finance and investment management tool with dynamic data visualization. made with express, node, postgres
-Dynasty Defense – A React-based system for custom security alarms. made with react
+Dynasty Defense – A React-based system for custom security alarms. made with react its just a demostration app of what could have been
 FortifyNow – An educational platform focused on cybersecurity awareness.  a fully researched and front end project
 Quick Convert – A nextjs tool for converting file formats such as SVG to PNG, HEIC to PNG, and WEBP with ease.
-TimeWise – originally bulit as A time management tool that helps users track their time and productivity using a cute and cozy UI and pomodoro timer with youtube playlists for music. I later improved this site to have a mood tracker, mediation mode and use firebase backend. (make this sound better and more professional)
-AI Stock Market Analysis(doesn't have a real name) - A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns.(This is a note for you charmi you can summerize this and make it sound better do not just give this exacted typed out response)
+TimeWise – originally bulit as A time management tool that helps users track their time and productivity using a cute and cozy UI and pomodoro timer with youtube playlists for music. I later improved this site to have a mood tracker, mediation mode and use firebase backend we also use spotify sdk. (make this sound better and more professional)
+AI Stock Market Analysis(doesn't have a real name) - A demostration of my flask skills and self hosting skills. I bulit this using react as my frontend and python as my backend it uses open ai api to generate recommendations based on stock data. it allows for the user to input stock data or use the default stock data we provide and get recommendations. this site is also hosted locally on a 2011 macbook pro running ubuntu using a caddy reverse proxy and duckdns ddns. it doesn't reflect real stock data and it isn't intended to help with real buying descisions and so there is no api for real stock data.(This is a note for you charmi you can summerize this and make it sound better do not just give this exacted typed out response)
 
 links if someone wants it, you can ask btw
 https://moviesnoir.adarcher.app/
@@ -114,7 +113,7 @@ async function handleChatMessage(userMessage, sessionId) {
   const history = sessions.get(sessionId);
   
   // Add the user message to history
-  history.push({ role: "user", parts: userMessage });
+  history.push({ role: "user", parts: [{ text: userMessage }] });
   
   // Create the chat with history
   const chat = model.startChat({
@@ -138,7 +137,7 @@ async function handleChatMessage(userMessage, sessionId) {
   }
   
   // Add the assistant's response to history
-  history.push({ role: "model", parts: responseText });
+  history.push({ role: "model", parts: [{ text: responseText }] });
   
   // Limit history to last 10 messages to prevent token limit issues
   if (history.length > 20) {
