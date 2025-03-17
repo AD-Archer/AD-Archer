@@ -6,7 +6,6 @@
 
 ## Table of Contents
 
-- [Featured Projects](#featured-projects)
 - [Tech Stack](#tech-stack)
 - [Certifications](#certifications)
 - [Profile Statistics](#profile-statistics)
@@ -14,23 +13,6 @@
 - [Contact](#contact)
 
 ---
-
-## Featured Projects
-
-### PhillySocial
-
-A social networking platform designed specifically for Philadelphia residents and enthusiasts.
-[Live Demo](https://phillysocial.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/phillysocial)
-
-### MoviesNoir
-
-An app to share black culture through movies and films.
-[Live Demo](https://moviesnoir.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/moviesnoir)
-
-### TimeWise
-
-Efficient time management, mood tracker and productivity tracking tool.
-[Live Demo](https://timewise.adarcher.app) | [GitHub Repo](https://github.com/ad-archer/timewise)
 
 ## Tech Stack
 
