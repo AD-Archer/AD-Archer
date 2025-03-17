@@ -35,6 +35,17 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')  
     }
   },
+  // Add server configuration with proxy for API requests
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

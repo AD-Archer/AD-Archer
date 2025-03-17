@@ -7,7 +7,16 @@ const PreviewContext = createContext();
 export const usePreview = () => useContext(PreviewContext);
 
 export const PreviewProvider = ({ children }) => {
-  const [isPreviewActive, setIsPreviewActive] = useState(false);
+  // DISABLED: Preview functionality is temporarily disabled
+  // const [isPreviewActive, setIsPreviewActive] = useState(false);
+  
+  // Always return false for isPreviewActive and a no-op function for setIsPreviewActive
+  // This effectively disables the preview functionality
+  const isPreviewActive = false;
+  const setIsPreviewActive = () => {
+    // No-op function - preview is disabled
+    console.log('Preview functionality is temporarily disabled');
+  };
 
   return (
     <PreviewContext.Provider value={{ isPreviewActive, setIsPreviewActive }}>

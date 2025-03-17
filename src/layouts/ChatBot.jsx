@@ -121,7 +121,7 @@ const MessageContainer = styled.div`
 
 const MessageWrapper = styled.div`
   display: flex;
-  justify-content: ${props => props.isUser ? 'flex-end' : 'flex-start'};
+  justify-content: ${props => props.$isUser ? 'flex-end' : 'flex-start'};
   margin: 0;
   width: 100%;
 `;
@@ -130,10 +130,10 @@ const Message = styled.div`
   max-width: 85%;
   padding: 0.8rem 1rem;
   border-radius: 12px;
-  background: ${props => props.isUser ? props.theme.colors.primary : props.theme.colors.background};
-  color: ${props => props.isUser ? 'white' : props.theme.colors.text};
-  border-bottom-right-radius: ${props => props.isUser ? '4px' : '12px'};
-  border-bottom-left-radius: ${props => !props.isUser ? '4px' : '12px'};
+  background: ${props => props.$isUser ? props.theme.colors.primary : props.theme.colors.background};
+  color: ${props => props.$isUser ? 'white' : props.theme.colors.text};
+  border-bottom-right-radius: ${props => props.$isUser ? '4px' : '12px'};
+  border-bottom-left-radius: ${props => !props.$isUser ? '4px' : '12px'};
   line-height: 1.5;
   font-size: 0.95rem;
   box-shadow: ${props => props.theme.shadows.subtle};
@@ -144,7 +144,7 @@ const Message = styled.div`
   }
 
   a {
-    color: ${props => props.isUser ? 'white' : props.theme.colors.primary};
+    color: ${props => props.$isUser ? 'white' : props.theme.colors.primary};
     text-decoration: underline;
     cursor: pointer;
     pointer-events: all;
@@ -164,7 +164,7 @@ const Message = styled.div`
   }
 
   code {
-    background: ${props => props.isUser ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'};
+    background: ${props => props.$isUser ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'};
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: monospace;
@@ -357,6 +357,7 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
+      // Use the correct API endpoint URL
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
@@ -364,6 +365,10 @@ const ChatBot = () => {
         },
         body: JSON.stringify({ message: inputMessage }),
       });
+
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
 
       const data = await response.json();
 
@@ -382,28 +387,27 @@ const ChatBot = () => {
           label: 'Success'
         });
       } else {
-        setMessages(prev => [...prev, { 
-          role: "assistant", 
-          content: data.error,
-          type: "text"
-        }]);
-        
-        // Track error response
-        Analytics.trackError(data.error, 'Chat API');
+        throw new Error(data.error || 'Unknown error occurred');
       }
     } catch (error) {
-      console.error("Error:", error);
-      setMessages(prev => [...prev, {
-        role: "assistant",
-        content: "I apologize, but I'm having trouble connecting right now. Please try again later.",
+      console.error("Chat API Error:", error);
+      
+      // Add error message to chat
+      setMessages(prev => [...prev, { 
+        role: "assistant", 
+        content: "Sorry, I'm having trouble connecting right now. Please try again later or contact Antonio directly.",
         type: "text"
       }]);
       
-      // Track connection error
-      Analytics.trackError('Connection Error', 'Chat API');
+      // Track error
+      Analytics.trackEvent({
+        category: 'Chat',
+        action: 'Error',
+        label: error.message
+      });
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const handleToggleChat = () => {
@@ -440,9 +444,9 @@ const ChatBot = () => {
 
             <MessageContainer>
               {messages.map((message, index) => (
-                <MessageWrapper key={index} isUser={message.role === "user"}>
+                <MessageWrapper key={index} $isUser={message.role === "user"}>
                   <Message
-                    isUser={message.role === "user"}
+                    $isUser={message.role === "user"}
                     dangerouslySetInnerHTML={{
                       __html: message.type === "html" 
                         ? message.content 
