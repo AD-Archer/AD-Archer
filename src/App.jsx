@@ -136,8 +136,6 @@ function App() {
                       
                       {/* Projects Page */}
                       <Route path="/projects" element={<ProjectsPage />} />
-                      {/* Add new resume route */}
-                      <Route path="/resume" element={<Resume />} />
                       <Route path="/contact" element={<Contact />} />
                       {/* Add 404 route at the end */}
                       <Route path="*" element={<DoesNotExist />} />
