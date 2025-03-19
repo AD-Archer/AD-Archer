@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/resume",
-      "destination": "/resume.pdf"
+      "destination": "https://adarcher.app/resume.pdf"
     },
     {
       "source": "/:path*",
