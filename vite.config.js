@@ -23,10 +23,6 @@ export default defineConfig({
           src: 'public/sitemap.xml',
           dest: ''
         },
-        {
-          src: 'public/resume.pdf',
-          dest: '',
-        }
       ]
     })
   ],

@@ -17,7 +17,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBot from './layouts/ChatBot.jsx';
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import GitHubStats from './components/github-components/GitHubStats.jsx';
-import Resume from "./pages/Resume.jsx";
 import Contact from './pages/Contact.jsx';
 import DoesNotExist from './pages/DoesNotExist.jsx';
 import { ChatProvider } from './context/ChatContext';
