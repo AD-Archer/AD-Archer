@@ -2,6 +2,7 @@
 
 import { withClientSide } from './client-component'
 import { motion } from 'framer-motion'
+import { jobs } from '@/lib/data'
 
 function InteractiveTimeline() {
   return (
@@ -14,9 +15,9 @@ function InteractiveTimeline() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Experience Timeline</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Professional Experience</h2>
             <p className="text-muted-foreground max-w-[800px]">
-              A journey through my professional experience and key milestones.
+              A journey through my professional experience and key achievements.
             </p>
           </motion.div>
         </div>
@@ -27,7 +28,7 @@ function InteractiveTimeline() {
 
           {/* Timeline items */}
           <div className="space-y-12">
-            {timelineItems.map((item, index) => (
+            {jobs.map((job, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
@@ -41,9 +42,12 @@ function InteractiveTimeline() {
                 <div className="w-1/2 pr-8 text-right">
                   {index % 2 === 0 && (
                     <TimelineContent
-                      title={item.title}
-                      date={item.date}
-                      description={item.description}
+                      title={job.title}
+                      company={job.company}
+                      duration={job.duration}
+                      location={job.location}
+                      achievements={job.achievements}
+                      techStack={job.techStack}
                     />
                   )}
                 </div>
@@ -58,9 +62,12 @@ function InteractiveTimeline() {
                 <div className="w-1/2 pl-8">
                   {index % 2 !== 0 && (
                     <TimelineContent
-                      title={item.title}
-                      date={item.date}
-                      description={item.description}
+                      title={job.title}
+                      company={job.company}
+                      duration={job.duration}
+                      location={job.location}
+                      achievements={job.achievements}
+                      techStack={job.techStack}
                     />
                   )}
                 </div>
@@ -75,46 +82,53 @@ function InteractiveTimeline() {
 
 function TimelineContent({
   title,
-  date,
-  description,
+  company,
+  duration,
+  location,
+  achievements,
+  techStack,
 }: {
   title: string
-  date: string
-  description: string
+  company: string
+  duration: string
+  location: string
+  achievements: string[]
+  techStack: string[]
 }) {
   return (
-    <div>
-      <h3 className="font-bold text-lg">{title}</h3>
-      <p className="text-sm text-muted-foreground mb-2">{date}</p>
-      <p className="text-sm">{description}</p>
+    <div className="bg-card p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+      <h3 className="font-bold text-xl">{title}</h3>
+      <p className="text-lg text-primary font-medium">{company}</p>
+      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+        <span>{duration}</span>
+        <span>•</span>
+        <span>{location}</span>
+      </div>
+      
+      <div className="mb-4">
+        <h4 className="font-semibold mb-2">Key Achievements:</h4>
+        <ul className="list-disc pl-5 space-y-1">
+          {achievements.map((achievement, index) => (
+            <li key={index} className="text-sm">{achievement}</li>
+          ))}
+        </ul>
+      </div>
+      
+      <div>
+        <h4 className="font-semibold mb-2">Tech Stack:</h4>
+        <div className="flex flex-wrap gap-2">
+          {techStack.map((tech, index) => (
+            <span 
+              key={index} 
+              className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
-
-const timelineItems = [
-  {
-    title: "Senior Full Stack Developer",
-    date: "2023 - Present",
-    description:
-      "Leading development of enterprise applications with Next.js and TypeScript.",
-  },
-  {
-    title: "Full Stack Developer",
-    date: "2021 - 2023",
-    description:
-      "Built and maintained scalable web applications using React and Node.js.",
-  },
-  {
-    title: "Frontend Developer",
-    date: "2019 - 2021",
-    description:
-      "Developed responsive web interfaces and improved user experiences.",
-  },
-  {
-    title: "Junior Developer",
-    date: "2018 - 2019",
-    description: "Started career with web development and UI design projects.",
-  },
-]
 
 export default withClientSide(InteractiveTimeline, { loadingType: 'full' })

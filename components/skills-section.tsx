@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { skills, skillsList, certifications, education } from "@/lib/data"
+import { skills, certifications, education } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Github } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 function GithubStats() {
   return (
@@ -28,21 +29,29 @@ function GithubStats() {
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="comic-border">
             <CardContent className="p-6">
-              <img
-                src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent"
-                alt="GitHub Stats"
-                className="w-full h-auto"
-              />
+              <div className="relative w-full h-[200px]">
+                <Image
+                  src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent"
+                  alt="GitHub Stats"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
             </CardContent>
           </Card>
 
           <Card className="comic-border">
             <CardContent className="p-6">
-              <img
-                src="https://streaks.adarcher.app?user=ad-archer&theme=transparent&hide_border=true&mode=weekly&color=0066cc"
-                alt="GitHub Weekly Streak"
-                className="w-full h-auto"
-              />
+              <div className="relative w-full h-[200px]">
+                <Image
+                  src="https://streaks.adarcher.app?user=ad-archer&theme=transparent&hide_border=true&mode=weekly&color=0066cc"
+                  alt="GitHub Weekly Streak"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
             </CardContent>
           </Card>
         </div>

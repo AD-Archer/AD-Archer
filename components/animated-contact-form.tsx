@@ -46,7 +46,8 @@ function AnimatedContactForm() {
       console.log(values)
       toast.success("Message sent successfully!")
       form.reset()
-    } catch (error) {
+    } catch (err) {
+      console.error('Form submission error:', err)
       toast.error("Failed to send message. Please try again.")
     }
   }
