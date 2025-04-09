@@ -4,7 +4,14 @@ import { useRef, useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import * as THREE from "three"
 
-export default function ThreeBackground() {
+interface ThreeBackgroundProps {
+  mousePosition: {
+    x: number;
+    y: number;
+  };
+}
+
+export default function ThreeBackground({ mousePosition }: ThreeBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [loadError, setLoadError] = useState(false)
   const { theme } = useTheme()

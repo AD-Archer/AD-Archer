@@ -29,7 +29,7 @@ function GithubStats() {
           <Card className="comic-border">
             <CardContent className="p-6">
               <img
-                src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_border=true&theme=transparent"
+                src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent"
                 alt="GitHub Stats"
                 className="w-full h-auto"
               />
@@ -39,8 +39,8 @@ function GithubStats() {
           <Card className="comic-border">
             <CardContent className="p-6">
               <img
-                src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&hide_border=true&theme=transparent"
-                alt="GitHub Streak Stats"
+                src="https://streaks.adarcher.app?user=ad-archer&theme=transparent&hide_border=true&mode=weekly&color=0066cc"
+                alt="GitHub Weekly Streak"
                 className="w-full h-auto"
               />
             </CardContent>
@@ -50,7 +50,7 @@ function GithubStats() {
         <div className="flex justify-center mt-12">
           <Button asChild size="lg" variant="outline">
             <Link
-              href="https://github.com/YOUR_GITHUB_USERNAME"
+              href="https://github.com/ad-archer"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center"
