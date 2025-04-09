@@ -1,4 +1,4 @@
-import { projects } from "@/lib/data"
+import { projects, tags } from "@/lib/data"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     }))
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug)
 
   if (!project) {
@@ -51,11 +51,14 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
+            {project.tags.map((tagId) => {
+              const tag = tags.find((t) => t.id === tagId)
+              return tag ? (
+                <Badge key={tag.id} variant="secondary">
+                  {tag.name}
+                </Badge>
+              ) : null
+            })}
           </div>
 
           <div className="flex gap-4">
