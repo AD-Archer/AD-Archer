@@ -4,20 +4,20 @@ import { useRef, useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import * as THREE from "three"
 
-interface ThreeBackgroundProps {
-  mousePosition: {
-    x: number;
-    y: number;
-  };
-}
+// This interface is intentionally empty as we removed the mousePosition prop
+// but kept the interface for future extensibility
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 
-export default function ThreeBackground({ mousePosition }: ThreeBackgroundProps) {
+export default function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [loadError, setLoadError] = useState(false)
   const { theme } = useTheme()
   const isDarkMode = theme === "dark"
 
   useEffect(() => {
+    // Store the ref value in a variable at the beginning of the effect
+    const containerElement = containerRef.current;
+    
     if (typeof window === "undefined" || !containerRef.current) return
 
     let scene: THREE.Scene
@@ -237,9 +237,13 @@ export default function ThreeBackground({ mousePosition }: ThreeBackgroundProps)
           window.removeEventListener("resize", handleResize)
           cancelAnimationFrame(animationFrameId)
 
-          const containerElement = containerRef.current
+          // Use the stored ref value in the cleanup function
           if (containerElement && renderer) {
-            containerElement.removeChild(renderer.domElement)
+            try {
+              containerElement.removeChild(renderer.domElement)
+            } catch (e) {
+              console.error("Error cleaning up Three.js:", e)
+            }
           }
 
           // Dispose of geometries and materials
@@ -274,7 +278,7 @@ export default function ThreeBackground({ mousePosition }: ThreeBackgroundProps)
         cancelAnimationFrame(animationFrameId)
       }
 
-      const containerElement = containerRef.current
+      // Use the stored ref value in the cleanup function
       if (containerElement && renderer) {
         try {
           containerElement.removeChild(renderer.domElement)

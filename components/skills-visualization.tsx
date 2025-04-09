@@ -2,9 +2,9 @@
 
 import { useRef, useEffect, useState, ReactNode } from "react"
 import { motion } from "framer-motion"
-import { skills, skillsList } from "@/lib/data"
+import { skillsList } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
+import { Code, Database, Layers, PenToolIcon as Tool } from "lucide-react"
 import { withClientSide } from './client-component'
 
 // Define a type for our node structure

@@ -8,6 +8,7 @@ import { Zap, Code } from "lucide-react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import LoadingAnimation from "./loading-animation"
+import Image from "next/image"
 
 // Dynamically import ThreeBackground with no SSR
 const ThreeBackground = dynamic(() => import("./three-background"), { 
@@ -17,25 +18,19 @@ const ThreeBackground = dynamic(() => import("./three-background"), {
 
 export default function Hero3D() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
   }, [])
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return
-
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-
-    setMousePosition({ x, y })
+  const handleMouseMove = () => {
+    // We can keep this function for future use if needed
+    // but we're not using the mousePosition state anymore
   }
 
   const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 })
+    // We can keep this function for future use if needed
   }
 
   if (!isLoaded) {
@@ -53,7 +48,7 @@ export default function Hero3D() {
       onMouseLeave={handleMouseLeave}
     >
       {/* Three.js Background */}
-      <ThreeBackground mousePosition={mousePosition} />
+      <ThreeBackground />
       
       {/* Subtle gradient overlay for better text contrast */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-background/10 to-background/20 z-[1]" />
@@ -73,11 +68,15 @@ export default function Hero3D() {
               transition={{ delay: 0.1, duration: 0.5 }}
               className="mb-8"
             >
-              <img
-                src="/images/antonioarcher.webp"
-                alt="Antonio Archer"
-                className="w-48 h-48 rounded-full border-4 border-primary/10 shadow-xl mx-auto"
-              />
+              <div className="relative w-48 h-48 mx-auto">
+                <Image
+                  src="/images/antonioarcher.webp"
+                  alt="Antonio Archer"
+                  fill
+                  className="rounded-full border-4 border-primary/10 shadow-xl object-cover"
+                  priority
+                />
+              </div>
             </motion.div>
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-2 text-foreground drop-shadow-md font-sans">
               Antonio Archer
