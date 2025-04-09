@@ -4,7 +4,7 @@ import type React from "react"
 import { useRef, useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Zap, ArrowDown, Code } from "lucide-react"
+import { Zap, Code } from "lucide-react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import LoadingAnimation from "./loading-animation"
@@ -74,7 +74,7 @@ export default function Hero3D() {
               className="mb-8"
             >
               <img
-                src="/images/antonioarcher.jpeg"
+                src="/images/antonioarcher.webp"
                 alt="Antonio Archer"
                 className="w-48 h-48 rounded-full border-4 border-primary/10 shadow-xl mx-auto"
               />
@@ -111,7 +111,7 @@ export default function Hero3D() {
           transition={{ delay: 1, duration: 0.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <ArrowDown className="animate-bounce" />
+
         </motion.div>
       </div>
     </motion.section>

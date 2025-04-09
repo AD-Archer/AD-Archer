@@ -1,11 +1,32 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { skills, certifications, education } from "@/lib/data"
+import { skills, skillsList, certifications, education } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool } from "lucide-react"
+import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
+// Helper function to render skill icon with fallback
+function SkillIcon({ src, alt, fallback }: { src: string, alt: string, fallback: React.ReactNode }) {
+  const [error, setError] = useState(false);
+  
+  if (error) {
+    return <>{fallback}</>;
+  }
+  
+  return (
+    <Image 
+      src={src} 
+      alt={alt} 
+      width={32} 
+      height={32}
+      className="object-contain"
+      onError={() => setError(true)}
+    />
+  );
+}
 
 export default function SkillsSection() {
   const [isClient, setIsClient] = useState(false);
@@ -82,18 +103,20 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills
-                        .filter((skill) => skill.category === "frontend")
-                        .map((skill) => (
-                          <motion.div key={skill.name} variants={item}>
-                            <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
-                              <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                                <Layers className="h-6 w-6 text-primary" />
-                              </div>
-                              <span className="text-sm font-medium">{skill.name}</span>
+                      {skills.frontend.map((skill) => (
+                        <motion.div key={skill.name} variants={item}>
+                          <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
+                            <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
+                              <SkillIcon 
+                                src={skill.icon} 
+                                alt={skill.name} 
+                                fallback={<Layers className="h-6 w-6 text-primary" />}
+                              />
                             </div>
-                          </motion.div>
-                        ))}
+                            <span className="text-sm font-medium">{skill.name}</span>
+                          </div>
+                        </motion.div>
+                      ))}
                     </motion.div>
                   </TabsContent>
 
@@ -105,18 +128,20 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills
-                        .filter((skill) => skill.category === "backend")
-                        .map((skill) => (
-                          <motion.div key={skill.name} variants={item}>
-                            <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
-                              <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                                <Database className="h-6 w-6 text-primary" />
-                              </div>
-                              <span className="text-sm font-medium">{skill.name}</span>
+                      {skills.backend.map((skill) => (
+                        <motion.div key={skill.name} variants={item}>
+                          <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
+                            <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
+                              <SkillIcon 
+                                src={skill.icon} 
+                                alt={skill.name} 
+                                fallback={<Database className="h-6 w-6 text-primary" />}
+                              />
                             </div>
-                          </motion.div>
-                        ))}
+                            <span className="text-sm font-medium">{skill.name}</span>
+                          </div>
+                        </motion.div>
+                      ))}
                     </motion.div>
                   </TabsContent>
 
@@ -128,18 +153,20 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills
-                        .filter((skill) => skill.category === "tools")
-                        .map((skill) => (
-                          <motion.div key={skill.name} variants={item}>
-                            <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
-                              <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                                <Tool className="h-6 w-6 text-primary" />
-                              </div>
-                              <span className="text-sm font-medium">{skill.name}</span>
+                      {skills.tools.map((skill) => (
+                        <motion.div key={skill.name} variants={item}>
+                          <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
+                            <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
+                              <SkillIcon 
+                                src={skill.icon} 
+                                alt={skill.name} 
+                                fallback={<Tool className="h-6 w-6 text-primary" />}
+                              />
                             </div>
-                          </motion.div>
-                        ))}
+                            <span className="text-sm font-medium">{skill.name}</span>
+                          </div>
+                        </motion.div>
+                      ))}
                     </motion.div>
                   </TabsContent>
 
@@ -151,18 +178,20 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills
-                        .filter((skill) => skill.category === "other")
-                        .map((skill) => (
-                          <motion.div key={skill.name} variants={item}>
-                            <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
-                              <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                                <Code className="h-6 w-6 text-primary" />
-                              </div>
-                              <span className="text-sm font-medium">{skill.name}</span>
+                      {[...skills.databases, ...skills.hosting].map((skill) => (
+                        <motion.div key={skill.name} variants={item}>
+                          <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
+                            <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
+                              <SkillIcon 
+                                src={skill.icon} 
+                                alt={skill.name} 
+                                fallback={<Server className="h-6 w-6 text-primary" />}
+                              />
                             </div>
-                          </motion.div>
-                        ))}
+                            <span className="text-sm font-medium">{skill.name}</span>
+                          </div>
+                        </motion.div>
+                      ))}
                     </motion.div>
                   </TabsContent>
                 </Tabs>

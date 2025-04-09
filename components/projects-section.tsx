@@ -78,12 +78,25 @@ export default function ProjectsSection() {
               >
                 <Card className="overflow-hidden h-full comic-panel">
                   <div className="relative aspect-video overflow-hidden">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
+                    {project.slug ? (
+                      <Link href={`/projects/${project.slug}`}>
+                        <Image
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
+                          priority={index < 3}
+                        />
+                      </Link>
+                    ) : (
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        priority={index < 3}
+                      />
+                    )}
                     {project.featured && (
                       <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
                         Featured!
@@ -106,7 +119,7 @@ export default function ProjectsSection() {
                       })}
                     </div>
                   </CardContent>
-                  <CardFooter className="flex gap-2">
+                  <CardFooter className="flex flex-wrap gap-2">
                     {project.slug && (
                       <Button asChild size="sm" variant="default">
                         <Link href={`/projects/${project.slug}`}>View Details</Link>

@@ -88,15 +88,28 @@ function ProjectShowcase() {
             >
               <div className="comic-border rounded-lg overflow-hidden bg-background shadow-xl h-full transform-style-3d">
                 <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={activeProject.image || "/placeholder.svg"}
-                    alt={activeProject.title}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
+                  {activeProject.slug ? (
+                    <Link href={`/projects/${activeProject.slug}`}>
+                      <Image
+                        src={activeProject.image || "/placeholder.svg"}
+                        alt={activeProject.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        priority
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={activeProject.image || "/placeholder.svg"}
+                      alt={activeProject.title}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                      priority
+                    />
+                  )}
                   <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
                     <Code className="h-4 w-4 inline-block mr-1" />
-                    <span>Code</span>
+                    <span>Featured</span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -114,7 +127,7 @@ function ProjectShowcase() {
                     })}
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
                     {activeProject.slug && (
                       <Button asChild size="sm" variant="default">
                         <Link href={`/projects/${activeProject.slug}`}>View Details</Link>

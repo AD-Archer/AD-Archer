@@ -1,11 +1,33 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, ReactNode } from "react"
 import { motion } from "framer-motion"
-import { skills } from "@/lib/data"
+import { skills, skillsList } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code, Database, Layers, PenToolIcon as Tool } from "lucide-react"
+import { Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
 import { withClientSide } from './client-component'
+
+// Define a type for our node structure
+type SkillNode = {
+  id: string
+  x: number
+  y: number
+  radius: number
+  color: string
+  vx: number
+  vy: number
+  category: string
+  icon: ReactNode
+  power: number
+}
+
+// Define a type for the extended skill with category
+type SkillWithCategory = {
+  name: string
+  icon: string
+  power: number
+  category: string
+}
 
 function SkillsVisualization() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -33,18 +55,20 @@ function SkillsVisualization() {
     setCanvasDimensions()
     window.addEventListener("resize", setCanvasDimensions)
 
-    // Create skill nodes
-    const nodes = skills.map((skill) => {
+    // Create skill nodes from all categories
+    const nodes: SkillNode[] = skillsList.map((skill) => {
+      const skillWithCategory = skill as SkillWithCategory
       return {
         id: skill.name,
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: 30,
-        color: getSkillColor(skill.category),
+        color: getSkillColor(skillWithCategory.category),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
-        category: skill.category,
-        icon: getSkillIcon(skill.category),
+        category: skillWithCategory.category,
+        icon: getSkillIcon(skillWithCategory.category),
+        power: skill.power
       }
     })
 
@@ -207,7 +231,7 @@ function SkillsVisualization() {
                 <CardTitle className="flex items-center gap-2">
                   {activeSkill ? (
                     <>
-                      {getSkillIcon(skills.find((s) => s.name === activeSkill)?.category || "other")}
+                      {getSkillIcon((skillsList.find((s) => s.name === activeSkill) as SkillWithCategory)?.category || "other")}
                       {activeSkill}
                     </>
                   ) : (
@@ -274,6 +298,13 @@ function getSkillDescription(skillName: string): string {
 }
 
 function getSkillProficiency(skillName: string): number {
+  // Use the power value from the skillsList if available
+  const skill = skillsList.find(s => s.name === skillName)
+  if (skill) {
+    return skill.power
+  }
+  
+  // Fallback to hardcoded values for backward compatibility
   const proficiencies: Record<string, number> = {
     React: 90,
     "Next.js": 85,
