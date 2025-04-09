@@ -10,8 +10,9 @@ import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ArrowRight, Code } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { withClientSide } from './client-component'
 
-export default function ProjectShowcase() {
+function ProjectShowcase() {
   const [activeProject, setActiveProject] = useState(projects[0])
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLDivElement>(null)
@@ -154,3 +155,5 @@ export default function ProjectShowcase() {
     </section>
   )
 }
+
+export default withClientSide(ProjectShowcase, { loadingType: 'card' })

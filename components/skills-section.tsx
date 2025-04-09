@@ -5,8 +5,19 @@ import { skills, certifications, education } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool } from "lucide-react"
+import { useEffect, useState } from "react";
 
 export default function SkillsSection() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Prevent rendering on the server
+  }
+
   const container = {
     hidden: { opacity: 0 },
     show: {

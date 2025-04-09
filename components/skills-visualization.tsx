@@ -5,8 +5,9 @@ import { motion } from "framer-motion"
 import { skills } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Code, Database, Layers, PenToolIcon as Tool } from "lucide-react"
+import { withClientSide } from './client-component'
 
-export default function SkillsVisualization() {
+function SkillsVisualization() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [activeSkill, setActiveSkill] = useState<string | null>(null)
   const [isMounted, setIsMounted] = useState(false)
@@ -293,3 +294,5 @@ function getSkillProficiency(skillName: string): number {
 
   return proficiencies[skillName] || 70
 }
+
+export default withClientSide(SkillsVisualization, { loadingType: 'full' })

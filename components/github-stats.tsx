@@ -1,14 +1,15 @@
 "use client"
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { withClientSide } from './client-component'
+import { motion } from 'framer-motion'
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Github } from "lucide-react"
 import Link from "next/link"
 
-export default function GitHubStats() {
+function GithubStats() {
   return (
-    <section className="py-16 bg-muted/10">
+    <section className="py-16">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center text-center mb-12">
           <motion.div
@@ -18,85 +19,50 @@ export default function GitHubStats() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">GitHub Activity</h2>
-            <p className="text-muted-foreground max-w-[800px] mb-8">
-              Check out my coding activity and most used languages.
+            <p className="text-muted-foreground max-w-[800px]">
+              Check out my open source contributions and coding activity on GitHub.
             </p>
           </motion.div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="comic-border overflow-hidden h-full">
-              <CardContent className="p-6 flex flex-col items-center">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Github className="h-5 w-5" /> Most Used Languages
-                </h3>
-                <div className="relative w-full aspect-[2/1] mt-4">
-                  <Image
-                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=fff&text_color=000&title_color="
-                    alt="Top Languages"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  These are the programming languages I use most frequently in my projects.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card className="comic-border">
+            <CardContent className="p-6">
+              <img
+                src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_border=true&theme=transparent"
+                alt="GitHub Stats"
+                className="w-full h-auto"
+              />
+            </CardContent>
+          </Card>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card className="comic-border overflow-hidden h-full">
-              <CardContent className="p-6 flex flex-col items-center">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Github className="h-5 w-5" /> Contribution Streak
-                </h3>
-                <div className="relative w-full aspect-[2/1] mt-4">
-                  <Image
-                    src="https://streaks.adarcher.app?user=ad-archer&theme=blood&mode=weekly&exclude_days=Sun%2CTue%2CSat&font_size=1.2rem&border=0"
-                    alt="GitHub Streak"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  My GitHub contribution streak shows my consistent coding activity.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card className="comic-border">
+            <CardContent className="p-6">
+              <img
+                src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&hide_border=true&theme=transparent"
+                alt="GitHub Streak Stats"
+                className="w-full h-auto"
+              />
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="flex justify-center mt-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
+        <div className="flex justify-center mt-12">
+          <Button asChild size="lg" variant="outline">
             <Link
-              href="https://github.com/AD-Archer"
+              href="https://github.com/YOUR_GITHUB_USERNAME"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary hover:underline"
+              className="flex items-center"
             >
-              <Github className="h-5 w-5" />
-              View my GitHub profile
+              <Github className="mr-2 h-5 w-5" />
+              View GitHub Profile
             </Link>
-          </motion.div>
+          </Button>
         </div>
       </div>
     </section>
   )
 }
+
+export default withClientSide(GithubStats, { loadingType: 'card' })
