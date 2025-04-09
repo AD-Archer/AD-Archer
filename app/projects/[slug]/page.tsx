@@ -21,8 +21,13 @@ export default async function ProjectPage({ params }: { params: { slug: string }
     notFound()
   }
 
+  // Get related projects (excluding current project)
+  const relatedProjects = projects
+    .filter((p) => p.id !== project.id)
+    .slice(0, 3)
+
   return (
-    <div className="container px-4 md:px-6 py-16">
+    <div className="container px-4 md:px-6 py-16 font-sans">
       <div className="mb-8">
         <Link
           href="/#projects"
@@ -54,7 +59,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             {project.tags.map((tagId) => {
               const tag = tags.find((t) => t.id === tagId)
               return tag ? (
-                <Badge key={tag.id} variant="secondary">
+                <Badge key={tag.id} variant="secondary" className={tag.color}>
                   {tag.name}
                 </Badge>
               ) : null
@@ -88,24 +93,39 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
         <div className="prose max-w-none">
           <p>
-            This is a detailed description of the project. In a real implementation, this would contain more information
-            about the project, including the challenges faced, solutions implemented, and technologies used.
+            {project.description}
           </p>
 
           <h3>Features</h3>
           <ul>
-            <li>Feature 1: Description of feature 1</li>
-            <li>Feature 2: Description of feature 2</li>
-            <li>Feature 3: Description of feature 3</li>
+            {project.features && project.features.length > 0 ? (
+              project.features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))
+            ) : project.featured ? (
+              <>
+                <li>Featured project showcasing advanced development skills</li>
+                <li>Responsive design optimized for all devices</li>
+                <li>Modern UI/UX with intuitive navigation</li>
+              </>
+            ) : (
+              <>
+                <li>Clean, responsive design</li>
+                <li>Optimized performance</li>
+                <li>User-friendly interface</li>
+              </>
+            )}
           </ul>
 
           <h3>Technologies Used</h3>
-          <p>This project was built using a variety of technologies, including:</p>
+          <p>This project was built using the following technologies:</p>
           <ul>
-            <li>Frontend: React, Next.js, Tailwind CSS</li>
-            <li>Backend: Node.js, Express</li>
-            <li>Database: MongoDB</li>
-            <li>Deployment: Vercel</li>
+            {project.tags.map((tagId) => {
+              const tag = tags.find((t) => t.id === tagId)
+              return tag ? (
+                <li key={tag.id}>{tag.name}</li>
+              ) : null
+            })}
           </ul>
         </div>
       </div>
@@ -114,28 +134,25 @@ export default async function ProjectPage({ params }: { params: { slug: string }
         <h2 className="text-3xl font-bold mb-6">More Projects</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects
-            .filter((p) => p.id !== project.id)
-            .slice(0, 3)
-            .map((p) => (
-              <div key={p.id} className="border rounded-lg overflow-hidden">
-                <div className="aspect-video relative">
-                  <Image src={p.image || "/placeholder.svg"} alt={p.title} fill className="object-cover" />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-bold">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{p.description}</p>
-                  {p.slug && (
-                    <Link
-                      href={`/projects/${p.slug}`}
-                      className="text-primary hover:underline text-sm mt-2 inline-block"
-                    >
-                      View Project
-                    </Link>
-                  )}
-                </div>
+          {relatedProjects.map((p) => (
+            <div key={p.id} className="border rounded-lg overflow-hidden">
+              <div className="aspect-video relative">
+                <Image src={p.image || "/placeholder.svg"} alt={p.title} fill className="object-cover" />
               </div>
-            ))}
+              <div className="p-4">
+                <h3 className="font-bold">{p.title}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{p.description}</p>
+                {p.slug && (
+                  <Link
+                    href={`/projects/${p.slug}`}
+                    className="text-primary hover:underline text-sm mt-2 inline-block"
+                  >
+                    View Project
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

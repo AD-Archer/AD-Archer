@@ -14,6 +14,7 @@ export type Project = {
   link?: string
   github?: string
   slug?: string
+  features?: string[]
 }
 
 export type Skill = {
@@ -80,6 +81,13 @@ export const projects: Project[] = [
     featured: true,
     slug: "phillysocial",
     link: "https://phillysocial.adarcher.app",
+    features: [
+      "Real-time chat with public and private channels",
+      "Event creation and management system",
+      "RSS news feed integration for local Philadelphia news",
+      "Local business directory with reviews and ratings",
+      "Mobile-responsive design for all devices"
+    ]
   },
   {
     id: "2",
