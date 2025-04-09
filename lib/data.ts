@@ -98,6 +98,12 @@ export const projects: Project[] = [
     featured: true,
     slug: "moviesnoir",
     link: "https://moviesnoir.adarcher.app",
+    features: [
+      "Movie generator app",
+      "Black culture through movies and TV shows",
+      "Find your next favorite movie or TV show",
+      "Mobile-responsive design for all devices"
+    ]
   },
   {
     id: "3",
@@ -108,6 +114,13 @@ export const projects: Project[] = [
     featured: true,
     slug: "timewise",
     link: "https://timewise.adarcher.app",
+    features: [
+      "Mood tracker with AI chatbot",
+      "Meditation mode with soothing music",
+      "Pomodoro timer with YouTube or Spotify playlists",
+      "Cozy time management tool",
+      "Mobile-responsive design for all devices"
+    ]
   },
 ]
 
