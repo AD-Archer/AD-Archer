@@ -55,9 +55,6 @@ export const metadata: Metadata = {
     images: ['/icons/logo.webp'],
     creator: '@antonioarcher',
   },
-  verification: {
-    google: 'your-google-site-verification',
-  },
   keywords: [
     'Antonio Archer',
     'Software Developer',
@@ -88,8 +85,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Antonio Archer',
-              url: 'https://antonioarcher.com',
-              image: 'https://antonioarcher.com/icons/logo.webp',
+              url: 'https://www.antonioarcher.com',
+              image: 'https://www.antonioarcher.com/icons/logo.webp',
               jobTitle: 'Software Developer & DevOps Engineer',
               worksFor: {
                 '@type': 'Organization',
@@ -102,9 +99,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: 'US',
               },
               sameAs: [
-                'https://github.com/antonioarcher',
-                'https://linkedin.com/in/antonioarcher',
-                'https://twitter.com/antonioarcher',
+                'https://github.com/ad-archer',
+                'https://linkedin.com/in/antonio-archer',
+                'https://twitter.com/ad_archer_',
+                'https://linktr.ee/adarcher',
+                'https://adarcher.app',
+                'https://youtube.com/@ad-archer',
+                'https://instagram.com/ad-archer',
+                'https://instagram.com/Antonio_DArcher',
+                
               ],
             }),
           }}
