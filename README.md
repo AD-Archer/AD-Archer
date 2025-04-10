@@ -70,7 +70,7 @@
 
 ### GitHub Streaks
 
-[![GitHub Streak](https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly&background=00000000)](https://git.io/streak-stats)
+[![GitHub Streak](https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly&background=00000000)](https://github.com/ad-archer)
 
 ### Top Languages
 
@@ -84,7 +84,7 @@
 
 ### Contribution Chart
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
 
 ---
 
