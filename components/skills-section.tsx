@@ -1,12 +1,12 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
-import { skills, certifications, education, jobs } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { motion } from "framer-motion"
+import { skills, certifications, education, jobs } from "@/lib/data"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 // Helper function to render skill icon with fallback
 function SkillIcon({
