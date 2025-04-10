@@ -175,17 +175,28 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 Technologies Used
               </h3>
               <div className="flex flex-wrap gap-2">
-                {project.tags.map((tagId) => {
-                  const tag = tags.find((t) => t.id === tagId)
-                  return tag ? (
+                {project.technologies && project.technologies.length > 0 ? (
+                  project.technologies.map((tech, index) => (
                     <span 
-                      key={tag.id} 
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                      key={index} 
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${tech.color} text-white`}
                     >
-                      {tag.name}
+                      {tech.name}
                     </span>
-                  ) : null
-                })}
+                  ))
+                ) : (
+                  project.tags.map((tagId) => {
+                    const tag = tags.find((t) => t.id === tagId)
+                    return tag ? (
+                      <span 
+                        key={tag.id} 
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                      >
+                        {tag.name}
+                      </span>
+                    ) : null
+                  })
+                )}
               </div>
             </div>
           </div>
