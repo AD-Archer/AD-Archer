@@ -71,58 +71,228 @@ export const tags: Tag[] = [
 ]
 
 export const projects: Project[] = [
-  {
-    id: "1",
-    title: "PhillySocial",
-    description:
-      "A social media platform for the city of Philadelphia with built-in public and private channels, events, RSS news feed, and local business support. Built in 30 hours for Philly Codefest 2025 with Next.js, TypeScript, and Firebase.",
-    image: "/images/projects/phillysocial.webp",
-    tags: ["nextjs", "typescript", "firebase"],
-    featured: true,
-    slug: "phillysocial",
-    link: "https://phillysocial.adarcher.app",
-    features: [
-      "Real-time chat with public and private channels",
-      "Event creation and management system",
-      "RSS news feed integration for local Philadelphia news",
-      "Local business directory with reviews and ratings",
-      "Mobile-responsive design for all devices"
-    ]
-  },
-  {
-    id: "2",
-    title: "MoviesNoir",
-    description: "A movie generator app built with React and Node.js to share black culture through movies and TV shows. Find your next favorite movie or TV show.",
-    image: "/images/projects/moviesnoir.webp",
-    tags: ["react", "node"],
-    featured: true,
-    slug: "moviesnoir",
-    link: "https://moviesnoir.adarcher.app",
-    features: [
-      "Movie generator app",
-      "Black culture through movies and TV shows",
-      "Find your next favorite movie or TV show",
-      "Mobile-responsive design for all devices"
-    ]
-  },
-  {
-    id: "3",
-    title: "TimeWise",
-    description: "A mental health app with a mood tracker, meditation mode, and a cozy time management tool with a pomodoro timer with YouTube or Spotify playlists for music. Includes an AI chatbot, built with Next.js, TypeScript, and Firebase.",
-    image: "/images/projects/timewise.webp",
-    tags: ["nextjs", "typescript", "firebase"],
-    featured: true,
-    slug: "timewise",
-    link: "https://timewise.adarcher.app",
-    features: [
-      "Mood tracker with AI chatbot",
-      "Meditation mode with soothing music",
-      "Pomodoro timer with YouTube or Spotify playlists",
-      "Cozy time management tool",
-      "Mobile-responsive design for all devices"
-    ]
-  },
-]
+  //This is the template
+  // { 
+  //   id: "0",
+  //   title: "",
+  //   description: "",
+  //   image: "",
+  //   tags: [],
+  //   featured: false,
+  //   slug: "",
+  //   link: "",
+  //   features: []
+  // },
+    {
+      id: "1",
+      title: "Philly Social",
+      description: "A social media platform for the city of Philadelphia. Built in 30 hours for Philly Codefest 2025 with public/private channels, events, RSS news, and local business support.",
+      image: "/images/projects/philly-social.webp",
+      tags: ["Next.js", "Typescript", "Firebase", "Redis"],
+      slug: "philly-social",
+      link: "https://phillysocial.adarcher.app/",
+      github: "https://github.com/AD-Archer/Philly-Social",
+      featured: false,
+      features: [
+        "Public and private channels",
+        "Event creation and discovery",
+        "Local news integration via RSS",
+        "Support for local businesses",
+        "Built with Mohamed Souare, Bryan Gunawan, and Sianni Strikland"
+      ]
+    },
+    {
+      id: "2",
+      title: "MoviesNoir",
+      description: "A movie generator app to share Black culture through films and TV shows. Uses a JSON file as the movie database.",
+      image: "/images/projects/moviesnoir.webp",
+      tags: ["React", "Node.js", "Express", "Python"],
+      slug: "moviesnoir",
+      link: "https://moviesnoir.vercel.app/",
+      github: "https://github.com/AD-Archer/MoviesNoir",
+      featured: false,
+      features: [
+        "Random movie & TV show generator",
+        "Focus on Black culture and stories",
+        "Locally stored movie data",
+        "Simple, clean frontend experience"
+      ]
+    },
+    {
+      id: "3",
+      title: "TimeWise",
+      description: "A mental health app with mood tracking, meditation, and a cozy time management tool with Pomodoro + music.",
+      image: "/images/projects/timewise.webp",
+      tags: ["React", "Next.js", "YouTube API", "Spotify API", "AI"],
+      slug: "timewise",
+      link: "https://timewise.adarcher.app/",
+      github: "https://github.com/AD-Archer/TimeWise",
+      featured: false,
+      features: [
+        "Mood tracking and journaling",
+        "Pomodoro timer with custom playlists",
+        "Integrated with YouTube and Spotify",
+        "AI-enhanced suggestions",
+        "Minimalist, cozy interface"
+      ]
+    },
+    {
+      id: "4",
+      title: "LinkTree",
+      description: "A personal linktree for easier sharing of links, later rebuilt as a React Native app.",
+      image: "/images/projects/linktree.webp",
+      tags: ["React", "React Native"],
+      slug: "linktree",
+      link: "https://www.adarcher.app/",
+      github: "https://github.com/AD-Archer/tree",
+      featured: false,
+      features: [
+        "Personal link collection",
+        "Hosted on your main site",
+        "Includes a mobile version (React Native)",
+        "Lightweight and easy to maintain"
+      ]
+    },
+    {
+      id: "5",
+      title: "AI Stock Market Analysis",
+      description: "A full-stack stock recommendation tool powered by OpenAI. Hosted locally on a 2011 MacBook with Caddy and DuckDNS.",
+      image: "/images/projects/ai-stock-market-analysis.webp",
+      tags: ["React", "Flask", "Python", "OpenAI API", "AI", "Typescript"],
+      slug: "ai-stock-market-analysis",
+      link: "https://stocks.adarcher.app/",
+      github: "https://github.com/AD-Archer/ai-stock-market-analysis",
+      featured: false,
+      features: [
+        "AI-based stock recommendations",
+        "User input or default stock data",
+        "Self-hosted with Ubuntu & DuckDNS",
+        "Caddy reverse proxy setup",
+        "Great example of Flask & React integration"
+      ]
+    },
+    {
+      id: "6",
+      title: "Orange Field University",
+      description: "A student/course management app with user auth, academic tracking, and course enrollment.",
+      image: "/images/projects/orange-field-university.webp",
+      tags: ["Next.js", "PostgreSQL", "TailwindCSS", "T3 Stack", "Typescript"],
+      slug: "orange-field-university",
+      link: "https://university-orange-field.vercel.app/",
+      github: "https://github.com/AD-Archer/University-OrangeField",
+      featured: false,
+      features: [
+        "Course and user management",
+        "Secure authentication",
+        "Academic progress tracker",
+        "PostgreSQL backend with T3 stack",
+        "Clean, responsive design"
+      ]
+    },
+    {
+      id: "7",
+      title: "PlatePedia",
+      description: "Modern recipe sharing web app with Node and PostgreSQL. Create, explore, and save meals.",
+      image: "/images/projects/platepedia.webp",
+      tags: ["Node.js", "Express", "PostgreSQL"],
+      slug: "platepedia",
+      link: "https://platepedia.vercel.app/",
+      github: "https://github.com/AD-Archer/PlatePedia-recipeapp",
+      featured: false,
+      features: [
+        "Recipe creation and discovery",
+        "User-generated content",
+        "Database-backed app using PostgreSQL",
+        "Responsive and modern design"
+      ]
+    },
+    {
+      id: "8",
+      title: "Corra",
+      description: "AI-powered game that builds a personalized RPG experience based on your personality test.",
+      image: "/images/projects/corra.webp",
+      tags: ["React", "AI", "Node.js", "Express"],
+      slug: "corra",
+      link: "https://corra-tau.vercel.app/",
+      github: "https://github.com/AD-Archer/corra",
+      featured: false,
+      features: [
+        "AI-based RPG adventure generator",
+        "Personality test integration",
+        "Fun, interactive gameplay",
+        "Unique game for each user"
+      ]
+    },
+    {
+      id: "9",
+      title: "Fintech App",
+      description: "Manage your personal finances and investments with this modern finance dashboard.",
+      image: "/images/projects/fintech-app.webp",
+      tags: ["React", "Node.js", "Express", "PostgreSQL"],
+      slug: "fintech-app",
+      link: "https://fintech-app-blond.vercel.app/",
+      github: "https://github.com/AD-Archer/fintech-app",
+      featured: false,
+      features: [
+        "Budgeting and investment tools",
+        "Live data visualization",
+        "Secure data storage",
+        "Clean UI/UX"
+      ]
+    },
+    {
+      id: "10",
+      title: "Dynasty Defense",
+      description: "System for managing custom security alarms (fire, smoke, security).",
+      image: "/images/projects/dynasty-defense.webp",
+      tags: ["React", "Node.js", "IoT"],
+      slug: "dynasty-defense",
+      link: "https://dynasty-defense.vercel.app/",
+      github: "https://github.com/AD-Archer/dynasty-defense",
+      featured: false,
+      features: [
+        "Custom alarm creation",
+        "Visual management dashboard",
+        "Designed for IoT-based security systems"
+      ]
+    },
+    {
+      id: "11",
+      title: "FortifyNow",
+      description: "Cybersecurity awareness platform focused on passwords, 2FA, and USB keys.",
+      image: "/images/projects/fortifynow.webp",
+      tags: ["React", "Have I Been Pwned API", "Cybersecurity"],
+      slug: "fortifynow",
+      link: "https://fortify-now.vercel.app/",
+      github: "https://github.com/AD-Archer/FortifyNow",
+      featured: false,
+      features: [
+        "Password strength checker",
+        "2FA education",
+        "USB key tutorial",
+        "Cybersecurity for everyone"
+      ]
+    },
+    {
+      id: "12",
+      title: "Win or Lose Philly",
+      description: "A joke game celebrating Philly sports spirit: whether we win or lose, the city burns.",
+      image: "/images/projects/win-or-lose-philly.webp",
+      tags: ["Node.js", "Express", "Phaser"],
+      slug: "win-or-lose-philly",
+      link: "https://winorlosephilly.vercel.app/",
+      github: "https://github.com/AD-Archer/winorlosephilly",
+      featured: false,
+      features: [
+        "Retro-styled browser game",
+        "Built for 2025 Super Bowl",
+        "Built with Phaser.js"
+      ]
+    }
+  ];
+
+
+
 
 export const skills: SkillCategory = {
   frontend: [
