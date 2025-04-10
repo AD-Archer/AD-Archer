@@ -3,9 +3,10 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Download, Mail, FileText } from "lucide-react"
+import { Mail, FileText, Briefcase, GraduationCap, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { jobs, education, certifications } from "@/lib/data"
 
 export default function AboutPage() {
   return (
@@ -62,7 +63,7 @@ export default function AboutPage() {
             </p>
             <p className="text-muted-foreground">
               When I&#39;m not coding, you can find me exploring new technologies, contributing to open-source projects, or
-              sharing my knowledge through blog posts and community events. I believe in continuous learning and pushing
+              sharing my knowledge through linkedin posts and community events. I believe in continuous learning and pushing
               the boundaries of what&#39;s possible using technologies.
             </p>
           </div>
@@ -87,39 +88,84 @@ export default function AboutPage() {
       <div className="space-y-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <h2 className="text-3xl font-bold mb-6 text-center">My Journey</h2>
-          <div className="relative border-l-2 border-primary/50 ml-4 pl-8 space-y-8">
-            <div className="relative">
-              <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-primary"></div>
-              <h3 className="text-xl font-bold">Senior Frontend Developer</h3>
-              <p className="text-muted-foreground">TechCorp Inc. • 2021 - Present</p>
-              <p className="mt-2">
-                Leading the frontend development team, architecting scalable solutions, and implementing best practices
-                for web accessibility and performance.
-              </p>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Education Section */}
+            {/* Work Experience Section */}
+            <div className="bg-card rounded-lg p-6 shadow-md">
+              <h3 className="text-2xl font-bold mb-4 flex items-center">
+                <Briefcase className="mr-2 h-6 w-6 text-primary" />
+                Work Experience
+              </h3>
+              <div className="relative border-l-2 border-primary/50 ml-4 pl-8 space-y-8">
+                {jobs.map((job, index) => (
+                  <div key={index} className="relative">
+                    <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-primary"></div>
+                    <h3 className="text-xl font-bold">{job.title}</h3>
+                    <p className="text-muted-foreground">{job.company} • {job.duration}</p>
+                    <p className="text-muted-foreground mb-2">{job.location}</p>
+                    <ul className="list-disc pl-5 space-y-1 mt-2">
+                      {job.achievements.map((achievement, i) => (
+                        <li key={i}>{achievement}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {job.techStack.map((tech, i) => (
+                        <span key={i} className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <div className="relative">
-              <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-primary"></div>
-              <h3 className="text-xl font-bold">Full Stack Developer</h3>
-              <p className="text-muted-foreground">WebSolutions • 2018 - 2021</p>
-              <p className="mt-2">
-                Developed and maintained multiple client projects, working with React, Node.js, and various database
-                technologies to deliver comprehensive web solutions.
-              </p>
+            <div className="bg-card rounded-lg p-6 shadow-md">
+              <h3 className="text-2xl font-bold mb-4 flex items-center">
+                <GraduationCap className="mr-2 h-6 w-6 text-primary" />
+                Education
+              </h3>
+              <div className="relative border-l-2 border-primary/50 ml-4 pl-8 space-y-8">
+                {education.map((edu, index) => (
+                  <div key={index} className="relative">
+                    <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-primary"></div>
+                    <h3 className="text-xl font-bold">{edu.degree}</h3>
+                    <p className="text-muted-foreground">{edu.institution} • {edu.years}</p>
+                    <p className="mt-2">{edu.field}</p>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Certifications Section */}
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold mb-4 flex items-center">
+                  <Award className="mr-2 h-6 w-6 text-primary" />
+                  Certifications
+                </h3>
+                <div className="space-y-4">
+                  {certifications.map((cert, index) => (
+                    <div key={index} className="bg-background/50 p-4 rounded-md border border-border">
+                      <h4 className="font-bold">{cert.title}</h4>
+                      <p className="text-muted-foreground text-sm">{cert.issuer} • {cert.date}</p>
+                      {cert.credentialId && (
+                        <p className="text-xs text-muted-foreground mt-1">ID: {cert.credentialId}</p>
+                      )}
+                      {cert.link && (
+                        <Button variant="link" size="sm" className="p-0 h-auto mt-2" asChild>
+                          <Link href={cert.link} target="_blank" rel="noopener noreferrer">
+                            View Credential
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-
-            <div className="relative">
-              <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-primary"></div>
-              <h3 className="text-xl font-bold">Junior Web Developer</h3>
-              <p className="text-muted-foreground">StartupHub • 2016 - 2018</p>
-              <p className="mt-2">
-                Started my professional journey building responsive websites and learning the fundamentals of modern web
-                development.
-              </p>
-            </div>
+            
+            
           </div>
         </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

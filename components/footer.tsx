@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/ad-archer"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary transition-colors"
@@ -24,7 +24,7 @@ export default function Footer() {
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/antonio-archer"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary transition-colors"
@@ -33,7 +33,7 @@ export default function Footer() {
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://twitter.com/@ad_archer_"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary transition-colors"
@@ -41,7 +41,7 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="mailto:contact@example.com" className="hover:text-primary transition-colors">
+              <Link href="mailto:adarcher21@gmail.com" className="hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
