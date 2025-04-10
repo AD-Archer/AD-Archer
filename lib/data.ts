@@ -288,7 +288,55 @@ export const projects: Project[] = [
         "Built for 2025 Super Bowl",
         "Built with Phaser.js"
       ]
-    }
+    },
+      {
+        id: "13",
+        title: "Qr Code Generator",
+        description: "A personal QR code generator created while making slides for OrangeField University.",
+        image: "/images/projects/qr-code-generator.webp",
+        tags: ["JavaScript", "HTML"],
+        slug: "qr-code-generator",
+        link: "https://qr.adarcher.app/",
+        github: "https://github.com/AD-Archer/Qr-code-generator",
+        featured: false,
+        features: [
+          "Generate QR codes on the fly",
+          "Simple UI",
+          "Great for quick link sharing"
+        ]
+      },
+      {
+        id: "14",
+        title: "Retro Audio Maker",
+        description: "Transforms your audio files into retro-style distorted versions for fun or music creation.",
+        image: "/images/projects/retro-audio-maker.webp",
+        tags: ["Express", "Node"],
+        slug: "retro-audio-maker",
+        link: "https://retroaudiomaker.adarcher.app/",
+        github: "https://github.com/AD-Archer/retroaudiomaker",
+        featured: false,
+        features: [
+          "Audio distortion tool",
+          "Built for Win or Lose Philly soundtrack",
+          "Node.js powered backend"
+        ]
+      },
+      {
+        id: "15",
+        title: "Quick Convert",
+        description: "A fork of T3 Convert SVG, HEIC, WEBP files to PNG in seconds.",
+        image: "/images/projects/quick-convert.webp",
+        tags: ["Next.js",  "T3 Stack", "Typescript"],
+        slug: "quick-convert",
+        link: "https://quickconvert.adarcher.app/",
+        github: "https://github.com/AD-Archer/Quick-Convert",
+        featured: false,
+        features: [
+          "Convert multiple file formats",
+          "Supports HEIC, SVG, WEBP → PNG",
+          "Drag and drop interface"
+        ]
+      }
   ];
 
 
