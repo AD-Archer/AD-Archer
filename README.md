@@ -10,6 +10,7 @@
 - [Certifications](#certifications)
 - [Profile Statistics](#profile-statistics)
 - [Activities](#activities)
+- [Development Setup](#development-setup)
 - [Contact](#contact)
 
 ---
@@ -85,6 +86,34 @@
 ### Contribution Chart
 
 [![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
+
+## Development Setup
+
+### Pre-commit Hooks
+
+This repository uses pre-commit hooks to ensure code quality and security:
+
+- **ESLint & Prettier**: Automatically formats and lints code before commits
+- **GitGuardian**: Scans for potential security issues and secrets in code
+
+To set up the pre-commit hooks:
+
+1. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+2. Install GitGuardian CLI (optional, but recommended):
+   ```bash
+   curl -s https://cli.gitguardian.com/install.sh | bash
+   ```
+
+3. Configure GitGuardian (if installed):
+   ```bash
+   ggshield auth login
+   ```
+
+The pre-commit hooks will run automatically when you make a commit. If any issues are found, the commit will be blocked until they are resolved.
 
 ---
 
