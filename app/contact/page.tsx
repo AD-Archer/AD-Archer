@@ -45,7 +45,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Email</h3>
-                  <p className="text-sm text-muted-foreground">contact@example.com</p>
+                  <p className="text-sm text-muted-foreground">adarcher21@gmail.com</p>
                 </div>
               </div>
 
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-sm text-muted-foreground">+1 (267) 225-6778</p>
                 </div>
               </div>
 
@@ -65,7 +65,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Location</h3>
-                  <p className="text-sm text-muted-foreground">New York, NY, USA</p>
+                  <p className="text-sm text-muted-foreground">Philadelphia, PA, USA</p>
                 </div>
               </div>
             </CardContent>
@@ -79,7 +79,7 @@ export default function ContactPage() {
             <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <Link
-                  href="https://github.com"
+                  href="https://github.com/ad-archer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center p-4 bg-background rounded-lg border hover:bg-muted transition-colors"
@@ -89,7 +89,7 @@ export default function ContactPage() {
                 </Link>
 
                 <Link
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/antonio-archer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center p-4 bg-background rounded-lg border hover:bg-muted transition-colors"
@@ -100,7 +100,7 @@ export default function ContactPage() {
               </div>
             </CardContent>
             <CardFooter className="flex justify-center border-t pt-4">
-              <p className="text-sm text-muted-foreground">Response time: Usually within 24 hours</p>
+              <p className="text-sm text-muted-foreground">Response time: Usually within 48 hours</p>
             </CardFooter>
           </Card>
         </motion.div>
