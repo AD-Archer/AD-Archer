@@ -4,12 +4,35 @@ export type Tag = {
   color: string
 }
 
+export type Technology = {
+  name: string
+  color: string
+}
+
+// Standardized technology colors for consistent styling
+export const technologyColors = {
+  react: "bg-blue-500",
+  nodejs: "bg-green-500",
+  python: "bg-yellow-600",
+  mongodb: "bg-green-600",
+  typescript: "bg-blue-500",
+  express: "bg-gray-600",
+  openai: "bg-purple-600",
+  prisma: "bg-gray-800",
+  chartjs: "bg-red-500",
+  phaser: "bg-purple-500",
+  qrcode: "bg-black",
+  webAudio: "bg-yellow-500",
+  sharp: "bg-red-500",
+}
+
 export type Project = {
   id: string
   title: string
   description: string
   image: string
   tags: string[]
+  technologies?: Technology[]
   featured: boolean
   link?: string
   github?: string
@@ -64,7 +87,7 @@ export const tags: Tag[] = [
   { id: "ai", name: "AI", color: "bg-pink-600" },
   { id: "node", name: "Node.js", color: "bg-green-500" },
   { id: "python", name: "Python", color: "bg-yellow-600" },
-  { id: "go", name: "Go", color: "bg-cyan-500" },
+  { id: "golang", name: "GoLang", color: "bg-green-200" },
 ]
 
 export const projects: Project[] = [
@@ -86,6 +109,13 @@ export const projects: Project[] = [
       description: "A social media platform for the city of Philadelphia. Built in 30 hours for Philly Codefest 2025 with public/private channels, events, RSS news, and local business support.",
       image: "/images/projects/phillysocial.webp",
       tags: ["fullstack", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Node.js", color: technologyColors.nodejs },
+        { name: "MongoDB", color: technologyColors.mongodb },
+        { name: "TailwindCSS", color: technologyColors.typescript },
+        { name: "Typescript", color: technologyColors.typescript }
+      ],
       slug: "philly-social",
       link: "https://phillysocial.adarcher.app/",
       github: "https://github.com/AD-Archer/Philly-Social",
@@ -104,6 +134,11 @@ export const projects: Project[] = [
       description: "A movie generator app to share Black culture through films and TV shows. Uses a JSON file as the movie database.",
       image: "/images/projects/moviesnoir.webp",
       tags: ["frontend", "backend", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Node.js", color: technologyColors.nodejs },
+        { name: "Express", color: technologyColors.express },
+      ],
       slug: "moviesnoir",
       link: "https://moviesnoir.vercel.app/",
       github: "https://github.com/AD-Archer/MoviesNoir",
@@ -121,6 +156,13 @@ export const projects: Project[] = [
       description: "A mental health app with mood tracking, meditation, and a cozy time management tool with Pomodoro + music.",
       image: "/images/projects/timewise.webp",
       tags: ["fullstack", "ai", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Node.js", color: technologyColors.nodejs },
+        { name: "OpenAI API", color: technologyColors.openai },
+        { name: "MongoDB", color: technologyColors.mongodb },
+        { name: "Typescript", color: technologyColors.typescript }
+      ],
       slug: "timewise",
       link: "https://timewise.adarcher.app/",
       github: "https://github.com/AD-Archer/TimeWise",
@@ -139,6 +181,10 @@ export const projects: Project[] = [
       description: "A personal linktree for easier sharing of links, later rebuilt as a React Native app.",
       image: "/images/projects/tree.png",
       tags: ["frontend", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "React Native", color: technologyColors.react },
+      ],
       slug: "linktree",
       link: "https://www.adarcher.app/",
       github: "https://github.com/AD-Archer/tree",
@@ -156,6 +202,13 @@ export const projects: Project[] = [
       description: "A full-stack stock recommendation tool powered by OpenAI. Hosted locally on a 2011 MacBook with Caddy and DuckDNS.",
       image: "/images/projects/stockapp.jpg",
       tags: ["fullstack", "ai", "python"],
+      technologies: [
+        { name: "Python", color: technologyColors.python },
+        { name: "Flask", color: technologyColors.python },
+        { name: "React", color: technologyColors.react },
+        { name: "OpenAI API", color: technologyColors.openai },
+        { name: "TailwindCSS", color: technologyColors.typescript }
+      ],
       slug: "ai-stock-market-analysis",
       link: "https://stocks.adarcher.app/",
       github: "https://github.com/AD-Archer/ai-stock-market-analysis",
@@ -174,6 +227,14 @@ export const projects: Project[] = [
       description: "A student/course management app with user auth, academic tracking, and course enrollment.",
       image: "/images/projects/uof.png",
       tags: ["fullstack", "backend", "node"],
+      technologies: [
+        { name: "Next.js", color: technologyColors.react },
+        { name: "TypeScript", color: technologyColors.typescript },
+        { name: "PostgreSQL", color: technologyColors.typescript },
+        { name: "Prisma", color: technologyColors.typescript },
+        { name: "TailwindCSS", color: technologyColors.typescript }
+        
+      ],
       slug: "orange-field-university",
       link: "https://university-orange-field.vercel.app/",
       github: "https://github.com/AD-Archer/University-OrangeField",
@@ -192,6 +253,13 @@ export const projects: Project[] = [
       description: "Modern recipe sharing web app with Node and PostgreSQL. Create, explore, and save meals.",
       image: "/images/projects/platepedia.png",
       tags: ["fullstack", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Node.js", color: technologyColors.nodejs },
+        { name: "PostgreSQL", color: technologyColors.typescript },
+        { name: "Express", color: technologyColors.express },
+        { name: "TailwindCSS", color: technologyColors.typescript }
+      ],
       slug: "platepedia",
       link: "https://platepedia.vercel.app/",
       github: "https://github.com/AD-Archer/PlatePedia-recipeapp",
@@ -209,6 +277,10 @@ export const projects: Project[] = [
       description: "AI-powered game that builds a personalized RPG experience based on your personality test.",
       image: "/images/projects/corra.png",
       tags: ["frontend", "ai", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "OpenAI API", color: technologyColors.openai },
+      ],
       slug: "corra",
       link: "https://corra-tau.vercel.app/",
       github: "https://github.com/AD-Archer/corra",
@@ -226,6 +298,13 @@ export const projects: Project[] = [
       description: "Manage your personal finances and investments with this modern finance dashboard.",
       image: "/images/projects/fintech.png",
       tags: ["fullstack", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Node.js", color: technologyColors.nodejs },
+        { name: "PostgreSQL", color: technologyColors.typescript },
+        { name: "Chart.js", color: technologyColors.chartjs },
+        { name: "TailwindCSS", color: technologyColors.typescript }
+      ],
       slug: "fintech-app",
       link: "https://fintech-app-blond.vercel.app/",
       github: "https://github.com/AD-Archer/fintech-app",
@@ -243,6 +322,9 @@ export const projects: Project[] = [
       description: "System for managing custom security alarms (fire, smoke, security).",
       image: "/images/projects/dynasty-defense.png",
       tags: ["frontend", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+      ],
       slug: "dynasty-defense",
       link: "https://dynasty-defense.vercel.app/",
       github: "https://github.com/AD-Archer/dynasty-defense",
@@ -259,6 +341,10 @@ export const projects: Project[] = [
       description: "Cybersecurity awareness platform focused on passwords, 2FA, and USB keys.",
       image: "/images/projects/fortifynow.png",
       tags: ["frontend", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "Cyber Security", color: technologyColors.typescript }
+      ],
       slug: "fortifynow",
       link: "https://fortify-now.vercel.app/",
       github: "https://github.com/AD-Archer/FortifyNow",
@@ -276,6 +362,10 @@ export const projects: Project[] = [
       description: "A joke game celebrating Philly sports spirit: whether we win or lose, the city burns.",
       image: "/images/projects/winorlosephilly.png",
       tags: ["frontend", "node"],
+      technologies: [
+        { name: "React", color: technologyColors.react },
+        { name: "phraser", color: technologyColors.typescript }
+      ],
       slug: "win-or-lose-philly",
       link: "https://winorlosephilly.verecl.app/",
       github: "https://github.com/AD-Archer/winorlosephilly",
@@ -292,6 +382,11 @@ export const projects: Project[] = [
         description: "A personal QR code generator created while making slides for OrangeField University.",
         image: "/images/projects/qr.png",
         tags: ["frontend", "node"],
+        technologies: [
+          { name: "React", color: technologyColors.react },
+          { name: "qrcode.react", color: technologyColors.react },
+          { name: "bootstrap", color: technologyColors.react }
+        ],
         slug: "qr-code-generator",
         link: "https://qr.adarcher.app/",
         github: "https://github.com/AD-Archer/Qr-code-generator",
@@ -308,6 +403,10 @@ export const projects: Project[] = [
         description: "Transforms your audio files into retro-style distorted versions for fun or music creation. originally built for Win or Lose Philly soundtrack.",
         image: "/images/projects/retro.png",
         tags: ["backend", "node"],
+        technologies: [
+          { name: "Node.js", color: technologyColors.nodejs },
+          { name: "Express", color: technologyColors.express },
+        ],
         slug: "retro-audio-maker",
         link: "https://retroaudiomaker.adarcher.app/",
         github: "https://github.com/AD-Archer/retroaudiomaker",
@@ -324,6 +423,11 @@ export const projects: Project[] = [
         description: "A fork of T3 Convert SVG, HEIC, WEBP files to PNG in seconds.",
         image: "/images/projects/quickconvert.png",
         tags: ["frontend", "node"],
+        technologies: [
+          { name: "React", color: technologyColors.react },
+          { name: "TailwindCSS", color: technologyColors.react },
+          { name: "Typescript", color: technologyColors.typescript }
+        ],
         slug: "quick-convert",
         link: "https://quickconvert.adarcher.app/",
         github: "https://github.com/AD-Archer/Quick-Convert",
