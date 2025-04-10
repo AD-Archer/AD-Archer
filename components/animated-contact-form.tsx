@@ -17,6 +17,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
+import { useState } from "react"
+import { Loader2, Send } from "lucide-react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,7 +32,13 @@ const formSchema = z.object({
   }),
 })
 
-function AnimatedContactForm() {
+interface AnimatedContactFormProps {
+  onError?: () => void;
+}
+
+function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,13 +50,41 @@ function AnimatedContactForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // Submit form logic here
-      console.log(values)
-      toast.success("Message sent successfully!")
-      form.reset()
+      setIsSubmitting(true);
+      
+      // Show loading state
+      const loadingToast = toast.loading("Sending message...");
+      
+      // Send data to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+      
+      // Success
+      toast.dismiss(loadingToast);
+      toast.success("Message sent successfully! You'll receive a confirmation email shortly.");
+      form.reset();
     } catch (err) {
-      console.error('Form submission error:', err)
-      toast.error("Failed to send message. Please try again.")
+      console.error('Form submission error:', err);
+      toast.dismiss();
+      toast.error("Failed to send message. Please try again.");
+      
+      // Call the onError callback if provided
+      if (onError) {
+        onError();
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -66,9 +102,14 @@ function AnimatedContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel className="text-foreground">Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} />
+                  <Input 
+                    placeholder="Your name" 
+                    {...field} 
+                    disabled={isSubmitting} 
+                    className="border-input focus-visible:ring-primary"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,9 +120,14 @@ function AnimatedContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-foreground">Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="your@email.com" {...field} />
+                  <Input 
+                    placeholder="your@email.com" 
+                    {...field} 
+                    disabled={isSubmitting} 
+                    className="border-input focus-visible:ring-primary"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,20 +138,35 @@ function AnimatedContactForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel className="text-foreground">Message</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder="Type your message here."
-                    className="min-h-[120px]"
-                    {...field}
+                  <Textarea 
+                    placeholder="Your message..." 
+                    className="min-h-[120px] border-input focus-visible:ring-primary" 
+                    {...field} 
+                    disabled={isSubmitting}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Send Message
+          <Button 
+            type="submit" 
+            className="w-full relative bg-primary hover:bg-primary/90 text-primary-foreground" 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send className="mr-2 h-4 w-4" />
+                Send Message
+              </>
+            )}
           </Button>
         </form>
       </Form>
