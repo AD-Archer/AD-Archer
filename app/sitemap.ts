@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { projects } from "@/lib/data"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://antonio-archer.com"
+  const baseUrl = "https://antonioarcher.com"
 
   // Base routes
   const routes = [

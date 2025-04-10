@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, Github } from "lucide-react"
+import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from "lucide-react"
 import Link from "next/link"
 
 export async function generateStaticParams() {
@@ -27,132 +27,205 @@ export default async function ProjectPage({ params }: { params: { slug: string }
     .slice(0, 3)
 
   return (
-    <div className="container px-4 md:px-6 py-16 font-sans">
-      <div className="mb-8">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Projects
-        </Link>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-8 items-start">
-        <div className="comic-border rounded-lg overflow-hidden">
-          <Image
-            src={project.image || "/placeholder.svg"}
-            alt={project.title}
-            width={800}
-            height={600}
-            className="w-full object-cover"
-          />
-        </div>
-
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-4xl font-bold mb-2">{project.title}</h1>
-            <p className="text-muted-foreground">{project.description}</p>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tagId) => {
-              const tag = tags.find((t) => t.id === tagId)
-              return tag ? (
-                <Badge key={tag.id} variant="secondary" className={tag.color}>
-                  {tag.name}
-                </Badge>
-              ) : null
-            })}
-          </div>
-
-          <div className="flex gap-4">
-            {project.link && (
-              <Button asChild>
-                <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  View Live Demo
-                </Link>
-              </Button>
-            )}
-
-            {project.github && (
-              <Button asChild variant="outline">
-                <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  View Source Code
-                </Link>
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-12 space-y-8">
-        <h2 className="text-3xl font-bold">Project Details</h2>
-
-        <div className="prose max-w-none">
-          <p>
-            {project.description}
-          </p>
-
-          <h3>Features</h3>
-          <ul>
-            {project.features && project.features.length > 0 ? (
-              project.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))
-            ) : project.featured ? (
-              <>
-                <li>Featured project showcasing advanced development skills</li>
-                <li>Responsive design optimized for all devices</li>
-                <li>Modern UI/UX with intuitive navigation</li>
-              </>
-            ) : (
-              <>
-                <li>Clean, responsive design</li>
-                <li>Optimized performance</li>
-                <li>User-friendly interface</li>
-              </>
-            )}
-          </ul>
-
-          <h3>Technologies Used</h3>
-          <p>This project was built using the following technologies:</p>
-          <ul>
-            {project.tags.map((tagId) => {
-              const tag = tags.find((t) => t.id === tagId)
-              return tag ? (
-                <li key={tag.id}>{tag.name}</li>
-              ) : null
-            })}
-          </ul>
-        </div>
-      </div>
-
-      <div className="mt-12">
-        <h2 className="text-3xl font-bold mb-6">More Projects</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {relatedProjects.map((p) => (
-            <div key={p.id} className="border rounded-lg overflow-hidden">
-              <div className="aspect-video relative">
-                <Image src={p.image || "/placeholder.svg"} alt={p.title} fill className="object-cover" />
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      <div className="container px-4 md:px-6 py-12 font-sans">
+        {/* Hero Section */}
+        <div className="relative mb-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl -z-10"></div>
+          <div className="py-6 px-4 md:px-8">
+            <Link
+              href="/#projects"
+              className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-4"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Projects
+            </Link>
+            
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="w-full md:w-1/2">
+                <div className="comic-border rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    width={800}
+                    height={600}
+                    className="w-full object-cover"
+                  />
+                </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-bold">{p.title}</h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{p.description}</p>
-                {p.slug && (
-                  <Link
-                    href={`/projects/${p.slug}`}
-                    className="text-primary hover:underline text-sm mt-2 inline-block"
-                  >
-                    View Project
-                  </Link>
-                )}
+
+              <div className="w-full md:w-1/2 space-y-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    {project.featured && (
+                      <Badge variant="default" className="bg-primary">
+                        <Star className="h-3 w-3 mr-1" /> Featured
+                      </Badge>
+                    )}
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold mb-3">{project.title}</h1>
+                  <p className="text-muted-foreground">{project.description}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tagId) => {
+                    const tag = tags.find((t) => t.id === tagId)
+                    return tag ? (
+                      <Badge key={tag.id} variant="secondary" className={`${tag.color} text-white`}>
+                        {tag.name}
+                      </Badge>
+                    ) : null
+                  })}
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  {project.link && (
+                    <Button asChild size="default" className="shadow-md hover:shadow-lg transition-shadow">
+                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Live Demo
+                      </Link>
+                    </Button>
+                  )}
+
+                  {project.github && (
+                    <Button asChild variant="outline" size="default" className="shadow-md hover:shadow-lg transition-shadow">
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" />
+                        View Source Code
+                      </Link>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Project Details Section */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="md:col-span-2 space-y-6">
+            <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 shadow-md border border-border/50">
+              <h2 className="text-2xl font-bold mb-4 flex items-center">
+                <Code className="mr-2 h-5 w-5 text-primary" />
+                Project Details
+              </h2>
+
+              <div className="prose max-w-none dark:prose-invert">
+                <p>
+                  {project.description}
+                </p>
+
+                <h3 className="text-xl font-bold mt-6 mb-3">Key Features</h3>
+                <ul className="space-y-2">
+                  {project.features && project.features.length > 0 ? (
+                    project.features.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        {feature}
+                      </li>
+                    ))
+                  ) : project.featured ? (
+                    <>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Featured project showcasing advanced development skills
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Responsive design optimized for all devices
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Modern UI/UX with intuitive navigation
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Clean, responsive design
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Optimized performance
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        User-friendly interface
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 shadow-md border border-border/50">
+              <h3 className="text-xl font-bold mb-3 flex items-center">
+                <Calendar className="mr-2 h-4 w-4 text-primary" />
+                Technologies Used
+              </h3>
+              <div className="space-y-2">
+                {project.tags.map((tagId) => {
+                  const tag = tags.find((t) => t.id === tagId)
+                  return tag ? (
+                    <div key={tag.id} className="flex items-center">
+                      <div className={`w-3 h-3 rounded-full ${tag.color} mr-2`}></div>
+                      <span>{tag.name}</span>
+                    </div>
+                  ) : null
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Projects Section */}
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold mb-6 flex items-center">
+            <Star className="mr-2 h-5 w-5 text-primary" />
+            More Projects
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedProjects.map((p) => (
+              <div key={p.id} className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <div className="aspect-video relative overflow-hidden">
+                  <Image 
+                    src={p.image || "/placeholder.svg"} 
+                    alt={p.title} 
+                    fill 
+                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-lg mb-2">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{p.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {p.tags.slice(0, 3).map((tagId) => {
+                      const tag = tags.find((t) => t.id === tagId)
+                      return tag ? (
+                        <Badge key={tag.id} variant="outline" className="text-xs">
+                          {tag.name}
+                        </Badge>
+                      ) : null
+                    })}
+                  </div>
+                  {p.slug && (
+                    <Link
+                      href={`/projects/${p.slug}`}
+                      className="text-primary hover:underline text-sm font-medium inline-flex items-center"
+                    >
+                      View Project
+                      <ArrowLeft className="ml-2 h-3 w-3 rotate-180" />
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
