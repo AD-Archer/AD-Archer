@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { skills, certifications, education } from "@/lib/data"
+import { skills, certifications, education, jobs } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
+import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server, Briefcase } from "lucide-react"
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -290,6 +290,69 @@ export default function SkillsSection() {
             </Card>
           </motion.div>
         </div>
+
+        {/* Jobs Section - Centered below Skills and Education */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-16"
+        >
+          <div className="flex flex-col items-center text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Professional Experience</h2>
+            <p className="text-muted-foreground max-w-[800px]">
+              My career journey and professional achievements.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            {jobs.map((job, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="mb-8 last:mb-0"
+              >
+                <Card className="comic-border">
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                      <div>
+                        <CardTitle className="text-xl">{job.title}</CardTitle>
+                        <p className="text-muted-foreground">{job.company}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-medium">{job.duration}</p>
+                        <p className="text-sm text-muted-foreground">{job.location}</p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                      {job.achievements.map((achievement, achievementIndex) => (
+                        <li key={achievementIndex} className="text-sm">
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2">
+                      {job.techStack.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex} 
+                          className="text-xs px-2 py-1 bg-primary/10 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )
