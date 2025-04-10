@@ -7,6 +7,7 @@ import Footer from "@/components/footer"
 import AiAssistant from "@/components/ai-assistant"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Footer />
             <AiAssistant />
             <ScrollToTop />
+            <Toaster />
           </div>
         </ThemeProvider>
       </body>
