@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import { withClientSide } from './client-component'
-import { motion } from 'framer-motion'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
+import { withClientSide } from './client-component';
+import { motion } from 'framer-motion';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,24 +13,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "sonner"
-import { useState } from "react"
-import { Loader2, Send } from "lucide-react"
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { Loader2, Send } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: 'Name must be at least 2 characters.',
   }),
   email: z.string().email({
-    message: "Please enter a valid email address.",
+    message: 'Please enter a valid email address.',
   }),
   message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
+    message: 'Message must be at least 10 characters.',
   }),
-})
+});
 
 interface AnimatedContactFormProps {
   onError?: () => void;
@@ -38,23 +38,23 @@ interface AnimatedContactFormProps {
 
 function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      message: "",
+      name: '',
+      email: '',
+      message: '',
     },
-  })
+  });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
-      
+
       // Show loading state
-      const loadingToast = toast.loading("Sending message...");
-      
+      const loadingToast = toast.loading('Sending message...');
+
       // Send data to API
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -63,13 +63,13 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
         },
         body: JSON.stringify(values),
       });
-      
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send message');
       }
-      
+
       // Success
       toast.dismiss(loadingToast);
       toast.success("Message sent successfully! You'll receive a confirmation email shortly.");
@@ -77,8 +77,8 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
     } catch (err) {
       console.error('Form submission error:', err);
       toast.dismiss();
-      toast.error("Failed to send message. Please try again.");
-      
+      toast.error('Failed to send message. Please try again.');
+
       // Call the onError callback if provided
       if (onError) {
         onError();
@@ -104,10 +104,10 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
               <FormItem>
                 <FormLabel className="text-foreground">Name</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="Your name" 
-                    {...field} 
-                    disabled={isSubmitting} 
+                  <Input
+                    placeholder="Your name"
+                    {...field}
+                    disabled={isSubmitting}
                     className="border-input focus-visible:ring-primary"
                   />
                 </FormControl>
@@ -122,10 +122,10 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
               <FormItem>
                 <FormLabel className="text-foreground">Email</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="your@email.com" 
-                    {...field} 
-                    disabled={isSubmitting} 
+                  <Input
+                    placeholder="your@email.com"
+                    {...field}
+                    disabled={isSubmitting}
                     className="border-input focus-visible:ring-primary"
                   />
                 </FormControl>
@@ -140,10 +140,10 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
               <FormItem>
                 <FormLabel className="text-foreground">Message</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Your message..." 
-                    className="min-h-[120px] border-input focus-visible:ring-primary" 
-                    {...field} 
+                  <Textarea
+                    placeholder="Your message..."
+                    className="min-h-[120px] border-input focus-visible:ring-primary"
+                    {...field}
                     disabled={isSubmitting}
                   />
                 </FormControl>
@@ -151,9 +151,9 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
               </FormItem>
             )}
           />
-          <Button 
-            type="submit" 
-            className="w-full relative bg-primary hover:bg-primary/90 text-primary-foreground" 
+          <Button
+            type="submit"
+            className="w-full relative bg-primary hover:bg-primary/90 text-primary-foreground"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
@@ -171,7 +171,7 @@ function AnimatedContactForm({ onError }: AnimatedContactFormProps) {
         </form>
       </Form>
     </motion.div>
-  )
+  );
 }
 
-export default withClientSide(AnimatedContactForm, { loadingType: 'default' })
+export default withClientSide(AnimatedContactForm, { loadingType: 'default' });

@@ -5,31 +5,31 @@
 default:
   # Enable GitGuardian scanning
   enabled: true
-  
+
   # Scan patterns
   scan:
     # Scan staged files
     staged: true
-    
+
     # Scan all files in the repository
     all: false
-    
+
     # Scan specific paths
     paths:
-      - "**/*.js"
-      - "**/*.jsx"
-      - "**/*.ts"
-      - "**/*.tsx"
-      - "**/*.json"
-      - "**/*.yaml"
-      - "**/*.yml"
-      - "**/*.env*"
-      - "**/*.md"
-  
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.json'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '**/*.env*'
+      - '**/*.md'
+
   # Ignore patterns
   ignore:
-    - "node_modules/**"
-    - ".next/**"
-    - "dist/**"
-    - "build/**"
-    - "coverage/**" 
+    - 'node_modules/**'
+    - '.next/**'
+    - 'dist/**'
+    - 'build/**'
+    - 'coverage/**'

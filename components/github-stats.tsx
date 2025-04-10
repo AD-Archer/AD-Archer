@@ -1,12 +1,12 @@
-"use client"
+'use client';
 
-import { withClientSide } from './client-component'
-import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Github } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { withClientSide } from './client-component';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Github } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 function GithubStats() {
   return (
@@ -71,7 +71,7 @@ function GithubStats() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default withClientSide(GithubStats, { loadingType: 'card' })
+export default withClientSide(GithubStats, { loadingType: 'card' });

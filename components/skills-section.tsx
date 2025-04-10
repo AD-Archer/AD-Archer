@@ -1,26 +1,34 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { skills, certifications, education, jobs } from "@/lib/data"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { motion } from 'framer-motion';
+import { skills, certifications, education, jobs } from '@/lib/data';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 // Helper function to render skill icon with fallback
-function SkillIcon({ src, alt, fallback }: { src: string, alt: string, fallback: React.ReactNode }) {
+function SkillIcon({
+  src,
+  alt,
+  fallback,
+}: {
+  src: string;
+  alt: string;
+  fallback: React.ReactNode;
+}) {
   const [error, setError] = useState(false);
-  
+
   if (error) {
     return <>{fallback}</>;
   }
-  
+
   return (
-    <Image 
-      src={src} 
-      alt={alt} 
-      width={32} 
+    <Image
+      src={src}
+      alt={alt}
+      width={32}
       height={32}
       className="object-contain"
       onError={() => setError(true)}
@@ -47,12 +55,12 @@ export default function SkillsSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <section id="skills" className="py-16 scroll-mt-16 bg-muted/30">
@@ -103,13 +111,13 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills.frontend.map((skill) => (
+                      {skills.frontend.map(skill => (
                         <motion.div key={skill.name} variants={item}>
                           <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
                             <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                              <SkillIcon 
-                                src={skill.icon} 
-                                alt={skill.name} 
+                              <SkillIcon
+                                src={skill.icon}
+                                alt={skill.name}
                                 fallback={<Layers className="h-6 w-6 text-primary" />}
                               />
                             </div>
@@ -128,13 +136,13 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills.backend.map((skill) => (
+                      {skills.backend.map(skill => (
                         <motion.div key={skill.name} variants={item}>
                           <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
                             <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                              <SkillIcon 
-                                src={skill.icon} 
-                                alt={skill.name} 
+                              <SkillIcon
+                                src={skill.icon}
+                                alt={skill.name}
                                 fallback={<Database className="h-6 w-6 text-primary" />}
                               />
                             </div>
@@ -153,13 +161,13 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {skills.tools.map((skill) => (
+                      {skills.tools.map(skill => (
                         <motion.div key={skill.name} variants={item}>
                           <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
                             <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                              <SkillIcon 
-                                src={skill.icon} 
-                                alt={skill.name} 
+                              <SkillIcon
+                                src={skill.icon}
+                                alt={skill.name}
                                 fallback={<Tool className="h-6 w-6 text-primary" />}
                               />
                             </div>
@@ -178,13 +186,13 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {[...skills.databases, ...skills.hosting].map((skill) => (
+                      {[...skills.databases, ...skills.hosting].map(skill => (
                         <motion.div key={skill.name} variants={item}>
                           <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
                             <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
-                              <SkillIcon 
-                                src={skill.icon} 
-                                alt={skill.name} 
+                              <SkillIcon
+                                src={skill.icon}
+                                alt={skill.name}
                                 fallback={<Server className="h-6 w-6 text-primary" />}
                               />
                             </div>
@@ -339,8 +347,8 @@ export default function SkillsSection() {
                     </ul>
                     <div className="flex flex-wrap gap-2">
                       {job.techStack.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex} 
+                        <span
+                          key={techIndex}
                           className="text-xs px-2 py-1 bg-primary/10 rounded-full"
                         >
                           {tech}
@@ -355,5 +363,5 @@ export default function SkillsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

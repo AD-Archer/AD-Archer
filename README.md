@@ -44,9 +44,6 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
 
-
-
-
 [![Click Here for All My Repos](https://img.shields.io/badge/All_My_Repositories-1F222E?style=for-the-badge&logo=github&logoColor=white&border=2px+solid+%23F85D7F)](https://github.com/AD-Archer)
 
 ## Certifications
@@ -99,11 +96,13 @@ This repository uses pre-commit hooks to ensure code quality and security:
 To set up the pre-commit hooks:
 
 1. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 2. Install GitGuardian CLI (optional, but recommended):
+
    ```bash
    curl -s https://cli.gitguardian.com/install.sh | bash
    ```

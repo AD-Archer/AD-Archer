@@ -1,44 +1,44 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { useRef, useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Zap, Code } from "lucide-react"
-import Link from "next/link"
-import dynamic from "next/dynamic"
-import LoadingAnimation from "./loading-animation"
-import Image from "next/image"
+import type React from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Zap, Code } from 'lucide-react';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import LoadingAnimation from './loading-animation';
+import Image from 'next/image';
 
 // Dynamically import ThreeBackground with no SSR
-const ThreeBackground = dynamic(() => import("./three-background"), { 
+const ThreeBackground = dynamic(() => import('./three-background'), {
   ssr: false,
-  loading: () => <LoadingAnimation type="full" />
-})
+  loading: () => <LoadingAnimation type="full" />,
+});
 
 export default function Hero3D() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   const handleMouseMove = () => {
     // We can keep this function for future use if needed
     // but we're not using the mousePosition state anymore
-  }
+  };
 
   const handleMouseLeave = () => {
     // We can keep this function for future use if needed
-  }
+  };
 
   if (!isLoaded) {
-    return <LoadingAnimation type="full" />
+    return <LoadingAnimation type="full" />;
   }
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -49,7 +49,7 @@ export default function Hero3D() {
     >
       {/* Three.js Background */}
       <ThreeBackground />
-      
+
       {/* Subtle gradient overlay for better text contrast */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-background/10 to-background/20 z-[1]" />
 
@@ -109,10 +109,8 @@ export default function Hero3D() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-
-        </motion.div>
+        ></motion.div>
       </div>
     </motion.section>
-  )
+  );
 }

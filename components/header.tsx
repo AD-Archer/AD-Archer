@@ -1,37 +1,37 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 // Update the navItems array to remove the Blog link
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "Projects", path: "/projects" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-]
+  { name: 'Home', path: '/' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' },
+];
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-md shadow-md" : "bg-transparent"
+        scrolled ? 'bg-background/80 backdrop-blur-md shadow-md' : 'bg-transparent'
       }`}
     >
       <div className="container flex h-16 items-center justify-between">
@@ -39,7 +39,7 @@ export default function Header() {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             className="relative"
           >
             <span className="font-bangers text-3xl text-primary">Antonio Archer</span>
@@ -57,7 +57,7 @@ export default function Header() {
               <Link
                 href={item.path}
                 className={`text-lg font-medium transition-colors hover:text-primary ${
-                  pathname === item.path ? "text-primary" : "text-foreground"
+                  pathname === item.path ? 'text-primary' : 'text-foreground'
                 }`}
               >
                 {item.name}
@@ -67,7 +67,12 @@ export default function Header() {
         </nav>
 
         <div className="md:hidden flex items-center">
-          <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
@@ -82,12 +87,12 @@ export default function Header() {
           className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border"
         >
           <div className="container py-4 flex flex-col gap-4">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <Link
                 key={item.name}
                 href={item.path}
                 className={`text-lg font-medium transition-colors hover:text-primary ${
-                  pathname === item.path ? "text-primary" : "text-foreground"
+                  pathname === item.path ? 'text-primary' : 'text-foreground'
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -98,5 +103,5 @@ export default function Header() {
         </motion.div>
       )}
     </header>
-  )
+  );
 }

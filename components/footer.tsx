@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import Link from 'next/link';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -41,7 +41,10 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="mailto:adarcher21@gmail.com" className="hover:text-primary transition-colors">
+              <Link
+                href="mailto:adarcher21@gmail.com"
+                className="hover:text-primary transition-colors"
+              >
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
@@ -52,22 +55,34 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/projects"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Contact
                 </Link>
               </li>
@@ -82,5 +97,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

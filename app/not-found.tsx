@@ -1,9 +1,14 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Home } from "lucide-react"
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowLeft, Home } from 'lucide-react';
+
+export const metadata = {
+  title: 'Page Not Found | Antonio Archer Portfolio',
+  description: 'The page you&apos;re looking for doesn&apos;t exist or has been moved.',
+};
 
 export default function NotFound() {
   return (
@@ -18,7 +23,7 @@ export default function NotFound() {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             className="font-bangers text-9xl text-primary"
           >
             404
@@ -27,7 +32,7 @@ export default function NotFound() {
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ delay: 0.3, type: 'spring', stiffness: 300, damping: 20 }}
             className="absolute top-0 right-0 -mr-4 -mt-4 bg-secondary text-secondary-foreground font-bangers p-4 rounded-full transform rotate-12 shadow-lg"
           >
             <span className="text-xl">OOPS!</span>
@@ -36,16 +41,25 @@ export default function NotFound() {
 
         <h1 className="text-3xl font-bold mb-4">Page Not Found</h1>
         <p className="text-muted-foreground mb-8">
-          The page you&#39;re looking for doesn&#39;t exist or has been moved to another location.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved. Please check the
+          URL or navigate back to the homepage.
         </p>
 
-        <Button asChild size="lg">
-          <Link href="/" className="flex items-center gap-2">
-            <Home className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Button asChild variant="outline" className="flex items-center gap-2">
+            <Link href="/">
+              <Home className="h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+          <Button asChild variant="default" className="flex items-center gap-2">
+            <Link href="/projects">
+              <ArrowLeft className="h-4 w-4" />
+              View Projects
+            </Link>
+          </Button>
+        </div>
       </motion.div>
     </div>
-  )
+  );
 }

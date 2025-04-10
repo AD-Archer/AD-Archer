@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import { withClientSide } from './client-component'
-import { motion } from 'framer-motion'
-import { jobs } from '@/lib/data'
+import { withClientSide } from './client-component';
+import { motion } from 'framer-motion';
+import { jobs } from '@/lib/data';
 
 function InteractiveTimeline() {
   return (
@@ -35,9 +35,7 @@ function InteractiveTimeline() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex items-center ${
-                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
+                className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
               >
                 <div className="w-1/2 pr-8 text-right">
                   {index % 2 === 0 && (
@@ -77,7 +75,7 @@ function InteractiveTimeline() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function TimelineContent({
@@ -88,12 +86,12 @@ function TimelineContent({
   achievements,
   techStack,
 }: {
-  title: string
-  company: string
-  duration: string
-  location: string
-  achievements: string[]
-  techStack: string[]
+  title: string;
+  company: string;
+  duration: string;
+  location: string;
+  achievements: string[];
+  techStack: string[];
 }) {
   return (
     <div className="bg-card p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
@@ -104,31 +102,30 @@ function TimelineContent({
         <span>•</span>
         <span>{location}</span>
       </div>
-      
+
       <div className="mb-4">
         <h4 className="font-semibold mb-2">Key Achievements:</h4>
         <ul className="list-disc pl-5 space-y-1">
           {achievements.map((achievement, index) => (
-            <li key={index} className="text-sm">{achievement}</li>
+            <li key={index} className="text-sm">
+              {achievement}
+            </li>
           ))}
         </ul>
       </div>
-      
+
       <div>
         <h4 className="font-semibold mb-2">Tech Stack:</h4>
         <div className="flex flex-wrap gap-2">
           {techStack.map((tech, index) => (
-            <span 
-              key={index} 
-              className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs"
-            >
+            <span key={index} className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs">
               {tech}
             </span>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default withClientSide(InteractiveTimeline, { loadingType: 'full' })
+export default withClientSide(InteractiveTimeline, { loadingType: 'full' });

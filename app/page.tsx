@@ -1,7 +1,7 @@
-import Hero3D from "@/components/hero-3d"
-import ProjectShowcase from "@/components/project-showcase"
-import SkillsSection from "@/components/skills-section"
-import GitHubStats from "@/components/github-stats"
+import Hero3D from '@/components/hero-3d';
+import ProjectShowcase from '@/components/project-showcase';
+import SkillsSection from '@/components/skills-section';
+import GitHubStats from '@/components/github-stats';
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
       <ProjectShowcase />
       <SkillsSection />
     </div>
-  )
+  );
 }

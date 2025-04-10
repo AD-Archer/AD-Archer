@@ -7,14 +7,17 @@ export async function POST(request: Request) {
 
     // Validate input
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Name, email, and message are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Name, email, and message are required' }, { status: 400 });
     }
 
     // Check if SMTP configuration is available
-    if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD || !process.env.SMTP_FROM) {
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_PORT ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASSWORD ||
+      !process.env.SMTP_FROM
+    ) {
       console.error('SMTP configuration is missing');
       return NextResponse.json(
         { error: 'Email service is not properly configured' },
@@ -38,10 +41,7 @@ export async function POST(request: Request) {
       await transporter.verify();
     } catch (verifyError) {
       console.error('SMTP verification error:', verifyError);
-      return NextResponse.json(
-        { error: 'Could not connect to email server' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Could not connect to email server' }, { status: 500 });
     }
 
     // Email content for admin notification
@@ -103,26 +103,17 @@ Antonio Archer
     try {
       // Send admin notification
       await transporter.sendMail(adminMailOptions);
-      
+
       // Send auto-reply to the sender
       await transporter.sendMail(autoReplyMailOptions);
     } catch (sendError) {
       console.error('Email sending error:', sendError);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
     }
 
-    return NextResponse.json(
-      { message: 'Email sent successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
   } catch (error) {
     console.error('General error:', error);
-    return NextResponse.json(
-      { error: 'An unexpected error occurred' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
   }
-} 
+}

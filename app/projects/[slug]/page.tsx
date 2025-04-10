@@ -1,30 +1,28 @@
-import { projects, tags } from "@/lib/data"
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from "lucide-react"
-import Link from "next/link"
+import { projects, tags } from '@/lib/data';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from 'lucide-react';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   return projects
-    .filter((project) => project.slug)
-    .map((project) => ({
+    .filter(project => project.slug)
+    .map(project => ({
       slug: project.slug,
-    }))
+    }));
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.slug === params.slug)
+  const project = projects.find(p => p.slug === params.slug);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   // Get related projects (excluding current project)
-  const relatedProjects = projects
-    .filter((p) => p.id !== project.id)
-    .slice(0, 3)
+  const relatedProjects = projects.filter(p => p.id !== project.id).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
@@ -40,14 +38,14 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Projects
             </Link>
-            
+
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-full md:w-1/2">
                 <div className="comic-border rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
                   <div className="relative bg-slate-100 dark:bg-slate-800">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
                     <Image
-                      src={project.image || "/placeholder.svg"}
+                      src={project.image || '/placeholder.svg'}
                       alt={project.title}
                       width={800}
                       height={600}
@@ -72,22 +70,26 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tagId) => {
-                    const tag = tags.find((t) => t.id === tagId)
+                  {project.tags.map(tagId => {
+                    const tag = tags.find(t => t.id === tagId);
                     return tag ? (
-                      <span 
-                        key={tag.id} 
+                      <span
+                        key={tag.id}
                         className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
                       >
                         {tag.name}
                       </span>
-                    ) : null
+                    ) : null;
                   })}
                 </div>
 
                 <div className="flex gap-3 pt-2">
                   {project.link && (
-                    <Button asChild size="default" className="shadow-md hover:shadow-lg transition-shadow">
+                    <Button
+                      asChild
+                      size="default"
+                      className="shadow-md hover:shadow-lg transition-shadow"
+                    >
                       <Link href={project.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         View Live Demo
@@ -96,7 +98,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   )}
 
                   {project.github && (
-                    <Button asChild variant="outline" size="default" className="shadow-md hover:shadow-lg transition-shadow">
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="default"
+                      className="shadow-md hover:shadow-lg transition-shadow"
+                    >
                       <Link href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="mr-2 h-4 w-4" />
                         View Source Code
@@ -119,9 +126,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               </h2>
 
               <div className="prose max-w-none dark:prose-invert">
-                <p>
-                  {project.description}
-                </p>
+                <p>{project.description}</p>
 
                 <h3 className="text-xl font-bold mt-6 mb-3">Key Features</h3>
                 <ul className="space-y-2">
@@ -175,28 +180,26 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 Technologies Used
               </h3>
               <div className="flex flex-wrap gap-2">
-                {project.technologies && project.technologies.length > 0 ? (
-                  project.technologies.map((tech, index) => (
-                    <span 
-                      key={index} 
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${tech.color} text-white`}
-                    >
-                      {tech.name}
-                    </span>
-                  ))
-                ) : (
-                  project.tags.map((tagId) => {
-                    const tag = tags.find((t) => t.id === tagId)
-                    return tag ? (
-                      <span 
-                        key={tag.id} 
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                {project.technologies && project.technologies.length > 0
+                  ? project.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${tech.color} text-white`}
                       >
-                        {tag.name}
+                        {tech.name}
                       </span>
-                    ) : null
-                  })
-                )}
+                    ))
+                  : project.tags.map(tagId => {
+                      const tag = tags.find(t => t.id === tagId);
+                      return tag ? (
+                        <span
+                          key={tag.id}
+                          className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                        >
+                          {tag.name}
+                        </span>
+                      ) : null;
+                    })}
               </div>
             </div>
           </div>
@@ -210,14 +213,17 @@ export default async function ProjectPage({ params }: { params: { slug: string }
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedProjects.map((p) => (
-              <div key={p.id} className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            {relatedProjects.map(p => (
+              <div
+                key={p.id}
+                className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              >
                 <div className="aspect-video relative overflow-hidden bg-slate-100 dark:bg-slate-800">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
-                  <Image 
-                    src={p.image || "/placeholder.svg"} 
-                    alt={p.title} 
-                    fill 
+                  <Image
+                    src={p.image || '/placeholder.svg'}
+                    alt={p.title}
+                    fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     style={{ mixBlendMode: 'multiply' }}
                   />
@@ -226,16 +232,16 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   <h3 className="font-bold text-lg mb-2">{p.title}</h3>
                   <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{p.description}</p>
                   <div className="flex flex-wrap gap-1 mb-3">
-                    {p.tags.slice(0, 3).map((tagId) => {
-                      const tag = tags.find((t) => t.id === tagId)
+                    {p.tags.slice(0, 3).map(tagId => {
+                      const tag = tags.find(t => t.id === tagId);
                       return tag ? (
-                        <span 
-                          key={tag.id} 
+                        <span
+                          key={tag.id}
                           className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
                         >
                           {tag.name}
                         </span>
-                      ) : null
+                      ) : null;
                     })}
                   </div>
                   {p.slug && (
@@ -254,5 +260,5 @@ export default async function ProjectPage({ params }: { params: { slug: string }
         </div>
       </div>
     </div>
-  )
+  );
 }
