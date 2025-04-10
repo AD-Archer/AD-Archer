@@ -1,26 +1,28 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { projects, tags } from "@/lib/data"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Github } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects, tags } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ExternalLink, Github } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProjectsSection() {
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const filteredProjects =
     selectedTags.length > 0
-      ? projects.filter((project) => selectedTags.some((tag) => project.tags.includes(tag)))
-      : projects
+      ? projects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
+      : projects;
 
   const toggleTag = (tagId: string) => {
-    setSelectedTags((prev) => (prev.includes(tagId) ? prev.filter((t) => t !== tagId) : [...prev, tagId]))
-  }
+    setSelectedTags(prev =>
+      prev.includes(tagId) ? prev.filter(t => t !== tagId) : [...prev, tagId]
+    );
+  };
 
   return (
     <section id="projects" className="py-16 scroll-mt-16">
@@ -34,8 +36,8 @@ export default function ProjectsSection() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">My Projects</h2>
             <p className="text-muted-foreground max-w-[800px] mb-8">
-              Check out some of my recent work. These projects showcase my skills and experience in building modern web
-              applications.
+              Check out some of my recent work. These projects showcase my skills and experience in
+              building modern web applications.
             </p>
           </motion.div>
 
@@ -46,18 +48,23 @@ export default function ProjectsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-wrap gap-2 justify-center mb-8"
           >
-            {tags.map((tag) => (
+            {tags.map(tag => (
               <Badge
                 key={tag.id}
-                variant={selectedTags.includes(tag.id) ? "default" : "outline"}
-                className={`cursor-pointer text-sm py-1 px-3 ${selectedTags.includes(tag.id) ? tag.color + " text-white" : ""}`}
+                variant={selectedTags.includes(tag.id) ? 'default' : 'outline'}
+                className={`cursor-pointer text-sm py-1 px-3 ${selectedTags.includes(tag.id) ? tag.color + ' text-white' : ''}`}
                 onClick={() => toggleTag(tag.id)}
               >
                 {tag.name}
               </Badge>
             ))}
             {selectedTags.length > 0 && (
-              <Button variant="ghost" size="sm" onClick={() => setSelectedTags([])} className="text-xs">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedTags([])}
+                className="text-xs"
+              >
                 Clear filters
               </Button>
             )}
@@ -81,7 +88,7 @@ export default function ProjectsSection() {
                     {project.slug ? (
                       <Link href={`/projects/${project.slug}`}>
                         <Image
-                          src={project.image || "/placeholder.svg"}
+                          src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
                           className="object-cover transition-transform duration-300 hover:scale-105"
@@ -90,7 +97,7 @@ export default function ProjectsSection() {
                       </Link>
                     ) : (
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
@@ -109,13 +116,13 @@ export default function ProjectsSection() {
                   <CardContent>
                     <p className="text-muted-foreground">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      {project.tags.map((tagId) => {
-                        const tag = tags.find((t) => t.id === tagId)
+                      {project.tags.map(tagId => {
+                        const tag = tags.find(t => t.id === tagId);
                         return tag ? (
                           <Badge key={tag.id} variant="secondary" className="text-xs">
                             {tag.name}
                           </Badge>
-                        ) : null
+                        ) : null;
                       })}
                     </div>
                   </CardContent>
@@ -149,5 +156,5 @@ export default function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

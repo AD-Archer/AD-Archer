@@ -1,50 +1,50 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
+import { useEffect } from 'react';
 
-import { useState } from "react"
+import { useState } from 'react';
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 type Statistic = {
-  value: number
-  label: string
-  icon: string
-  color: string
-  suffix?: string
-}
+  value: number;
+  label: string;
+  icon: string;
+  color: string;
+  suffix?: string;
+};
 
 const statistics: Statistic[] = [
   {
     value: 50,
-    label: "Projects Completed",
-    icon: "🚀",
-    color: "bg-primary",
-    suffix: "+",
+    label: 'Projects Completed',
+    icon: '🚀',
+    color: 'bg-primary',
+    suffix: '+',
   },
   {
     value: 15,
-    label: "Happy Clients",
-    icon: "😊",
-    color: "bg-secondary",
-    suffix: "+",
+    label: 'Happy Clients',
+    icon: '😊',
+    color: 'bg-secondary',
+    suffix: '+',
   },
   {
     value: 5,
-    label: "Years Experience",
-    icon: "⏱️",
-    color: "bg-accent",
-    suffix: "+",
+    label: 'Years Experience',
+    icon: '⏱️',
+    color: 'bg-accent',
+    suffix: '+',
   },
   {
     value: 99,
-    label: "Satisfaction Rate",
-    icon: "⭐",
-    color: "bg-primary",
-    suffix: "%",
+    label: 'Satisfaction Rate',
+    icon: '⭐',
+    color: 'bg-primary',
+    suffix: '%',
   },
-]
+];
 
 export default function StatisticsSection() {
   return (
@@ -57,12 +57,12 @@ export default function StatisticsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function StatCard({ stat, index }: { stat: Statistic; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.5 })
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
     <motion.div
@@ -73,7 +73,9 @@ function StatCard({ stat, index }: { stat: Statistic; index: number }) {
       className="comic-border rounded-lg overflow-hidden"
     >
       <div className="p-6 text-center">
-        <div className={`w-16 h-16 ${stat.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}>
+        <div
+          className={`w-16 h-16 ${stat.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}
+        >
           {stat.icon}
         </div>
 
@@ -89,41 +91,41 @@ function StatCard({ stat, index }: { stat: Statistic; index: number }) {
         <div className="text-muted-foreground">{stat.label}</div>
       </div>
     </motion.div>
-  )
+  );
 }
 
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.5 })
+function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isInView) return
+    if (!isInView) return;
 
-    let startTime: number
-    let animationFrame: number
+    let startTime: number;
+    let animationFrame: number;
 
     const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / 2000, 1)
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / 2000, 1);
 
-      setCount(Math.floor(progress * target))
+      setCount(Math.floor(progress * target));
 
       if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate)
+        animationFrame = requestAnimationFrame(animate);
       }
-    }
+    };
 
-    animationFrame = requestAnimationFrame(animate)
+    animationFrame = requestAnimationFrame(animate);
 
-    return () => cancelAnimationFrame(animationFrame)
-  }, [isInView, target])
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isInView, target]);
 
   return (
     <span ref={ref}>
       {count}
       {suffix}
     </span>
-  )
+  );
 }

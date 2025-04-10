@@ -1,10 +1,10 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { Skeleton } from "@/components/ui/skeleton"
+import { motion } from 'framer-motion';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface LoadingAnimationProps {
-  type?: 'default' | 'card' | 'text' | 'full'
+  type?: 'default' | 'card' | 'text' | 'full';
 }
 
 export default function LoadingAnimation({ type = 'default' }: LoadingAnimationProps) {
@@ -17,7 +17,7 @@ export default function LoadingAnimation({ type = 'default' }: LoadingAnimationP
           <Skeleton className="h-4 w-[200px]" />
         </div>
       </div>
-    )
+    );
   }
 
   if (type === 'text') {
@@ -26,7 +26,7 @@ export default function LoadingAnimation({ type = 'default' }: LoadingAnimationP
         <Skeleton className="h-4 w-[250px]" />
         <Skeleton className="h-4 w-[200px]" />
       </div>
-    )
+    );
   }
 
   if (type === 'full') {
@@ -39,7 +39,7 @@ export default function LoadingAnimation({ type = 'default' }: LoadingAnimationP
           <Skeleton className="h-4 w-[80%]" />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -53,7 +53,7 @@ export default function LoadingAnimation({ type = 'default' }: LoadingAnimationP
           transition={{
             duration: 1.5,
             repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           }}
           className="font-bold text-2xl text-primary"
         >
@@ -61,5 +61,5 @@ export default function LoadingAnimation({ type = 'default' }: LoadingAnimationP
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

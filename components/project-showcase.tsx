@@ -1,38 +1,38 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { projects, tags } from "@/lib/data"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, ArrowRight, Code } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { withClientSide } from './client-component'
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { projects, tags } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Github, ArrowRight, Code } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { withClientSide } from './client-component';
 
 function ProjectShowcase() {
-  const [activeProject, setActiveProject] = useState(projects[0])
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const cardRef = useRef<HTMLDivElement>(null)
+  const [activeProject, setActiveProject] = useState(projects[0]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (!cardRef.current) return;
 
-    const rect = cardRef.current.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    setMousePosition({ x, y })
-  }
+    setMousePosition({ x, y });
+  };
 
   const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 })
-  }
+    setMousePosition({ x: 0, y: 0 });
+  };
 
   // Filter featured projects
-  const featuredProjects = projects.filter((project) => project.featured)
+  const featuredProjects = projects.filter(project => project.featured);
 
   return (
     <section className="py-16">
@@ -46,7 +46,8 @@ function ProjectShowcase() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured Projects</h2>
             <p className="text-muted-foreground max-w-[800px] mb-8">
-              Check out some of my best work. These projects showcase my skills in building modern web applications.
+              Check out some of my best work. These projects showcase my skills in building modern
+              web applications.
             </p>
           </motion.div>
         </div>
@@ -55,18 +56,22 @@ function ProjectShowcase() {
           {/* Project selector */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
-              {featuredProjects.map((project) => (
+              {featuredProjects.map(project => (
                 <motion.div
                   key={project.id}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveProject(project)}
                   className={`cursor-pointer p-4 rounded-lg comic-border transition-colors ${
-                    activeProject.id === project.id ? "bg-primary/10 border-primary" : "bg-background hover:bg-muted/50"
+                    activeProject.id === project.id
+                      ? 'bg-primary/10 border-primary'
+                      : 'bg-background hover:bg-muted/50'
                   }`}
                 >
                   <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
+                  <p className="text-muted-foreground text-sm line-clamp-2">
+                    {project.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -82,8 +87,8 @@ function ProjectShowcase() {
                 rotateY: mousePosition.x * 20,
                 rotateX: -mousePosition.y * 20,
               }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              style={{ transformStyle: "preserve-3d" }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              style={{ transformStyle: 'preserve-3d' }}
               className="w-full h-full perspective-1000"
             >
               <div className="comic-border rounded-lg overflow-hidden bg-background shadow-xl h-full transform-style-3d">
@@ -91,7 +96,7 @@ function ProjectShowcase() {
                   {activeProject.slug ? (
                     <Link href={`/projects/${activeProject.slug}`}>
                       <Image
-                        src={activeProject.image || "/placeholder.svg"}
+                        src={activeProject.image || '/placeholder.svg'}
                         alt={activeProject.title}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
@@ -100,7 +105,7 @@ function ProjectShowcase() {
                     </Link>
                   ) : (
                     <Image
-                      src={activeProject.image || "/placeholder.svg"}
+                      src={activeProject.image || '/placeholder.svg'}
                       alt={activeProject.title}
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-105"
@@ -117,13 +122,13 @@ function ProjectShowcase() {
                   <p className="text-muted-foreground mb-4">{activeProject.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {activeProject.tags.map((tagId) => {
-                      const tag = tags.find((t) => t.id === tagId)
+                    {activeProject.tags.map(tagId => {
+                      const tag = tags.find(t => t.id === tagId);
                       return tag ? (
                         <Badge key={tag.id} variant="secondary" className="text-xs">
                           {tag.name}
                         </Badge>
-                      ) : null
+                      ) : null;
                     })}
                   </div>
 
@@ -166,7 +171,7 @@ function ProjectShowcase() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default withClientSide(ProjectShowcase, { loadingType: 'card' })
+export default withClientSide(ProjectShowcase, { loadingType: 'card' });

@@ -1,17 +1,17 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { projects } from "@/lib/data"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, ArrowRight } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { motion } from 'framer-motion';
+import { projects } from '@/lib/data';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FeaturedProjectsSection() {
   // Filter only featured projects for the homepage
-  const featuredProjects = projects.filter((project) => project.featured)
+  const featuredProjects = projects.filter(project => project.featured);
 
   return (
     <section id="projects" className="py-16 scroll-mt-16">
@@ -25,8 +25,8 @@ export default function FeaturedProjectsSection() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured Projects</h2>
             <p className="text-muted-foreground max-w-[800px] mb-8">
-              Check out some of my best work. These projects showcase my skills and experience in building modern web
-              applications.
+              Check out some of my best work. These projects showcase my skills and experience in
+              building modern web applications.
             </p>
           </motion.div>
         </div>
@@ -43,7 +43,7 @@ export default function FeaturedProjectsSection() {
               <Card className="overflow-hidden h-full comic-panel">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
-                    src={project.image || "/placeholder.svg"}
+                    src={project.image || '/placeholder.svg'}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-300 hover:scale-105"
@@ -58,13 +58,13 @@ export default function FeaturedProjectsSection() {
                 <CardContent>
                   <p className="text-muted-foreground">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {project.tags.map((tagId) => {
-                      const tag = tags.find((t) => t.id === tagId)
+                    {project.tags.map(tagId => {
+                      const tag = tags.find(t => t.id === tagId);
                       return tag ? (
                         <Badge key={tag.id} variant="secondary" className="text-xs">
                           {tag.name}
                         </Badge>
-                      ) : null
+                      ) : null;
                     })}
                   </div>
                 </CardContent>
@@ -106,8 +106,8 @@ export default function FeaturedProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 // Import tags from data.ts
-import { tags } from "@/lib/data"
+import { tags } from '@/lib/data';
