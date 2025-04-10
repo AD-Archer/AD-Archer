@@ -44,13 +44,17 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-full md:w-1/2">
                 <div className="comic-border rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={800}
-                    height={600}
-                    className="w-full object-cover"
-                  />
+                  <div className="relative bg-slate-100 dark:bg-slate-800">
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={800}
+                      height={600}
+                      className="w-full object-cover"
+                      style={{ mixBlendMode: 'multiply' }}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -71,9 +75,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   {project.tags.map((tagId) => {
                     const tag = tags.find((t) => t.id === tagId)
                     return tag ? (
-                      <Badge key={tag.id} variant="secondary" className={`${tag.color} text-white`}>
+                      <span 
+                        key={tag.id} 
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                      >
                         {tag.name}
-                      </Badge>
+                      </span>
                     ) : null
                   })}
                 </div>
@@ -167,14 +174,16 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 <Calendar className="mr-2 h-4 w-4 text-primary" />
                 Technologies Used
               </h3>
-              <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tagId) => {
                   const tag = tags.find((t) => t.id === tagId)
                   return tag ? (
-                    <div key={tag.id} className="flex items-center">
-                      <div className={`w-3 h-3 rounded-full ${tag.color} mr-2`}></div>
-                      <span>{tag.name}</span>
-                    </div>
+                    <span 
+                      key={tag.id} 
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                    >
+                      {tag.name}
+                    </span>
                   ) : null
                 })}
               </div>
@@ -192,12 +201,14 @@ export default async function ProjectPage({ params }: { params: { slug: string }
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedProjects.map((p) => (
               <div key={p.id} className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                <div className="aspect-video relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
                   <Image 
                     src={p.image || "/placeholder.svg"} 
                     alt={p.title} 
                     fill 
-                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{ mixBlendMode: 'multiply' }}
                   />
                 </div>
                 <div className="p-4">
@@ -207,9 +218,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     {p.tags.slice(0, 3).map((tagId) => {
                       const tag = tags.find((t) => t.id === tagId)
                       return tag ? (
-                        <Badge key={tag.id} variant="outline" className="text-xs">
+                        <span 
+                          key={tag.id} 
+                          className={`px-3 py-1 rounded-full text-sm font-medium ${tag.color} text-white`}
+                        >
                           {tag.name}
-                        </Badge>
+                        </span>
                       ) : null
                     })}
                   </div>
