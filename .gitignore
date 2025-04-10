@@ -18,3 +18,4 @@ dist/
 *.cache
 .vercel
 .next
+.env*.local

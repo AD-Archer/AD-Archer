@@ -88,9 +88,45 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "bounce-slow": "bounce-slow 3s infinite",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100%',
+            color: 'inherit',
+            a: {
+              color: 'inherit',
+              textDecoration: 'underline',
+            },
+            code: {
+              color: 'inherit',
+            },
+            pre: {
+              color: 'inherit',
+            },
+            h1: {
+              color: 'inherit',
+            },
+            h2: {
+              color: 'inherit',
+            },
+            h3: {
+              color: 'inherit',
+            },
+            h4: {
+              color: 'inherit',
+            },
+            strong: {
+              color: 'inherit',
+            },
+            blockquote: {
+              color: 'inherit',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config
 
 export default config
