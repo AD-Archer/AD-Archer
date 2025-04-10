@@ -161,7 +161,9 @@ export const projects: Project[] = [
         { name: "Node.js", color: technologyColors.nodejs },
         { name: "OpenAI API", color: technologyColors.openai },
         { name: "MongoDB", color: technologyColors.mongodb },
-        { name: "Typescript", color: technologyColors.typescript }
+        { name: "Typescript", color: technologyColors.typescript },
+        { name: "AI", color: technologyColors.openai }
+
       ],
       slug: "timewise",
       link: "https://timewise.adarcher.app/",
@@ -232,7 +234,9 @@ export const projects: Project[] = [
         { name: "TypeScript", color: technologyColors.typescript },
         { name: "PostgreSQL", color: technologyColors.typescript },
         { name: "Prisma", color: technologyColors.typescript },
-        { name: "TailwindCSS", color: technologyColors.typescript }
+        { name: "TailwindCSS", color: technologyColors.typescript },
+        { name: "AI", color: technologyColors.openai }
+        
         
       ],
       slug: "orange-field-university",
@@ -244,7 +248,8 @@ export const projects: Project[] = [
         "Secure authentication",
         "Academic progress tracker",
         "PostgreSQL backend with T3 stack",
-        "Clean, responsive design"
+        "Clean, responsive design",
+        "AI assistant",
       ]
     },
     {
@@ -280,6 +285,7 @@ export const projects: Project[] = [
       technologies: [
         { name: "React", color: technologyColors.react },
         { name: "OpenAI API", color: technologyColors.openai },
+        { name: "AI", color: technologyColors.openai },
       ],
       slug: "corra",
       link: "https://corra-tau.vercel.app/",
@@ -351,6 +357,7 @@ export const projects: Project[] = [
       featured: false,
       features: [
         "Password strength checker",
+        "password generator",
         "2FA education",
         "USB key tutorial",
         "Cybersecurity for everyone"
@@ -372,7 +379,7 @@ export const projects: Project[] = [
       featured: false,
       features: [
         "Retro-styled browser game",
-        "Built for 2025 Super Bowl",
+        "Built for 2024 Super Bowl",
         "Built with Phaser.js"
       ]
     },
@@ -439,9 +446,6 @@ export const projects: Project[] = [
         ]
       }
   ];
-
-
-
 
 export const skills: SkillCategory = {
   frontend: [
