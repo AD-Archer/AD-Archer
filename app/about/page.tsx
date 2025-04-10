@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Download, Mail } from "lucide-react"
+import { Download, Mail, FileText } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -25,12 +26,15 @@ export default function AboutPage() {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <div className="comic-border rounded-lg overflow-hidden bg-primary/10 aspect-square max-w-[500px] mx-auto">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center p-6">
-                <span className="font-bangers text-4xl text-primary">Profile Image</span>
-                <p className="text-muted-foreground mt-2">Professional headshot or illustration</p>
-              </div>
+          <div className="comic-border rounded-lg overflow-hidden bg-primary/10 aspect-square max-w-[350px] mx-auto">
+            <div className="relative w-full h-full p-4">
+              <Image 
+                src="/images/antonioarcher.webp" 
+                alt="Antonio Archer" 
+                fill
+                className="object-cover rounded-md"
+                priority
+              />
             </div>
           </div>
 
@@ -70,9 +74,11 @@ export default function AboutPage() {
                 Contact Me
               </Link>
             </Button>
-            <Button variant="outline" size="lg">
-              <Download className="mr-2 h-4 w-4" />
-              Download Resume
+            <Button variant="outline" size="lg" asChild>
+              <Link href="https://adarcher.app/resume" target="_blank" rel="noopener noreferrer">
+                <FileText className="mr-2 h-4 w-4" />
+                View Resume
+              </Link>
             </Button>
           </div>
         </motion.div>
