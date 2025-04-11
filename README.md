@@ -1,19 +1,10 @@
 # Antonio Archer
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73700&width=435&lines=A+full+stack+Developer)](https://git.io/typing-svg)
+Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster based out of Philadelphia PA. I've been managing servers since 2021 and building software for over 2 years now. I love linux, linux and liunx and anything that involves touching a keyboard. Also I'm credited in Reactjs, Javascript, and certified in python so that's cool.
 
 ![Profile Views](https://komarev.com/ghpvc/?username=ad-archer)
+[![Click Here for All My Repos](https://img.shields.io/badge/All_My_Repositories-1F222E?style=for-the-badge&logo=github&logoColor=white&border=2px+solid+%23F85D7F)](https://github.com/AD-Archer)
 
-## Table of Contents
-
-- [Tech Stack](#tech-stack)
-- [Certifications](#certifications)
-- [Profile Statistics](#profile-statistics)
-- [Activities](#activities)
-- [Development Setup](#development-setup)
-- [Contact](#contact)
-
----
 
 ## Tech Stack
 
@@ -44,7 +35,23 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
 
-[![Click Here for All My Repos](https://img.shields.io/badge/All_My_Repositories-1F222E?style=for-the-badge&logo=github&logoColor=white&border=2px+solid+%23F85D7F)](https://github.com/AD-Archer)
+
+### Self hosted software and things I do for fun ^_^
+[![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff)](#)
+[![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)](#)
+[![Ubuntu Server](https://img.shields.io/badge/Ubuntu_Server-E95420?logo=ubuntu&logoColor=white)](#)
+[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-C51A4A?logo=raspberry-pi&logoColor=white)](#)
+[![Pi-hole](https://img.shields.io/badge/Pi--hole-96060C?logo=pi-hole&logoColor=white)](#)
+[![Bitwarden](https://img.shields.io/badge/Bitwarden-175DDC?logo=bitwarden&logoColor=white)](#)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin-00A4DC?logo=jellyfin&logoColor=white)](#)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=cloudflare&logoColor=white)](#)
+[![WireGuard](https://img.shields.io/badge/WireGuard-88171A?logo=wireguard&logoColor=white)](#)
+[![Caddy](https://img.shields.io/badge/Caddy-000000?logo=gnu-bash&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](#)
+[![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=white)](#)
+
+
+
 
 ## Certifications
 
@@ -84,38 +91,7 @@
 
 [![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
 
-## Development Setup
-
-### Pre-commit Hooks
-
-This repository uses pre-commit hooks to ensure code quality and security:
-
-- **ESLint & Prettier**: Automatically formats and lints code before commits
-- **GitGuardian**: Scans for potential security issues and secrets in code
-
-To set up the pre-commit hooks:
-
-1. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-2. Install GitGuardian CLI (optional, but recommended):
-
-   ```bash
-   curl -s https://cli.gitguardian.com/install.sh | bash
-   ```
-
-3. Configure GitGuardian (if installed):
-   ```bash
-   ggshield auth login
-   ```
-
-The pre-commit hooks will run automatically when you make a commit. If any issues are found, the commit will be blocked until they are resolved.
-
 ---
-
 ## Contact
 
 ### Connect With Me
