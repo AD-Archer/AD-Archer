@@ -19,7 +19,7 @@ function GithubStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">GitHub Activity</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary">GitHub Activity</h2>
             <p className="text-muted-foreground max-w-[800px]">
               Check out my open source contributions and coding activity on GitHub.
             </p>
@@ -27,11 +27,11 @@ function GithubStats() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="comic-border">
+          <Card className="comic-border border-primary/30">
             <CardContent className="p-6">
               <div className="relative w-full h-[200px]">
                 <Image
-                  src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent"
+                  src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent&title_color=E86100&text_color=333333&icon_color=ff6b4a&bg_color=ffffff"
                   alt="GitHub Stats"
                   fill
                   className="object-contain"
@@ -41,11 +41,11 @@ function GithubStats() {
             </CardContent>
           </Card>
 
-          <Card className="comic-border">
+          <Card className="comic-border border-primary/30">
             <CardContent className="p-6">
               <div className="relative w-full h-[200px]">
                 <Image
-                  src="https://streaks.adarcher.app?user=ad-archer&theme=transparent&hide_border=true&mode=weekly&color=0066cc"
+                  src="https://streaks.adarcher.app?user=ad-archer&theme=E86100&hide_border=true&mode=weekly&color=E86100"
                   alt="GitHub Weekly Streak"
                   fill
                   className="object-contain"
@@ -57,7 +57,7 @@ function GithubStats() {
         </div>
 
         <div className="flex justify-center mt-12">
-          <Button asChild size="lg" variant="outline">
+          <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
             <Link
               href="https://github.com/ad-archer"
               target="_blank"
