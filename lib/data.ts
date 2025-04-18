@@ -24,6 +24,7 @@ export const technologyColors = {
   qrcode: 'bg-black',
   webAudio: 'bg-yellow-500',
   sharp: 'bg-red-500',
+  golang: 'bg-blue-500',  
 };
 
 export type Project = {
@@ -87,7 +88,7 @@ export const tags: Tag[] = [
   { id: 'ai', name: 'AI', color: 'bg-pink-600' },
   { id: 'node', name: 'Node.js', color: 'bg-green-500' },
   { id: 'python', name: 'Python', color: 'bg-yellow-600' },
-  { id: 'golang', name: 'GoLang', color: 'bg-green-200' },
+  { id: 'golang', name: 'GoLang', color: 'bg-blue-500' },
 ];
 
 export const projects: Project[] = [
@@ -278,6 +279,27 @@ export const projects: Project[] = [
       'User-generated content',
       'Database-backed app using PostgreSQL',
       'Responsive and modern design',
+    ],
+  },
+  {
+    id: '16',
+    title: 'Qoutey',
+    description:
+      'Recently I have taken to journaling and I thought it would be neat to have a way for me to reread my journal entries or focus on certain days. So I made this app to send me a quote every day or a date/entry to focus on.',
+    image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
+    tags: ['backend', 'golang'],
+    technologies: [
+      { name: 'GoLang', color: technologyColors.typescript },
+    ],
+    slug: 'qoutey',
+    github: 'https://github.com/AD-Archer/qoutey',
+    featured: false,
+    features: [
+      'Automated email delivery system using cron jobs',
+      'Morning, midday, and evening motivational quotes',
+      'Built with GoLang',
+      'Email integration using SMTP servers',
+      'Customizable delivery schedule'
     ],
   },
   {
