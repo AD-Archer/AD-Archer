@@ -120,7 +120,7 @@ export const projects: Project[] = [
     ],
     slug: 'philly-social',
     link: 'https://phillysocial.adarcher.app/',
-    github: 'https://github.com/AD-Archer/Philly-Social',
+    github: 'https://github.com/AD-Archer/PhillySocial',
     featured: true,
     features: [
       'Public and private channels',
