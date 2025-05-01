@@ -1,11 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { projects } from '@/lib/data';
 
+type SitemapEntry = MetadataRoute.Sitemap[number];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://antonioarcher.com';
 
   // Base routes
-  const routes = [
+  const routes: SitemapEntry[] = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -33,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Project routes
-  const projectRoutes = projects
+  const projectRoutes: SitemapEntry[] = projects
     .filter(project => project.slug)
     .map(project => ({
       url: `${baseUrl}/projects/${project.slug}`,
