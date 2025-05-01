@@ -5,16 +5,29 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 export async function generateStaticParams() {
   return projects
-    .filter(project => project.slug)
+    .filter((project): project is typeof project & { slug: string } => 
+      typeof project.slug === 'string' && project.slug.length > 0
+    )
     .map(project => ({
       slug: project.slug,
     }));
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+// Following Next.js convention for App Router pages
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+export default async function ProjectPage({ params }: PageProps) {
   const project = projects.find(p => p.slug === params.slug);
 
   if (!project) {
