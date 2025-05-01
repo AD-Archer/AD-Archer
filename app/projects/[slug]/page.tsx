@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { Metadata } from 'next';
+
 
 export async function generateStaticParams() {
   return projects
