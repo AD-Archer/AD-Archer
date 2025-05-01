@@ -7,6 +7,7 @@ import { projects, jobs, skills, certifications, education } from '@/lib/data';
 export type Message = {
   role: 'user' | 'assistant';
   content: string;
+  model?: 'openai' | 'gemini'; // Add optional model property
 };
 
 // Define the context type
