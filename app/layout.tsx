@@ -23,25 +23,25 @@ const bangers = Bangers({
 });
 
 export const metadata: Metadata = {
-  title: 'Antonio Archer | Portfolio',
+  title: 'Antonio Archer | Software Developer | Portfolio',
   description:
-    'Portfolio website for Antonio Archer a software developer and DevOps engineer from phialdelphia showcasing projects, skills, and contact information',
-  metadataBase: new URL('https://antonioarcher.com'),
+    'Portfolio website for Antonio Archer a software developer and DevOps engineer from Philadelphia showcasing projects, skills, and contact information',
+  metadataBase: new URL('https://www.antonioarcher.com'),
   alternates: {
-    canonical: 'https://antonioarcher.com',
+    canonical: 'https://www.antonioarcher.com',
   },
   openGraph: {
     title: 'Antonio Archer | Portfolio',
     description:
-      'Portfolio website for Antonio Archer a software developer and DevOps engineer from phialdelphia showcasing projects, skills, and contact information',
-    url: 'https://antonioarcher.com',
+      'Portfolio website for Antonio Archer a software developer and DevOps engineer from Philadelphia showcasing projects, skills, and contact information',
+    url: 'https://www.antonioarcher.com',
     siteName: 'Antonio Archer Portfolio',
     images: [
       {
-        url: '/icons/logo.webp',
+        url: '/logo.webp',
         width: 1200,
         height: 630,
-        alt: 'Antonio Archer Portfolio',
+        alt: 'Antonio Archer logo',
       },
     ],
     locale: 'en_US',
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Antonio Archer | Portfolio',
     description:
-      'Portfolio website for Antonio Archer a software developer and DevOps engineer from phialdelphia showcasing projects, skills, and contact information',
-    images: ['/icons/logo.webp'],
+      'Portfolio website for Antonio Archer a software developer and DevOps engineer from Philadelphia showcasing projects, skills, and contact information',
+    images: ['/logo.webp'],
     creator: '@antonioarcher',
   },
   keywords: [
@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@type': 'Person',
               name: 'Antonio Archer',
               url: 'https://www.antonioarcher.com',
-              image: 'https://www.antonioarcher.com/icons/logo.webp',
+              image: 'https://www.antonioarcher.com/logo.webp',
               jobTitle: 'Software Developer & DevOps Engineer',
               worksFor: {
                 '@type': 'Organization',
@@ -99,19 +99,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: 'US',
               },
               sameAs: [
-                'https://github.com/ad-archer',
-                'https://linkedin.com/in/antonio-archer',
-                'https://twitter.com/ad_archer_',
-                'https://linktr.ee/adarcher',
-                'https://adarcher.app',
-                'https://youtube.com/@ad-archer',
-                'https://instagram.com/ad-archer',
-                'https://instagram.com/Antonio_DArcher',
+                'https://www.github.com/ad-archer',
+                'https://www.linkedin.com/in/antonio-archer',
+                'https://www.twitter.com/ad_archer_',
+                'https://www.linktr.ee/adarcher',
+                'https://www.adarcher.app',
+                'https://www.youtube.com/@ad-archer',
+                'https://www.instagram.com/Antonio_DArcher',
                 
               ],
             }),
           }}
         />
+        <link rel="icon" href="/logo.webp" type="image/webp" />
       </head>
       <body className={`${inter.variable} ${bangers.variable} font-sans bg-white`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
