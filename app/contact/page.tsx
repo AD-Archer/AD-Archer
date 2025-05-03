@@ -47,8 +47,8 @@ export default function ContactPage() {
             <AlertTitle>Email Service Issue</AlertTitle>
             <AlertDescription>
               We&apos;re having trouble with our email service. Please email me directly at{' '}
-              <a href="mailto:adarcher21@gmail.com" className="font-bold underline">
-                adarcher21@gmail.com
+              <a href="mailto:antonioarcher.dev@gmail.com" className="font-bold underline">
+              antonioarcher.dev@gmail.com
               </a>{' '}
               or use one of the contact methods below.
             </AlertDescription>
@@ -129,10 +129,10 @@ export default function ContactPage() {
                       <Mail className="h-5 w-5 text-primary" />
                     </div>
                     <a
-                      href="mailto:adarcher21@gmail.com"
+                      href="mailto:antonioarcher.dev@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      adarcher21@gmail.com
+                      antonioarcher.dev@gmail.com
                     </a>
                   </div>
 
