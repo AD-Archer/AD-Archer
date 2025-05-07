@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar } from 'lucide-react';
 import Link from 'next/link';
-
+import ProjectQR from '@/components/project-qr';
 
 export async function generateStaticParams() {
   return projects
@@ -33,6 +33,8 @@ export default async function ProjectPage({ params }: PageProps) {
   if (!project) {
     notFound();
   }
+
+  const projectUrl = `www.antonioarcher.com/projects/${params.slug}`;
 
   // Get related projects (excluding current project)
   const relatedProjects = projects.filter(p => p.id !== project.id).slice(0, 3);
@@ -215,6 +217,8 @@ export default async function ProjectPage({ params }: PageProps) {
                     })}
               </div>
             </div>
+
+            <ProjectQR projectUrl={projectUrl} />
           </div>
         </div>
 
