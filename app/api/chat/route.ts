@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
     // Try OpenAI first
     try {
       const response = await openai.chat.completions.create({
-        model: 'gpt-4o',
+        model: 'gpt-4.1-nano',
         messages: [
           {
             role: 'system',

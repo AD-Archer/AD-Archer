@@ -134,7 +134,7 @@ export const projects: Project[] = [
     id: '2',
     title: 'MoviesNoir',
     description:
-      'A movie generator app to share Black culture through films and TV shows. Uses a JSON file as the movie database.',
+      'A movie generator app to share Black culture through films and TV shows. Uses a JSON file as the movie database. Created during the Summer of 2023 with the help of Mohamed Souare, and Naisairah Solomon. Originally built using wix, later recreated in react.',
     image: '/images/projects/moviesnoir.webp',
     tags: ['frontend', 'backend', 'node'],
     technologies: [
