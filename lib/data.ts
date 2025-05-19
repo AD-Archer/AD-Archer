@@ -564,6 +564,11 @@ export const skills: SkillCategory = {
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
       power: 90,
     },
+    {
+      name: 'Bash Scripting',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
+      power: 80,
+    },
   ],
   databases: [
     {
@@ -621,6 +626,16 @@ export const skills: SkillCategory = {
       power: 100,
     },
     { name: 'Netlify', icon: 'https://www.netlify.com/icon.svg', power: 85 },
+    {
+      name: 'Azure',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+      power: 80,
+    },
+    {
+      name: 'Digital Ocean',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg',
+      power: 85,
+    },
   ],
 };
 
