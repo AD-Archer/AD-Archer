@@ -26,48 +26,78 @@ function GithubStats() {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
           <Card className="comic-border border-primary/30">
             <CardContent className="p-6">
-              <div className="relative w-full h-[200px]">
-                <Image
-                  src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent&title_color=E86100&text_color=333333&icon_color=ff6b4a&bg_color=ffffff"
-                  alt="GitHub Stats"
-                  fill
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
+              <Link
+                href="https://github.com/ad-archer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="relative w-full h-[200px]">
+                  <Image
+                    src="https://github-readme-stats.vercel.app/api?username=ad-archer&show_icons=true&hide_border=true&theme=transparent&title_color=E86100&text_color=333333&icon_color=ff6b4a&bg_color=ffffff"
+                    alt="Antonio Archer's GitHub Stats ad-archer"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              </Link>
             </CardContent>
           </Card>
 
           <Card className="comic-border border-primary/30">
             <CardContent className="p-6">
-              <div className="relative w-full h-[200px]">
-                <Image
-                  src="https://streaks.adarcher.app?user=ad-archer&theme=E86100&hide_border=true&mode=weekly&color=E86100"
-                  alt="GitHub Weekly Streak"
-                  fill
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
+              <Link
+                href="https://github.com/ad-archer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="relative w-full h-[200px]">
+                  <Image
+                    src="https://streaks.adarcher.app?user=ad-archer&theme=E86100&hide_border=true&mode=weekly&color=E86100"
+                    alt="Antonio Archer's GitHub Weekly Streak ad-archer"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              </Link>
             </CardContent>
           </Card>
-        </div>
 
-        <div className="flex justify-center mt-12">
-          <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+          <Card className="comic-border border-primary/30">
+            <CardContent className="p-6">
+              <Link
+                href="https://github.com/ad-archer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="relative w-full h-[200px]">
+                  <Image
+                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&bg_color=00000000&text_color=000000&title_color=E86100&hide_border=true"
+                    alt="Antonio Archer's Top Programming Languages ad-archer"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="comic-border border-primary/30 flex items-center justify-center cursor-pointer">
             <Link
               href="https://github.com/ad-archer"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center"
+              className="flex flex-col items-center justify-center w-full h-full p-6 text-primary"
             >
-              <Github className="mr-2 h-5 w-5" />
-              View GitHub Profile
+              <Github className="mb-2 h-10 w-10 text-[#E86100]" />
+              <span className="text-lg font-bold text-[#E86100]">View GitHub Profile</span>
             </Link>
-          </Button>
+          </Card>
         </div>
       </div>
     </section>
