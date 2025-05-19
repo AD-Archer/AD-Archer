@@ -107,16 +107,15 @@ export default function ProjectsPage() {
                 delay: isLoaded ? index * 0.05 : 0,
               }}
               layout
+              whileHover={{ scale: 1.05 }}
             >
-              <Card className="overflow-hidden h-full comic-panel">
+              <Card className="overflow-hidden h-full">
                 <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
                   <Image
                     src={project.image || '/placeholder.svg'}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    style={{ mixBlendMode: 'multiply' }}
+                    className="object-contain transition-transform duration-300"
                   />
                   {project.featured && (
                     <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
