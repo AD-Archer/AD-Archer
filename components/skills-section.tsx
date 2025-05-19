@@ -96,10 +96,11 @@ export default function SkillsSection() {
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="frontend">
-                  <TabsList className="grid grid-cols-4 mb-6">
+                  <TabsList className="grid grid-cols-5 gap-2 mb-6">
                     <TabsTrigger value="frontend">Frontend</TabsTrigger>
                     <TabsTrigger value="backend">Backend</TabsTrigger>
                     <TabsTrigger value="tools">Tools</TabsTrigger>
+                    <TabsTrigger value="databases">Databases</TabsTrigger>
                     <TabsTrigger value="other">Other</TabsTrigger>
                   </TabsList>
 
@@ -186,7 +187,7 @@ export default function SkillsSection() {
                       viewport={{ once: true }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4"
                     >
-                      {[...skills.databases, ...skills.hosting].map(skill => (
+                      {skills.hosting.map(skill => (
                         <motion.div key={skill.name} variants={item}>
                           <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
                             <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
@@ -194,6 +195,31 @@ export default function SkillsSection() {
                                 src={skill.icon}
                                 alt={skill.name}
                                 fallback={<Server className="h-6 w-6 text-primary" />}
+                              />
+                            </div>
+                            <span className="text-sm font-medium">{skill.name}</span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </TabsContent>
+
+                  <TabsContent value="databases">
+                    <motion.div
+                      variants={container}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+                    >
+                      {skills.databases.map(skill => (
+                        <motion.div key={skill.name} variants={item}>
+                          <div className="flex flex-col items-center p-3 bg-background rounded-lg border">
+                            <div className="w-12 h-12 flex items-center justify-center mb-2 bg-primary/10 rounded-full">
+                              <SkillIcon
+                                src={skill.icon}
+                                alt={skill.name}
+                                fallback={<Database className="h-6 w-6 text-primary" />}
                               />
                             </div>
                             <span className="text-sm font-medium">{skill.name}</span>
