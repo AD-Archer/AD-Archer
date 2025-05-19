@@ -45,140 +45,142 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="container px-4 md:px-6 py-16">
-      <div className="flex flex-col items-center text-center mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">All Projects</h1>
-          <p className="text-muted-foreground max-w-[800px] mb-8">
-            Browse through my complete portfolio of projects. Use the filters below to find specific
-            types of projects.
-          </p>
-        </motion.div>
+    <div className="relative min-h-screen bg-gradient-to-br from-muted/50 to-background">
+      <div className="container px-4 md:px-6 py-16">
+        <div className="flex flex-col items-center text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">All Projects</h1>
+            <p className="text-muted-foreground max-w-[800px] mb-8">
+              Browse through my complete portfolio of projects. Use the filters below to find specific
+              types of projects.
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap gap-2 justify-center mb-8"
-        >
-          {tags.map(tag => {
-            const isSelected = selectedTags.includes(tag.id);
-            return (
-              <button
-                key={tag.id}
-                onClick={() => toggleTag(tag.id)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-                  isSelected
-                    ? `${getColorClass(tag.color)} text-white shadow-md`
-                    : 'bg-transparent border border-border hover:bg-muted text-foreground'
-                }`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap gap-2 justify-center mb-8"
+          >
+            {tags.map(tag => {
+              const isSelected = selectedTags.includes(tag.id);
+              return (
+                <button
+                  key={tag.id}
+                  onClick={() => toggleTag(tag.id)}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                    isSelected
+                      ? `${getColorClass(tag.color)} text-white shadow-md`
+                      : 'bg-transparent border border-border hover:bg-muted text-foreground'
+                  }`}
+                >
+                  {tag.name}
+                </button>
+              );
+            })}
+            {selectedTags.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedTags([])}
+                className="text-xs hover:bg-muted"
               >
-                {tag.name}
-              </button>
-            );
-          })}
-          {selectedTags.length > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSelectedTags([])}
-              className="text-xs hover:bg-muted"
-            >
-              Clear filters
-            </Button>
-          )}
-        </motion.div>
-      </div>
+                Clear filters
+              </Button>
+            )}
+          </motion.div>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <AnimatePresence mode="wait">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{
-                duration: 0.3,
-                delay: isLoaded ? index * 0.05 : 0,
-              }}
-              layout
-              whileHover={{ scale: 1.05 }}
-            >
-              <Card className="overflow-hidden h-full">
-                <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
-                  <Image
-                    src={project.image || '/placeholder.svg'}
-                    alt={project.title}
-                    fill
-                    className="object-contain transition-transform duration-300"
-                  />
-                  {project.featured && (
-                    <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
-                      Featured!
-                    </div>
-                  )}
-                </div>
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {project.tags.map(tagId => {
-                      const tag = tags.find(t => t.id === tagId);
-                      return tag ? (
-                        <Badge
-                          key={tag.id}
-                          variant="secondary"
-                          className={`${tag.color} text-white text-xs`}
-                        >
-                          {tag.name}
-                        </Badge>
-                      ) : null;
-                    })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{
+                  duration: 0.2, // Shortened the animation duration
+                  delay: isLoaded ? index * 0.03 : 0, // Adjusted delay for smoother effect
+                }}
+                layout
+                whileHover={{ scale: 1.05 }}
+              >
+                <Card className="overflow-hidden h-full">
+                  <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
+                    <Image
+                      src={project.image || '/placeholder.svg'}
+                      alt={project.title}
+                      fill
+                      className="object-contain transition-transform duration-300"
+                    />
+                    {project.featured && (
+                      <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
+                        Featured!
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-                <CardFooter className="flex gap-2">
-                  {project.slug && (
-                    <Button asChild size="sm" variant="default">
-                      <Link href={`/projects/${project.slug}`}>View Details</Link>
-                    </Button>
-                  )}
-                  {project.link && (
-                    <Button asChild size="sm" variant="outline">
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-1" />
-                        Demo
-                      </Link>
-                    </Button>
-                  )}
-                  {project.github && (
-                    <Button asChild size="sm" variant="outline">
-                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-1" />
-                        Code
-                      </Link>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.tags.map(tagId => {
+                        const tag = tags.find(t => t.id === tagId);
+                        return tag ? (
+                          <Badge
+                            key={tag.id}
+                            variant="secondary"
+                            className={`${tag.color} text-white text-xs`}
+                          >
+                            {tag.name}
+                          </Badge>
+                        ) : null;
+                      })}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex gap-2">
+                    {project.slug && (
+                      <Button asChild size="sm" variant="default">
+                        <Link href={`/projects/${project.slug}`}>View Details</Link>
+                      </Button>
+                    )}
+                    {project.link && (
+                      <Button asChild size="sm" variant="outline">
+                        <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-1" />
+                          Demo
+                        </Link>
+                      </Button>
+                    )}
+                    {project.github && (
+                      <Button asChild size="sm" variant="outline">
+                        <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-1" />
+                          Code
+                        </Link>
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
 
-      {filteredProjects.length === 0 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
-          <p className="text-muted-foreground">
-            No projects match your selected filters. Try selecting different tags.
-          </p>
-        </motion.div>
-      )}
+        {filteredProjects.length === 0 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
+            <p className="text-muted-foreground">
+              No projects match your selected filters. Try selecting different tags.
+            </p>
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 }
