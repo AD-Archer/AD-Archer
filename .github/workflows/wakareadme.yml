@@ -1,0 +1,28 @@
+name: Waka Readme
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"  # every day at midnight UTC
+
+jobs:
+  update-readme:
+    name: WakaReadme DevMetrics
+    runs-on: ubuntu-latest
+    steps:
+      - uses: athul/waka-readme@master
+        with:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          API_BASE_URL: https://waka.archer.software/api
+          REPOSITORY: ad-archer/ad-archer
+          SHOW_TITLE: true
+          SECTION_NAME: waka
+          BLOCKS: ⣀⣄⣤⣦⣶⣷⣿
+          CODE_LANG: markdown
+          TIME_RANGE: all_time        # 🔥 full history
+          LANG_COUNT: 10              # show more langs
+          SHOW_TIME: true
+          SHOW_TOTAL: true
+          STOP_AT_OTHER: false        # keep going even after "Other"
+          IGNORED_LANGUAGES: JSON YAML TOML
+          COMMIT_MESSAGE: Updated waka-readme metrics
