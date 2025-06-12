@@ -91,6 +91,8 @@ Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster b
 
 [![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
 
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
 ---
 ## Contact
 
