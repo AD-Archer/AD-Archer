@@ -15,7 +15,7 @@ jobs:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
           API_BASE_URL: https://waka.archer.software/api
           REPOSITORY: ad-archer/ad-archer
-          SHOW_TITLE: true
+          SHOW_TITLE: false
           SECTION_NAME: waka
           BLOCKS: ⣀⣄⣤⣦⣶⣷⣿
           CODE_LANG: markdown
