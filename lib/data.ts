@@ -516,6 +516,30 @@ export const projects: Project[] = [
       'Built with Next.js and TypeScript',
     ],
   },
+  {
+    id: '19',
+    title: 'Launchpad Student Interaction Form',
+    description: 'While freelancing, I identified and solved a key problem within Launchpad and Building 21: the inefficient system for tracking student interactions. I developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL, streamlining the process and improving organizational efficiency.',
+    image: 'https://lsf.adarcher.app/images/production_screenshots/finaldashboard.png',
+    tags: ['fullstack', 'ai', 'frontend'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'PostgreSQL', color: technologyColors.typescript },
+      { name: 'Recharts', color: technologyColors.chartjs },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Gemini AI', color: technologyColors.openai },
+    ],
+    slug: 'student-interaction-form',
+    link: 'https://lsf.adarcher.app/info',
+    github: 'https://github.com/AD-Archer/Student_interaction',
+    featured: false,
+    features: [
+      'Responsive design with TailwindCSS',
+      'AI assistant for insights and suggestions',
+      'Recharts for data visualization'
+    ],
+  },
 ];
 
 export const skills: SkillCategory = {
