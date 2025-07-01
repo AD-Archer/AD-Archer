@@ -504,7 +504,7 @@ export const projects: Project[] = [
     slug: 'social-dashboard',
     link: 'https://socialmetrics.adarcher.app/',
     github: 'https://github.com/ad-archer/social-dash',
-    featured: true,
+    featured: false,
     features: [
       'Google OAuth authentication',
       'Real-time YouTube analytics',
