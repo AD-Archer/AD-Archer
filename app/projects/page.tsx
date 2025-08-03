@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects, tags } from '@/lib/data';
+import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,10 +19,11 @@ export default function ProjectsPage() {
     setIsLoaded(true);
   }, []);
 
-  const filteredProjects =
+  const filteredProjects = sortProjectsByFeaturedPriority(
     selectedTags.length > 0
       ? projects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
-      : projects;
+      : projects
+  );
 
   const toggleTag = (tagId: string) => {
     setSelectedTags(prev =>

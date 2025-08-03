@@ -4,7 +4,7 @@ import type React from 'react';
 
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { projects, tags } from '@/lib/data';
+import { projects, tags, getFeaturedProjects } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, ArrowRight, Code } from 'lucide-react';
@@ -13,7 +13,10 @@ import Image from 'next/image';
 import { withClientSide } from './client-component';
 
 function ProjectShowcase() {
-  const [activeProject, setActiveProject] = useState(projects[0]);
+  // Get featured projects sorted by priority
+  const featuredProjects = getFeaturedProjects(projects);
+  
+  const [activeProject, setActiveProject] = useState(featuredProjects[0]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -30,9 +33,6 @@ function ProjectShowcase() {
   const handleMouseLeave = () => {
     setMousePosition({ x: 0, y: 0 });
   };
-
-  // Filter featured projects
-  const featuredProjects = projects.filter(project => project.featured);
 
   return (
     <section className="py-16">

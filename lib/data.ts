@@ -35,6 +35,7 @@ export type Project = {
   tags: string[];
   technologies?: Technology[];
   featured: boolean;
+  featuredPriority?: number; // 1 = highest priority, 2 = second, etc. Lower numbers = higher priority
   link?: string;
   github?: string;
   slug?: string;
@@ -122,6 +123,7 @@ export const projects: Project[] = [
     link: 'https://phillysocial.adarcher.app/',
     github: 'https://github.com/AD-Archer/PhillySocial',
     featured: true,
+    featuredPriority: 2,
     features: [
       'Public and private channels',
       'Event creation and discovery',
@@ -146,6 +148,7 @@ export const projects: Project[] = [
     link: 'https://moviesnoir.vercel.app/',
     github: 'https://github.com/AD-Archer/MoviesNoir',
     featured: true,
+    featuredPriority: 4,
     features: [
       'Random movie & TV show generator',
       'Focus on Black culture and stories',
@@ -172,6 +175,7 @@ export const projects: Project[] = [
     link: 'https://timewise.adarcher.app/',
     github: 'https://github.com/AD-Archer/TimeWise',
     featured: true,
+    featuredPriority: 3,
     features: [
       'Mood tracking and journaling',
       'Pomodoro timer with custom playlists',
@@ -557,6 +561,7 @@ export const projects: Project[] = [
     link: 'https://itwin-grid-search.vercel.app/',
     github: 'https://github.com/Building21-iTwin/itwin-grid-search',
     featured: true,
+    featuredPriority: 1,
     features: [
       'Functional extension for iTwin.js platform',
       'Advanced frontend filters using ECSQL',
@@ -816,3 +821,36 @@ export const education: Education[] = [
     years: '2020-2024',
   },
 ];
+
+// Utility functions for project sorting
+export const sortProjectsByFeaturedPriority = (projects: Project[]) => {
+  return [...projects].sort((a, b) => {
+    // First, separate featured from non-featured
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    
+    // If both are featured, sort by priority (lower number = higher priority)
+    if (a.featured && b.featured) {
+      const aPriority = a.featuredPriority ?? 999; // Default to low priority if not set
+      const bPriority = b.featuredPriority ?? 999;
+      return aPriority - bPriority;
+    }
+    
+    // If neither are featured, maintain original order (by id)
+    return parseInt(a.id) - parseInt(b.id);
+  });
+};
+
+export const getFeaturedProjects = (projectList: Project[] = projects) => {
+  return projectList
+    .filter(project => project.featured)
+    .sort((a, b) => {
+      const aPriority = a.featuredPriority ?? 999;
+      const bPriority = b.featuredPriority ?? 999;
+      return aPriority - bPriority;
+    });
+};
+
+export const getNonFeaturedProjects = (projectList: Project[] = projects) => {
+  return projectList.filter(project => !project.featured);
+};

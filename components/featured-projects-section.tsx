@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { projects } from '@/lib/data';
+import { projects, getFeaturedProjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,8 +10,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function FeaturedProjectsSection() {
-  // Filter only featured projects for the homepage
-  const featuredProjects = projects.filter(project => project.featured);
+  // Get featured projects sorted by priority
+  const featuredProjects = getFeaturedProjects(projects);
 
   return (
     <section id="projects" className="py-16 scroll-mt-16">
