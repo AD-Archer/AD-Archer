@@ -35,6 +35,7 @@ export type Project = {
   tags: string[];
   technologies?: Technology[];
   featured: boolean;
+  featuredPriority?: number; // 1 = highest priority, 2 = second, etc. Lower numbers = higher priority
   link?: string;
   github?: string;
   slug?: string;
@@ -122,6 +123,7 @@ export const projects: Project[] = [
     link: 'https://phillysocial.adarcher.app/',
     github: 'https://github.com/AD-Archer/PhillySocial',
     featured: true,
+    featuredPriority: 2,
     features: [
       'Public and private channels',
       'Event creation and discovery',
@@ -146,6 +148,7 @@ export const projects: Project[] = [
     link: 'https://moviesnoir.vercel.app/',
     github: 'https://github.com/AD-Archer/MoviesNoir',
     featured: true,
+    featuredPriority: 4,
     features: [
       'Random movie & TV show generator',
       'Focus on Black culture and stories',
@@ -172,6 +175,7 @@ export const projects: Project[] = [
     link: 'https://timewise.adarcher.app/',
     github: 'https://github.com/AD-Archer/TimeWise',
     featured: true,
+    featuredPriority: 3,
     features: [
       'Mood tracking and journaling',
       'Pomodoro timer with custom playlists',
@@ -219,7 +223,7 @@ export const projects: Project[] = [
     slug: 'ai-stock-market-analysis',
     link: 'https://stocks.adarcher.app/',
     github: 'https://github.com/AD-Archer/ai-stock-market-analysis',
-    featured: true,
+    featured: false,
     features: [
       'AI-based stock recommendations',
       'User input or default stock data',
@@ -540,6 +544,33 @@ export const projects: Project[] = [
       'Recharts for data visualization'
     ],
   },
+  {
+    id: '20',
+    title: 'itwin',
+    description: 'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
+    image: '/images/projects/itwin.png',
+    tags: ['frontend', 'fullstack'],
+    technologies: [
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'React', color: technologyColors.react },
+      { name: 'SCSS', color: technologyColors.typescript },
+      { name: 'ECSQL', color: technologyColors.typescript },
+      { name: 'iTwin.js', color: technologyColors.typescript },
+    ],
+    slug: 'itwin-grid-search',
+    link: 'https://itwin-grid-search.vercel.app/',
+    github: 'https://github.com/Building21-iTwin/itwin-grid-search',
+    featured: true,
+    featuredPriority: 1,
+    features: [
+      'Functional extension for iTwin.js platform',
+      'Advanced frontend filters using ECSQL',
+      '3D Revit model data querying',
+      'Legacy React app migrated to modern React.js',
+      'Live demo (requires free itwin.bentley.com account)',
+      'Source code public, editing requires Bentley developer account',
+    ],
+  },
 ];
 
 export const skills: SkillCategory = {
@@ -703,9 +734,21 @@ export const certifications: Certification[] = [
 
 export const jobs: Job[] = [
   {
+    title: 'Full-Stack Developer',
+    company: 'Bentley Systems',
+    duration: 'Jul 2025 - Aug 2025',
+    location: 'Philadelphia, PA',
+    achievements: [
+      'Migrated a legacy iTwin.js frontend application to a modern React.js architecture to improve maintainability and performance',
+      'Developed dynamic frontend filters using ECSQL to query and display 3D Revit model data',
+      'Shared the application’s key features and functionality with team members during internal demo sessions',
+    ],
+    techStack: ['TypeScript', 'React', 'SCSS', 'ECSQL', 'iTwin.js'],
+  },
+  {
     title: 'Full Stack Developer',
     company: 'Launchpad Philly',
-    duration: 'Jan 2023 - Present',
+    duration: 'Jan 2023 - Jun 2025',
     location: 'Philadelphia, PA',
     achievements: [
       'Developed muliple full stack applications to solve issues faced by organization',
@@ -720,7 +763,7 @@ export const jobs: Job[] = [
   {
     title: 'Technical Mentor',
     company: 'Launchpad Philly',
-    duration: 'Jan 2025 - Present',
+    duration: 'Jan 2025 - May 2025',
     location: 'Philadelphia, PA',
     achievements: [
       'Supported 90+ students through personalized technical learning',
@@ -752,7 +795,7 @@ export const jobs: Job[] = [
   {
     title: 'Infrastructure & Systems Engineer',
     company: 'Belmont Charter Network',
-    duration: 'Jun 2021 - Aug 2021',
+    duration: 'Jun 2022 - Aug 2022',
     location: 'Philadelphia, PA',
     achievements: [
       'Optimized multi-location network infrastructure',
@@ -769,7 +812,7 @@ export const education: Education[] = [
     institution: 'Launchpad Philly',
     degree: 'Workforce Development Program',
     field: 'Software Development',
-    years: 'Jan 2023 - Present',
+    years: 'Jan 2023 - Jun 2025',
   },
   {
     institution: 'Belmont Charter High School',
@@ -778,3 +821,36 @@ export const education: Education[] = [
     years: '2020-2024',
   },
 ];
+
+// Utility functions for project sorting
+export const sortProjectsByFeaturedPriority = (projects: Project[]) => {
+  return [...projects].sort((a, b) => {
+    // First, separate featured from non-featured
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    
+    // If both are featured, sort by priority (lower number = higher priority)
+    if (a.featured && b.featured) {
+      const aPriority = a.featuredPriority ?? 999; // Default to low priority if not set
+      const bPriority = b.featuredPriority ?? 999;
+      return aPriority - bPriority;
+    }
+    
+    // If neither are featured, maintain original order (by id)
+    return parseInt(a.id) - parseInt(b.id);
+  });
+};
+
+export const getFeaturedProjects = (projectList: Project[] = projects) => {
+  return projectList
+    .filter(project => project.featured)
+    .sort((a, b) => {
+      const aPriority = a.featuredPriority ?? 999;
+      const bPriority = b.featuredPriority ?? 999;
+      return aPriority - bPriority;
+    });
+};
+
+export const getNonFeaturedProjects = (projectList: Project[] = projects) => {
+  return projectList.filter(project => !project.featured);
+};

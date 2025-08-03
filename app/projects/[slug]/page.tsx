@@ -1,4 +1,4 @@
-import { projects, tags } from '@/lib/data';
+import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -36,8 +36,10 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const projectUrl = `www.antonioarcher.com/projects/${params.slug}`;
 
-  // Get related projects (excluding current project)
-  const relatedProjects = projects.filter(p => p.id !== project.id).slice(0, 3);
+  // Get related projects (excluding current project), prioritizing featured ones
+  const relatedProjects = sortProjectsByFeaturedPriority(
+    projects.filter(p => p.id !== project.id)
+  ).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
@@ -76,7 +78,8 @@ export default async function ProjectPage({ params }: PageProps) {
                   <div className="flex items-center gap-2 mb-2">
                     {project.featured && (
                       <Badge variant="default" className="bg-primary">
-                        <Star className="h-3 w-3 mr-1" /> Featured
+                        <Star className="h-3 w-3 mr-1" /> 
+                        Featured {project.featuredPriority ? `#${project.featuredPriority}` : ''}
                       </Badge>
                     )}
                   </div>

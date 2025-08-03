@@ -2,7 +2,6 @@
 
 import { withClientSide } from './client-component';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Github } from 'lucide-react';
 import Link from 'next/link';
