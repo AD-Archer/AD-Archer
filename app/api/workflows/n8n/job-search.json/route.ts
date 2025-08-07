@@ -965,15 +965,11 @@ export async function GET() {
       "tags": []
     };
 
-    const workflowJson = JSON.stringify(workflow, null, 2);
-    
-    return new Response(workflowJson, {
+    return NextResponse.json(workflow, {
       status: 200,
       headers: {
+        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
         'Content-Type': 'application/json',
-        'Content-Disposition': 'attachment; filename="n8n-job-search-workflow.json"',
-        'Cache-Control': 'public, max-age=3600',
-        'Access-Control-Expose-Headers': 'Content-Disposition',
       },
     });
   } catch (error) {
