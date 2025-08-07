@@ -589,7 +589,6 @@ export const projects: Project[] = [
     ],
     slug: 'job-search-dashboard',
     github: 'https://github.com/AD-Archer/archersuite-n8n-job-dashboard',
-    link: 'https://job-dashboard.adarcher.app/',
     featured: true,
     featuredPriority: 5,
     features: [
