@@ -13,6 +13,14 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/workflows/n8n/job-search.json',
+        destination: '/api/workflows/n8n/job-search',
+      },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
