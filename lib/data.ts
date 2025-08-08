@@ -102,7 +102,8 @@ export type VideoWalkthrough = {
 export type CodeSnippet = {
   title?: string;
   language?: string; // e.g., ts, js, bash, sql
-  code: string;
+  code?: string | string[];
+  markdown?: string;
 };
 
 export type Skill = {
@@ -773,12 +774,12 @@ export const projects: Project[] = [
       {
         title: 'ECSQL filter builder',
         language: 'sql',
-        code: "'SELECT ec_classname (c.ECInstanceId) className, COALESCE(s.DisplayLabel, s.Name) schemaLabel, COALESCE(c.DisplayLabel, c.Name) classLabel, COUNT(*) FROM bis.GeometricElement3d ge JOIN ECDbMeta.ClassHasAllBaseClasses abc ON abc.SourceECInstanceId = ge.ECClassId JOIN ECDbMeta.ECClassDef c ON c.ECInstanceId = abc.TargetECInstanceId JOIN ECDbMeta.ECSchemaDef s ON s.ECInstanceId = c.Schema.Id WHERE s.Name != 'BisCore' GROUP BY c.ECInstanceId'",
+  markdown: "```sql\nSELECT ec_classname (c.ECInstanceId) className,\nCOALESCE(s.DisplayLabel, s.Name) schemaLabel,\nCOALESCE(c.DisplayLabel, c.Name) classLabel,\nCOUNT(*)\nFROM bis.GeometricElement3d ge\nJOIN ECDbMeta.ClassHasAllBaseClasses abc ON abc.SourceECInstanceId = ge.ECClassId\nJOIN ECDbMeta.ECClassDef c ON c.ECInstanceId = abc.TargetECInstanceId\nJOIN ECDbMeta.ECSchemaDef s ON s.ECInstanceId = c.Schema.Id\nWHERE s.Name != 'BisCore'\nGROUP BY c.ECInstanceId\n```",
       },
       {
         title: 'API route',
         language: 'ts',
-        code: 'export async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}',
+  markdown: "```ts\nexport async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}\n```",
       },
     ],
   },

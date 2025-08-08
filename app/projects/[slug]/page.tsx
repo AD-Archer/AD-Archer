@@ -8,6 +8,10 @@ import Link from 'next/link';
 import ProjectQR from '@/components/project-qr';
 import ShareButtons from '@/components/share-buttons';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import GalleryLightbox from '@/components/gallery-lightbox';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Metadata } from 'next';
@@ -91,6 +95,19 @@ export default async function ProjectPage({ params }: any) {
       // ignore network errors; fall back to no stats
     }
   }
+
+  // Determine available tabs and default tab
+  const availableTabs: string[] = [];
+  if (project.gallery && project.gallery.length > 0) availableTabs.push('gallery');
+  if (project.caseStudy) availableTabs.push('case');
+  if (project.changelog && project.changelog.length > 0) availableTabs.push('changelog');
+  if (project.milestones && project.milestones.length > 0) availableTabs.push('milestones');
+  if (project.team && project.team.length > 0) availableTabs.push('team');
+  if (project.architecture) availableTabs.push('architecture');
+  if (project.video) availableTabs.push('video');
+  if (project.codeSnippets && project.codeSnippets.length > 0) availableTabs.push('code');
+  if (project.github) availableTabs.push('github');
+  const defaultTab = availableTabs[0];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
@@ -236,9 +253,9 @@ export default async function ProjectPage({ params }: any) {
         {/* Project Tabs Section */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="md:col-span-2 space-y-6">
-            {project.gallery && project.gallery.length > 0 && (
+            {availableTabs.length > 0 && (
             <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 md:p-5 shadow-md border border-border/50">
-              <Tabs defaultValue={getDefaultTab(project)}>
+              <Tabs defaultValue={defaultTab}>
                 <div
                   className="-mx-4 md:mx-0 overflow-x-auto sticky top-16 z-30 bg-card/80 md:bg-transparent backdrop-blur supports-[backdrop-filter]:bg-card/60 md:static md:top-auto md:z-auto border-b border-border/50 md:border-none"
                   aria-label="Project sections"
@@ -430,7 +447,41 @@ export default async function ProjectPage({ params }: any) {
                               <div className="font-medium">{snip.title || 'Snippet'} {snip.language && <span className="text-muted-foreground">({snip.language})</span>}</div>
                             </div>
                           )}
-                          <pre className="p-3 overflow-auto text-sm"><code>{snip.code}</code></pre>
+                          {snip.markdown ? (
+                            <div className="p-3 overflow-auto text-sm prose dark:prose-invert max-w-none">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                components={{
+                                  code(props: any) {
+                                    const { inline, className, children, ...rest } = props;
+                                    const match = /language-(\w+)/.exec(className || '');
+                                    return !inline ? (
+                                      <SyntaxHighlighter
+                                        style={oneDark}
+                                        language={match ? match[1] : snip.language || undefined}
+                                        PreTag="div"
+                                      >
+                                        {String(children).replace(/\n$/, '')}
+                                      </SyntaxHighlighter>
+                                    ) : (
+                                      <code className={className} {...rest}>{children}</code>
+                                    );
+                                  },
+                                }}
+                              >
+                                {snip.markdown}
+                              </ReactMarkdown>
+                            </div>
+                          ) : (
+                            <SyntaxHighlighter
+                              style={oneDark}
+                              language={snip.language || undefined}
+                              customStyle={{ margin: 0, borderRadius: 0, padding: '12px' }}
+                            >
+                              {Array.isArray(snip.code) ? snip.code.join('\n') : (snip.code || '')}
+                            </SyntaxHighlighter>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -444,12 +495,28 @@ export default async function ProjectPage({ params }: any) {
                     <div className="space-y-3">
                       <Link href={project.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">{project.github}</Link>
                       {githubStats ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
-                          <div className="border border-border/50 rounded-md p-3"><span className="text-muted-foreground">Stars:</span> <span className="font-medium">{githubStats.stars}</span></div>
-                          <div className="border border-border/50 rounded-md p-3"><span className="text-muted-foreground">Forks:</span> <span className="font-medium">{githubStats.forks}</span></div>
-                          <div className="border border-border/50 rounded-md p-3"><span className="text-muted-foreground">Open issues:</span> <span className="font-medium">{githubStats.issues}</span></div>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-muted border border-border/50 text-sm font-medium">
+                            <Star className="h-4 w-4 text-yellow-500" />
+                            <span className="ml-1">{githubStats.stars}</span>
+                            <span className="ml-1 text-muted-foreground">Stars</span>
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-muted border border-border/50 text-sm font-medium">
+                            <GitBranch className="h-4 w-4 text-blue-500" />
+                            <span className="ml-1">{githubStats.forks}</span>
+                            <span className="ml-1 text-muted-foreground">Forks</span>
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-muted border border-border/50 text-sm font-medium">
+                            <Code className="h-4 w-4 text-pink-500" />
+                            <span className="ml-1">{githubStats.issues}</span>
+                            <span className="ml-1 text-muted-foreground">Open Issues</span>
+                          </span>
                           {githubStats.lastPushedAt && (
-                            <div className="border border-border/50 rounded-md p-3"><span className="text-muted-foreground">Last push:</span> <span className="font-medium">{new Date(githubStats.lastPushedAt).toLocaleDateString()}</span></div>
+                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-muted border border-border/50 text-sm font-medium">
+                              <Calendar className="h-4 w-4 text-green-500" />
+                              <span className="ml-1">{new Date(githubStats.lastPushedAt).toLocaleDateString()}</span>
+                              <span className="ml-1 text-muted-foreground">Last Push</span>
+                            </span>
                           )}
                         </div>
                       ) : (
