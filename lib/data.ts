@@ -40,6 +40,69 @@ export type Project = {
   github?: string;
   slug?: string;
   features?: string[];
+  // Optional extended case study fields (all optional, render only if present)
+  gallery?: GalleryImage[];
+  caseStudy?: CaseStudy;
+  changelog?: ChangelogEntry[];
+  milestones?: Milestone[];
+  team?: TeamMember[];
+  architecture?: ArchitectureSection;
+  video?: VideoWalkthrough;
+  codeSnippets?: CodeSnippet[];
+};
+
+// Extended optional content types
+export type GalleryImage = {
+  src: string;
+  alt?: string;
+  caption?: string;
+};
+
+export type CaseStudy = {
+  problem?: string;
+  solution?: string;
+  architecture?: string;
+  results?: string[];
+};
+
+export type ChangelogEntry = {
+  date: string; // ISO or readable date
+  title: string;
+  description?: string;
+  version?: string;
+};
+
+export type Milestone = {
+  date: string;
+  title: string;
+  description?: string;
+  status?: 'planned' | 'in-progress' | 'done';
+};
+
+export type TeamMember = {
+  name: string;
+  role?: string;
+  avatar?: string;
+  link?: string; // personal site, LinkedIn, etc. (used for name)
+  roleLink?: string; // GitHub or any link (used for role)
+};
+
+export type ArchitectureSection = {
+  summary?: string;
+  images?: GalleryImage[]; // diagrams/screens with captions
+  notes?: string[];
+};
+
+export type VideoWalkthrough = {
+  url: string; // YouTube, Loom, Vimeo
+  title?: string;
+  provider?: 'youtube' | 'vimeo' | 'loom' | 'file' | 'other';
+};
+
+export type CodeSnippet = {
+  title?: string;
+  language?: string; // e.g., ts, js, bash, sql
+  code: string;
 };
 
 export type Skill = {
@@ -92,8 +155,56 @@ export const tags: Tag[] = [
   { id: 'golang', name: 'GoLang', color: 'bg-blue-500' },
 ];
 
+/**
+ * Project object properties (all optional except id, title, description, image, tags, featured, slug):
+ *
+ * id: string
+ * title: string
+ * description: string
+ * image: string (URL or path)
+ * tags: string[] (tag ids)
+ * technologies?: { name: string; color: string }[]
+ * featured: boolean
+ * featuredPriority?: number
+ * link?: string (live demo or site)
+ * github?: string (repo URL)
+ * slug?: string (URL slug)
+ * features?: string[]
+ * gallery?: { src: string; alt?: string; caption?: string }[]
+ * caseStudy?: {
+ *   problem?: string;
+ *   solution?: string;
+ *   architecture?: string;
+ *   results?: string[];
+ * }
+ * changelog?: { date: string; title: string; description?: string; version?: string }[]
+ * milestones?: { date: string; title: string; description?: string; status?: 'planned'|'in-progress'|'done' }[]
+ * team?: { name: string; role?: string; avatar?: string; link?: string; roleLink?: string }[]
+ * architecture?: {
+ *   summary?: string;
+ *   images?: { src: string; alt?: string; caption?: string }[];
+ *   notes?: string[];
+ * }
+ * video?: { url: string; title?: string; provider?: 'youtube'|'vimeo'|'loom'|'file'|'other' }
+ * codeSnippets?: { title?: string; language?: string; code: string }[]
+ *
+ * Example (see 'itwin' project for a full example):
+ * {
+ *   id: '20',
+ *   title: 'itwin',
+ *   ...
+ *   gallery: [ { src: '/images/projects/itwin-grid-1.webp', alt: '...', caption: '...' } ],
+ *   caseStudy: { problem: '...', solution: '...', architecture: '...', results: ['...'] },
+ *   changelog: [ { date: '2025-07-15', title: '...', version: '1.2.0', description: '...' } ],
+ *   milestones: [ { date: '2025-05-10', title: '...', status: 'done' } ],
+ *   team: [ { name: 'Jane Doe', role: 'Product Designer', link: '...' } ],
+ *   architecture: { summary: '...', images: [ { src: '...', caption: '...' } ], notes: ['...'] },
+ *   video: { url: 'https://youtu.be/xyz', title: '...' },
+ *   codeSnippets: [ { title: 'ECSQL filter', language: 'ts', code: '...' } ]
+ * }
+ */
 export const projects: Project[] = [
-  //This is the template
+  //This is the simple template
   // {
   //   id: "0",
   //   title: "",
@@ -131,6 +242,12 @@ export const projects: Project[] = [
       'Support for local businesses',
       'Built with Mohamed Souare, Bryan Gunawan, and Sianni Strikland',
     ],
+    team: [
+      { name: 'Antonio Archer', role: 'Head Engineer', link: 'https://www.linkedin.com/in/antonio-archer/', roleLink: 'https://github.com/AD-Archer' },
+      { name: 'Mohamed Souare', role: 'Developer', link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/', roleLink: 'https://github.com/MSouare' },
+      { name: 'Bryan Gunawan', role: 'Project Lead & Full-Stack Developer', link: 'https://www.linkedin.com/in/bryan-gunawan-a537132b9/', roleLink: 'https://github.com/CapnBryan' },
+      { name: 'Sianni Strikland', role: 'Artistic Director', link: 'https://www.linkedin.com/in/sianni-strickland-934059284/' },
+    ]
   },
   {
     id: '2',
@@ -147,7 +264,7 @@ export const projects: Project[] = [
     slug: 'moviesnoir',
     link: 'https://moviesnoir.vercel.app/',
     github: 'https://github.com/AD-Archer/MoviesNoir',
-    featured: true,
+    featured: false,
     featuredPriority: 4,
     features: [
       'Random movie & TV show generator',
@@ -155,6 +272,11 @@ export const projects: Project[] = [
       'Locally stored movie data',
       'Simple, clean frontend experience',
     ],
+    team: [
+      { name: 'Antonio Archer', role: 'Developer & MovieSeer', link: 'https://www.linkedin.com/in/antonio-archer/' },
+      { name: 'Mohamed Souare', role: 'Creative Developer', link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/' },
+      { name: 'Nasirah Solomon', role: 'Artist', link: 'https://www.linkedin.com/in/nasirah-solomon-abab91258/' },
+    ]
   },
   {
     id: '3',
@@ -548,7 +670,7 @@ export const projects: Project[] = [
     id: '20',
     title: 'itwin',
     description: 'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
-    image: '/images/projects/itwin.png',
+    image: '/images/projects/itwin/itwin.png',
     tags: ['frontend', 'fullstack'],
     technologies: [
       { name: 'TypeScript', color: technologyColors.typescript },
@@ -570,12 +692,40 @@ export const projects: Project[] = [
       'Live demo (requires free itwin.bentley.com account)',
       'Source code public, editing requires Bentley developer account',
     ],
+    gallery: [
+      { src: '/images/projects/itwin/image1.png', alt: 'Itwin revit iModel', caption: 'Itwin revit iModel' },
+      { src: '/images/projects/itwin/image2.png', alt: '3D model view', caption: 'iTwin viewer with highlighted elements' },
+      { src: '/images/projects/itwin/image3.png', alt: 'Paginated results with sorting', caption: 'Paginated results with sorting' },
+    ],
+    // caseStudy: {
+    //   problem: 'Legacy codebase made it hard to extend filtering and search across large BIM datasets.',
+    //   solution: 'Rebuilt UI with React + TypeScript and introduced ECSQL-driven filters, enabling dynamic queries and performant results.',
+    //   architecture: 'Next.js app with iTwin.js viewer. ECSQL queries proxied through API route. State managed with context and URL params.',
+    //   results: ['Reduced query time perceived by users', 'Easier to add new filters', 'Improved maintainability'],
+    // },
+ 
+    team: [
+      { name: 'Antonio Archer', role: 'Full‑stack Developer', link: 'https://www.linkedin.com/in/antonio-archer/', roleLink: 'https://github.com/AD-Archer' },
+      { name: 'Jamir Ong', role: 'Full‑stack Developer', link: 'https://www.linkedin.com/in/jamir-ong/', roleLink: 'https://github.com/JamirOng' },
+    ],
+    // architecture: {
+    //   summary: 'Composable grid filters mapped to ECSQL, decoupled from the viewer, with API routes mediating data access.',
+    //   images: [
+    //     { src: '/images/diagrams/itwin-arch.webp', alt: 'High-level architecture', caption: 'Client, API, iTwin platform' },
+    //   ],
+    //   notes: ['Uses SSR for SEO on catalog pages', 'Caches query metadata in memory', 'Feature flags for beta filters'],
+    // },
+    // video: { url: 'https://youtu.be/dQw4w9WgXcQ', title: 'iTwin Grid Search Walkthrough' },
+    // codeSnippets: [
+    //   { title: 'ECSQL filter builder', language: 'ts', code: 'export function buildWhere(filters: Record<string, string>) {\n  return Object.entries(filters)\n    .filter(([, v]) => v)\n    .map(([k, v]) => `${k} = \"${v}\"`)\n    .join(" AND ");\n}' },
+    //   { title: 'API route', language: 'ts', code: 'export async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}' },
+    // ],
   },
   {
     id: '21',
-    title: 'Job Search Dashboard',
+    title: 'N8N Job Search Dashboard',
     description: 'A self-hostable job search dashboard designed to work with n8n workflows for automated job searching and application tracking. Features AI-powered resume matching, automated LinkedIn scraping, cover letter generation, and comprehensive job management.',
-    image: '/images/projects/job-dashboard.png',
+    image: '/images/projects/n8n-job-search.png',
     tags: ['fullstack', 'ai', 'backend'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -596,7 +746,7 @@ export const projects: Project[] = [
       'Job Dashboard with AI-powered scoring and tracking',
       'n8n Integration with RESTful API endpoints',
       'Application Tracking (new, applied, interview, offer, rejected)',
-      'AI-Powered Resume Matching via Gemini/OpenAI',
+      'AI-Powered Resume Matching via Gemini/OpenAI/Ollama',
       'Automated LinkedIn job scraping workflow',
       'Cover letter generation based on job descriptions',
       'Discord/Telegram notifications for high-scoring matches',
