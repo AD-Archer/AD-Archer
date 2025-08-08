@@ -1,25 +1,43 @@
 import { NextResponse } from 'next/server';
-import { 
-  projects, 
-  skills, 
-  certifications, 
-  jobs, 
-  education,
-  
-} from '@/lib/data';
+import { projects, skills, certifications, jobs, education } from '@/lib/data';
 
 export async function GET() {
   try {
-    // Return all the data from data.ts file
-    // Map skills to only include name
-    const cleanSkills = Object.fromEntries(
-      Object.entries(skills).map(([category, arr]) => [
-        category,
-        arr.map(skill => ({ name: skill.name }))
-      ])
+    // Flatten skills to a single list of unique names
+    const skillsFlat = Array.from(
+      new Set(
+        Object.values(skills).flatMap((arr) => arr.map((s) => s.name))
+      )
     );
 
-    // Map skillsList to only include name and category
+    // Sanitize projects (remove sensitive/heavy fields)
+    const sanitizedProjects = projects.map((p) => {
+      const {
+        id, // remove
+        image, // remove
+        team, // remove
+        codeSnippets, // remove
+        video, // remove
+        changelog, // remove
+        milestones, // remove
+        gallery, // remove
+        technologies,
+        ...rest
+      } = p as any;
+
+      // Strip images from architecture if present, keep summary/notes
+      const architecture = rest.architecture
+        ? { summary: rest.architecture.summary, notes: rest.architecture.notes }
+        : undefined;
+
+      return {
+        ...rest,
+        architecture,
+        technologies: Array.isArray(technologies)
+          ? technologies.map((t: any) => t.name)
+          : undefined,
+      };
+    });
 
 
     // Calculate age from birthdate
@@ -32,11 +50,11 @@ export async function GET() {
     }
 
     const data = {
-      skills: cleanSkills,
+  skills: skillsFlat,
       certifications,
       jobs,
       education,
-      projects,
+  projects: sanitizedProjects,
       meta: {
         name: 'Antonio Archer',
         age,

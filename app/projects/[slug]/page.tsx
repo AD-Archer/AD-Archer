@@ -112,14 +112,49 @@ export default async function ProjectPage({ params }: any) {
                 <div className="comic-border rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
                   <div className="relative bg-slate-100 dark:bg-slate-800">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
-                    <Image
-                      src={project.image || '/placeholder.svg'}
-                      alt={project.title}
-                      width={800}
-                      height={600}
-                      className="w-full object-cover"
-                      style={{ mixBlendMode: 'multiply' }}
-                    />
+                    {project.gallery && project.gallery.length > 0 ? (
+                      <a href="#gallery" aria-label="Open gallery" className="block cursor-zoom-in">
+                        <Image
+                          src={project.image || '/placeholder.svg'}
+                          alt={project.title}
+                          width={800}
+                          height={600}
+                          className="w-full object-cover"
+                          style={{ mixBlendMode: 'multiply' }}
+                        />
+                      </a>
+                    ) : project.link ? (
+                      <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} demo`} className="block cursor-pointer">
+                        <Image
+                          src={project.image || '/placeholder.svg'}
+                          alt={project.title}
+                          width={800}
+                          height={600}
+                          className="w-full object-cover"
+                          style={{ mixBlendMode: 'multiply' }}
+                        />
+                      </Link>
+                    ) : project.github ? (
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} repository`} className="block cursor-pointer">
+                        <Image
+                          src={project.image || '/placeholder.svg'}
+                          alt={project.title}
+                          width={800}
+                          height={600}
+                          className="w-full object-cover"
+                          style={{ mixBlendMode: 'multiply' }}
+                        />
+                      </Link>
+                    ) : (
+                      <Image
+                        src={project.image || '/placeholder.svg'}
+                        alt={project.title}
+                        width={800}
+                        height={600}
+                        className="w-full object-cover"
+                        style={{ mixBlendMode: 'multiply' }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -243,7 +278,7 @@ export default async function ProjectPage({ params }: any) {
 
                 {/* Gallery with Lightbox */}
                 {project.gallery && project.gallery.length > 0 && (
-                  <TabsContent value="gallery">
+                  <TabsContent value="gallery" id="gallery">
                     <h3 className="text-xl font-bold mb-3 flex items-center"><ImagesIcon className="mr-2 h-4 w-4 text-primary" /> Gallery</h3>
                     <GalleryLightbox images={project.gallery} title={project.title} />
                   </TabsContent>
@@ -529,13 +564,25 @@ export default async function ProjectPage({ params }: any) {
               >
                 <div className="aspect-video relative overflow-hidden bg-slate-100 dark:bg-slate-800">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
-                  <Image
-                    src={p.image || '/placeholder.svg'}
-                    alt={p.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    style={{ mixBlendMode: 'multiply' }}
-                  />
+                  {p.slug ? (
+                    <Link href={`/projects/${p.slug}`} aria-label={`Open ${p.title} details`} className="block cursor-pointer">
+                      <Image
+                        src={p.image || '/placeholder.svg'}
+                        alt={p.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        style={{ mixBlendMode: 'multiply' }}
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={p.image || '/placeholder.svg'}
+                      alt={p.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      style={{ mixBlendMode: 'multiply' }}
+                    />
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold text-lg mb-2">{p.title}</h3>

@@ -87,7 +87,27 @@ export default function ProjectsSection() {
                 <Card className="overflow-hidden h-full comic-panel">
                   <div className="relative aspect-video overflow-hidden">
                     {project.slug ? (
-                      <Link href={`/projects/${project.slug}`}>
+                      <Link href={`/projects/${project.slug}`} aria-label={`Open ${project.title} details`} className="block cursor-pointer">
+                        <Image
+                          src={project.image || '/placeholder.svg'}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
+                          priority={index < 3}
+                        />
+                      </Link>
+                    ) : project.link ? (
+                      <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} demo`} className="block cursor-pointer">
+                        <Image
+                          src={project.image || '/placeholder.svg'}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
+                          priority={index < 3}
+                        />
+                      </Link>
+                    ) : project.github ? (
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} repository`} className="block cursor-pointer">
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}

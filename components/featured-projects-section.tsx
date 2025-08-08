@@ -42,12 +42,57 @@ export default function FeaturedProjectsSection() {
             >
               <Card className="overflow-hidden h-full comic-panel">
                 <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={project.image || '/placeholder.svg'}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
+                  {project.slug ? (
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      aria-label={`Open ${project.title} details`}
+                      className="block cursor-pointer"
+                    >
+                      <Image
+                        src={project.image || '/placeholder.svg'}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </Link>
+                  ) : project.link ? (
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} demo`}
+                      className="block cursor-pointer"
+                    >
+                      <Image
+                        src={project.image || '/placeholder.svg'}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </Link>
+                  ) : project.github ? (
+                    <Link
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} repository`}
+                      className="block cursor-pointer"
+                    >
+                      <Image
+                        src={project.image || '/placeholder.svg'}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={project.image || '/placeholder.svg'}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  )}
                   <div className="absolute top-2 right-2 bg-secondary text-secondary-foreground font-bangers px-3 py-1 rounded-full transform rotate-12">
                     Featured!
                   </div>

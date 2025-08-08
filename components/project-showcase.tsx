@@ -94,7 +94,27 @@ function ProjectShowcase() {
               <div className="comic-border rounded-lg overflow-hidden bg-background shadow-xl h-full transform-style-3d">
                 <div className="relative aspect-video overflow-hidden">
                   {activeProject.slug ? (
-                    <Link href={`/projects/${activeProject.slug}`}>
+                    <Link href={`/projects/${activeProject.slug}`} aria-label={`Open ${activeProject.title} details`} className="block cursor-pointer">
+                      <Image
+                        src={activeProject.image || '/placeholder.svg'}
+                        alt={activeProject.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        priority
+                      />
+                    </Link>
+                  ) : activeProject.link ? (
+                    <Link href={activeProject.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} demo`} className="block cursor-pointer">
+                      <Image
+                        src={activeProject.image || '/placeholder.svg'}
+                        alt={activeProject.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        priority
+                      />
+                    </Link>
+                  ) : activeProject.github ? (
+                    <Link href={activeProject.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} repository`} className="block cursor-pointer">
                       <Image
                         src={activeProject.image || '/placeholder.svg'}
                         alt={activeProject.title}

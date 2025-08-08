@@ -243,11 +243,30 @@ export const projects: Project[] = [
       'Built with Mohamed Souare, Bryan Gunawan, and Sianni Strikland',
     ],
     team: [
-      { name: 'Antonio Archer', role: 'Head Engineer', link: 'https://www.linkedin.com/in/antonio-archer/', roleLink: 'https://github.com/AD-Archer' },
-      { name: 'Mohamed Souare', role: 'Developer', link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/', roleLink: 'https://github.com/MSouare' },
-      { name: 'Bryan Gunawan', role: 'Project Lead & Full-Stack Developer', link: 'https://www.linkedin.com/in/bryan-gunawan-a537132b9/', roleLink: 'https://github.com/CapnBryan' },
-      { name: 'Sianni Strikland', role: 'Artistic Director', link: 'https://www.linkedin.com/in/sianni-strickland-934059284/' },
-    ]
+      {
+        name: 'Antonio Archer',
+        role: 'Head Engineer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+      {
+        name: 'Mohamed Souare',
+        role: 'Developer',
+        link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/',
+        roleLink: 'https://github.com/MSouare',
+      },
+      {
+        name: 'Bryan Gunawan',
+        role: 'Project Lead & Full-Stack Developer',
+        link: 'https://www.linkedin.com/in/bryan-gunawan-a537132b9/',
+        roleLink: 'https://github.com/CapnBryan',
+      },
+      {
+        name: 'Sianni Strikland',
+        role: 'Artistic Director',
+        link: 'https://www.linkedin.com/in/sianni-strickland-934059284/',
+      },
+    ],
   },
   {
     id: '2',
@@ -273,10 +292,22 @@ export const projects: Project[] = [
       'Simple, clean frontend experience',
     ],
     team: [
-      { name: 'Antonio Archer', role: 'Developer & MovieSeer', link: 'https://www.linkedin.com/in/antonio-archer/' },
-      { name: 'Mohamed Souare', role: 'Creative Developer', link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/' },
-      { name: 'Nasirah Solomon', role: 'Artist', link: 'https://www.linkedin.com/in/nasirah-solomon-abab91258/' },
-    ]
+      {
+        name: 'Antonio Archer',
+        role: 'Developer & MovieSeer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+      },
+      {
+        name: 'Mohamed Souare',
+        role: 'Creative Developer',
+        link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/',
+      },
+      {
+        name: 'Nasirah Solomon',
+        role: 'Artist',
+        link: 'https://www.linkedin.com/in/nasirah-solomon-abab91258/',
+      },
+    ],
   },
   {
     id: '3',
@@ -412,11 +443,10 @@ export const projects: Project[] = [
     title: 'Qoutey',
     description:
       'Recently I have taken to journaling and I thought it would be neat to have a way for me to reread my journal entries or focus on certain days. So I made this app to send me a quote every day or a date/entry to focus on.',
-    image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
+    image:
+      'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
     tags: ['backend', 'golang'],
-    technologies: [
-      { name: 'GoLang', color: technologyColors.typescript },
-    ],
+    technologies: [{ name: 'GoLang', color: technologyColors.typescript }],
     slug: 'qoutey',
     github: 'https://github.com/AD-Archer/qoutey',
     featured: false,
@@ -425,7 +455,7 @@ export const projects: Project[] = [
       'Morning, midday, and evening motivational quotes',
       'Built with GoLang',
       'Email integration using SMTP servers',
-      'Customizable delivery schedule'
+      'Customizable delivery schedule',
     ],
   },
   {
@@ -595,12 +625,11 @@ export const projects: Project[] = [
   {
     id: '17',
     title: 'GitHub Issue Automation Script',
-    description: 'Automates the creation of GitHub issues from a CSV file using the GitHub CLI. Written in Bash to be used with any POSIX shell.',
+    description:
+      'Automates the creation of GitHub issues from a CSV file using the GitHub CLI. Written in Bash to be used with any POSIX shell.',
     image: '/images/projects/githubissues.jpg',
     tags: ['backend', 'bash'],
-    technologies: [
-      { name: 'Bash', color: technologyColors.nodejs },
-    ],
+    technologies: [{ name: 'Bash', color: technologyColors.nodejs }],
     slug: 'github-issue-automation-script',
     github: 'https://github.com/AD-Archer/GitHub-Issue-Automation-Script',
     featured: false,
@@ -645,7 +674,8 @@ export const projects: Project[] = [
   {
     id: '19',
     title: 'Launchpad Student Interaction Form',
-    description: 'While freelancing, I identified and solved a key problem within Launchpad and Building 21: the inefficient system for tracking student interactions. I developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL, streamlining the process and improving organizational efficiency.',
+    description:
+      'While freelancing, I identified and solved a key problem within Launchpad and Building 21: the inefficient system for tracking student interactions. I developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL, streamlining the process and improving organizational efficiency.',
     image: 'https://lsf.adarcher.app/images/production_screenshots/finaldashboard.png',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
@@ -663,13 +693,14 @@ export const projects: Project[] = [
     features: [
       'Responsive design with TailwindCSS',
       'AI assistant for insights and suggestions',
-      'Recharts for data visualization'
+      'Recharts for data visualization',
     ],
   },
   {
     id: '20',
     title: 'itwin',
-    description: 'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
+    description:
+      'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
     image: '/images/projects/itwin/itwin.png',
     tags: ['frontend', 'fullstack'],
     technologies: [
@@ -693,9 +724,21 @@ export const projects: Project[] = [
       'Source code public, editing requires Bentley developer account',
     ],
     gallery: [
-      { src: '/images/projects/itwin/image1.png', alt: 'Itwin revit iModel', caption: 'Itwin revit iModel' },
-      { src: '/images/projects/itwin/image2.png', alt: '3D model view', caption: 'iTwin viewer with highlighted elements' },
-      { src: '/images/projects/itwin/image3.png', alt: 'Paginated results with sorting', caption: 'Paginated results with sorting' },
+      {
+        src: '/images/projects/itwin/image1.png',
+        alt: 'Itwin revit iModel',
+        caption: 'Itwin revit iModel',
+      },
+      {
+        src: '/images/projects/itwin/image2.png',
+        alt: '3D model view',
+        caption: 'iTwin viewer with highlighted elements',
+      },
+      {
+        src: '/images/projects/itwin/image3.png',
+        alt: 'Paginated results with sorting',
+        caption: 'Paginated results with sorting',
+      },
     ],
     // caseStudy: {
     //   problem: 'Legacy codebase made it hard to extend filtering and search across large BIM datasets.',
@@ -703,10 +746,20 @@ export const projects: Project[] = [
     //   architecture: 'Next.js app with iTwin.js viewer. ECSQL queries proxied through API route. State managed with context and URL params.',
     //   results: ['Reduced query time perceived by users', 'Easier to add new filters', 'Improved maintainability'],
     // },
- 
+
     team: [
-      { name: 'Antonio Archer', role: 'Full‑stack Developer', link: 'https://www.linkedin.com/in/antonio-archer/', roleLink: 'https://github.com/AD-Archer' },
-      { name: 'Jamir Ong', role: 'Full‑stack Developer', link: 'https://www.linkedin.com/in/jamir-ong/', roleLink: 'https://github.com/JamirOng' },
+      {
+        name: 'Antonio Archer',
+        role: 'Full‑stack Developer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+      {
+        name: 'Jamir Ong',
+        role: 'Full‑stack Developer',
+        link: 'https://www.linkedin.com/in/jamir-ong/',
+        roleLink: 'https://github.com/JamirOng',
+      },
     ],
     // architecture: {
     //   summary: 'Composable grid filters mapped to ECSQL, decoupled from the viewer, with API routes mediating data access.',
@@ -716,15 +769,24 @@ export const projects: Project[] = [
     //   notes: ['Uses SSR for SEO on catalog pages', 'Caches query metadata in memory', 'Feature flags for beta filters'],
     // },
     // video: { url: 'https://youtu.be/dQw4w9WgXcQ', title: 'iTwin Grid Search Walkthrough' },
-    // codeSnippets: [
-    //   { title: 'ECSQL filter builder', language: 'ts', code: 'export function buildWhere(filters: Record<string, string>) {\n  return Object.entries(filters)\n    .filter(([, v]) => v)\n    .map(([k, v]) => `${k} = \"${v}\"`)\n    .join(" AND ");\n}' },
-    //   { title: 'API route', language: 'ts', code: 'export async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}' },
-    // ],
+    codeSnippets: [
+      {
+        title: 'ECSQL filter builder',
+        language: 'sql',
+        code: "'SELECT ec_classname (c.ECInstanceId) className, COALESCE(s.DisplayLabel, s.Name) schemaLabel, COALESCE(c.DisplayLabel, c.Name) classLabel, COUNT(*) FROM bis.GeometricElement3d ge JOIN ECDbMeta.ClassHasAllBaseClasses abc ON abc.SourceECInstanceId = ge.ECClassId JOIN ECDbMeta.ECClassDef c ON c.ECInstanceId = abc.TargetECInstanceId JOIN ECDbMeta.ECSchemaDef s ON s.ECInstanceId = c.Schema.Id WHERE s.Name != 'BisCore' GROUP BY c.ECInstanceId'",
+      },
+      {
+        title: 'API route',
+        language: 'ts',
+        code: 'export async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}',
+      },
+    ],
   },
   {
     id: '21',
     title: 'N8N Job Search Dashboard',
-    description: 'A self-hostable job search dashboard designed to work with n8n workflows for automated job searching and application tracking. Features AI-powered resume matching, automated LinkedIn scraping, cover letter generation, and comprehensive job management.',
+    description:
+      'A self-hostable job search dashboard designed to work with n8n workflows for automated job searching and application tracking. Features AI-powered resume matching, automated LinkedIn scraping, cover letter generation, and comprehensive job management.',
     image: '/images/projects/n8n-job-search.png',
     tags: ['fullstack', 'ai', 'backend'],
     technologies: [
@@ -852,6 +914,15 @@ export const skills: SkillCategory = {
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg',
       power: 75,
     },
+    {name: 'docker',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+      power: 85
+    },
+    {
+      name: 'n8n',
+      icon: 'https://n8n.io/favicon.ico',
+      power: 80,
+    }
   ],
   hosting: [
     {
@@ -918,7 +989,7 @@ export const certifications: Certification[] = [
 
 export const jobs: Job[] = [
   {
-    title: 'Full-Stack Developer',
+    title: 'Platform Engineer',
     company: 'Bentley Systems',
     duration: 'Jul 2025 - Aug 2025',
     location: 'Philadelphia, PA',
