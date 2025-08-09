@@ -33,7 +33,7 @@ export default function Footer() {
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
-                href="https://twitter.com/@ad_archer_"
+                href="https://twitter.com/ad_archer_"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary transition-colors"
@@ -42,7 +42,7 @@ export default function Footer() {
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
-                href="mailto:adarcher21@gmail.com"
+                href="mailto:antonioarcher.dev@gmail.com"
                 className="hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />

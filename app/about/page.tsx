@@ -1,5 +1,28 @@
 'use client';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Antonio Archer | Full Stack Developer in Philadelphia',
+  description:
+    'Learn about Antonio Archer—Full Stack Developer & AI enthusiast from Philadelphia. Background, experience, certifications, and approach to building software.',
+  alternates: { canonical: 'https://www.antonioarcher.com/about' },
+  openGraph: {
+    title: 'About Antonio Archer',
+    description:
+      'Full Stack Developer & AI Enthusiast based in Philadelphia. Explore background, experience, and certifications.',
+    url: 'https://www.antonioarcher.com/about',
+    images: [{ url: '/logo.webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Antonio Archer',
+    description:
+      'Full Stack Developer & AI Enthusiast based in Philadelphia. Explore background, experience, and certifications.',
+    images: ['/logo.webp'],
+  },
+};
+
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

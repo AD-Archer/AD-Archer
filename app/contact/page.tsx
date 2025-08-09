@@ -1,5 +1,28 @@
 'use client';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact Antonio Archer | Hire a Full Stack Developer',
+  description:
+    'Contact Antonio Archer for web development, Next.js, React, DevOps, and AI projects. Based in Philadelphia—available for freelance and full-time roles.',
+  alternates: { canonical: 'https://www.antonioarcher.com/contact' },
+  openGraph: {
+    title: 'Contact Antonio Archer',
+    description:
+      'Get in touch with Antonio Archer for software development and DevOps work.',
+    url: 'https://www.antonioarcher.com/contact',
+    images: [{ url: '/logo.webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Antonio Archer',
+    description:
+      'Get in touch with Antonio Archer for software development and DevOps work.',
+    images: ['/logo.webp'],
+  },
+};
+
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, Linkedin, Mail, MapPin, Phone, AlertCircle } from 'lucide-react';

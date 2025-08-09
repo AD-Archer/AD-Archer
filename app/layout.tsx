@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description:
       'Portfolio website for Antonio Archer a software developer and DevOps engineer from Philadelphia showcasing projects, skills, and contact information',
     images: ['/logo.webp'],
-    creator: '@antonioarcher',
+    creator: '@ad_archer_',
   },
   keywords: [
     'Antonio Archer',
@@ -77,6 +77,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Site-level structured data */}
+        <Script
+          id="website-json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Antonio Archer',
+              url: 'https://www.antonioarcher.com',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://www.google.com/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+              sameAs: [
+                'https://github.com/ad-archer',
+                'https://www.linkedin.com/in/antonio-archer',
+                'https://twitter.com/ad_archer_',
+                'https://www.youtube.com/@ad-archer',
+                'https://www.instagram.com/Antonio_DArcher',
+              ],
+            }),
+          }}
+        />
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -99,9 +124,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: 'US',
               },
               sameAs: [
-                'https://www.github.com/ad-archer',
+                'https://github.com/ad-archer',
                 'https://www.linkedin.com/in/antonio-archer',
-                'https://www.twitter.com/ad_archer_',
+                'https://twitter.com/ad_archer_',
                 'https://www.linktr.ee/adarcher',
                 'https://www.adarcher.app',
                 'https://www.youtube.com/@ad-archer',

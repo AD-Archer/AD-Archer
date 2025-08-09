@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/private/'],
     },
-    sitemap: 'https://antonioarcher.com/sitemap.xml',
+  sitemap: 'https://www.antonioarcher.com/sitemap.xml',
   };
 }

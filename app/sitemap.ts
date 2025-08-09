@@ -4,7 +4,8 @@ import { projects } from '@/lib/data';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://antonioarcher.com';
+  // Use a single canonical base across the site
+  const baseUrl = 'https://www.antonioarcher.com';
 
   // Base routes
   const routes: SitemapEntry[] = [

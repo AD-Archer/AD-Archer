@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Antonio Archer Portfolio',
     short_name: 'Antonio Archer',
     description:
-      'Portfolio website for Antonio Archer a software developer and DevOps engineer from phialdelphia showcasing projects, skills, and contact information',
+  'Portfolio website for Antonio Archer, a software developer and DevOps engineer from Philadelphia showcasing projects, skills, and contact information',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

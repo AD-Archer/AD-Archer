@@ -27,6 +27,21 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'antonioarcher.com',
+          },
+        ],
+        destination: 'https://www.antonioarcher.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 if (userConfig) {

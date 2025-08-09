@@ -1,5 +1,28 @@
 'use client';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects by Antonio Archer | Portfolio',
+  description:
+    'Browse web development projects by Antonio Archer—Next.js, React, Node.js, Python, and AI-powered apps.',
+  alternates: { canonical: 'https://www.antonioarcher.com/projects' },
+  openGraph: {
+    title: 'Projects by Antonio Archer',
+    description:
+      'Explore featured and recent projects using modern web technologies.',
+    url: 'https://www.antonioarcher.com/projects',
+    images: [{ url: '/logo.webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Projects by Antonio Archer',
+    description:
+      'Explore featured and recent projects using modern web technologies.',
+    images: ['/logo.webp'],
+  },
+};
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
