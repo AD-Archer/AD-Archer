@@ -699,7 +699,7 @@ export const projects: Project[] = [
   },
   {
     id: '20',
-    title: 'itwin',
+    title: 'Ecora',
     description:
       'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
     image: '/images/projects/itwin/itwin.png',
@@ -711,9 +711,9 @@ export const projects: Project[] = [
       { name: 'ECSQL', color: technologyColors.typescript },
       { name: 'iTwin.js', color: technologyColors.typescript },
     ],
-    slug: 'itwin-grid-search',
-    link: 'https://itwin-grid-search.vercel.app/',
-    github: 'https://github.com/Building21-iTwin/itwin-grid-search',
+    slug: 'ecora',
+    link: 'https://itwin-ecora.vercel.app/',
+    github: 'https://github.com/Building21-iTwin/itwin-ecora',
     featured: true,
     featuredPriority: 1,
     features: [
@@ -739,6 +739,11 @@ export const projects: Project[] = [
         src: '/images/projects/itwin/image3.png',
         alt: 'Paginated results with sorting',
         caption: 'Paginated results with sorting',
+      },
+      {
+        src: '/images/projects/itwin/image4.png',
+        alt: 'Most recent screenshot of ecora',
+        caption: 'Most recent screenshot of ecora',
       },
     ],
     // caseStudy: {
