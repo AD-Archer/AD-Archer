@@ -448,7 +448,7 @@ export default async function ProjectPage({ params }: any) {
                             </div>
                           )}
                           {snip.markdown ? (
-                            <div className="p-3 overflow-auto text-sm prose dark:prose-invert max-w-none">
+                            <div className="p-3 overflow-x-auto text-sm prose dark:prose-invert max-w-none">
                               <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
                                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -461,6 +461,15 @@ export default async function ProjectPage({ params }: any) {
                                         style={oneDark}
                                         language={match ? match[1] : snip.language || undefined}
                                         PreTag="div"
+                                        customStyle={{ 
+                                          margin: 0, 
+                                          borderRadius: 0, 
+                                          fontSize: '12px',
+                                          maxHeight: '300px',
+                                          overflowY: 'auto'
+                                        }}
+                                        wrapLines={true}
+                                        wrapLongLines={true}
                                       >
                                         {String(children).replace(/\n$/, '')}
                                       </SyntaxHighlighter>
@@ -474,13 +483,24 @@ export default async function ProjectPage({ params }: any) {
                               </ReactMarkdown>
                             </div>
                           ) : (
-                            <SyntaxHighlighter
-                              style={oneDark}
-                              language={snip.language || undefined}
-                              customStyle={{ margin: 0, borderRadius: 0, padding: '12px' }}
-                            >
-                              {Array.isArray(snip.code) ? snip.code.join('\n') : (snip.code || '')}
-                            </SyntaxHighlighter>
+                            <div className="overflow-x-auto">
+                              <SyntaxHighlighter
+                                style={oneDark}
+                                language={snip.language || undefined}
+                                customStyle={{ 
+                                  margin: 0, 
+                                  borderRadius: 0, 
+                                  padding: '12px',
+                                  fontSize: '12px',
+                                  maxHeight: '300px',
+                                  overflowY: 'auto'
+                                }}
+                                wrapLines={true}
+                                wrapLongLines={true}
+                              >
+                                {Array.isArray(snip.code) ? snip.code.join('\n') : (snip.code || '')}
+                              </SyntaxHighlighter>
+                            </div>
                           )}
                         </div>
                       ))}
