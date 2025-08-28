@@ -73,7 +73,7 @@
     "openai": "^4.93.0",
     "qrcode.react": "^4.2.0",
     "react": "^19",
-    "react-day-picker": "8.10.1",
+    "react-day-picker": "9.9.0",
     "react-dom": "^19",
     "react-hook-form": "^7.54.1",
     "react-markdown": "^10.1.0",
