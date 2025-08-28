@@ -783,6 +783,11 @@ export const projects: Project[] = [
     link: 'https://socialmetrics.adarcher.app/',
     github: 'https://github.com/ad-archer/social-dash',
     featured: false,
+    gallery: [
+      { src: '/images/projects/socialmetrics/homedash.jpeg', alt: 'Social Metrics Screenshot 1', caption: 'Dashboard Overview' },
+      { src: '/images/projects/socialmetrics/wiki.jpeg', alt: 'Social Metrics Screenshot 2', caption: 'Wikipedia Topics' },
+      { src: '/images/projects/socialmetrics/calendar.jpeg', alt: 'Social Metrics Screenshot 3', caption: 'Calendar Events' },
+    ],
     features: [
       'Google OAuth authentication',
       'Real-time YouTube analytics',
@@ -792,6 +797,8 @@ export const projects: Project[] = [
       'Wikipedia API integration for topic research',
       'Recharts for data visualization',
       'Built with Next.js and TypeScript',
+      'MCP integration for content calendar',
+      'ICS integration for calendar events'
     ],
     caseStudy: {
       problem: [
