@@ -344,7 +344,7 @@ export const projects: Project[] = [
     title: 'TimeWise',
     description:
       'Mental health app with mood tracking, meditation, and Pomodoro timer integration.',
-    image: '/images/projects/timewise.webp',
+    image: '/images/projects/timewise/timewise.webp',
     tags: ['fullstack', 'ai', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -359,6 +359,16 @@ export const projects: Project[] = [
     github: 'https://github.com/AD-Archer/TimeWise',
     featured: true,
     featuredPriority: 3,
+    gallery: [
+      { src: '/images/projects/timewise/2.png', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
+      { src: '/images/projects/timewise/3.png', alt: 'TimeWise Screenshot 2', caption: 'Timewise' },
+      { src: '/images/projects/timewise/intro.png', alt: 'TimeWise Screenshot 2', caption: 'Timewise\'s intro' },
+      { src: '/images/projects/timewise/4.png', alt: 'TimeWise Screenshot 1', caption: 'Timewise' },
+      { src: '/images/projects/timewise/5.png', alt: 'TimeWise Screenshot 4', caption: 'Timewise' },
+      { src: '/images/projects/timewise/6.png', alt: 'TimeWise Screenshot 5', caption: 'Timewise' },
+
+
+    ],
     features: [
       'Mood tracking and journaling',
       'Pomodoro timer with custom playlists',
