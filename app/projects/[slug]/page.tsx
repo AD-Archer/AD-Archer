@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   const ogGenerated = `${siteUrl}/api/og?title=${encodeURIComponent(project.title)}${project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''}${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
   const images = [{ url: ogGenerated }];
   return {
-    title: `${project.title} • Projects` ,
+    title: `Antonio Archer - ${project.title}` ,
     description: project.description,
     alternates: { canonical: url },
     openGraph: {
