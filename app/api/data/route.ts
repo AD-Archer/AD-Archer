@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { projects, skills, certifications, jobs, education } from '@/lib/data';
+import type { Project, Technology } from '@/lib/data';
 
 export async function GET() {
   try {
@@ -11,19 +12,9 @@ export async function GET() {
     );
 
     // Sanitize projects (remove sensitive/heavy fields)
-    const sanitizedProjects = projects.map((p) => {
-      const {
-        id, // remove
-        image, // remove
-        team, // remove
-        codeSnippets, // remove
-        video, // remove
-        changelog, // remove
-        milestones, // remove
-        gallery, // remove
-        technologies,
-        ...rest
-      } = p as any;
+    const sanitizedProjects = projects.map((p: Project) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id: _id, image: _image, team: _team, codeSnippets: _codeSnippets, video: _video, changelog: _changelog, milestones: _milestones, gallery: _gallery, technologies, ...rest } = p;
 
       // Strip images from architecture if present, keep summary/notes
       const architecture = rest.architecture
@@ -34,7 +25,7 @@ export async function GET() {
         ...rest,
         architecture,
         technologies: Array.isArray(technologies)
-          ? technologies.map((t: any) => t.name)
+          ? technologies.map((t: Technology) => t.name)
           : undefined,
       };
     });

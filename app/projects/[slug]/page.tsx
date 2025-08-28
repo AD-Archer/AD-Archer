@@ -15,6 +15,8 @@ import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import GalleryLightbox from '@/app/projects/components/gallery-lightbox';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Metadata } from 'next';
+import type { Project } from '@/lib/data';
+import type { VideoWalkthrough } from '@/lib/data';
 
 export async function generateStaticParams() {
   return projects
@@ -27,7 +29,7 @@ export async function generateStaticParams() {
 }
 
 // SEO metadata per project
-export async function generateMetadata({ params }: any): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const project = projects.find(p => p.slug === resolvedParams.slug);
   if (!project) return {};
@@ -35,7 +37,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   const url = `${siteUrl}/projects/${resolvedParams.slug}`;
   const mainImage = project.image ? (project.image.startsWith('http') ? project.image : `${siteUrl}${project.image}`) : '';
   const ogGenerated = `${siteUrl}/api/og?title=${encodeURIComponent(project.title)}${project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''}${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
-  const images = [{ url: ogGenerated }];
+  const images: { url: string }[] = [{ url: ogGenerated }];
   return {
     title: `Antonio Archer - ${project.title}` ,
     description: project.description,
@@ -51,13 +53,13 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
       card: 'summary_large_image',
       title: project.title,
       description: project.description,
-      images: images as any,
+      images,
     },
   };
 }
 
 // Following Next.js convention for App Router pages
-export default async function ProjectPage({ params }: any) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const project = projects.find(p => p.slug === resolvedParams.slug);
 
@@ -76,16 +78,21 @@ export default async function ProjectPage({ params }: any) {
   let githubStats: { stars: number; forks: number; issues: number; lastPushedAt?: string } | null = null;
   if (githubInfo) {
     try {
-      const res = await fetch(`https://api.github.com/repos/${githubInfo.owner}/${githubInfo.repo}` as any, {
+      const res = await fetch(`https://api.github.com/repos/${githubInfo.owner}/${githubInfo.repo}`, {
         // Cache for 1 day; Next will revalidate in the background
         next: { revalidate: 60 * 60 * 24 },
         headers: {
           'User-Agent': 'ad-archer-site',
           'Accept': 'application/vnd.github+json',
         },
-      } as any);
+      });
       if (res.ok) {
-        const data = await res.json();
+        const data: {
+          stargazers_count: number;
+          forks_count: number;
+          open_issues_count: number;
+          pushed_at: string;
+        } = await res.json();
         githubStats = {
           stars: data.stargazers_count ?? 0,
           forks: data.forks_count ?? 0,
@@ -246,7 +253,7 @@ export default async function ProjectPage({ params }: any) {
               keywords: project.tags?.join(', '),
               sameAs: project.github ? [project.github] : undefined,
               funder: undefined,
-              contributor: project.team?.map((m: any) => ({ '@type': 'Person', name: m.name, url: m.link })) || undefined,
+              contributor: project.team?.map((m) => ({ '@type': 'Person', name: m.name, url: m.link })) || undefined,
               programmingLanguage: project.technologies?.map(t => t.name),
             }),
           }}
@@ -285,7 +292,7 @@ export default async function ProjectPage({ params }: any) {
                       <TabsTrigger value="video" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Film className="h-3 w-3 sm:h-4 sm:w-4" /> Video</TabsTrigger>
                     )}
                     {project.codeSnippets && project.codeSnippets.length > 0 && (
-                      <TabsTrigger value="code" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><FileCode className="h-3 w-3 sm:h-4 sm:w-4" /> Code</TabsTrigger>
+                      <TabsTrigger value="code" className="hidden md:flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><FileCode className="h-3 w-3 sm:h-4 sm:w-4" /> Code</TabsTrigger>
                     )}
                     {project.github && (
                       <TabsTrigger value="github" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Github className="h-3 w-3 sm:h-4 sm:w-4" /> GitHub</TabsTrigger>
@@ -449,34 +456,11 @@ export default async function ProjectPage({ params }: any) {
                               <div className="overflow-x-auto text-sm prose dark:prose-invert max-w-none">
                                 <ReactMarkdown
                                   remarkPlugins={[remarkGfm]}
-                                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                   components={{
-                                    code(props: any) {
-                                      const { inline, className, children, ...rest } = props;
-                                      const match = /language-(\w+)/.exec(className || '');
-                                      return !inline ? (
-                                        <div className="overflow-x-auto">
-                                          <SyntaxHighlighter
-                                            style={oneDark}
-                                            language={match ? match[1] : snip.language || undefined}
-                                            PreTag="div"
-                                            customStyle={{
-                                              margin: 0,
-                                              borderRadius: 0,
-                                              fontSize: '12px',
-                                              overflow: 'visible',
-                                              padding: '12px',
-                                              background: 'transparent',
-                                              WebkitOverflowScrolling: 'touch',
-                                            }}
-                                            wrapLines={false}
-                                            wrapLongLines={false}
-                                          >
-                                            {String(children).replace(/\n$/, '')}
-                                          </SyntaxHighlighter>
-                                        </div>
-                                      ) : (
-                                        <code className={className} {...rest}>{children}</code>
+                                    code(props) {
+                                      const { children, ...rest } = props;
+                                      return (
+                                        <code {...rest}>{children}</code>
                                       );
                                     },
                                   }}
@@ -561,7 +545,7 @@ export default async function ProjectPage({ params }: any) {
                 Project Details
               </h2>
               <div className="prose max-w-none dark:prose-invert">
-                <p>{project.description}</p>
+                <p>{project.longDescription || project.description}</p>
                 <h3 className="text-xl font-bold mt-6 mb-3">Key Features</h3>
                 <ul className="space-y-2">
                   {project.features && project.features.length > 0 ? (
@@ -713,11 +697,6 @@ export default async function ProjectPage({ params }: any) {
 }
 
 // Helpers
-function getDefaultTab(project: any): string {
-  if (project.gallery?.length) return 'gallery';
-  return 'overview';
-}
-
 function parseGithubRepo(url: string): { owner: string; repo: string } | null {
   try {
     const u = new URL(url);
@@ -730,7 +709,7 @@ function parseGithubRepo(url: string): { owner: string; repo: string } | null {
   }
 }
 
-function getSimilarProjects(base: any, others: any[], limit = 6) {
+function getSimilarProjects(base: Project, others: Project[], limit = 6) {
   const baseTags = new Set(base.tags || []);
   const scored = others.map(p => ({
     p,
@@ -739,7 +718,7 @@ function getSimilarProjects(base: any, others: any[], limit = 6) {
   return scored.sort((a,b) => b.score - a.score).map(s => s.p).slice(0, limit);
 }
 
-function renderVideoEmbed(video: any) {
+function renderVideoEmbed(video: VideoWalkthrough) {
   const url: string = video.url;
   const provider = video.provider || inferProvider(url);
   if (provider === 'youtube') {

@@ -11,7 +11,8 @@ type Props = {
   className?: string;
 };
 
-export default function ShareButtons({ url, title, summary, className }: Props) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function ShareButtons({ url, title: _title, summary: _summary, className }: Props) {
   const [copied, setCopied] = useState(false);
 
   const onCopy = useCallback(async () => {
@@ -19,7 +20,7 @@ export default function ShareButtons({ url, title, summary, className }: Props) 
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch (_) {
+    } catch {
       // no-op
     }
   }, [url]);
@@ -28,7 +29,7 @@ export default function ShareButtons({ url, title, summary, className }: Props) 
     if (navigator.share) {
       try {
         await navigator.share({ url });
-      } catch (_) {
+      } catch {
         // user cancelled
       }
     } else {

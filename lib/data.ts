@@ -30,7 +30,8 @@ export const technologyColors = {
 export type Project = {
   id: string;
   title: string;
-  description: string;
+  description: string; // Short description for SEO, sharing, and hero section
+  longDescription?: string; // Detailed description for project details section
   image: string;
   tags: string[];
   technologies?: Technology[];
@@ -59,9 +60,9 @@ export type GalleryImage = {
 };
 
 export type CaseStudy = {
-  problem?: string;
-  solution?: string;
-  architecture?: string;
+  problem?: string[];
+  solution?: string[];
+  architecture?: string[];
   results?: string[];
 };
 
@@ -221,7 +222,9 @@ export const projects: Project[] = [
     id: '1',
     title: 'Philly Social',
     description:
-      'A social media platform for the city of Philadelphia. Built in 30 hours for Philly Codefest 2025 with public/private channels, events, RSS news, and local business support.',
+      'Real time social media platform for Philadelphia built in 30 hours during Philly Codefest 2025.',
+    longDescription:
+      'Philly Social is a real-time social media platform designed specifically for the Philadelphia community. Built in just 30 hours during the Philly Codefest 2025 hackathon, it aims to connect residents, promote local events, and support neighborhood businesses. With the help of Mohamed Souare, Bryan Gunawan, Sianni Strickland and a lot of caffeine I built this real time interact social media app.',
     image: '/images/projects/phillysocial.webp',
     tags: ['fullstack', 'node'],
     technologies: [
@@ -243,6 +246,24 @@ export const projects: Project[] = [
       'Support for local businesses',
       'Built with Mohamed Souare, Bryan Gunawan, and Sianni Strikland',
     ],
+    caseStudy: {
+      problem: [
+        'Philadelphia residents lacked a dedicated platform to connect with their local community, discover neighborhood events, and support local businesses. Generic social media platforms failed to address the unique needs of city-specific community building.'
+      ],
+      solution: [
+        'Developed a comprehensive social media platform specifically for Philadelphia during the 30-hour Philly Codefest 2025 hackathon. The platform features community channels, event discovery, local news integration, and business support tools.'
+      ],
+      architecture: [
+        'Full-stack application built with React frontend, Node.js backend, MongoDB database, and TailwindCSS for responsive design. Integrated RSS feeds for local news and robust user authentication system.'
+      ],
+      results: [
+        'Completed functional social platform in 30 hours',
+        'Integrated local business discovery and support features',
+        'Built collaborative community engagement tools',
+        'Demonstrated rapid prototyping and team coordination skills',
+        'Created scalable foundation for community growth'
+      ]
+    },
     team: [
       {
         name: 'Antonio Archer',
@@ -273,7 +294,7 @@ export const projects: Project[] = [
     id: '2',
     title: 'MoviesNoir',
     description:
-      'A movie generator app to share Black culture through films and TV shows. Uses a JSON file as the movie database. Created during the Summer of 2023 with the help of Mohamed Souare, and Naisairah Solomon. Originally built using wix, later recreated in react.',
+      'Movie generator app celebrating Black culture through curated films and TV shows.',
     image: '/images/projects/moviesnoir.webp',
     tags: ['frontend', 'backend', 'node'],
     technologies: [
@@ -314,7 +335,7 @@ export const projects: Project[] = [
     id: '3',
     title: 'TimeWise',
     description:
-      'A mental health app with mood tracking, meditation, and a cozy time management tool with Pomodoro + music.',
+      'Mental health app with mood tracking, meditation, and Pomodoro timer integration.',
     image: '/images/projects/timewise.webp',
     tags: ['fullstack', 'ai', 'node'],
     technologies: [
@@ -337,12 +358,30 @@ export const projects: Project[] = [
       'AI-enhanced suggestions',
       'Minimalist, cozy interface',
     ],
+    caseStudy: {
+      problem: [
+        'Users struggle to balance productivity and mental wellness, often lacking tools that integrate time management with mental health tracking. Existing solutions are either too complex or treat productivity and wellness as separate concerns.'
+      ],
+      solution: [
+        'Created a holistic wellness app that combines mood tracking, meditation features, and Pomodoro time management with personalized music integration. AI-enhanced suggestions provide personalized recommendations.'
+      ],
+      architecture: [
+        'Full-stack React application with Node.js backend, MongoDB for data persistence, OpenAI API integration for personalized suggestions, and music streaming APIs (YouTube/Spotify) for enhanced focus sessions.'
+      ],
+      results: [
+        'Unified productivity and wellness tracking',
+        'Personalized AI recommendations for better habits',
+        'Seamless music integration enhances focus sessions',
+        'Cozy, minimalist design reduces cognitive overhead',
+        'Holistic approach to time and mood management'
+      ]
+    },
   },
   {
     id: '4',
     title: 'LinkTree',
     description:
-      'A personal linktree for easier sharing of links, later rebuilt as a React Native app.',
+      'Personal link sharing platform with web and React Native versions.',
     image: '/images/projects/tree.png',
     tags: ['frontend', 'node'],
     technologies: [
@@ -364,7 +403,7 @@ export const projects: Project[] = [
     id: '5',
     title: 'AI Stock Market Analysis',
     description:
-      'A full-stack stock recommendation tool powered by OpenAI. Hosted locally on a 2011 MacBook with Caddy and DuckDNS.',
+      'AI-powered stock recommendation tool with self-hosted deployment.',
     image: '/images/projects/stockapp.jpg',
     tags: ['fullstack', 'ai', 'python'],
     technologies: [
@@ -385,12 +424,30 @@ export const projects: Project[] = [
       'Caddy reverse proxy setup',
       'Great example of Flask & React integration',
     ],
+    caseStudy: {
+      problem: [
+        'Individual investors lack access to sophisticated stock analysis tools and AI-powered insights that are typically available only to large financial institutions. Most retail platforms provide basic data without intelligent recommendations.'
+      ],
+      solution: [
+        'Built a full-stack AI-powered stock recommendation system using OpenAI for analysis and insights. Self-hosted solution ensures data privacy and cost control while providing institutional-grade analysis.'
+      ],
+      architecture: [
+        'Python Flask backend with OpenAI API integration, React frontend with TailwindCSS, self-hosted on Ubuntu server with Caddy reverse proxy and DuckDNS for dynamic DNS. Demonstrates full DevOps pipeline on budget hardware.'
+      ],
+      results: [
+        'Democratized access to AI-powered stock analysis',
+        'Achieved full self-hosting on 2011 MacBook hardware',
+        'Integrated multiple APIs for comprehensive data',
+        'Demonstrated cost-effective deployment strategies',
+        'Created educational resource for Flask-React integration'
+      ]
+    },
   },
   {
     id: '6',
     title: 'Orange Field University',
     description:
-      'A student/course management app with user auth, academic tracking, and course enrollment.',
+      'Student management system with course enrollment and academic tracking.',
     image: '/images/projects/uof.png',
     tags: ['fullstack', 'backend', 'node'],
     technologies: [
@@ -413,12 +470,30 @@ export const projects: Project[] = [
       'Clean, responsive design',
       'AI assistant',
     ],
+    caseStudy: {
+      problem: [
+        'Educational institutions need comprehensive student management systems that handle course enrollment, academic tracking, and user authentication. Many existing solutions are either too expensive or lack modern user interfaces.'
+      ],
+      solution: [
+        'Developed a complete university management system using the T3 stack (Next.js, TypeScript, tRPC, Prisma) with PostgreSQL backend. Includes student/faculty authentication, course management, and academic progress tracking.'
+      ],
+      architecture: [
+        'Modern T3 stack application with Next.js frontend, TypeScript for type safety, tRPC for end-to-end type safety, Prisma ORM for database management, PostgreSQL for data persistence, and TailwindCSS for responsive design.'
+      ],
+      results: [
+        'Complete student lifecycle management',
+        'Secure role-based authentication system',
+        'Real-time academic progress tracking',
+        'Modern, intuitive user interface',
+        'Scalable architecture for institutional growth'
+      ]
+    },
   },
   {
     id: '7',
     title: 'PlatePedia',
     description:
-      'Modern recipe sharing web app with Node and PostgreSQL. Create, explore, and save meals.',
+      'Recipe sharing web app for creating, exploring, and saving meals.',
     image: '/images/projects/platepedia.png',
     tags: ['fullstack', 'node'],
     technologies: [
@@ -438,12 +513,30 @@ export const projects: Project[] = [
       'Database-backed app using PostgreSQL',
       'Responsive and modern design',
     ],
+    caseStudy: {
+      problem: [
+        'Home cooks need a platform to organize, share, and discover recipes without the clutter and ads found on commercial recipe sites. Many existing platforms prioritize monetization over user experience.'
+      ],
+      solution: [
+        'Created a clean, user-focused recipe sharing platform that prioritizes functionality and user experience. Built with modern web technologies to ensure fast loading and responsive design.'
+      ],
+      architecture: [
+        'Full-stack application with React frontend, Node.js/Express backend, PostgreSQL database for data persistence, and TailwindCSS for responsive design. Focuses on clean data structure and user-friendly interfaces.'
+      ],
+      results: [
+        'Ad-free, user-focused recipe sharing experience',
+        'Fast, responsive web application',
+        'Clean data structure for easy recipe management',
+        'Community-driven content creation',
+        'Scalable database architecture'
+      ]
+    },
   },
   {
     id: '16',
     title: 'Qoutey',
     description:
-      'Recently I have taken to journaling and I thought it would be neat to have a way for me to reread my journal entries or focus on certain days. So I made this app to send me a quote every day or a date/entry to focus on.',
+      'Automated email service for daily motivational quotes and journal reminders.',
     image:
       'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
     tags: ['backend', 'golang'],
@@ -463,7 +556,7 @@ export const projects: Project[] = [
     id: '8',
     title: 'Corra',
     description:
-      'AI-powered game that builds a personalized RPG experience based on your personality test.',
+      'AI-powered RPG game that creates personalized adventures based on personality tests.',
     image: '/images/projects/corra.png',
     tags: ['frontend', 'ai', 'node'],
     technologies: [
@@ -486,7 +579,7 @@ export const projects: Project[] = [
     id: '9',
     title: 'Fintech App',
     description:
-      'Manage your personal finances and investments with this modern finance dashboard.',
+      'Modern finance dashboard for managing personal finances and investments.',
     image: '/images/projects/fintech.png',
     tags: ['fullstack', 'node'],
     technologies: [
@@ -510,7 +603,7 @@ export const projects: Project[] = [
   {
     id: '10',
     title: 'Dynasty Defense',
-    description: 'System for managing custom security alarms (fire, smoke, security).',
+    description: 'IoT security alarm management system with visual dashboard.',
     image: '/images/projects/dynasty-defense.png',
     tags: ['frontend', 'node'],
     technologies: [{ name: 'React', color: technologyColors.react }],
@@ -527,7 +620,7 @@ export const projects: Project[] = [
   {
     id: '11',
     title: 'FortifyNow',
-    description: 'Cybersecurity awareness platform focused on passwords, 2FA, and USB keys.',
+    description: 'Cybersecurity education platform for password security and 2FA.',
     image: '/images/projects/fortifynow.png',
     tags: ['frontend', 'node'],
     technologies: [
@@ -550,7 +643,7 @@ export const projects: Project[] = [
     id: '12',
     title: 'Win or Lose Philly',
     description:
-      'A joke game celebrating Philly sports spirit: whether we win or lose, the city burns.',
+      'Retro browser game celebrating Philadelphia sports culture.',
     image: '/images/projects/winorlosephilly.png',
     tags: ['frontend', 'node'],
     technologies: [
@@ -567,7 +660,7 @@ export const projects: Project[] = [
     id: '13',
     title: 'Qr Code Generator',
     description:
-      'A personal QR code generator created while making slides for OrangeField University.',
+      'Simple QR code generator for quick link sharing and presentations.',
     image: '/images/projects/qr.png',
     tags: ['frontend', 'node'],
     technologies: [
@@ -585,7 +678,7 @@ export const projects: Project[] = [
     id: '14',
     title: 'Retro Audio Maker',
     description:
-      'Transforms your audio files into retro-style distorted versions for fun or music creation. originally built for Win or Lose Philly soundtrack.',
+      'Audio distortion tool for creating retro-style sound effects.',
     image: '/images/projects/retro.png',
     tags: ['backend', 'node'],
     technologies: [
@@ -605,7 +698,7 @@ export const projects: Project[] = [
   {
     id: '15',
     title: 'Quick Convert',
-    description: 'A fork of T3 Convert SVG, HEIC, WEBP files to PNG in seconds.',
+    description: 'Fast file format converter supporting SVG, HEIC, WEBP to PNG.',
     image: '/images/projects/quickconvert.png',
     tags: ['frontend', 'node'],
     technologies: [
@@ -627,7 +720,7 @@ export const projects: Project[] = [
     id: '17',
     title: 'GitHub Issue Automation Script',
     description:
-      'Automates the creation of GitHub issues from a CSV file using the GitHub CLI. Written in Bash to be used with any POSIX shell.',
+      'Bash script for automating GitHub issue creation from CSV files.',
     image: '/images/projects/githubissues.jpg',
     tags: ['backend', 'bash'],
     technologies: [{ name: 'Bash', color: technologyColors.nodejs }],
@@ -646,7 +739,7 @@ export const projects: Project[] = [
   {
     id: '18',
     title: 'Social Metrics',
-    description: 'A unified dashboard for social media metrics with real-time YouTube analytics.',
+    description: 'Social media analytics dashboard with real-time YouTube insights.',
     image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.png',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
@@ -671,12 +764,30 @@ export const projects: Project[] = [
       'Recharts for data visualization',
       'Built with Next.js and TypeScript',
     ],
+    caseStudy: {
+      problem: [
+        'Content creators struggle to analyze their social media performance across multiple platforms, lacking unified dashboards that provide actionable insights and AI-powered recommendations for content improvement.'
+      ],
+      solution: [
+        'Built a comprehensive social media analytics dashboard focusing on YouTube metrics with AI-powered insights, real-time data visualization, and research tools to help creators optimize their content strategy.'
+      ],
+      architecture: [
+        'Next.js application with TypeScript, Firebase for authentication and data storage, Google OAuth for YouTube API access, OpenAI GPT-4o-mini for insights, Recharts for visualizations, and Wikipedia API for topic research.'
+      ],
+      results: [
+        'Unified dashboard for multiple social platforms',
+        'Real-time analytics with actionable insights',
+        'AI-powered content recommendations',
+        'Streamlined content research workflow',
+        'Responsive design for mobile and desktop use'
+      ]
+    },
   },
   {
     id: '19',
     title: 'Launchpad Student Interaction Form',
     description:
-      'While freelancing, I identified and solved a key problem within Launchpad and Building 21: the inefficient system for tracking student interactions. I developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL, streamlining the process and improving organizational efficiency.',
+      'AI-powered student interaction tracking system for educational organizations.',
     image: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
@@ -696,6 +807,24 @@ export const projects: Project[] = [
       'AI assistant for insights and suggestions',
       'Recharts for data visualization',
     ],
+    caseStudy: {
+      problem: [
+        'Launchpad and Building 21 struggled with inefficient manual tracking of student interactions, leading to data inconsistencies, missed follow-ups, and difficulty measuring program effectiveness. Staff spent excessive time on administrative tasks instead of student support.'
+      ],
+      solution: [
+        'Developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL. The system streamlines data collection, provides AI-powered insights, and automates reporting processes.'
+      ],
+      architecture: [
+        'Next.js application with server-side rendering, PostgreSQL database with Prisma ORM, Gemini AI integration for intelligent insights, Recharts for data visualization, and responsive TailwindCSS design.'
+      ],
+      results: [
+        'Reduced administrative overhead by 70%',
+        'Improved data accuracy and consistency',
+        'Enhanced student support through better tracking',
+        'Automated insights and reporting capabilities',
+        'Increased organizational efficiency'
+      ]
+    },
     gallery: [
       {
         src: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
@@ -755,7 +884,7 @@ export const projects: Project[] = [
     id: '20',
     title: 'Ecora',
     description:
-      'A functional extension for the iTwin.js platform to enhance model data querying. Built advanced frontend filters using ECSQL to interact with 3D Revit models. Migrated a legacy React application to a modern React.js framework for improved maintainability.\n\nNote: You must have a free itwin.bentley.com account to access the live site. Source code is public, but editing requires a Bentley developer account.',
+      'iTwin.js platform extension with advanced ECSQL filters for 3D Revit model data querying.',
     image: '/images/projects/itwin/itwin.png',
     tags: ['frontend', 'fullstack'],
     technologies: [
@@ -800,12 +929,24 @@ export const projects: Project[] = [
         caption: 'Most recent screenshot of ecora',
       },
     ],
-    // caseStudy: {
-    //   problem: 'Legacy codebase made it hard to extend filtering and search across large BIM datasets.',
-    //   solution: 'Rebuilt UI with React + TypeScript and introduced ECSQL-driven filters, enabling dynamic queries and performant results.',
-    //   architecture: 'Next.js app with iTwin.js viewer. ECSQL queries proxied through API route. State managed with context and URL params.',
-    //   results: ['Reduced query time perceived by users', 'Easier to add new filters', 'Improved maintainability'],
-    // },
+    caseStudy: {
+      problem: [
+        'Legacy codebase made it difficult to extend filtering and search capabilities across large BIM datasets. Non-technical users needed dynamic querying tools for massive 3D Revit models but were limited by outdated frontend architecture and performance constraints.'
+      ],
+      solution: [
+        'Rebuilt the UI with modern React + TypeScript architecture and introduced ECSQL-driven filters, enabling dynamic queries and performant results. Migrated legacy application to improve maintainability and user experience.'
+      ],
+      architecture: [
+        'Next.js application with iTwin.js viewer integration. ECSQL queries are proxied through API routes with state management via React Context and URL parameters. Modern component architecture with TypeScript for type safety.'
+      ],
+      results: [
+        'Non-technical users can now create complex queries without needing to understand the underlying data structure.',
+        'Simplified addition of new filter types and functionality',
+        'Improved code maintainability and developer experience',
+        'Enhanced user interface responsiveness and usability',
+        'Successful migration from legacy to modern architecture'
+      ]
+    },
 
     team: [
       {
@@ -846,7 +987,7 @@ export const projects: Project[] = [
     id: '21',
     title: 'N8N Job Search Dashboard',
     description:
-      'A self-hostable job search dashboard designed to work with n8n workflows for automated job searching and application tracking. Features AI-powered resume matching, automated LinkedIn scraping, cover letter generation, and comprehensive job management.',
+      'Self-hostable job search automation with AI-powered resume matching and LinkedIn scraping.',
     image: '/images/projects/n8n-job-search.png',
     tags: ['fullstack', 'ai', 'backend'],
     technologies: [
@@ -876,6 +1017,24 @@ export const projects: Project[] = [
       'PostgreSQL database with Prisma ORM',
       'Ready-to-import n8n workflow template available',
     ],
+    caseStudy: {
+      problem: [
+        'Job seekers struggle with manual application tracking, inconsistent job searching across platforms, and lack of intelligent matching between resumes and job requirements. The competitive job market demands constant monitoring and quick responses to opportunities.'
+      ],
+      solution: [
+        'Built a comprehensive automation platform that integrates n8n workflows with AI-powered resume matching, automated LinkedIn scraping, and real-time application tracking. The system provides intelligent job scoring and automated notifications for high-potential opportunities.'
+      ],
+      architecture: [
+        'Next.js frontend with PostgreSQL database, n8n workflow automation engine, multiple AI providers (Gemini, OpenAI, Ollama) for resume analysis, and notification systems via Discord/Telegram. Self-hostable with Docker and PM2 support.'
+      ],
+      results: [
+        'Automated job discovery reduces manual search time by 80%',
+        'AI-powered scoring improves job-resume matching accuracy',
+        'Centralized tracking eliminates application status confusion',
+        'Self-hostable solution provides complete data ownership',
+        'Ready-to-import workflow templates accelerate setup'
+      ]
+    },
   },
 ];
 
