@@ -632,6 +632,13 @@ export const projects: Project[] = [
     slug: 'dynasty-defense',
     link: 'https://dynasty-defense.vercel.app/',
     github: 'https://github.com/AD-Archer/dynasty-defense',
+    gallery: [
+      { src: '/images/projects/dynasty-defense/home.jpeg', alt: 'Dynasty Defense Screenshot 1', caption: 'Dashboard Overview' },
+      { src: '/images/projects/dynasty-defense/home-alarms.jpeg', alt: 'Dynasty Defense Screenshot 2', caption: 'Alarm Management' },
+      { src: '/images/projects/dynasty-defense/logs.jpeg', alt: 'Dynasty Defense Screenshot 3', caption: 'User logs' },
+      { src: '/images/projects/dynasty-defense/settings.jpeg', alt: 'Dynasty Defense Screenshot 4', caption: 'User Settings' },
+
+    ],
     featured: false,
     features: [
       'Custom alarm creation',
