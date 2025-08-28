@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Hero3D from '@/components/hero-3d';
+import Hero3D from '@/components/homepage/hero-3d';
 import ProjectShowcase from '@/components/project-showcase';
-import SkillsSection from '@/components/skills-section';
+import SkillsSection from '@/components/homepage/skills-section';
 import GitHubStats from '@/components/github-stats';
 
 export const metadata: Metadata = {

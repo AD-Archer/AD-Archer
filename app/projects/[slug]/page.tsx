@@ -1,18 +1,18 @@
-import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
+import { projects, tags } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ExternalLink, Github, Star, Code, Calendar, Images as ImagesIcon, BookOpen, GitBranch, ListChecks, Users, Network, Film, FileCode } from 'lucide-react';
 import Link from 'next/link';
-import ProjectQR from '@/components/project-qr';
-import ShareButtons from '@/components/share-buttons';
+import ProjectQR from '@/app/projects/components/project-qr';
+import ShareButtons from '@/app/projects/components/share-buttons';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import GalleryLightbox from '@/components/gallery-lightbox';
+import GalleryLightbox from '@/app/projects/components/gallery-lightbox';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Metadata } from 'next';
 

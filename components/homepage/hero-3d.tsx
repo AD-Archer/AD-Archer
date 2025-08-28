@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Zap, Code } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import LoadingAnimation from './loading-animation';
+import LoadingAnimation from '../loading-animation';
 import Image from 'next/image';
 
 // Dynamically import ThreeBackground with no SSR

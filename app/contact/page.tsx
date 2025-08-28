@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, Linkedin, Mail, MapPin, Phone, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
-import AnimatedContactForm from '@/components/animated-contact-form';
+import AnimatedContactForm from './components/animated-contact-form';
 import { useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Image from 'next/image';

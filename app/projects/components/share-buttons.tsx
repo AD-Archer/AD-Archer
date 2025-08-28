@@ -27,14 +27,14 @@ export default function ShareButtons({ url, title, summary, className }: Props) 
   const onNativeShare = useCallback(async () => {
     if (navigator.share) {
       try {
-        await navigator.share({ url, title, text: summary || title });
+        await navigator.share({ url });
       } catch (_) {
         // user cancelled
       }
     } else {
       onCopy();
     }
-  }, [onCopy, summary, title, url]);
+  }, [onCopy, url]);
 
   return (
     <div className={className} aria-label="Share this project">

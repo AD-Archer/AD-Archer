@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, ArrowRight, Code } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { withClientSide } from './client-component';
+import { withClientSide } from '../app/contact/components/client-component';
 
 function ProjectShowcase() {
   // Get featured projects sorted by priority

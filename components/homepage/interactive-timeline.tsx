@@ -1,6 +1,6 @@
 'use client';
 
-import { withClientSide } from './client-component';
+import { withClientSide } from '../../app/contact/components/client-component';
 import { motion } from 'framer-motion';
 import { jobs } from '@/lib/data';
 

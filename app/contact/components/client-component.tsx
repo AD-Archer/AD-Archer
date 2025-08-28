@@ -1,7 +1,7 @@
 'use client';
 
 import { useClientSide } from '@/hooks/use-client-side';
-import LoadingAnimation from './loading-animation';
+import LoadingAnimation from '@/components/loading-animation';
 
 interface WithClientSideProps {
   loadingType?: 'default' | 'card' | 'text' | 'full';
