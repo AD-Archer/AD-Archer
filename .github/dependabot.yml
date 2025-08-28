@@ -12,4 +12,10 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "weekly"
+    target-branch: "dev"
+    open-pull-requests-limit: 10
+    automerged-updates:
+      - match:
+          update-type: "all"
+          dependency-type: "all"
 
