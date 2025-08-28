@@ -677,7 +677,7 @@ export const projects: Project[] = [
     title: 'Launchpad Student Interaction Form',
     description:
       'While freelancing, I identified and solved a key problem within Launchpad and Building 21: the inefficient system for tracking student interactions. I developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL, streamlining the process and improving organizational efficiency.',
-    image: 'https://lsf.adarcher.app/images/production_screenshots/finaldashboard.png',
+    image: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -687,7 +687,7 @@ export const projects: Project[] = [
       { name: 'TailwindCSS', color: technologyColors.typescript },
       { name: 'Gemini AI', color: technologyColors.openai },
     ],
-    slug: 'student-interaction-form',
+    slug: 'lsf',
     link: 'https://lsf.adarcher.app/info',
     github: 'https://github.com/AD-Archer/Student_interaction',
     featured: false,
@@ -696,6 +696,60 @@ export const projects: Project[] = [
       'AI assistant for insights and suggestions',
       'Recharts for data visualization',
     ],
+    gallery: [
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
+        alt: 'Final dashboard view',
+        caption: 'Main dashboard showing student interaction data',
+      },
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/finalanalytics.webp',
+        alt: 'Analytics dashboard',
+        caption: 'Analytics and insights from student interactions',
+      },
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/Ai_insights.webp',
+        alt: 'AI insights interface',
+        caption: 'AI-powered insights and suggestions',
+      },
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/mobile-dash.webp',
+        alt: 'Mobile dashboard',
+        caption: 'Mobile-responsive dashboard design',
+      },
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/mobile-insights.webp',
+        alt: 'Mobile insights view',
+        caption: 'Mobile view of insights and analytics',
+      },
+      {
+        src: '/images/projects/lsf(launchpadstudentform)/email.webp',
+        alt: 'Email functionality',
+        caption: 'Automated email system for notifications',
+      },
+    ],
+    architecture: {
+      summary: 'A fully automated interaction tracker built with Next.js, Gemini AI, and PostgreSQL to streamline student interaction management and improve organizational efficiency.',
+      images: [
+        {
+          src: '/images/projects/lsf(launchpadstudentform)/wireframe.webp',
+          alt: 'Wireframe design',
+          caption: 'Initial wireframe and design concepts',
+        },
+        {
+          src: '/images/projects/lsf(launchpadstudentform)/Schema.webp',
+          alt: 'Database schema',
+          caption: 'PostgreSQL database schema design',
+        },
+      ],
+      notes: [
+        'Uses Next.js for server-side rendering and API routes',
+        'Gemini AI from playlab provides intelligent insights and suggestions',
+        'PostgreSQL database stores interaction data and analytics',
+        'Responsive design optimized for mobile and desktop use',
+        'Automated email notifications for important events',
+      ],
+    },
   },
   {
     id: '20',

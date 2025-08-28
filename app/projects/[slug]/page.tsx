@@ -28,15 +28,16 @@ export async function generateStaticParams() {
 
 // SEO metadata per project
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const project = projects.find(p => p.slug === params.slug);
+  const resolvedParams = await params;
+  const project = projects.find(p => p.slug === resolvedParams.slug);
   if (!project) return {};
   const siteUrl = 'https://www.antonioarcher.com';
-  const url = `${siteUrl}/projects/${params.slug}`;
+  const url = `${siteUrl}/projects/${resolvedParams.slug}`;
   const mainImage = project.image ? (project.image.startsWith('http') ? project.image : `${siteUrl}${project.image}`) : '';
   const ogGenerated = `${siteUrl}/api/og?title=${encodeURIComponent(project.title)}${project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''}${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
   const images = [{ url: ogGenerated }];
   return {
-    title: `${project.title} • Projects` ,
+    title: `Antonio Archer - ${project.title}` ,
     description: project.description,
     alternates: { canonical: url },
     openGraph: {
@@ -57,14 +58,15 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 
 // Following Next.js convention for App Router pages
 export default async function ProjectPage({ params }: any) {
-  const project = projects.find(p => p.slug === params.slug);
+  const resolvedParams = await params;
+  const project = projects.find(p => p.slug === resolvedParams.slug);
 
   if (!project) {
     notFound();
   }
 
   const siteUrl = 'https://www.antonioarcher.com';
-  const projectUrl = `${siteUrl}/projects/${params.slug}`;
+  const projectUrl = `${siteUrl}/projects/${resolvedParams.slug}`;
 
   // Get related projects (excluding current project), prioritizing featured ones
   const relatedProjects = getSimilarProjects(project, projects.filter(p => p.id !== project.id)).slice(0, 3);
@@ -408,13 +410,8 @@ export default async function ProjectPage({ params }: any) {
                     <h3 className="text-xl font-bold mb-3 flex items-center"><Network className="mr-2 h-4 w-4 text-primary" /> Architecture</h3>
                     {project.architecture.summary && <p className="prose dark:prose-invert max-w-none mb-3">{project.architecture.summary}</p>}
                     {project.architecture.images && project.architecture.images.length > 0 && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
-                        {project.architecture.images.map((img, i) => (
-                          <figure key={i} className="rounded-md overflow-hidden border border-border/50">
-                            <Image src={img.src} alt={img.alt || project.title} width={600} height={400} className="w-full h-auto object-cover" />
-                            {img.caption && <figcaption className="text-xs text-muted-foreground p-2">{img.caption}</figcaption>}
-                          </figure>
-                        ))}
+                      <div className="mb-3">
+                        <GalleryLightbox images={project.architecture.images} title={`${project.title} - Architecture`} />
                       </div>
                     )}
                     {project.architecture.notes && project.architecture.notes.length > 0 && (
@@ -448,58 +445,67 @@ export default async function ProjectPage({ params }: any) {
                             </div>
                           )}
                           {snip.markdown ? (
-                            <div className="p-3 overflow-x-auto text-sm prose dark:prose-invert max-w-none">
-                              <ReactMarkdown
-                                remarkPlugins={[remarkGfm]}
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                components={{
-                                  code(props: any) {
-                                    const { inline, className, children, ...rest } = props;
-                                    const match = /language-(\w+)/.exec(className || '');
-                                    return !inline ? (
-                                      <SyntaxHighlighter
-                                        style={oneDark}
-                                        language={match ? match[1] : snip.language || undefined}
-                                        PreTag="div"
-                                        customStyle={{ 
-                                          margin: 0, 
-                                          borderRadius: 0, 
-                                          fontSize: '12px',
-                                          maxHeight: '300px',
-                                          overflowY: 'auto'
-                                        }}
-                                        wrapLines={true}
-                                        wrapLongLines={true}
-                                      >
-                                        {String(children).replace(/\n$/, '')}
-                                      </SyntaxHighlighter>
-                                    ) : (
-                                      <code className={className} {...rest}>{children}</code>
-                                    );
-                                  },
-                                }}
-                              >
-                                {snip.markdown}
-                              </ReactMarkdown>
+                            <div className="max-h-60 md:max-h-80 overflow-auto">
+                              <div className="overflow-x-auto text-sm prose dark:prose-invert max-w-none">
+                                <ReactMarkdown
+                                  remarkPlugins={[remarkGfm]}
+                                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                  components={{
+                                    code(props: any) {
+                                      const { inline, className, children, ...rest } = props;
+                                      const match = /language-(\w+)/.exec(className || '');
+                                      return !inline ? (
+                                        <div className="overflow-x-auto">
+                                          <SyntaxHighlighter
+                                            style={oneDark}
+                                            language={match ? match[1] : snip.language || undefined}
+                                            PreTag="div"
+                                            customStyle={{
+                                              margin: 0,
+                                              borderRadius: 0,
+                                              fontSize: '12px',
+                                              overflow: 'visible',
+                                              padding: '12px',
+                                              background: 'transparent',
+                                              WebkitOverflowScrolling: 'touch',
+                                            }}
+                                            wrapLines={false}
+                                            wrapLongLines={false}
+                                          >
+                                            {String(children).replace(/\n$/, '')}
+                                          </SyntaxHighlighter>
+                                        </div>
+                                      ) : (
+                                        <code className={className} {...rest}>{children}</code>
+                                      );
+                                    },
+                                  }}
+                                >
+                                  {snip.markdown}
+                                </ReactMarkdown>
+                              </div>
                             </div>
                           ) : (
-                            <div className="overflow-x-auto">
-                              <SyntaxHighlighter
-                                style={oneDark}
-                                language={snip.language || undefined}
-                                customStyle={{ 
-                                  margin: 0, 
-                                  borderRadius: 0, 
-                                  padding: '12px',
-                                  fontSize: '12px',
-                                  maxHeight: '300px',
-                                  overflowY: 'auto'
-                                }}
-                                wrapLines={true}
-                                wrapLongLines={true}
-                              >
-                                {Array.isArray(snip.code) ? snip.code.join('\n') : (snip.code || '')}
-                              </SyntaxHighlighter>
+                            <div className="max-h-60 md:max-h-80 overflow-auto">
+                              <div className="overflow-x-auto">
+                                <SyntaxHighlighter
+                                  style={oneDark}
+                                  language={snip.language || undefined}
+                                  customStyle={{
+                                    margin: 0,
+                                    borderRadius: 0,
+                                    padding: '12px',
+                                    fontSize: '12px',
+                                    overflow: 'visible',
+                                    background: 'transparent',
+                                    WebkitOverflowScrolling: 'touch',
+                                  }}
+                                  wrapLines={false}
+                                  wrapLongLines={false}
+                                >
+                                  {Array.isArray(snip.code) ? snip.code.join('\n') : (snip.code || '')}
+                                </SyntaxHighlighter>
+                              </div>
                             </div>
                           )}
                         </div>
