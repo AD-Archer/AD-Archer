@@ -512,7 +512,7 @@ export const projects: Project[] = [
     title: 'PlatePedia',
     description:
       'Recipe sharing web app for creating, exploring, and saving meals.',
-    image: '/images/projects/platepedia.png',
+    image: '/images/projects/platepedia/platepedia.png',
     tags: ['fullstack', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -525,6 +525,10 @@ export const projects: Project[] = [
     link: 'https://platepedia.vercel.app/',
     github: 'https://github.com/AD-Archer/PlatePedia-recipeapp',
     featured: false,
+    gallery: [
+      { src: '/images/projects/platepedia/homepage.jpeg', alt: 'PlatePedia Screenshot 1', caption: 'Homepage' },
+      { src: '/images/projects/platepedia/meal.jpeg', alt: 'PlatePedia Screenshot 2', caption: 'Recipe Detail' },
+    ],
     features: [
       'Recipe creation and discovery',
       'User-generated content',
