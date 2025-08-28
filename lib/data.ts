@@ -225,7 +225,7 @@ export const projects: Project[] = [
       'Real time social media platform for Philadelphia built in 30 hours during Philly Codefest 2025.',
     longDescription:
       'Philly Social is a real-time social media platform designed specifically for the Philadelphia community. Built in just 30 hours during the Philly Codefest 2025 hackathon, it aims to connect residents, promote local events, and support neighborhood businesses. With the help of Mohamed Souare, Bryan Gunawan, Sianni Strickland and a lot of caffeine I built this real time interact social media app.',
-    image: '/images/projects/phillysocial.webp',
+    image: '/images/projects/philly-social/phillysocial.webp',
     tags: ['fullstack', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -239,6 +239,14 @@ export const projects: Project[] = [
     github: 'https://github.com/AD-Archer/PhillySocial',
     featured: true,
     featuredPriority: 2,
+    gallery: [
+      { src: '/images/projects/philly-social/home.webp', alt: 'Philly Social Screenshot 1', caption: 'Home Feed' },
+      { src: '/images/projects/philly-social/events.webp', alt: 'Philly Social Screenshot 2', caption: 'Event Creation' },
+      { src: '/images/projects/philly-social/discovery.webp', alt: 'Philly Social Screenshot 3', caption: 'Discovery' },
+      { src: '/images/projects/philly-social/profile.webp', alt: 'Philly Social Screenshot 4', caption: 'Support Local' },
+      { src: '/images/projects/philly-social/news.webp', alt: 'Philly Social Screenshot 5', caption: 'Another Screenshot' },
+      { src: '/images/projects/philly-social/support-local.webp', alt: 'Philly Social Screenshot 5', caption: 'Another Screenshot' }
+    ],
     features: [
       'Public and private channels',
       'Event creation and discovery',
@@ -254,7 +262,7 @@ export const projects: Project[] = [
         'Developed a comprehensive social media platform specifically for Philadelphia during the 30-hour Philly Codefest 2025 hackathon. The platform features community channels, event discovery, local news integration, and business support tools.'
       ],
       architecture: [
-        'Full-stack application built with React frontend, Node.js backend, MongoDB database, and TailwindCSS for responsive design. Integrated RSS feeds for local news and robust user authentication system.'
+        'Full-stack application built with React frontend, Node.js backend, Redis database, and TailwindCSS for responsive design. Integrated RSS feeds for local news and robust user authentication system.'
       ],
       results: [
         'Completed functional social platform in 30 hours',
