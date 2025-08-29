@@ -360,12 +360,12 @@ export const projects: Project[] = [
     featured: true,
     featuredPriority: 3,
     gallery: [
-      { src: '/images/projects/timewise/2.png', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
-      { src: '/images/projects/timewise/3.png', alt: 'TimeWise Screenshot 2', caption: 'Timewise' },
-      { src: '/images/projects/timewise/intro.png', alt: 'TimeWise Screenshot 2', caption: 'Timewise\'s intro' },
-      { src: '/images/projects/timewise/4.png', alt: 'TimeWise Screenshot 1', caption: 'Timewise' },
-      { src: '/images/projects/timewise/5.png', alt: 'TimeWise Screenshot 4', caption: 'Timewise' },
-      { src: '/images/projects/timewise/6.png', alt: 'TimeWise Screenshot 5', caption: 'Timewise' },
+      { src: '/images/projects/timewise/2.webp', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
+      { src: '/images/projects/timewise/3.webp', alt: 'TimeWise Screenshot 2', caption: 'Timewise' },
+      { src: '/images/projects/timewise/intro.webp', alt: 'TimeWise Screenshot 2', caption: 'Timewise\'s intro' },
+      { src: '/images/projects/timewise/4.webp', alt: 'TimeWise Screenshot 1', caption: 'Timewise' },
+      { src: '/images/projects/timewise/5.webp', alt: 'TimeWise Screenshot 4', caption: 'Timewise' },
+      { src: '/images/projects/timewise/6.webp', alt: 'TimeWise Screenshot 5', caption: 'Timewise' },
 
 
     ],
@@ -400,7 +400,7 @@ export const projects: Project[] = [
     title: 'LinkTree',
     description:
       'Personal link sharing platform with web and React Native versions.',
-    image: '/images/projects/tree.png',
+    image: '/images/projects/tree.webp',
     tags: ['frontend', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -422,7 +422,7 @@ export const projects: Project[] = [
     title: 'AI Stock Market Analysis',
     description:
       'AI-powered stock recommendation tool with self-hosted deployment.',
-    image: '/images/projects/stockapp.jpg',
+    image: '/images/projects/stockapp.webp',
     tags: ['fullstack', 'ai', 'python'],
     technologies: [
       { name: 'Python', color: technologyColors.python },
@@ -466,7 +466,7 @@ export const projects: Project[] = [
     title: 'Orange Field University',
     description:
       'Student management system with course enrollment and academic tracking.',
-    image: '/images/projects/uof.png',
+    image: '/images/projects/uof.webp',
     tags: ['fullstack', 'backend', 'node'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -512,7 +512,7 @@ export const projects: Project[] = [
     title: 'PlatePedia',
     description:
       'Recipe sharing web app for creating, exploring, and saving meals.',
-    image: '/images/projects/platepedia/platepedia.png',
+    image: '/images/projects/platepedia/platepedia.webp',
     tags: ['fullstack', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -526,8 +526,8 @@ export const projects: Project[] = [
     github: 'https://github.com/AD-Archer/PlatePedia-recipeapp',
     featured: false,
     gallery: [
-      { src: '/images/projects/platepedia/homepage.jpeg', alt: 'PlatePedia Screenshot 1', caption: 'Homepage' },
-      { src: '/images/projects/platepedia/meal.jpeg', alt: 'PlatePedia Screenshot 2', caption: 'Recipe Detail' },
+      { src: '/images/projects/platepedia/homepage.webp', alt: 'PlatePedia Screenshot 1', caption: 'Homepage' },
+      { src: '/images/projects/platepedia/meal.webp', alt: 'PlatePedia Screenshot 2', caption: 'Recipe Detail' },
     ],
     features: [
       'Recipe creation and discovery',
@@ -579,7 +579,7 @@ export const projects: Project[] = [
     title: 'Corra',
     description:
       'AI-powered RPG game that creates personalized adventures based on personality tests.',
-    image: '/images/projects/corra.png',
+    image: '/images/projects/corra.webp',
     tags: ['frontend', 'ai', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -602,7 +602,7 @@ export const projects: Project[] = [
     title: 'Fintech App',
     description:
       'Modern finance dashboard for managing personal finances and investments.',
-    image: '/images/projects/fintech.png',
+    image: '/images/projects/fintech.webp',
     tags: ['fullstack', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -626,17 +626,17 @@ export const projects: Project[] = [
     id: '10',
     title: 'Dynasty Defense',
     description: 'IoT security alarm management system with visual dashboard.',
-    image: '/images/projects/dynasty-defense.png',
+    image: '/images/projects/dynasty-defense.webp',
     tags: ['frontend', 'node'],
     technologies: [{ name: 'React', color: technologyColors.react }],
     slug: 'dynasty-defense',
     link: 'https://dynasty-defense.vercel.app/',
     github: 'https://github.com/AD-Archer/dynasty-defense',
     gallery: [
-      { src: '/images/projects/dynasty-defense/home.jpeg', alt: 'Dynasty Defense Screenshot 1', caption: 'Dashboard Overview' },
-      { src: '/images/projects/dynasty-defense/home-alarms.jpeg', alt: 'Dynasty Defense Screenshot 2', caption: 'Alarm Management' },
-      { src: '/images/projects/dynasty-defense/logs.jpeg', alt: 'Dynasty Defense Screenshot 3', caption: 'User logs' },
-      { src: '/images/projects/dynasty-defense/settings.jpeg', alt: 'Dynasty Defense Screenshot 4', caption: 'User Settings' },
+      { src: '/images/projects/dynasty-defense/home.webp', alt: 'Dynasty Defense Screenshot 1', caption: 'Dashboard Overview' },
+      { src: '/images/projects/dynasty-defense/home-alarms.webp', alt: 'Dynasty Defense Screenshot 2', caption: 'Alarm Management' },
+      { src: '/images/projects/dynasty-defense/logs.webp', alt: 'Dynasty Defense Screenshot 3', caption: 'User logs' },
+      { src: '/images/projects/dynasty-defense/settings.webp', alt: 'Dynasty Defense Screenshot 4', caption: 'User Settings' },
 
     ],
     featured: false,
@@ -650,7 +650,7 @@ export const projects: Project[] = [
     id: '11',
     title: 'FortifyNow',
     description: 'Cybersecurity education platform for password security and 2FA.',
-    image: '/images/projects/fortifynow.png',
+    image: '/images/projects/fortifynow.webp',
     tags: ['frontend', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -673,7 +673,7 @@ export const projects: Project[] = [
     title: 'Win or Lose Philly',
     description:
       'Retro browser game celebrating Philadelphia sports culture.',
-    image: '/images/projects/winorlosephilly.png',
+    image: '/images/projects/winorlosephilly.webp',
     tags: ['frontend', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -690,7 +690,7 @@ export const projects: Project[] = [
     title: 'Qr Code Generator',
     description:
       'Simple QR code generator for quick link sharing and presentations.',
-    image: '/images/projects/qr.png',
+    image: '/images/projects/qr.webp',
     tags: ['frontend', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -708,7 +708,7 @@ export const projects: Project[] = [
     title: 'Retro Audio Maker',
     description:
       'Audio distortion tool for creating retro-style sound effects.',
-    image: '/images/projects/retro.png',
+    image: '/images/projects/retro.webp',
     tags: ['backend', 'node'],
     technologies: [
       { name: 'Node.js', color: technologyColors.nodejs },
@@ -728,7 +728,7 @@ export const projects: Project[] = [
     id: '15',
     title: 'Quick Convert',
     description: 'Fast file format converter supporting SVG, HEIC, WEBP to PNG.',
-    image: '/images/projects/quickconvert.png',
+    image: '/images/projects/quickconvert.webp',
     tags: ['frontend', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -750,7 +750,7 @@ export const projects: Project[] = [
     title: 'GitHub Issue Automation Script',
     description:
       'Bash script for automating GitHub issue creation from CSV files.',
-    image: '/images/projects/githubissues.jpg',
+    image: '/images/projects/githubissues.webp',
     tags: ['backend', 'bash'],
     technologies: [{ name: 'Bash', color: technologyColors.nodejs }],
     slug: 'github-issue-automation-script',
@@ -769,7 +769,7 @@ export const projects: Project[] = [
     id: '18',
     title: 'Social Metrics',
     description: 'Social media analytics dashboard with real-time YouTube insights.',
-    image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.png',
+    image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.webp',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -784,9 +784,9 @@ export const projects: Project[] = [
     github: 'https://github.com/ad-archer/social-dash',
     featured: false,
     gallery: [
-      { src: '/images/projects/socialmetrics/homedash.jpeg', alt: 'Social Metrics Screenshot 1', caption: 'Dashboard Overview' },
-      { src: '/images/projects/socialmetrics/wiki.jpeg', alt: 'Social Metrics Screenshot 2', caption: 'Wikipedia Topics' },
-      { src: '/images/projects/socialmetrics/calendar.jpeg', alt: 'Social Metrics Screenshot 3', caption: 'Calendar Events' },
+      { src: '/images/projects/socialmetrics/homedash.webp', alt: 'Social Metrics Screenshot 1', caption: 'Dashboard Overview' },
+      { src: '/images/projects/socialmetrics/wiki.webp', alt: 'Social Metrics Screenshot 2', caption: 'Wikipedia Topics' },
+      { src: '/images/projects/socialmetrics/calendar.webp', alt: 'Social Metrics Screenshot 3', caption: 'Calendar Events' },
     ],
     features: [
       'Google OAuth authentication',
@@ -921,7 +921,7 @@ export const projects: Project[] = [
     title: 'Ecora',
     description:
       'iTwin.js platform extension with advanced ECSQL filters for 3D Revit model data querying.',
-    image: '/images/projects/itwin/itwin.png',
+    image: '/images/projects/itwin/itwin.webp',
     tags: ['frontend', 'fullstack'],
     technologies: [
       { name: 'TypeScript', color: technologyColors.typescript },
@@ -945,22 +945,22 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        src: '/images/projects/itwin/image1.png',
+        src: '/images/projects/itwin/image1.webp',
         alt: 'Itwin revit iModel',
         caption: 'Itwin revit iModel',
       },
       {
-        src: '/images/projects/itwin/image2.png',
+        src: '/images/projects/itwin/image2.webp',
         alt: '3D model view',
         caption: 'iTwin viewer with highlighted elements',
       },
       {
-        src: '/images/projects/itwin/image3.png',
+        src: '/images/projects/itwin/image3.webp',
         alt: 'Paginated results with sorting',
         caption: 'Paginated results with sorting',
       },
       {
-        src: '/images/projects/itwin/image4.png',
+        src: '/images/projects/itwin/image4.webp',
         alt: 'Most recent screenshot of ecora',
         caption: 'Most recent screenshot of ecora',
       },
@@ -1024,7 +1024,7 @@ export const projects: Project[] = [
     title: 'N8N Job Search Dashboard',
     description:
       'Self-hostable job search automation with AI-powered resume matching and LinkedIn scraping.',
-    image: '/images/projects/n8n-job-search.png',
+    image: '/images/projects/n8n-job-search.webp',
     tags: ['fullstack', 'ai', 'backend'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -1187,7 +1187,7 @@ export const skills: SkillCategory = {
     },
     {
       name: 'Vercel',
-      icon: 'https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png',
+      icon: 'https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.webp',
       power: 100,
     },
     { name: 'Netlify', icon: 'https://www.netlify.com/icon.svg', power: 85 },
