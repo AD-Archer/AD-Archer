@@ -12,6 +12,6 @@ updates:
     # Check the npm registry for updates weekly
     schedule:
       interval: "weekly"
-    target-branch: "dev"
+    target-branch: "dependabot-merge"
     open-pull-requests-limit: 10
 
