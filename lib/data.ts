@@ -769,7 +769,7 @@ export const projects: Project[] = [
     id: '18',
     title: 'Social Metrics',
     description: 'Social media analytics dashboard with real-time YouTube insights.',
-    image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.webp',
+    image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.png',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
