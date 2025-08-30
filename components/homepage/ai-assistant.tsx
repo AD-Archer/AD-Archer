@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, Send, X, Loader2 } from 'lucide-react';
+import { Bot, Send, X, Loader2, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -15,14 +15,15 @@ import { useChat } from '@/components/context/ChatContext';
 
 export default function AiAssistant() {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, addMessage, isLoading, setIsLoading } = useChat();
+  const { messages, addMessage, clearMessages, isLoading, setIsLoading } = useChat();
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const suppressInitial = useRef(false);
 
   // Initialize with a welcome message if no messages exist
   useEffect(() => {
-    if (messages.length === 0) {
+    if (messages.length === 0 && !suppressInitial.current) {
       addMessage({
         role: 'assistant',
         content: "Hi there! I'm Antonio's AI assistant. How can I help you today?",
@@ -67,6 +68,7 @@ export default function AiAssistant() {
       addMessage({
         role: 'assistant',
         content: data.content,
+        model: data.model,
       });
     } catch (error) {
       console.error('Error sending message:', error);
@@ -85,6 +87,18 @@ export default function AiAssistant() {
       e.preventDefault();
       handleSend();
     }
+  };
+
+  const handleClear = () => {
+    suppressInitial.current = true; // prevent effect from re-adding immediately
+    clearMessages();
+    toast({ title: 'Chat cleared', description: 'Conversation history removed.' });
+    addMessage({
+      role: 'assistant',
+      content: "Hi there! I'm Antonio's AI assistant. How can I help you today?",
+    });
+    // Allow future clears to still work
+    setTimeout(() => { suppressInitial.current = false; }, 0);
   };
 
   // Custom components for markdown rendering
@@ -180,18 +194,30 @@ export default function AiAssistant() {
             className="fixed bottom-4 left-4 right-4 z-50 md:bottom-6 md:left-6 md:right-auto md:w-full md:max-w-md"
           >
             <Card className="border shadow-xl comic-border">
-              <CardHeader className="flex flex-row items-center justify-between p-3 md:p-4 border-b">
-                <CardTitle className="text-base md:text-lg font-medium">
+              <CardHeader className="flex flex-row items-center justify-between p-3 md:p-4 border-b gap-2">
+                <CardTitle className="text-base md:text-lg font-medium flex-1">
                   Antonio&apos;s AI Assistant
                 </CardTitle>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close AI Assistant"
-                >
-                  <X className="h-4 w-4 md:h-5 md:w-5" />
-                </Button>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleClear}
+                    aria-label="Clear conversation"
+                    className="text-destructive hover:text-destructive"
+                    disabled={messages.length === 0}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close AI Assistant"
+                  >
+                    <X className="h-4 w-4 md:h-5 md:w-5" />
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="h-[300px] md:h-[350px] overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">

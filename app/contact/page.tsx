@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Linkedin, Mail, MapPin, Phone, AlertCircle } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Phone, AlertCircle, IdCard } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedContactForm from './components/animated-contact-form';
 import { useState } from 'react';
@@ -61,7 +61,7 @@ export default function ContactPage() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="flex justify-center items-center w-full mb-12"
+        className="flex flex-col justify-center items-center w-full mb-8 md:mb-10"
       >
         <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
           <Image
@@ -73,6 +73,23 @@ export default function ContactPage() {
             priority
           />
         </div>
+        {/* Add Me To Contacts Button */}
+        <motion.a
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          href="https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#ff6f61] via-[#ff4d4d] to-[#ff9966] px-7 py-3 text-sm md:text-base font-medium text-white shadow-lg shadow-[#ff6f6155] hover:shadow-[#ff4d4d66] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#ff6f61]"
+          aria-label="Add Antonio Archer to your contacts"
+        >
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
+            <IdCard className="h-4 w-4" />
+          </span>
+          <span>Add Me To Your Contacts</span>
+          <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-white/80">→</span>
+        </motion.a>
+        <p className="mt-2 text-xs md:text-sm text-muted-foreground max-w-sm text-center">Save my digital card so you always have my latest details.</p>
       </motion.div>
 
       {/* Two-column layout for form and contact info */}
@@ -124,6 +141,7 @@ export default function ContactPage() {
             <CardContent className="pt-6">
               <div className="flex flex-col space-y-6">
                 <div className="flex flex-col space-y-4">
+                  {/* Email */}
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 p-3 rounded-full">
                       <Mail className="h-5 w-5 text-primary" />
@@ -136,6 +154,7 @@ export default function ContactPage() {
                     </a>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 p-3 rounded-full">
                       <Phone className="h-5 w-5 text-primary" />
@@ -148,11 +167,27 @@ export default function ContactPage() {
                     </a>
                   </div>
 
+                  {/* Location */}
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 p-3 rounded-full">
                       <MapPin className="h-5 w-5 text-primary" />
                     </div>
                     <span className="text-foreground">Philadelphia, PA, USA</span>
+                  </div>
+
+                  {/* Digital Card */}
+                  <div className="flex items-center gap-3">
+                    <div className="bg-primary/10 p-3 rounded-full">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <a
+                      href="https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors"
+                    >
+                      Save my contact card
+                    </a>
                   </div>
                 </div>
 

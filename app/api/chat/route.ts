@@ -43,7 +43,14 @@ function generateSystemPrompt() {
 
       const features = project.features ? `Features include: ${project.features.join(', ')}` : '';
 
-      return `${index + 1}. ${project.title}: ${project.description} ${features} Built with ${technologies}. Links: ${project.link || 'No live link'} | GitHub: ${project.github || 'No GitHub link'}`;
+      return `${index + 1}. ${project.title}: ${project.description}
+${project.longDescription ? "Long description: " + project.longDescription : ''}
+${features}
+Built with ${technologies}.
+Links: ${project.link || 'No live link'} | GitHub: ${project.github || 'No GitHub link'}
+${project.team ? "Team: " + project.team.map(member => member.name).join(', ') : ''}
+${project.caseStudy ? "Case Study: " + (project.caseStudy.problem?.slice(0, 2).join('; ') || '') : ''}
+${project.milestones ? "Key Milestones: " + project.milestones.slice(0, 2).map(m => m.title).join(', ') : ''}`;
     })
     .join('\n\n');
 
@@ -98,7 +105,10 @@ IMPORTANT INSTRUCTIONS:
 4. When sharing code, use code blocks with language tags
 5. Reference projects with links when relevant
 6. Maintain conversation context throughout the session
-7. Be helpful while keeping responses brief and to the point`;
+7. Be helpful while keeping responses brief and to the point
+8. Unless told otherwise, always respond with the same level of detail as the user input.
+9. Unless told otherwise, try to keep responses shortish. a simple greeting, paragraph and final setence. unless you are actively having a conversation. then you may leave out the greeting
+`;
 }
 
 export async function POST(req: NextRequest) {
@@ -134,7 +144,7 @@ export async function POST(req: NextRequest) {
     // Try OpenAI first
     try {
       const response = await openai.chat.completions.create({
-        model: 'gpt-4.1-nano',
+        model: 'gpt-5-nano',
         messages: [
           {
             role: 'system',
@@ -158,24 +168,35 @@ export async function POST(req: NextRequest) {
 
       // Fallback to Gemini if OpenAI fails
       try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
-        // Format messages for Gemini with markdown instruction
-        const formattedMessages = [
-          `System: ${systemPrompt}`,
-          ...history.messages.map(
-            msg => `${msg.role === 'user' ? 'Human' : 'Assistant'}: ${msg.content}`
-          ),
-        ].join('\n\n');
-
-        const result = await model.generateContent(formattedMessages);
-        const response = await result.response;
-        const text = response.text();
-
-        return NextResponse.json({
-          content: text,
-          model: 'gemini',
+        const model = genAI.getGenerativeModel({ 
+          model: 'gemini-2.5-flash-lite',
+          systemInstruction: systemPrompt,
         });
+        const previousMessages = history.messages.slice(0, -1);
+        const validHistory = [];
+        for (const msg of previousMessages) {
+          if (msg.role === 'user' || validHistory.length > 0) {
+            validHistory.push({
+              role: msg.role === 'user' ? 'user' : 'model',
+              parts: [{ text: msg.content }],
+            });
+          }
+        }
+        const chat = model.startChat({
+          history: validHistory,
+        });
+        const lastMessage = history.messages[history.messages.length - 1];
+        if (lastMessage && lastMessage.role === 'user') {
+          const result = await chat.sendMessage(lastMessage.content);
+          const response = await result.response;
+          const text = response.text();
+          return NextResponse.json({
+            content: text,
+            model: 'gemini',
+          });
+        } else {
+          throw new Error('Invalid last message');
+        }
       } catch (geminiError) {
         console.error('Gemini error:', geminiError);
         throw new Error('Both AI services failed');
