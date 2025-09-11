@@ -75,21 +75,21 @@ Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster b
 
 ### GitHub Streaks
 
-[![GitHub Streak](https://streaks.adarcher.app?user=ad-archer&theme=dark&mode=weekly&background=00000000)](https://github.com/ad-archer)
+[![GitHub Streak](https://streak-stats.demolab.com?user=ad-archer&hide_border=false&background=00000000&sideNums=777&currStreakNum=777&dates=EB5454&ring=EB5454&fire=EB5454&stroke=EB5454)](https://git.io/streak-stats)
 
 ### Top Languages
 
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=00000000&text_color=777&border=777&title_color=777)](https://github.com/ad-archer)
 
 ### GitHub Stats
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&bg_color=00000000&text_color=fff&title_color=bd93f9)](https://github.com/ad-archer)
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&text_color=777&bg_color=00000000&title_color=bd93f9)](https://github.com/ad-archer)
 
 ## Activities
 
 ### Contribution Chart
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph/?username=ad-archer&text_color=777&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true)](https://github.com/ad-archer)
 
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
