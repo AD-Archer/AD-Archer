@@ -55,7 +55,7 @@ function GithubStats() {
               >
                 <div className="relative w-full h-[200px]">
                   <Image
-                    src="https://streaks.adarcher.app?user=ad-archer&theme=E86100&hide_border=true&mode=weekly&color=E86100"
+                    src="https://streak-stats.demolab.com?user=ad-archer&theme=E86100&hide_border=true&mode=weekly&color=E86100"
                     alt="Antonio Archer's GitHub Weekly Streak ad-archer"
                     fill
                     className="object-contain"
