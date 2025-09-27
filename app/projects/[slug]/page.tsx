@@ -107,15 +107,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   // Determine available tabs and default tab
   const availableTabs: string[] = [];
+  if (project.video) availableTabs.push('video');
   if (project.gallery && project.gallery.length > 0) availableTabs.push('gallery');
   if (project.caseStudy) availableTabs.push('case');
-  if (project.changelog && project.changelog.length > 0) availableTabs.push('changelog');
-  if (project.milestones && project.milestones.length > 0) availableTabs.push('milestones');
   if (project.team && project.team.length > 0) availableTabs.push('team');
+  if (project.milestones && project.milestones.length > 0) availableTabs.push('milestones');
   if (project.architecture) availableTabs.push('architecture');
-  if (project.video) availableTabs.push('video');
   if (project.codeSnippets && project.codeSnippets.length > 0) availableTabs.push('code');
   if (project.github) availableTabs.push('github');
+  if (project.changelog && project.changelog.length > 0) availableTabs.push('changelog');
   const defaultTab = availableTabs[0];
 
   return (
@@ -277,11 +277,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     {project.gallery && project.gallery.length > 0 && (
                       <TabsTrigger value="gallery" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><ImagesIcon className="h-3 w-3 sm:h-4 sm:w-4" /> Gallery</TabsTrigger>
                     )}
+                    {project.video && (
+                      <TabsTrigger value="video" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Film className="h-3 w-3 sm:h-4 sm:w-4" /> Video</TabsTrigger>
+                    )}
                     {project.caseStudy && (
                       <TabsTrigger value="case" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><BookOpen className="h-3 w-3 sm:h-4 sm:w-4" /> Case Study</TabsTrigger>
-                    )}
-                    {project.changelog && project.changelog.length > 0 && (
-                      <TabsTrigger value="changelog" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><GitBranch className="h-3 w-3 sm:h-4 sm:w-4" /> Changelog</TabsTrigger>
                     )}
                     {project.milestones && project.milestones.length > 0 && (
                       <TabsTrigger value="milestones" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><ListChecks className="h-3 w-3 sm:h-4 sm:w-4" /> Milestones</TabsTrigger>
@@ -292,14 +292,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     {project.architecture && (
                       <TabsTrigger value="architecture" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Network className="h-3 w-3 sm:h-4 sm:w-4" /> Architecture</TabsTrigger>
                     )}
-                    {project.video && (
-                      <TabsTrigger value="video" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Film className="h-3 w-3 sm:h-4 sm:w-4" /> Video</TabsTrigger>
-                    )}
                     {project.codeSnippets && project.codeSnippets.length > 0 && (
                       <TabsTrigger value="code" className="hidden md:flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><FileCode className="h-3 w-3 sm:h-4 sm:w-4" /> Code</TabsTrigger>
                     )}
                     {project.github && (
                       <TabsTrigger value="github" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><Github className="h-3 w-3 sm:h-4 sm:w-4" /> GitHub</TabsTrigger>
+                    )}
+                    {project.changelog && project.changelog.length > 0 && (
+                      <TabsTrigger value="changelog" className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm whitespace-nowrap snap-start"><GitBranch className="h-3 w-3 sm:h-4 sm:w-4" /> Changelog</TabsTrigger>
                     )}
                   </TabsList>
                 </div>
