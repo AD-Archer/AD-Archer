@@ -75,14 +75,15 @@ Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster b
 
 ### GitHub Streaks
 
-[![GitHub Streak](https://streak-stats.demolab.com/?user=ad-archer&currStreakLabel=EB5454&sideNums=EB5454hide_border=false&mode=weekly&background=00000000&sideLabels=EB5454&sideNums=777&currStreakNum=777&ring=EB5454&fire=EB5454&stroke=EB5454)
+[![GitHub Streak](https://streak-stats.demolab.com?user=ad-archer&hide_border=false&background=00000000&sideNums=777&currStreakNum=777&dates=EB5454&ring=EB5454&fire=EB5454&stroke=EB5454)](https://git.io/streak-stats)
+
 ### Top Languages
 
 [![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ad-archer&layout=compact&theme=dracula&bg_color=00000000&text_color=777&border=777&title_color=777)](https://github.com/ad-archer)
 
 ### GitHub Stats
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&text_color=777mode=weekly&bg_color=00000000&title_color=bd93f9)](https://github.com/ad-archer)
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&text_color=777&bg_color=00000000&title_color=bd93f9)](https://github.com/ad-archer)
 
 ## Activities
 

@@ -1053,6 +1053,11 @@ export const projects: Project[] = [
       'PostgreSQL database with Prisma ORM',
       'Ready-to-import n8n workflow template available',
     ],
+    video: {
+      url: 'https://youtu.be/UvvsHnCh4SU',
+      title: 'N8N Job Search Dashboard Demo',
+      provider: 'youtube'
+    },
     caseStudy: {
       problem: [
         'Job seekers struggle with manual application tracking, inconsistent job searching across platforms, and lack of intelligent matching between resumes and job requirements. The competitive job market demands constant monitoring and quick responses to opportunities.'
