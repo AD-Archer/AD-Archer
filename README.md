@@ -84,6 +84,7 @@ Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster b
 ### GitHub Stats
 
 [![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&text_color=777&bg_color=00000000&title_color=bd93f9)](https://github.com/ad-archer)
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ad-archer&theme=dracula&show_icons=true&text_color=777&bg_color=00000000&title_color=bd93f9)](https://github.com/ad-archer)
 
 ## Activities
 
