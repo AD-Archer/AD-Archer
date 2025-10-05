@@ -75,7 +75,7 @@ Hi I'm Antonio, a full-stack software engineer, devops engineer and selfhoster b
 
 ### GitHub Streaks
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=ad-archer&hide_border=false&background=00000000&sideNums=777&currStreakNum=777&dates=EB5454&ring=EB5454&fire=EB5454&stroke=EB5454)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com?user=ad-archer&hide_border=false&background=00000000&sideNums=777&currStreakNum=777&dates=EB5454&ring=EB5454&fire=EB5454&stroke=EB5454&mode=weekly)](https://git.io/streak-stats)
 
 ### Top Languages
 
