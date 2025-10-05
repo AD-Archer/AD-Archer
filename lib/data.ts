@@ -155,6 +155,7 @@ export const tags: Tag[] = [
   { id: 'node', name: 'Node.js', color: 'bg-green-500' },
   { id: 'python', name: 'Python', color: 'bg-yellow-600' },
   { id: 'golang', name: 'GoLang', color: 'bg-blue-500' },
+  { id: 'devops', name: 'DevOps', color: 'bg-cyan-500' },
 ];
 
 /**
@@ -219,6 +220,98 @@ export const projects: Project[] = [
   //   features: []
   // },
   {
+    id: '22',
+    title: 'Archer Fitness',
+    description:
+      'AI-powered fitness tracking application with workout planning, progress analytics, and personalized recommendations. Self-hosted on Kubernetes cluster.',
+    longDescription:
+      'Archer Fitness is a comprehensive fitness tracking platform born from my personal journey of losing 50 pounds in 10 months. Built to help others achieve their fitness goals the way apps helped me, it features AI-powered workout generation, detailed progress analytics, nutrition tracking, and intelligent insights. Self-hosted on a Kubernetes cluster running on 3 Chromebooks, demonstrating advanced DevOps capabilities and infrastructure management.',
+    image: 'https://fitness.adarcher.app/sitebanner.webp',
+    tags: ['fullstack', 'ai', 'node', 'devops'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'PostgreSQL', color: technologyColors.typescript },
+      { name: 'Prisma', color: technologyColors.prisma },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Docker', color: technologyColors.typescript },
+      { name: 'Kubernetes', color: technologyColors.typescript },
+      { name: 'AI', color: technologyColors.openai },
+    ],
+    slug: 'archer-fitness',
+    link: 'https://fitness.adarcher.app/',
+    github: 'https://github.com/AD-Archer/archer-fitness',
+    featured: true,
+    featuredPriority: 1,
+    gallery: [
+      { src: '/images/projects/archer-fitness/archer-fitness-pods.webp', alt: 'Kubernetes Pods Dashboard', caption: 'Self-hosted Kubernetes cluster running Archer Fitness pods across 2 nodes' },
+      { src: '/images/projects/archer-fitness/cluster-dashboard.webp', alt: 'Kubernetes Cluster Dashboard', caption: 'K3s cluster with 610 total resources, 2 nodes, and 21 deployments' },
+      { src: '/images/projects/archer-fitness/rancher-deployment.webp', alt: 'Kubernetes Deployment Details', caption: 'Archer Fitness deployment with 4 running pods across chronos-master and chronos-node1' },
+      { src: 'https://fitness.adarcher.app/screens/exercise.png', alt: 'Exercise Library', caption: 'Comprehensive exercise database with detailed instructions' },
+      { src: 'https://fitness.adarcher.app/screens/progress-analytics.png', alt: 'Progress Analytics', caption: 'Interactive charts and performance tracking' },
+      { src: 'https://fitness.adarcher.app/screens/schedule-manager.png', alt: 'Schedule Manager', caption: 'Weekly workout planning and schedule management' },
+      { src: 'https://fitness.adarcher.app/screens/weightprogress.png', alt: 'Weight Progress', caption: 'Body weight tracking and goal monitoring' },
+      { src: 'https://fitness.adarcher.app/screens/workout-history.png', alt: 'Workout History', caption: 'Complete workout history with detailed logs' },
+    ],
+    features: [
+      'AI-powered workout generation and recommendations',
+      'Comprehensive exercise library with detailed instructions',
+      'Real-time workout tracking with sets, reps, and weights',
+      'Progress analytics with interactive charts and visualizations',
+      'Custom workout templates and schedule management',
+      'Body weight tracking and goal setting',
+      'Muscle recovery feedback system',
+      'Two-factor authentication (2FA) with TOTP support',
+      'Progressive Web App with offline capabilities',
+      'Self-hosted on Kubernetes cluster (3 Chromebooks)',
+      'Docker containerization with CI/CD pipelines',
+      'Responsive design optimized for mobile and desktop',
+    ],
+    caseStudy: {
+      problem: [
+        'After losing 50 pounds in 10 months, I realized the need for a comprehensive fitness tracking app that combines workout planning, progress analytics, and AI-powered recommendations. Existing apps were either too complex, lacked personalization, or didn\'t provide the level of detail needed for serious fitness tracking.'
+      ],
+      solution: [
+        'Built a full-featured fitness platform from scratch using modern web technologies. Integrated AI for workout generation and personalized recommendations, implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.'
+      ],
+      architecture: [
+        'Next.js 14 application with App Router, PostgreSQL database with Prisma ORM, NextAuth for authentication with 2FA support, Docker containerization, and Kubernetes orchestration on a 3-node Chromebook cluster. Includes automated CI/CD pipelines with GitHub Actions, security scanning, and dependency updates.'
+      ],
+      results: [
+        'Created a production-ready fitness app used by real users',
+        'Self-hosted infrastructure demonstrates advanced DevOps skills',
+        'Kubernetes cluster running on budget hardware (Chromebooks)',
+        'Comprehensive feature set rivaling commercial fitness apps',
+        'Personal achievement: Lost 50 pounds in 10 months',
+        'PWA capabilities enable offline workout tracking',
+        'Automated CI/CD reduces deployment time by 80%'
+      ]
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & DevOps Engineer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+    ],
+    architecture: {
+      summary: 'Modern full-stack architecture with Next.js frontend, PostgreSQL database, Kubernetes orchestration on a 3-node Chromebook cluster, and comprehensive CI/CD pipelines for automated testing, building, and deployment.',
+      notes: [
+        'Next.js 14 with App Router for modern React patterns',
+        'PostgreSQL with Prisma ORM for type-safe database access',
+        'NextAuth.js for authentication with 2FA support',
+        'Docker containerization for consistent deployments',
+        'Kubernetes cluster on 3 Chromebooks for self-hosting',
+        'GitHub Actions for CI/CD automation',
+        'Trivy for Docker security scanning',
+        'Progressive Web App with service workers',
+        'Recharts for data visualization',
+        'Radix UI for accessible components',
+      ],
+    },
+  },
+  {
     id: '1',
     title: 'Philly Social',
     description:
@@ -238,7 +331,7 @@ export const projects: Project[] = [
     link: 'https://phillysocial.adarcher.app/',
     github: 'https://github.com/AD-Archer/PhillySocial',
     featured: true,
-    featuredPriority: 2,
+    featuredPriority: 3,
     gallery: [
       { src: '/images/projects/philly-social/home.webp', alt: 'Philly Social Screenshot 1', caption: 'Home Feed' },
       { src: '/images/projects/philly-social/events.webp', alt: 'Philly Social Screenshot 2', caption: 'Event Creation' },
@@ -358,7 +451,7 @@ export const projects: Project[] = [
     link: 'https://timewise.adarcher.app/',
     github: 'https://github.com/AD-Archer/TimeWise',
     featured: true,
-    featuredPriority: 3,
+    featuredPriority: 4,
     gallery: [
       { src: '/images/projects/timewise/2.webp', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
       { src: '/images/projects/timewise/3.webp', alt: 'TimeWise Screenshot 2', caption: 'Timewise' },
@@ -423,7 +516,7 @@ export const projects: Project[] = [
     description:
       'AI-powered stock recommendation tool with self-hosted deployment.',
     image: '/images/projects/stockapp.webp',
-    tags: ['fullstack', 'ai', 'python'],
+    tags: ['fullstack', 'ai', 'python', 'devops'],
     technologies: [
       { name: 'Python', color: technologyColors.python },
       { name: 'Flask', color: technologyColors.python },
@@ -934,7 +1027,7 @@ export const projects: Project[] = [
     link: 'https://itwin-ecora.vercel.app/',
     github: 'https://github.com/Building21-iTwin/itwin-ecora',
     featured: true,
-    featuredPriority: 1,
+    featuredPriority: 2,
     features: [
       'Functional extension for iTwin.js platform',
       'Advanced frontend filters using ECSQL',
@@ -1025,7 +1118,7 @@ export const projects: Project[] = [
     description:
       'Self-hostable job search automation with AI-powered resume matching and LinkedIn scraping.',
     image: '/images/projects/n8n-job-search.webp',
-    tags: ['fullstack', 'ai', 'backend'],
+    tags: ['fullstack', 'ai', 'backend', 'devops'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
       { name: 'TypeScript', color: technologyColors.typescript },
@@ -1177,6 +1270,11 @@ export const skills: SkillCategory = {
     {name: 'docker',
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
       power: 85
+    },
+    {
+      name: 'Kubernetes',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
+      power: 80,
     },
     {
       name: 'n8n',
