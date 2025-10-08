@@ -226,7 +226,7 @@ export const projects: Project[] = [
       'AI-powered fitness tracking application with workout planning, progress analytics, and personalized recommendations. Self-hosted on Kubernetes cluster.',
     longDescription:
       'Archer Fitness is a comprehensive fitness tracking platform born from my personal journey of losing 50 pounds in 10 months. Built to help others achieve their fitness goals the way apps helped me, it features AI-powered workout generation, detailed progress analytics, nutrition tracking, and intelligent insights. Self-hosted on a Kubernetes cluster running on 3 Chromebooks, demonstrating advanced DevOps capabilities and infrastructure management.',
-    image: 'https://fitness.adarcher.app/sitebanner.webp',
+    image: '/images/projects/archer-fitness/sitebanner.webp',
     tags: ['fullstack', 'ai', 'node', 'devops'],
     technologies: [
       { name: 'Next.js', color: technologyColors.react },
@@ -308,6 +308,90 @@ export const projects: Project[] = [
         'Progressive Web App with service workers',
         'Recharts for data visualization',
         'Radix UI for accessible components',
+      ],
+    },
+  },
+  {
+    id: '23',
+    title: 'Archer Aqua',
+    description:
+      'Intelligent hydration tracking app that personalizes your daily water goals using weather data, health metrics, and your activity patterns.',
+    longDescription:
+      'Archer Aqua is an intelligent hydration tracking application designed to help users stay properly hydrated through personalized recommendations. Built as part of the Archer Health Suite alongside Archer Fitness, it uses weather data, health metrics, and activity patterns to calculate optimal daily water intake goals. Features include a beautiful calendar view for tracking progress, achievement system for motivation, customizable drink logging, and smart reminders. The app promotes healthier living by making hydration tracking both intelligent and effortless.',
+    image: '/images/projects/archer-aqua/archer-aqua-banner.webp',
+    tags: ['fullstack', 'ai', 'golang'],
+    technologies: [
+      { name: 'React', color: technologyColors.react },
+      { name: 'Vite', color: technologyColors.typescript },
+      { name: 'Go', color: technologyColors.golang },
+      { name: 'PostgreSQL', color: technologyColors.typescript },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Docker', color: technologyColors.typescript },
+      { name: 'AI', color: technologyColors.openai },
+    ],
+    slug: 'archer-aqua',
+    link: 'https://aqua.adarcher.app/',
+    github: 'https://github.com/AD-Archer/archer-aqua',
+    featured: true,
+    featuredPriority: 2,
+    gallery: [
+      { src: '/images/projects/archer-aqua/desktop-home.webp', alt: 'Hydration Dashboard', caption: 'Personalized hydration dashboard with daily goals and progress tracking' },
+      { src: '/images/projects/archer-aqua/mobile-home.webp', alt: 'Hydration Dashboard', caption: 'Personalized hydration dashboard with daily goals and progress tracking' },
+      { src: '/images/projects/archer-aqua/mobile-achievements.webp', alt: 'Achievement System', caption: 'Gamified achievement system to encourage consistent hydration habits' },
+      { src: '/images/projects/archer-aqua/mobile-calendar.webp', alt: 'Calendar View', caption: 'Beautiful calendar interface showing hydration history and achievements' },
+      { src: '/images/projects/archer-aqua/mobile-stats.webp', alt: 'Mobile Stats', caption: 'Mobile Stats with hydration insights and trends' },
+    ],
+    features: [
+      'AI-powered personalized hydration goals based on weather, activity, and health data',
+      'Beautiful calendar view for tracking daily and historical hydration progress',
+      'Achievement system with badges and milestones for motivation',
+      'Customizable drink logging with nutritional information',
+      'Smart reminders and notifications for optimal timing',
+      'Weather integration for adjusting goals based on temperature and humidity',
+      'Health metrics integration with Archer Fitness for comprehensive wellness tracking',
+      'Progressive Web App with offline capabilities',
+      'Responsive design optimized for mobile and desktop',
+      'Data visualization with charts and progress indicators',
+    ],
+    caseStudy: {
+      problem: [
+        'Many people struggle to stay properly hydrated due to inconsistent tracking, lack of personalization, and difficulty remembering to drink water throughout the day. Generic hydration apps fail to account for individual factors like weather conditions, activity levels, and health metrics that significantly impact water needs.'
+      ],
+      solution: [
+        'Developed an intelligent hydration tracking app that uses AI to personalize daily water goals based on multiple data sources. Integrated weather APIs, health metrics, and activity patterns to provide accurate recommendations, while incorporating gamification elements and beautiful UI to make hydration tracking engaging and effortless.'
+      ],
+      architecture: [
+        'Built with Vite + React frontend and Golang backend for a modern, high-performance web application. Uses PostgreSQL for data persistence, integrates with weather APIs for environmental data, and includes AI algorithms for personalized goal calculation. Containerized with Docker for consistent deployment and self-hosting capabilities.'
+      ],
+      results: [
+        'Created a comprehensive hydration tracking solution with intelligent personalization',
+        'Integrated with Archer Fitness for holistic health suite functionality',
+        'Implemented gamification features to improve user engagement and retention',
+        'Developed responsive PWA accessible across all devices',
+        'Established foundation for AI-driven health and wellness applications',
+        'Demonstrated ability to build interconnected health applications'
+      ]
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & Product Designer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+    ],
+    architecture: {
+      summary: 'Modern full-stack web application with Vite React frontend and Golang backend, featuring AI-powered personalization algorithms, weather API integration, and Docker containerization for optimal hydration management.',
+      notes: [
+        'Vite + React for fast, modern frontend development',
+        'Golang backend for high-performance API services',
+        'PostgreSQL database for reliable data persistence',
+        'Docker containerization for consistent deployment',
+        'Weather API integration for environmental factor consideration',
+        'AI algorithms for personalized hydration goal calculation',
+        'Progressive Web App with service workers for offline functionality',
+        'Responsive design with TailwindCSS for cross-device compatibility',
+        'Integration capabilities with Archer Fitness health suite',
       ],
     },
   },
@@ -450,7 +534,7 @@ export const projects: Project[] = [
     slug: 'timewise',
     link: 'https://timewise.adarcher.app/',
     github: 'https://github.com/AD-Archer/TimeWise',
-    featured: true,
+    featured: false,
     featuredPriority: 4,
     gallery: [
       { src: '/images/projects/timewise/2.webp', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
