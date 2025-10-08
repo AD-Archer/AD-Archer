@@ -51,7 +51,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'fitness.adarcher.app',
+        hostname: '*.adarcher.app',
         port: '',
         pathname: '/**',
       },
