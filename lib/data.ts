@@ -244,14 +244,47 @@ export const projects: Project[] = [
     featured: true,
     featuredPriority: 1,
     gallery: [
-      { src: '/images/projects/archer-fitness/archer-fitness-pods.webp', alt: 'Kubernetes Pods Dashboard', caption: 'Self-hosted Kubernetes cluster running Archer Fitness pods across 2 nodes' },
-      { src: '/images/projects/archer-fitness/cluster-dashboard.webp', alt: 'Kubernetes Cluster Dashboard', caption: 'K3s cluster with 610 total resources, 2 nodes, and 21 deployments' },
-      { src: '/images/projects/archer-fitness/rancher-deployment.webp', alt: 'Kubernetes Deployment Details', caption: 'Archer Fitness deployment with 4 running pods across chronos-master and chronos-node1' },
-      { src: 'https://fitness.adarcher.app/screens/exercise.png', alt: 'Exercise Library', caption: 'Comprehensive exercise database with detailed instructions' },
-      { src: 'https://fitness.adarcher.app/screens/progress-analytics.png', alt: 'Progress Analytics', caption: 'Interactive charts and performance tracking' },
-      { src: 'https://fitness.adarcher.app/screens/schedule-manager.png', alt: 'Schedule Manager', caption: 'Weekly workout planning and schedule management' },
-      { src: 'https://fitness.adarcher.app/screens/weightprogress.png', alt: 'Weight Progress', caption: 'Body weight tracking and goal monitoring' },
-      { src: 'https://fitness.adarcher.app/screens/workout-history.png', alt: 'Workout History', caption: 'Complete workout history with detailed logs' },
+      {
+        src: '/images/projects/archer-fitness/archer-fitness-pods.webp',
+        alt: 'Kubernetes Pods Dashboard',
+        caption: 'Self-hosted Kubernetes cluster running Archer Fitness pods across 2 nodes',
+      },
+      {
+        src: '/images/projects/archer-fitness/cluster-dashboard.webp',
+        alt: 'Kubernetes Cluster Dashboard',
+        caption: 'K3s cluster with 610 total resources, 2 nodes, and 21 deployments',
+      },
+      {
+        src: '/images/projects/archer-fitness/rancher-deployment.webp',
+        alt: 'Kubernetes Deployment Details',
+        caption:
+          'Archer Fitness deployment with 4 running pods across chronos-master and chronos-node1',
+      },
+      {
+        src: 'https://fitness.adarcher.app/screens/exercise.png',
+        alt: 'Exercise Library',
+        caption: 'Comprehensive exercise database with detailed instructions',
+      },
+      {
+        src: 'https://fitness.adarcher.app/screens/progress-analytics.png',
+        alt: 'Progress Analytics',
+        caption: 'Interactive charts and performance tracking',
+      },
+      {
+        src: 'https://fitness.adarcher.app/screens/schedule-manager.png',
+        alt: 'Schedule Manager',
+        caption: 'Weekly workout planning and schedule management',
+      },
+      {
+        src: 'https://fitness.adarcher.app/screens/weightprogress.png',
+        alt: 'Weight Progress',
+        caption: 'Body weight tracking and goal monitoring',
+      },
+      {
+        src: 'https://fitness.adarcher.app/screens/workout-history.png',
+        alt: 'Workout History',
+        caption: 'Complete workout history with detailed logs',
+      },
     ],
     features: [
       'AI-powered workout generation and recommendations',
@@ -269,13 +302,13 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'After losing 50 pounds in 10 months, I realized the need for a comprehensive fitness tracking app that combines workout planning, progress analytics, and AI-powered recommendations. Existing apps were either too complex, lacked personalization, or didn\'t provide the level of detail needed for serious fitness tracking.'
+        "After losing 50 pounds in 10 months, I realized the need for a comprehensive fitness tracking app that combines workout planning, progress analytics, and AI-powered recommendations. Existing apps were either too complex, lacked personalization, or didn't provide the level of detail needed for serious fitness tracking.",
       ],
       solution: [
-        'Built a full-featured fitness platform from scratch using modern web technologies. Integrated AI for workout generation and personalized recommendations, implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.'
+        'Built a full-featured fitness platform from scratch using modern web technologies. Integrated AI for workout generation and personalized recommendations, implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.',
       ],
       architecture: [
-        'Next.js 14 application with App Router, PostgreSQL database with Prisma ORM, NextAuth for authentication with 2FA support, Docker containerization, and Kubernetes orchestration on a 3-node Chromebook cluster. Includes automated CI/CD pipelines with GitHub Actions, security scanning, and dependency updates.'
+        'Next.js 14 application with App Router, PostgreSQL database with Prisma ORM, NextAuth for authentication with 2FA support, Docker containerization, and Kubernetes orchestration on a 3-node Chromebook cluster. Includes automated CI/CD pipelines with GitHub Actions, security scanning, and dependency updates.',
       ],
       results: [
         'Created a production-ready fitness app used by real users',
@@ -284,8 +317,8 @@ export const projects: Project[] = [
         'Comprehensive feature set rivaling commercial fitness apps',
         'Personal achievement: Lost 50 pounds in 10 months',
         'PWA capabilities enable offline workout tracking',
-        'Automated CI/CD reduces deployment time by 80%'
-      ]
+        'Automated CI/CD reduces deployment time by 80%',
+      ],
     },
     team: [
       {
@@ -296,7 +329,8 @@ export const projects: Project[] = [
       },
     ],
     architecture: {
-      summary: 'Modern full-stack architecture with Next.js frontend, PostgreSQL database, Kubernetes orchestration on a 3-node Chromebook cluster, and comprehensive CI/CD pipelines for automated testing, building, and deployment.',
+      summary:
+        'Modern full-stack architecture with Next.js frontend, PostgreSQL database, Kubernetes orchestration on a 3-node Chromebook cluster, and comprehensive CI/CD pipelines for automated testing, building, and deployment.',
       notes: [
         'Next.js 14 with App Router for modern React patterns',
         'PostgreSQL with Prisma ORM for type-safe database access',
@@ -332,14 +366,34 @@ export const projects: Project[] = [
     slug: 'archer-aqua',
     link: 'https://aqua.adarcher.app/',
     github: 'https://github.com/AD-Archer/archer-aqua',
-    featured: true,
-    featuredPriority: 2,
+    featured: false,
+    featuredPriority: 3,
     gallery: [
-      { src: '/images/projects/archer-aqua/desktop-home.webp', alt: 'Hydration Dashboard', caption: 'Personalized hydration dashboard with daily goals and progress tracking' },
-      { src: '/images/projects/archer-aqua/mobile-home.webp', alt: 'Hydration Dashboard', caption: 'Personalized hydration dashboard with daily goals and progress tracking' },
-      { src: '/images/projects/archer-aqua/mobile-achievements.webp', alt: 'Achievement System', caption: 'Gamified achievement system to encourage consistent hydration habits' },
-      { src: '/images/projects/archer-aqua/mobile-calendar.webp', alt: 'Calendar View', caption: 'Beautiful calendar interface showing hydration history and achievements' },
-      { src: '/images/projects/archer-aqua/mobile-stats.webp', alt: 'Mobile Stats', caption: 'Mobile Stats with hydration insights and trends' },
+      {
+        src: '/images/projects/archer-aqua/desktop-home.webp',
+        alt: 'Hydration Dashboard',
+        caption: 'Personalized hydration dashboard with daily goals and progress tracking',
+      },
+      {
+        src: '/images/projects/archer-aqua/mobile-home.webp',
+        alt: 'Hydration Dashboard',
+        caption: 'Personalized hydration dashboard with daily goals and progress tracking',
+      },
+      {
+        src: '/images/projects/archer-aqua/mobile-achievements.webp',
+        alt: 'Achievement System',
+        caption: 'Gamified achievement system to encourage consistent hydration habits',
+      },
+      {
+        src: '/images/projects/archer-aqua/mobile-calendar.webp',
+        alt: 'Calendar View',
+        caption: 'Beautiful calendar interface showing hydration history and achievements',
+      },
+      {
+        src: '/images/projects/archer-aqua/mobile-stats.webp',
+        alt: 'Mobile Stats',
+        caption: 'Mobile Stats with hydration insights and trends',
+      },
     ],
     features: [
       'AI-powered personalized hydration goals based on weather, activity, and health data',
@@ -355,13 +409,13 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Many people struggle to stay properly hydrated due to inconsistent tracking, lack of personalization, and difficulty remembering to drink water throughout the day. Generic hydration apps fail to account for individual factors like weather conditions, activity levels, and health metrics that significantly impact water needs.'
+        'Many people struggle to stay properly hydrated due to inconsistent tracking, lack of personalization, and difficulty remembering to drink water throughout the day. Generic hydration apps fail to account for individual factors like weather conditions, activity levels, and health metrics that significantly impact water needs.',
       ],
       solution: [
-        'Developed an intelligent hydration tracking app that uses AI to personalize daily water goals based on multiple data sources. Integrated weather APIs, health metrics, and activity patterns to provide accurate recommendations, while incorporating gamification elements and beautiful UI to make hydration tracking engaging and effortless.'
+        'Developed an intelligent hydration tracking app that uses AI to personalize daily water goals based on multiple data sources. Integrated weather APIs, health metrics, and activity patterns to provide accurate recommendations, while incorporating gamification elements and beautiful UI to make hydration tracking engaging and effortless.',
       ],
       architecture: [
-        'Built with Vite + React frontend and Golang backend for a modern, high-performance web application. Uses PostgreSQL for data persistence, integrates with weather APIs for environmental data, and includes AI algorithms for personalized goal calculation. Containerized with Docker for consistent deployment and self-hosting capabilities.'
+        'Built with Vite + React frontend and Golang backend for a modern, high-performance web application. Uses PostgreSQL for data persistence, integrates with weather APIs for environmental data, and includes AI algorithms for personalized goal calculation. Containerized with Docker for consistent deployment and self-hosting capabilities.',
       ],
       results: [
         'Created a comprehensive hydration tracking solution with intelligent personalization',
@@ -369,8 +423,8 @@ export const projects: Project[] = [
         'Implemented gamification features to improve user engagement and retention',
         'Developed responsive PWA accessible across all devices',
         'Established foundation for AI-driven health and wellness applications',
-        'Demonstrated ability to build interconnected health applications'
-      ]
+        'Demonstrated ability to build interconnected health applications',
+      ],
     },
     team: [
       {
@@ -381,7 +435,8 @@ export const projects: Project[] = [
       },
     ],
     architecture: {
-      summary: 'Modern full-stack web application with Vite React frontend and Golang backend, featuring AI-powered personalization algorithms, weather API integration, and Docker containerization for optimal hydration management.',
+      summary:
+        'Modern full-stack web application with Vite React frontend and Golang backend, featuring AI-powered personalization algorithms, weather API integration, and Docker containerization for optimal hydration management.',
       notes: [
         'Vite + React for fast, modern frontend development',
         'Golang backend for high-performance API services',
@@ -392,6 +447,114 @@ export const projects: Project[] = [
         'Progressive Web App with service workers for offline functionality',
         'Responsive design with TailwindCSS for cross-device compatibility',
         'Integration capabilities with Archer Fitness health suite',
+      ],
+    },
+  },
+  {
+    id: '24',
+    title: 'Archer Health',
+    description:
+      'Health and Calorie tracking application sourced from the USDA with daily meal logging, progress analytics, and personalized recommendations. Self-hosted on Kubernetes cluster.',
+    longDescription:
+      'Archer Health is a comprehensive health tracking platform born from my personal journey of losing 50 pounds in 10 months. Built to help others achieve their health goals the way apps helped me, it features detailed progress analytics, nutrition tracking, and intelligent insights. Self-hosted on a Kubernetes cluster, demonstrating advanced DevOps capabilities and infrastructure management.',
+    image: '/images/projects/archer-health/banner.webp',
+    tags: ['fullstack', 'node', 'devops'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'PostgreSQL', color: technologyColors.typescript },
+      { name: 'Prisma', color: technologyColors.prisma },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Docker', color: technologyColors.typescript },
+      { name: 'Kubernetes', color: technologyColors.typescript },
+      { name: 'AI', color: technologyColors.openai },
+    ],
+    slug: 'archer-health',
+    link: 'https://health.adarcher.app/',
+    github: 'https://github.com/AD-Archer/archer-health',
+    featured: true,
+    featuredPriority: 2,
+    gallery: [
+      {
+        src: '/images/projects/archer-health/dashboard.webp',
+        alt: 'Dashboard',
+        caption: 'Comprehensive health dashboard with daily calorie intake and nutrition breakdown',
+      },
+      {
+        src: '/images/projects/archer-health/goals.webp',
+        alt: 'Goals',
+        caption: 'Personalized health goals and progress tracking',
+      },
+      {
+        src: '/images/projects/archer-health/meal-log.webp',
+        alt: 'Meal Log',
+        caption:
+          'Archer Health meal logging feature with detailed food entries and nutritional analysis',
+      },
+      {
+        src: '/images/projects/archer-health/progress.webp',
+        alt: 'Progress Tracking',
+        caption:
+          'Archer Health progress tracking feature with visual analytics and insights',
+      },
+      {
+        src: '/images/projects/archer-health/recipes.webp',
+        alt: 'Recipes',
+        caption:
+          'Archer Health recipe feature with healthy meal suggestions and cooking instructions',
+      },
+    ],
+    features: [
+      'Comprehensive health dashboard with daily calorie intake and nutrition breakdown',
+      'Personalized health goals and progress tracking',
+      'Meal logging with detailed food entries and nutritional analysis',
+      'Recipe suggestions with healthy meal ideas and cooking instructions',
+      'Progress tracking with visual analytics and insights',
+      'Two-factor authentication (2FA) with TOTP support',
+      'Progressive Web App with offline capabilities',
+      'Responsive design optimized for mobile and desktop',
+
+    ],
+    caseStudy: {
+      problem: [
+        "After losing 50 pounds in 10 months, I realized the need for a comprehensive health tracking app that combines nutrition tracking, progress analytics, and personalized recommendations. Existing apps were either too complex, lacked personalization, or didn't provide the level of detail needed for serious health tracking.",
+      ],
+      solution: [
+        'I developed an app that would\'ve all the features I wanted when I was losing weight. Built a full-featured health platform from scratch using modern web technologies. Implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.',
+      ],
+      architecture: [
+        'Next.js 14 application with App Router, PostgreSQL database with Prisma ORM, NextAuth for authentication with 2FA support, Docker containerization, and Kubernetes orchestration on a 3-node Chromebook cluster. Includes automated CI/CD pipelines with GitHub Actions, security scanning, and dependency updates.',
+      ],
+      results: [
+        'Created a production-ready health app used by real users',
+        'Self-hosted infrastructure demonstrates advanced DevOps skills',
+        'Kubernetes cluster running on budget hardware',
+        'Comprehensive feature set rivaling commercial health apps',
+        'Personal achievement: Lost 50 pounds in 10 months',
+        'PWA capabilities enable offline health tracking',
+        'Automated CI/CD reduces deployment time by 80%',
+      ],
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & DevOps Engineer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+    ],
+    architecture: {
+      summary:
+        'Modern full-stack architecture with Next.js frontend, PostgreSQL database, Kubernetes orchestration and comprehensive CI/CD pipelines for automated testing, building, and deployment.',
+      notes: [
+        'Next.js 14 with App Router for modern React patterns',
+        'PostgreSQL with Prisma ORM for type-safe database access',
+        'NextAuth.js for authentication with 2FA support',
+        'Docker containerization for consistent deployments',
+        'Clerk for user management and authentication',
+        'GitHub Actions for CI/CD automation',
+        'Progressive Web App with service workers',
+        'Recharts for data visualization',
       ],
     },
   },
@@ -417,12 +580,36 @@ export const projects: Project[] = [
     featured: true,
     featuredPriority: 3,
     gallery: [
-      { src: '/images/projects/philly-social/home.webp', alt: 'Philly Social Screenshot 1', caption: 'Home Feed' },
-      { src: '/images/projects/philly-social/events.webp', alt: 'Philly Social Screenshot 2', caption: 'Event Creation' },
-      { src: '/images/projects/philly-social/discovery.webp', alt: 'Philly Social Screenshot 3', caption: 'Discovery' },
-      { src: '/images/projects/philly-social/profile.webp', alt: 'Philly Social Screenshot 4', caption: 'Support Local' },
-      { src: '/images/projects/philly-social/news.webp', alt: 'Philly Social Screenshot 5', caption: 'Another Screenshot' },
-      { src: '/images/projects/philly-social/support-local.webp', alt: 'Philly Social Screenshot 5', caption: 'Another Screenshot' }
+      {
+        src: '/images/projects/philly-social/home.webp',
+        alt: 'Philly Social Screenshot 1',
+        caption: 'Home Feed',
+      },
+      {
+        src: '/images/projects/philly-social/events.webp',
+        alt: 'Philly Social Screenshot 2',
+        caption: 'Event Creation',
+      },
+      {
+        src: '/images/projects/philly-social/discovery.webp',
+        alt: 'Philly Social Screenshot 3',
+        caption: 'Discovery',
+      },
+      {
+        src: '/images/projects/philly-social/profile.webp',
+        alt: 'Philly Social Screenshot 4',
+        caption: 'Support Local',
+      },
+      {
+        src: '/images/projects/philly-social/news.webp',
+        alt: 'Philly Social Screenshot 5',
+        caption: 'Another Screenshot',
+      },
+      {
+        src: '/images/projects/philly-social/support-local.webp',
+        alt: 'Philly Social Screenshot 5',
+        caption: 'Another Screenshot',
+      },
     ],
     features: [
       'Public and private channels',
@@ -433,21 +620,21 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Philadelphia residents lacked a dedicated platform to connect with their local community, discover neighborhood events, and support local businesses. Generic social media platforms failed to address the unique needs of city-specific community building.'
+        'Philadelphia residents lacked a dedicated platform to connect with their local community, discover neighborhood events, and support local businesses. Generic social media platforms failed to address the unique needs of city-specific community building.',
       ],
       solution: [
-        'Developed a comprehensive social media platform specifically for Philadelphia during the 30-hour Philly Codefest 2025 hackathon. The platform features community channels, event discovery, local news integration, and business support tools.'
+        'Developed a comprehensive social media platform specifically for Philadelphia during the 30-hour Philly Codefest 2025 hackathon. The platform features community channels, event discovery, local news integration, and business support tools.',
       ],
       architecture: [
-        'Full-stack application built with React frontend, Node.js backend, Redis database, and TailwindCSS for responsive design. Integrated RSS feeds for local news and robust user authentication system.'
+        'Full-stack application built with React frontend, Node.js backend, Redis database, and TailwindCSS for responsive design. Integrated RSS feeds for local news and robust user authentication system.',
       ],
       results: [
         'Completed functional social platform in 30 hours',
         'Integrated local business discovery and support features',
         'Built collaborative community engagement tools',
         'Demonstrated rapid prototyping and team coordination skills',
-        'Created scalable foundation for community growth'
-      ]
+        'Created scalable foundation for community growth',
+      ],
     },
     team: [
       {
@@ -537,14 +724,36 @@ export const projects: Project[] = [
     featured: false,
     featuredPriority: 4,
     gallery: [
-      { src: '/images/projects/timewise/2.webp', alt: 'TimeWise Screenshot 3', caption: 'Timewise' },
-      { src: '/images/projects/timewise/3.webp', alt: 'TimeWise Screenshot 2', caption: 'Timewise' },
-      { src: '/images/projects/timewise/intro.webp', alt: 'TimeWise Screenshot 2', caption: 'Timewise\'s intro' },
-      { src: '/images/projects/timewise/4.webp', alt: 'TimeWise Screenshot 1', caption: 'Timewise' },
-      { src: '/images/projects/timewise/5.webp', alt: 'TimeWise Screenshot 4', caption: 'Timewise' },
-      { src: '/images/projects/timewise/6.webp', alt: 'TimeWise Screenshot 5', caption: 'Timewise' },
-
-
+      {
+        src: '/images/projects/timewise/2.webp',
+        alt: 'TimeWise Screenshot 3',
+        caption: 'Timewise',
+      },
+      {
+        src: '/images/projects/timewise/3.webp',
+        alt: 'TimeWise Screenshot 2',
+        caption: 'Timewise',
+      },
+      {
+        src: '/images/projects/timewise/intro.webp',
+        alt: 'TimeWise Screenshot 2',
+        caption: "Timewise's intro",
+      },
+      {
+        src: '/images/projects/timewise/4.webp',
+        alt: 'TimeWise Screenshot 1',
+        caption: 'Timewise',
+      },
+      {
+        src: '/images/projects/timewise/5.webp',
+        alt: 'TimeWise Screenshot 4',
+        caption: 'Timewise',
+      },
+      {
+        src: '/images/projects/timewise/6.webp',
+        alt: 'TimeWise Screenshot 5',
+        caption: 'Timewise',
+      },
     ],
     features: [
       'Mood tracking and journaling',
@@ -555,28 +764,27 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Users struggle to balance productivity and mental wellness, often lacking tools that integrate time management with mental health tracking. Existing solutions are either too complex or treat productivity and wellness as separate concerns.'
+        'Users struggle to balance productivity and mental wellness, often lacking tools that integrate time management with mental health tracking. Existing solutions are either too complex or treat productivity and wellness as separate concerns.',
       ],
       solution: [
-        'Created a holistic wellness app that combines mood tracking, meditation features, and Pomodoro time management with personalized music integration. AI-enhanced suggestions provide personalized recommendations.'
+        'Created a holistic wellness app that combines mood tracking, meditation features, and Pomodoro time management with personalized music integration. AI-enhanced suggestions provide personalized recommendations.',
       ],
       architecture: [
-        'Full-stack React application with Node.js backend, MongoDB for data persistence, OpenAI API integration for personalized suggestions, and music streaming APIs (YouTube/Spotify) for enhanced focus sessions.'
+        'Full-stack React application with Node.js backend, MongoDB for data persistence, OpenAI API integration for personalized suggestions, and music streaming APIs (YouTube/Spotify) for enhanced focus sessions.',
       ],
       results: [
         'Unified productivity and wellness tracking',
         'Personalized AI recommendations for better habits',
         'Seamless music integration enhances focus sessions',
         'Cozy, minimalist design reduces cognitive overhead',
-        'Holistic approach to time and mood management'
-      ]
+        'Holistic approach to time and mood management',
+      ],
     },
   },
   {
     id: '4',
     title: 'LinkTree',
-    description:
-      'Personal link sharing platform with web and React Native versions.',
+    description: 'Personal link sharing platform with web and React Native versions.',
     image: '/images/projects/tree.webp',
     tags: ['frontend', 'node'],
     technologies: [
@@ -597,8 +805,7 @@ export const projects: Project[] = [
   {
     id: '5',
     title: 'AI Stock Market Analysis',
-    description:
-      'AI-powered stock recommendation tool with self-hosted deployment.',
+    description: 'AI-powered stock recommendation tool with self-hosted deployment.',
     image: '/images/projects/stockapp.webp',
     tags: ['fullstack', 'ai', 'python', 'devops'],
     technologies: [
@@ -621,28 +828,27 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Individual investors lack access to sophisticated stock analysis tools and AI-powered insights that are typically available only to large financial institutions. Most retail platforms provide basic data without intelligent recommendations.'
+        'Individual investors lack access to sophisticated stock analysis tools and AI-powered insights that are typically available only to large financial institutions. Most retail platforms provide basic data without intelligent recommendations.',
       ],
       solution: [
-        'Built a full-stack AI-powered stock recommendation system using OpenAI for analysis and insights. Self-hosted solution ensures data privacy and cost control while providing institutional-grade analysis.'
+        'Built a full-stack AI-powered stock recommendation system using OpenAI for analysis and insights. Self-hosted solution ensures data privacy and cost control while providing institutional-grade analysis.',
       ],
       architecture: [
-        'Python Flask backend with OpenAI API integration, React frontend with TailwindCSS, self-hosted on Ubuntu server with Caddy reverse proxy and DuckDNS for dynamic DNS. Demonstrates full DevOps pipeline on budget hardware.'
+        'Python Flask backend with OpenAI API integration, React frontend with TailwindCSS, self-hosted on Ubuntu server with Caddy reverse proxy and DuckDNS for dynamic DNS. Demonstrates full DevOps pipeline on budget hardware.',
       ],
       results: [
         'Democratized access to AI-powered stock analysis',
         'Achieved full self-hosting on 2011 MacBook hardware',
         'Integrated multiple APIs for comprehensive data',
         'Demonstrated cost-effective deployment strategies',
-        'Created educational resource for Flask-React integration'
-      ]
+        'Created educational resource for Flask-React integration',
+      ],
     },
   },
   {
     id: '6',
     title: 'Orange Field University',
-    description:
-      'Student management system with course enrollment and academic tracking.',
+    description: 'Student management system with course enrollment and academic tracking.',
     image: '/images/projects/uof.webp',
     tags: ['fullstack', 'backend', 'node'],
     technologies: [
@@ -667,28 +873,27 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Educational institutions need comprehensive student management systems that handle course enrollment, academic tracking, and user authentication. Many existing solutions are either too expensive or lack modern user interfaces.'
+        'Educational institutions need comprehensive student management systems that handle course enrollment, academic tracking, and user authentication. Many existing solutions are either too expensive or lack modern user interfaces.',
       ],
       solution: [
-        'Developed a complete university management system using the T3 stack (Next.js, TypeScript, tRPC, Prisma) with PostgreSQL backend. Includes student/faculty authentication, course management, and academic progress tracking.'
+        'Developed a complete university management system using the T3 stack (Next.js, TypeScript, tRPC, Prisma) with PostgreSQL backend. Includes student/faculty authentication, course management, and academic progress tracking.',
       ],
       architecture: [
-        'Modern T3 stack application with Next.js frontend, TypeScript for type safety, tRPC for end-to-end type safety, Prisma ORM for database management, PostgreSQL for data persistence, and TailwindCSS for responsive design.'
+        'Modern T3 stack application with Next.js frontend, TypeScript for type safety, tRPC for end-to-end type safety, Prisma ORM for database management, PostgreSQL for data persistence, and TailwindCSS for responsive design.',
       ],
       results: [
         'Complete student lifecycle management',
         'Secure role-based authentication system',
         'Real-time academic progress tracking',
         'Modern, intuitive user interface',
-        'Scalable architecture for institutional growth'
-      ]
+        'Scalable architecture for institutional growth',
+      ],
     },
   },
   {
     id: '7',
     title: 'PlatePedia',
-    description:
-      'Recipe sharing web app for creating, exploring, and saving meals.',
+    description: 'Recipe sharing web app for creating, exploring, and saving meals.',
     image: '/images/projects/platepedia/platepedia.webp',
     tags: ['fullstack', 'node'],
     technologies: [
@@ -703,8 +908,16 @@ export const projects: Project[] = [
     github: 'https://github.com/AD-Archer/PlatePedia-recipeapp',
     featured: false,
     gallery: [
-      { src: '/images/projects/platepedia/homepage.webp', alt: 'PlatePedia Screenshot 1', caption: 'Homepage' },
-      { src: '/images/projects/platepedia/meal.webp', alt: 'PlatePedia Screenshot 2', caption: 'Recipe Detail' },
+      {
+        src: '/images/projects/platepedia/homepage.webp',
+        alt: 'PlatePedia Screenshot 1',
+        caption: 'Homepage',
+      },
+      {
+        src: '/images/projects/platepedia/meal.webp',
+        alt: 'PlatePedia Screenshot 2',
+        caption: 'Recipe Detail',
+      },
     ],
     features: [
       'Recipe creation and discovery',
@@ -714,28 +927,27 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Home cooks need a platform to organize, share, and discover recipes without the clutter and ads found on commercial recipe sites. Many existing platforms prioritize monetization over user experience.'
+        'Home cooks need a platform to organize, share, and discover recipes without the clutter and ads found on commercial recipe sites. Many existing platforms prioritize monetization over user experience.',
       ],
       solution: [
-        'Created a clean, user-focused recipe sharing platform that prioritizes functionality and user experience. Built with modern web technologies to ensure fast loading and responsive design.'
+        'Created a clean, user-focused recipe sharing platform that prioritizes functionality and user experience. Built with modern web technologies to ensure fast loading and responsive design.',
       ],
       architecture: [
-        'Full-stack application with React frontend, Node.js/Express backend, PostgreSQL database for data persistence, and TailwindCSS for responsive design. Focuses on clean data structure and user-friendly interfaces.'
+        'Full-stack application with React frontend, Node.js/Express backend, PostgreSQL database for data persistence, and TailwindCSS for responsive design. Focuses on clean data structure and user-friendly interfaces.',
       ],
       results: [
         'Ad-free, user-focused recipe sharing experience',
         'Fast, responsive web application',
         'Clean data structure for easy recipe management',
         'Community-driven content creation',
-        'Scalable database architecture'
-      ]
+        'Scalable database architecture',
+      ],
     },
   },
   {
     id: '16',
     title: 'Qoutey',
-    description:
-      'Automated email service for daily motivational quotes and journal reminders.',
+    description: 'Automated email service for daily motivational quotes and journal reminders.',
     image:
       'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
     tags: ['backend', 'golang'],
@@ -777,8 +989,7 @@ export const projects: Project[] = [
   {
     id: '9',
     title: 'Fintech App',
-    description:
-      'Modern finance dashboard for managing personal finances and investments.',
+    description: 'Modern finance dashboard for managing personal finances and investments.',
     image: '/images/projects/fintech.webp',
     tags: ['fullstack', 'node'],
     technologies: [
@@ -810,11 +1021,26 @@ export const projects: Project[] = [
     link: 'https://dynasty-defense.vercel.app/',
     github: 'https://github.com/AD-Archer/dynasty-defense',
     gallery: [
-      { src: '/images/projects/dynasty-defense/home.webp', alt: 'Dynasty Defense Screenshot 1', caption: 'Dashboard Overview' },
-      { src: '/images/projects/dynasty-defense/home-alarms.webp', alt: 'Dynasty Defense Screenshot 2', caption: 'Alarm Management' },
-      { src: '/images/projects/dynasty-defense/logs.webp', alt: 'Dynasty Defense Screenshot 3', caption: 'User logs' },
-      { src: '/images/projects/dynasty-defense/settings.webp', alt: 'Dynasty Defense Screenshot 4', caption: 'User Settings' },
-
+      {
+        src: '/images/projects/dynasty-defense/home.webp',
+        alt: 'Dynasty Defense Screenshot 1',
+        caption: 'Dashboard Overview',
+      },
+      {
+        src: '/images/projects/dynasty-defense/home-alarms.webp',
+        alt: 'Dynasty Defense Screenshot 2',
+        caption: 'Alarm Management',
+      },
+      {
+        src: '/images/projects/dynasty-defense/logs.webp',
+        alt: 'Dynasty Defense Screenshot 3',
+        caption: 'User logs',
+      },
+      {
+        src: '/images/projects/dynasty-defense/settings.webp',
+        alt: 'Dynasty Defense Screenshot 4',
+        caption: 'User Settings',
+      },
     ],
     featured: false,
     features: [
@@ -848,8 +1074,7 @@ export const projects: Project[] = [
   {
     id: '12',
     title: 'Win or Lose Philly',
-    description:
-      'Retro browser game celebrating Philadelphia sports culture.',
+    description: 'Retro browser game celebrating Philadelphia sports culture.',
     image: '/images/projects/winorlosephilly.webp',
     tags: ['frontend', 'node'],
     technologies: [
@@ -865,8 +1090,7 @@ export const projects: Project[] = [
   {
     id: '13',
     title: 'Qr Code Generator',
-    description:
-      'Simple QR code generator for quick link sharing and presentations.',
+    description: 'Simple QR code generator for quick link sharing and presentations.',
     image: '/images/projects/qr.webp',
     tags: ['frontend', 'node'],
     technologies: [
@@ -883,8 +1107,7 @@ export const projects: Project[] = [
   {
     id: '14',
     title: 'Retro Audio Maker',
-    description:
-      'Audio distortion tool for creating retro-style sound effects.',
+    description: 'Audio distortion tool for creating retro-style sound effects.',
     image: '/images/projects/retro.webp',
     tags: ['backend', 'node'],
     technologies: [
@@ -925,8 +1148,7 @@ export const projects: Project[] = [
   {
     id: '17',
     title: 'GitHub Issue Automation Script',
-    description:
-      'Bash script for automating GitHub issue creation from CSV files.',
+    description: 'Bash script for automating GitHub issue creation from CSV files.',
     image: '/images/projects/githubissues.webp',
     tags: ['backend', 'bash'],
     technologies: [{ name: 'Bash', color: technologyColors.nodejs }],
@@ -961,9 +1183,21 @@ export const projects: Project[] = [
     github: 'https://github.com/ad-archer/social-dash',
     featured: false,
     gallery: [
-      { src: '/images/projects/socialmetrics/homedash.webp', alt: 'Social Metrics Screenshot 1', caption: 'Dashboard Overview' },
-      { src: '/images/projects/socialmetrics/wiki.webp', alt: 'Social Metrics Screenshot 2', caption: 'Wikipedia Topics' },
-      { src: '/images/projects/socialmetrics/calendar.webp', alt: 'Social Metrics Screenshot 3', caption: 'Calendar Events' },
+      {
+        src: '/images/projects/socialmetrics/homedash.webp',
+        alt: 'Social Metrics Screenshot 1',
+        caption: 'Dashboard Overview',
+      },
+      {
+        src: '/images/projects/socialmetrics/wiki.webp',
+        alt: 'Social Metrics Screenshot 2',
+        caption: 'Wikipedia Topics',
+      },
+      {
+        src: '/images/projects/socialmetrics/calendar.webp',
+        alt: 'Social Metrics Screenshot 3',
+        caption: 'Calendar Events',
+      },
     ],
     features: [
       'Google OAuth authentication',
@@ -975,32 +1209,31 @@ export const projects: Project[] = [
       'Recharts for data visualization',
       'Built with Next.js and TypeScript',
       'MCP integration for content calendar',
-      'ICS integration for calendar events'
+      'ICS integration for calendar events',
     ],
     caseStudy: {
       problem: [
-        'Content creators struggle to analyze their social media performance across multiple platforms, lacking unified dashboards that provide actionable insights and AI-powered recommendations for content improvement.'
+        'Content creators struggle to analyze their social media performance across multiple platforms, lacking unified dashboards that provide actionable insights and AI-powered recommendations for content improvement.',
       ],
       solution: [
-        'Built a comprehensive social media analytics dashboard focusing on YouTube metrics with AI-powered insights, real-time data visualization, and research tools to help creators optimize their content strategy.'
+        'Built a comprehensive social media analytics dashboard focusing on YouTube metrics with AI-powered insights, real-time data visualization, and research tools to help creators optimize their content strategy.',
       ],
       architecture: [
-        'Next.js application with TypeScript, Firebase for authentication and data storage, Google OAuth for YouTube API access, OpenAI GPT-4o-mini for insights, Recharts for visualizations, and Wikipedia API for topic research.'
+        'Next.js application with TypeScript, Firebase for authentication and data storage, Google OAuth for YouTube API access, OpenAI GPT-4o-mini for insights, Recharts for visualizations, and Wikipedia API for topic research.',
       ],
       results: [
         'Unified dashboard for multiple social platforms',
         'Real-time analytics with actionable insights',
         'AI-powered content recommendations',
         'Streamlined content research workflow',
-        'Responsive design for mobile and desktop use'
-      ]
+        'Responsive design for mobile and desktop use',
+      ],
     },
   },
   {
     id: '19',
     title: 'Launchpad Student Interaction Form',
-    description:
-      'AI-powered student interaction tracking system for educational organizations.',
+    description: 'AI-powered student interaction tracking system for educational organizations.',
     image: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
     tags: ['fullstack', 'ai', 'frontend'],
     technologies: [
@@ -1022,21 +1255,21 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Launchpad and Building 21 struggled with inefficient manual tracking of student interactions, leading to data inconsistencies, missed follow-ups, and difficulty measuring program effectiveness. Staff spent excessive time on administrative tasks instead of student support.'
+        'Launchpad and Building 21 struggled with inefficient manual tracking of student interactions, leading to data inconsistencies, missed follow-ups, and difficulty measuring program effectiveness. Staff spent excessive time on administrative tasks instead of student support.',
       ],
       solution: [
-        'Developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL. The system streamlines data collection, provides AI-powered insights, and automates reporting processes.'
+        'Developed a fully automated interaction tracker using Next.js, Gemini AI, and PostgreSQL. The system streamlines data collection, provides AI-powered insights, and automates reporting processes.',
       ],
       architecture: [
-        'Next.js application with server-side rendering, PostgreSQL database with Prisma ORM, Gemini AI integration for intelligent insights, Recharts for data visualization, and responsive TailwindCSS design.'
+        'Next.js application with server-side rendering, PostgreSQL database with Prisma ORM, Gemini AI integration for intelligent insights, Recharts for data visualization, and responsive TailwindCSS design.',
       ],
       results: [
         'Reduced administrative overhead by 70%',
         'Improved data accuracy and consistency',
         'Enhanced student support through better tracking',
         'Automated insights and reporting capabilities',
-        'Increased organizational efficiency'
-      ]
+        'Increased organizational efficiency',
+      ],
     },
     gallery: [
       {
@@ -1071,7 +1304,8 @@ export const projects: Project[] = [
       },
     ],
     architecture: {
-      summary: 'A fully automated interaction tracker built with Next.js, Gemini AI, and PostgreSQL to streamline student interaction management and improve organizational efficiency.',
+      summary:
+        'A fully automated interaction tracker built with Next.js, Gemini AI, and PostgreSQL to streamline student interaction management and improve organizational efficiency.',
       images: [
         {
           src: '/images/projects/lsf(launchpadstudentform)/wireframe.webp',
@@ -1144,21 +1378,21 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem: [
-        'Legacy codebase made it difficult to extend filtering and search capabilities across large BIM datasets. Non-technical users needed dynamic querying tools for massive 3D Revit models but were limited by outdated frontend architecture and performance constraints.'
+        'Legacy codebase made it difficult to extend filtering and search capabilities across large BIM datasets. Non-technical users needed dynamic querying tools for massive 3D Revit models but were limited by outdated frontend architecture and performance constraints.',
       ],
       solution: [
-        'Rebuilt the UI with modern React + TypeScript architecture and introduced ECSQL-driven filters, enabling dynamic queries and performant results. Migrated legacy application to improve maintainability and user experience.'
+        'Rebuilt the UI with modern React + TypeScript architecture and introduced ECSQL-driven filters, enabling dynamic queries and performant results. Migrated legacy application to improve maintainability and user experience.',
       ],
       architecture: [
-        'Next.js application with iTwin.js viewer integration. ECSQL queries are proxied through API routes with state management via React Context and URL parameters. Modern component architecture with TypeScript for type safety.'
+        'Next.js application with iTwin.js viewer integration. ECSQL queries are proxied through API routes with state management via React Context and URL parameters. Modern component architecture with TypeScript for type safety.',
       ],
       results: [
         'Non-technical users can now create complex queries without needing to understand the underlying data structure.',
         'Simplified addition of new filter types and functionality',
         'Improved code maintainability and developer experience',
         'Enhanced user interface responsiveness and usability',
-        'Successful migration from legacy to modern architecture'
-      ]
+        'Successful migration from legacy to modern architecture',
+      ],
     },
 
     team: [
@@ -1187,12 +1421,14 @@ export const projects: Project[] = [
       {
         title: 'ECSQL filter builder',
         language: 'sql',
-  markdown: "```sql\nSELECT ec_classname (c.ECInstanceId) className,\nCOALESCE(s.DisplayLabel, s.Name) schemaLabel,\nCOALESCE(c.DisplayLabel, c.Name) classLabel,\nCOUNT(*)\nFROM bis.GeometricElement3d ge\nJOIN ECDbMeta.ClassHasAllBaseClasses abc ON abc.SourceECInstanceId = ge.ECClassId\nJOIN ECDbMeta.ECClassDef c ON c.ECInstanceId = abc.TargetECInstanceId\nJOIN ECDbMeta.ECSchemaDef s ON s.ECInstanceId = c.Schema.Id\nWHERE s.Name != 'BisCore'\nGROUP BY c.ECInstanceId\n```",
+        markdown:
+          "```sql\nSELECT ec_classname (c.ECInstanceId) className,\nCOALESCE(s.DisplayLabel, s.Name) schemaLabel,\nCOALESCE(c.DisplayLabel, c.Name) classLabel,\nCOUNT(*)\nFROM bis.GeometricElement3d ge\nJOIN ECDbMeta.ClassHasAllBaseClasses abc ON abc.SourceECInstanceId = ge.ECClassId\nJOIN ECDbMeta.ECClassDef c ON c.ECInstanceId = abc.TargetECInstanceId\nJOIN ECDbMeta.ECSchemaDef s ON s.ECInstanceId = c.Schema.Id\nWHERE s.Name != 'BisCore'\nGROUP BY c.ECInstanceId\n```",
       },
       {
         title: 'API route',
         language: 'ts',
-  markdown: "```ts\nexport async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}\n```",
+        markdown:
+          '```ts\nexport async function GET(req: Request) {\n  const { searchParams } = new URL(req.url);\n  const where = buildWhere(Object.fromEntries(searchParams));\n  const rows = await queryECSQL(`SELECT * FROM Elements WHERE ${where}`);\n  return Response.json({ rows });\n}\n```',
       },
     ],
   },
@@ -1233,25 +1469,25 @@ export const projects: Project[] = [
     video: {
       url: 'https://youtu.be/UvvsHnCh4SU',
       title: 'N8N Job Search Dashboard Demo',
-      provider: 'youtube'
+      provider: 'youtube',
     },
     caseStudy: {
       problem: [
-        'Job seekers struggle with manual application tracking, inconsistent job searching across platforms, and lack of intelligent matching between resumes and job requirements. The competitive job market demands constant monitoring and quick responses to opportunities.'
+        'Job seekers struggle with manual application tracking, inconsistent job searching across platforms, and lack of intelligent matching between resumes and job requirements. The competitive job market demands constant monitoring and quick responses to opportunities.',
       ],
       solution: [
-        'Built a comprehensive automation platform that integrates n8n workflows with AI-powered resume matching, automated LinkedIn scraping, and real-time application tracking. The system provides intelligent job scoring and automated notifications for high-potential opportunities.'
+        'Built a comprehensive automation platform that integrates n8n workflows with AI-powered resume matching, automated LinkedIn scraping, and real-time application tracking. The system provides intelligent job scoring and automated notifications for high-potential opportunities.',
       ],
       architecture: [
-        'Next.js frontend with PostgreSQL database, n8n workflow automation engine, multiple AI providers (Gemini, OpenAI, Ollama) for resume analysis, and notification systems via Discord/Telegram. Self-hostable with Docker and PM2 support.'
+        'Next.js frontend with PostgreSQL database, n8n workflow automation engine, multiple AI providers (Gemini, OpenAI, Ollama) for resume analysis, and notification systems via Discord/Telegram. Self-hostable with Docker and PM2 support.',
       ],
       results: [
         'Automated job discovery reduces manual search time by 80%',
         'AI-powered scoring improves job-resume matching accuracy',
         'Centralized tracking eliminates application status confusion',
         'Self-hostable solution provides complete data ownership',
-        'Ready-to-import workflow templates accelerate setup'
-      ]
+        'Ready-to-import workflow templates accelerate setup',
+      ],
     },
   },
 ];
