@@ -220,6 +220,94 @@ export const projects: Project[] = [
   //   features: []
   // },
   {
+    id: '25',
+    title: 'Archer Life',
+    description:
+      'Concept landing page that tells the Archer Life story and connects people to Archer Fitness, Archer Health, and Archer Aqua without promising extra functionality.',
+    longDescription:
+      "Archer Life is a simple concept page documenting the wellness journey that helped me lose 60 pounds of fat and gain 10 pounds of muscle between November 2024 and November 2025. Today it replaces endless app hunting with one honest introduction to the Archer philosophy, outlines our paywall-free commitment, and sends visitors straight to Archer Fitness, Archer Health, and Archer Aqua. It is not a full-fledged hub just the mission, the story, and clean links to the products that already work.",
+    image: '/images/projects/archer-life/archer-life.webp',
+    tags: ['fullstack', 'ai', 'devops'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Docker', color: technologyColors.typescript },
+      { name: 'Kubernetes', color: technologyColors.typescript },
+    ],
+    slug: 'archer-life',
+    featured: true,
+    featuredPriority: 0,
+    features: [
+      'Story-first landing page summarizing the 2024-25 transformation journey',
+      'Direct links to Archer Fitness, Archer Health, and Archer Aquano extra sign ups required',
+      'Transparent paywall-free philosophy with open-source roadmap callouts',
+      'Expectation setting copy that explains future goals without overselling current capabilities',
+      'Self-hosted Chromebook-powered Kubernetes cluster running the marketing experience',
+      'Progressive Web App shell so the placeholder loads quickly on mobile devices',
+    ],
+    gallery: [
+      {
+        src: '/images/projects/archer-fitness/sitebanner.webp',
+        alt: 'Archer Fitness dashboard',
+        caption:
+          'Strength and conditioning insights from Archer Fitness anchor the training pillar of Archer Life.',
+      },
+      {
+        src: '/images/projects/archer-health/dashboard.webp',
+        alt: 'Archer Health nutrition analytics',
+        caption:
+          'The Archer Health nutrition engine powers macro tracking and caloric periodization inside Archer Life.',
+      },
+      {
+        src: '/images/projects/archer-aqua/desktop-home.webp',
+        alt: 'Archer Aqua hydration goals',
+        caption:
+          'Hydration intelligence from Archer Aqua rounds out the daily rituals within Archer Life.',
+      },
+    ],
+    caseStudy: {
+      problem: [
+        'Finding trustworthy health apps without subscriptions or hidden upsells made staying consistent unnecessarily stressful.',
+        'Context switching between training, nutrition, and hydration tools meant the overall body recomposition story was fragmented.',
+      ],
+      solution: [
+        'Published a placeholder landing page that links directly to Archer Fitness, Archer Health, and Archer Aqua without requiring new accounts.',
+        'Documented every ritual, automation, and open-source stack that delivered real results so others can follow without chasing new apps.',
+      ],
+      architecture: [
+        'Static Next.js page that surfaces curated content, transformation storytelling, and deep links to each Archer product.',
+        'Shared design system and component library keeping every Archer product visually and accessibly aligned.',
+        'Roadmap for lightweight service connectors that preserve independence while enabling future data sharing.',
+      ],
+      results: [
+        'Documented the 60-pound fat loss and 10-pound muscle gain journey in a single, repeatable playbook.',
+        'Reduced onboarding friction by pointing people to the exact routines, recipes, and hydration wins that matter.',
+        'Set the foundation for future integrations by aligning branding, messaging, and infrastructure decisions early.',
+      ],
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & Product Designer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+    ],
+    architecture: {
+      summary:
+        'Concept landing architecture that keeps Archer Fitness, Archer Health, and Archer Aqua aligned under one story while leaving each app independent.',
+      notes: [
+        'Self-hosted Kubernetes infrastructure running on repurposed Chromebooks for cost-effective scale',
+        'TypeScript-driven content modeling keeps narratives and playbooks consistent across channels',
+        'TailwindCSS design system provides cohesive branding and accessibility across experiences',
+        'OpenAI-powered copy assists storytelling and habit guidance without gating features behind subscriptions',
+        'Deep-link architecture keeps individual apps independent while giving users a single starting point',
+        'Future roadmap includes opt-in data bridges once trust and community needs are validated',
+      ],
+    },
+  },
+  {
     id: '22',
     title: 'Archer Fitness',
     description:
