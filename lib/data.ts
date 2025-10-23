@@ -1755,6 +1755,28 @@ export const certifications: Certification[] = [
 
 export const jobs: Job[] = [
   {
+    title: 'AI Intern',
+    company: 'Seer Interactive',
+    duration: 'Oct 2025 - Present',
+    location: 'Philadelphia, PA',
+    achievements: [
+      'Serve as AI overseer and ideation partner, translating leadership goals into actionable AI initiatives that support client growth',
+      'Prototype retrieval-augmented generation (RAG) workflows that ground large language models in agency knowledge bases and campaign data',
+      'Optimize data warehouse pipelines to ensure reliable, real-time context for internal AI copilots and experimentation sandboxes',
+      'Facilitate cross-team discovery sessions to surface high-impact AI use cases and guide implementation roadmaps',
+    ],
+    techStack: [
+      'AI/LLM',
+      'RAG',
+      'Vector Databases',
+      'Python',
+      'TypeScript',
+      'Data Warehousing',
+      'MLOps',
+      'N8N',
+    ],
+  },
+  {
     title: 'Platform Engineer',
     company: 'Bentley Systems',
     duration: 'Jul 2025 - Aug 2025',

@@ -35,9 +35,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!project) return {};
   const siteUrl = 'https://www.antonioarcher.com';
   const url = `${siteUrl}/projects/${resolvedParams.slug}`;
-  const mainImage = project.image ? (project.image.startsWith('http') ? project.image : `${siteUrl}${project.image}`) : '';
-  const ogGenerated = `${siteUrl}/api/og?title=${encodeURIComponent(project.title)}${project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''}${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
-  const images: { url: string }[] = [{ url: ogGenerated }];
+  const mainImage = project.image
+    ? project.image.startsWith('http')
+      ? project.image
+      : `${siteUrl}${project.image}`
+    : '';
+  const ogGenerated = `${siteUrl}/api/og?title=${encodeURIComponent(project.title)}${
+    project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''
+  }${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
+
+  const images: { url: string; alt?: string }[] = [];
+  if (mainImage) {
+    images.push({ url: mainImage, alt: `${project.title} hero image` });
+  }
+  images.push({ url: ogGenerated, alt: `${project.title} generated preview` });
+
+  const twitterImages = images.map(image => image.url);
+
   return {
     title: `Antonio Archer - ${project.title}` ,
     description: project.description,
@@ -53,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title: project.title,
       description: project.description,
-      images,
+      images: twitterImages,
     },
   };
 }
