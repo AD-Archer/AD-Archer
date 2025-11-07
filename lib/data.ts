@@ -24,7 +24,7 @@ export const technologyColors = {
   qrcode: 'bg-black',
   webAudio: 'bg-yellow-500',
   sharp: 'bg-red-500',
-  golang: 'bg-blue-500',  
+  golang: 'bg-blue-500',
 };
 
 export type Project = {
@@ -225,7 +225,7 @@ export const projects: Project[] = [
     description:
       'Concept landing page that tells the Archer Life story and connects people to Archer Fitness, Archer Health, and Archer Aqua without promising extra functionality.',
     longDescription:
-      "Archer Life is a simple concept page documenting the wellness journey that helped me lose 60 pounds of fat and gain 10 pounds of muscle between November 2024 and November 2025. Today it replaces endless app hunting with one honest introduction to the Archer philosophy, outlines our paywall-free commitment, and sends visitors straight to Archer Fitness, Archer Health, and Archer Aqua. It is not a full-fledged hub just the mission, the story, and clean links to the products that already work.",
+      'Archer Life is a simple concept page documenting the wellness journey that helped me lose 60 pounds of fat and gain 10 pounds of muscle between November 2024 and November 2025. Today it replaces endless app hunting with one honest introduction to the Archer philosophy, outlines our paywall-free commitment, and sends visitors straight to Archer Fitness, Archer Health, and Archer Aqua. It is not a full-fledged hub just the mission, the story, and clean links to the products that already work.\n\n## Explore the Archer Ecosystem\n\nArcher Life connects to three specialized applications:\n\n- **[Archer Fitness](https://fitness.adarcher.app/)** - AI-powered workout planning and progress tracking for strength and conditioning\n- **[Archer Health](https://health.adarcher.app/)** - Comprehensive nutrition tracking and macro management for your fitness goals  \n- **[Archer Aqua](https://aqua.adarcher.app/)** - Intelligent hydration tracking with personalized daily goals\n\nEach app works independently but together they form a complete wellness system.',
     image: '/images/projects/archer-life/archer-life.webp',
     tags: ['fullstack', 'ai', 'devops'],
     technologies: [
@@ -305,6 +305,11 @@ export const projects: Project[] = [
         'Deep-link architecture keeps individual apps independent while giving users a single starting point',
         'Future roadmap includes opt-in data bridges once trust and community needs are validated',
       ],
+    },
+    video: {
+      url: 'https://youtu.be/t3H_zQwvR-M',
+      title: 'Archer Life Walkthrough',
+      provider: 'youtube',
     },
   },
   {
@@ -432,6 +437,11 @@ export const projects: Project[] = [
         'Radix UI for accessible components',
       ],
     },
+    video: {
+      url: 'https://youtu.be/t3H_zQwvR-M',
+      title: 'Archer Fitness Walkthrough',
+      provider: 'youtube',
+    },
   },
   {
     id: '23',
@@ -537,6 +547,11 @@ export const projects: Project[] = [
         'Integration capabilities with Archer Fitness health suite',
       ],
     },
+    video: {
+      url: 'https://youtu.be/t3H_zQwvR-M',
+      title: 'Archer Aqua Walkthrough',
+      provider: 'youtube',
+    },
   },
   {
     id: '24',
@@ -582,8 +597,7 @@ export const projects: Project[] = [
       {
         src: '/images/projects/archer-health/progress.webp',
         alt: 'Progress Tracking',
-        caption:
-          'Archer Health progress tracking feature with visual analytics and insights',
+        caption: 'Archer Health progress tracking feature with visual analytics and insights',
       },
       {
         src: '/images/projects/archer-health/recipes.webp',
@@ -601,14 +615,13 @@ export const projects: Project[] = [
       'Two-factor authentication (2FA) with TOTP support',
       'Progressive Web App with offline capabilities',
       'Responsive design optimized for mobile and desktop',
-
     ],
     caseStudy: {
       problem: [
         "After losing 50 pounds in 10 months, I realized the need for a comprehensive health tracking app that combines nutrition tracking, progress analytics, and personalized recommendations. Existing apps were either too complex, lacked personalization, or didn't provide the level of detail needed for serious health tracking.",
       ],
       solution: [
-        'I developed an app that would\'ve all the features I wanted when I was losing weight. Built a full-featured health platform from scratch using modern web technologies. Implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.',
+        "I developed an app that would've all the features I wanted when I was losing weight. Built a full-featured health platform from scratch using modern web technologies. Implemented detailed progress tracking with visual analytics, and deployed on a self-hosted Kubernetes cluster for complete control and privacy.",
       ],
       architecture: [
         'Next.js 14 application with App Router, PostgreSQL database with Prisma ORM, NextAuth for authentication with 2FA support, Docker containerization, and Kubernetes orchestration on a 3-node Chromebook cluster. Includes automated CI/CD pipelines with GitHub Actions, security scanning, and dependency updates.',
@@ -644,6 +657,11 @@ export const projects: Project[] = [
         'Progressive Web App with service workers',
         'Recharts for data visualization',
       ],
+    },
+    video: {
+      url: 'https://youtu.be/t3H_zQwvR-M',
+      title: 'Archer Health Walkthrough',
+      provider: 'youtube',
     },
   },
   {
@@ -1578,6 +1596,117 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    id: '26',
+    title: 'LLM RAG Visualization Dashboard',
+    description:
+      'Interactive visualization dashboard for Retrieval-Augmented Generation (RAG) pipelines with real-time data flow monitoring, knowledge base exploration, and locally-hosted LLM inference powered by Ollama.',
+    longDescription:
+      'Built for [Launchpad](https://launchpad.org/), the LLM RAG Visualization Dashboard is a comprehensive open-source tool for visualizing and monitoring Retrieval-Augmented Generation (RAG) systems. The dashboard provides real-time insights into data flow, embedding generation, retrieval operations, and LLM inference processes using locally-hosted models via Ollama. It enables organizations to maintain data independence, own their data in private data warehouses, and explore sensitive data without relying on closed-source APIs. Perfect for non-profits, enterprises, and data-sensitive organizations working with LLM-based systems.',
+    image: '/images/projects/llm-visi/example.webp',
+    tags: ['fullstack', 'ai', 'typescript', 'websockets'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.typescript },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'n8n', color: technologyColors.react },
+      { name: 'Ollama', color: technologyColors.python },
+      { name: 'WebSockets', color: technologyColors.typescript },
+      { name: 'Qdrant', color: technologyColors.python },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+    ],
+    slug: 'llm-rag-visualization-dashboard',
+    featured: true,
+    featuredPriority: 4,
+    features: [
+      'Real-time data flow visualization for RAG pipelines via WebSocket integration',
+      'Knowledge base exploration and search interface powered by Qdrant vector database',
+      'Embedding generation monitoring with local Ollama LLM inference',
+      'Retrieval accuracy debugging and vector similarity analysis',
+      'Local LLM inference tracking with token usage metrics',
+      'Sensitive data handling without external API dependencies',
+      'Query timeline and step-by-step execution visualization',
+      'Interactive vector space exploration with Qdrant',
+      'System metrics and health monitoring',
+      'Data independence and ownership in private data warehouse',
+    ],
+    gallery: [],
+    video: {
+      url: 'https://youtu.be/nhqPZ9hSjs8',
+      title: 'LLM RAG Visualization Dashboard Walkthrough',
+      provider: 'youtube',
+    },
+    caseStudy: {
+      problem: [
+        'Non-profits and data-sensitive organizations need to visualize and analyze data with LLMs without relying on closed-source APIs or external services.',
+        'Launchpad required a solution to help investors understand sensitive non-profit data while maintaining complete data independence and privacy.',
+        'RAG systems are complex black boxes where it is difficult to understand why retrievals succeed or fail, and traditional solutions require sharing data externally.',
+        'Debugging and optimizing RAG pipelines requires visibility into multiple stages: embedding, retrieval, ranking, and generation with local model inference.',
+      ],
+      solution: [
+        'Built an open-source interactive dashboard that visualizes every stage of the RAG pipeline in real-time with locally-hosted LLMs.',
+        "Integrated Ollama for running LLMs locally, ensuring no data leaves the organization's infrastructure.",
+        'Leveraged Qdrant as a private vector database for semantic search and embedding management.',
+        'Used n8n workflows for orchestrating RAG pipeline components and data processing.',
+        'Implemented WebSocket real-time communication for live data flow visualization.',
+        'Provided metrics and visualizations for understanding retrieval quality without external dependencies.',
+      ],
+      architecture: [
+        'Next.js frontend with TypeScript for interactive visualizations and real-time updates.',
+        'n8n automation workflows for orchestrating RAG pipeline stages and data processing logic.',
+        'Ollama for running open-source LLMs locally (no external API calls or data sharing).',
+        'Qdrant vector database for semantic search, embeddings, and RAG knowledge base management.',
+        'WebSocket integration for real-time data streaming between frontend and backend.',
+        'TailwindCSS for responsive, modern UI components.',
+        'Private data warehouse architecture maintaining full data ownership and independence.',
+      ],
+      results: [
+        'Enabled Launchpad to visualize sensitive investor data with open-source LLMs while maintaining complete privacy.',
+        'Transformed opaque RAG systems into understandable, debuggable, locally-hosted pipelines.',
+        'Provided non-profits and enterprises with a foundation for data-independent AI systems.',
+        'Demonstrated practical implementation of open-source LLM stack for sensitive data analysis.',
+        'Created a reusable framework for organizations prioritizing data ownership and privacy.',
+      ],
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & AI Engineer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+      {
+        name: 'Mohamed Souare',
+        role: 'AI/ML Engineer & Architecture',
+        link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/',
+      },
+      {
+        name: 'Bryan Gunawan',
+        role: 'Full-Stack Developer',
+        link: 'https://www.linkedin.com/in/bryan-gunawan-a537132b9/',
+      },
+      {
+        name: 'Demitri DeLuca-Lyons',
+        role: 'Product & Strategy',
+        link: 'https://www.linkedin.com/in/demitri-deluca-lyons-747312319/',
+      },
+    ],
+    architecture: {
+      summary:
+        'Full-stack open-source RAG visualization platform using Next.js frontend, n8n orchestration, Ollama for local LLMs, Qdrant for vector search, and WebSocket real-time communication. Designed for data-sensitive organizations requiring complete data ownership and privacy.',
+      notes: [
+        'Next.js with TypeScript for interactive, responsive UI and real-time updates',
+        'n8n workflows for orchestrating RAG pipeline stages and complex data processing',
+        'Ollama for running open-source LLMs locally with no external API dependencies',
+        'Qdrant vector database for semantic search, embedding storage, and RAG knowledge base management',
+        'WebSocket for bi-directional real-time data streaming and live visualization updates',
+        'TailwindCSS for modern, responsive design system',
+        'Private data warehouse architecture ensuring data independence and ownership',
+        'Local embedding generation using Ollama for complete data privacy',
+        'Real-time vector space exploration and similarity analysis',
+        'Query tracing and execution timeline visualization across all pipeline stages',
+      ],
+    },
+  },
 ];
 
 export const skills: SkillCategory = {
@@ -1675,9 +1804,10 @@ export const skills: SkillCategory = {
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg',
       power: 75,
     },
-    {name: 'docker',
+    {
+      name: 'docker',
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-      power: 85
+      power: 85,
     },
     {
       name: 'Kubernetes',
@@ -1688,7 +1818,7 @@ export const skills: SkillCategory = {
       name: 'n8n',
       icon: 'https://n8n.io/favicon.ico',
       power: 80,
-    }
+    },
   ],
   hosting: [
     {
@@ -1871,14 +2001,14 @@ export const sortProjectsByFeaturedPriority = (projects: Project[]) => {
     // First, separate featured from non-featured
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    
+
     // If both are featured, sort by priority (lower number = higher priority)
     if (a.featured && b.featured) {
       const aPriority = a.featuredPriority ?? 999; // Default to low priority if not set
       const bPriority = b.featuredPriority ?? 999;
       return aPriority - bPriority;
     }
-    
+
     // If neither are featured, maintain original order (by id)
     return parseInt(a.id) - parseInt(b.id);
   });
