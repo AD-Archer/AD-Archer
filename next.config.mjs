@@ -85,6 +85,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'technical.ly',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   experimental: {
