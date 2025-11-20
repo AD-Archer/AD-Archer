@@ -1501,4 +1501,58 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    id: '26',
+    title: 'Siri Shortcuts RAG Template',
+    description:
+      'A Siri shortcuts RAG template that allows you to extend Siri using n8n for automated voice interactions and intelligent responses.',
+    longDescription:
+      'This project provides a comprehensive template for building Retrieval-Augmented Generation (RAG) systems that integrate with Siri Shortcuts and n8n workflow automation. It enables users to create intelligent voice-activated workflows that can retrieve relevant information and generate contextual responses through natural language processing.',
+    image:
+      'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n-color.png',
+    tags: ['ai', 'automation', 'ios', 'rag'],
+    technologies: [
+      { name: 'n8n', color: technologyColors.nodejs },
+      { name: 'Siri Shortcuts', color: technologyColors.react },
+      { name: 'RAG', color: technologyColors.openai },
+      { name: 'Node.js', color: technologyColors.nodejs },
+    ],
+    slug: 'siri-shortcuts-rag-n8n',
+    github: 'https://github.com/AD-Archer/Siri-Shortcuts-Rag-N8N',
+    featured: false,
+    features: [
+      'Siri Shortcuts integration for voice-activated workflows',
+      'n8n-powered automation pipelines',
+      'Retrieval-Augmented Generation for intelligent responses',
+      'Template-based setup for quick deployment',
+      'Extensible architecture for custom voice commands',
+    ],
+  },
+  {
+    id: '27',
+    title: 'Disk Files RAG',
+    description:
+      'A RAG system that automatically sends text reminders and enables reading files from disk for intelligent document processing and notifications.',
+    longDescription:
+      'This Retrieval-Augmented Generation system combines automated reminder functionality with disk file reading capabilities. It can scan local files, extract relevant information, and send intelligent text-based reminders based on content analysis and user-defined triggers.',
+    image:
+      'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n-color.png',
+    tags: ['ai', 'automation', 'file-system', 'rag'],
+    technologies: [
+      { name: 'Node.js', color: technologyColors.nodejs },
+      { name: 'RAG', color: technologyColors.openai },
+      { name: 'File System API', color: technologyColors.typescript },
+      { name: 'SMS/Text Integration', color: technologyColors.react },
+    ],
+    slug: 'disk-files-rag',
+    github: 'https://github.com/AD-Archer/disk-files-rag',
+    featured: false,
+    features: [
+      'Automated text reminder system',
+      'Local disk file reading and processing',
+      'Intelligent content analysis and summarization',
+      'Customizable reminder triggers',
+      'Privacy-focused local processing',
+    ],
+  },
 ];
