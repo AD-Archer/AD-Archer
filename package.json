@@ -20,7 +20,7 @@
     "prebuild": "node optimize-images.js",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "lint-staged": "lint-staged",
     "optimize-images": "node optimize-images.js"
