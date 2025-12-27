@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { ChatProvider } from '@/components/context/ChatContext';
 import Script from 'next/script';
+import PlausibleAnalytics from '@/components/plausible-analytics';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -131,7 +132,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 'https://www.adarcher.app',
                 'https://www.youtube.com/@ad-archer',
                 'https://www.instagram.com/Antonio_DArcher',
-                
               ],
             }),
           }}
@@ -141,6 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${bangers.variable} font-sans bg-white`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ChatProvider>
+            <PlausibleAnalytics />
             <div className="flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>
