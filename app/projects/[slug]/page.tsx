@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowLeft,
-  ExternalLink,
   Github,
   Star,
   Code,
@@ -21,6 +20,7 @@ import {
 import Link from 'next/link';
 import ProjectQR from '@/app/projects/components/project-qr';
 import ShareButtons from '@/app/projects/components/share-buttons';
+import ProjectDemoDialog from '@/app/projects/components/project-demo-dialog';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import GalleryLightbox from '@/app/projects/components/gallery-lightbox';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -274,18 +274,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:justify-start items-center gap-2 sm:gap-3 pt-2">
-                  {project.link && (
-                    <Button
-                      asChild
-                      size="sm"
-                      className="shadow-md hover:shadow-lg transition-shadow w-full sm:w-auto"
-                    >
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        View Live Demo
-                      </Link>
-                    </Button>
-                  )}
+                  {project.link && <ProjectDemoDialog url={project.link} title={project.title} />}
 
                   {project.github && (
                     <Button
@@ -834,7 +823,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     <Link
                       href={`/projects/${p.slug}`}
                       aria-label={`Open ${p.title} details`}
-                      className="relative z-10 block cursor-pointer"
+                      className="relative z-10 block h-full w-full cursor-pointer"
                     >
                       <Image
                         src={p.image || '/placeholder.svg'}
