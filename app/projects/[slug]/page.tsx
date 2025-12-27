@@ -175,16 +175,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <div className="w-full md:w-1/2">
                 <div className="comic-border rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
                   <div className="relative bg-slate-100 dark:bg-slate-800">
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
+                    <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
                     {project.gallery && project.gallery.length > 0 ? (
-                      <a href="#gallery" aria-label="Open gallery" className="block cursor-zoom-in">
+                      <a
+                        href="#gallery"
+                        aria-label="Open gallery"
+                        className="relative z-10 block cursor-zoom-in"
+                      >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           width={800}
                           height={600}
-                          className="w-full object-cover"
-                          style={{ mixBlendMode: 'multiply' }}
+                          className="relative z-10 w-full object-cover"
                           priority={true}
                           quality={85}
                           placeholder="blur"
@@ -197,15 +200,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Open ${project.title} demo`}
-                        className="block cursor-pointer"
+                        className="relative z-10 block cursor-pointer"
                       >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           width={800}
                           height={600}
-                          className="w-full object-cover"
-                          style={{ mixBlendMode: 'multiply' }}
+                          className="relative z-10 w-full object-cover"
                         />
                       </Link>
                     ) : project.github ? (
@@ -214,15 +216,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Open ${project.title} repository`}
-                        className="block cursor-pointer"
+                        className="relative z-10 block cursor-pointer"
                       >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           width={800}
                           height={600}
-                          className="w-full object-cover"
-                          style={{ mixBlendMode: 'multiply' }}
+                          className="relative z-10 w-full object-cover"
                         />
                       </Link>
                     ) : (
@@ -231,8 +232,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                         alt={project.title}
                         width={800}
                         height={600}
-                        className="w-full object-cover"
-                        style={{ mixBlendMode: 'multiply' }}
+                        className="relative z-10 w-full object-cover"
                       />
                     )}
                   </div>
@@ -829,19 +829,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="aspect-video relative overflow-hidden bg-slate-100 dark:bg-slate-800">
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
+                  <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-200/50 to-slate-300/50 dark:from-slate-700/50 dark:to-slate-800/50"></div>
                   {p.slug ? (
                     <Link
                       href={`/projects/${p.slug}`}
                       aria-label={`Open ${p.title} details`}
-                      className="block cursor-pointer"
+                      className="relative z-10 block cursor-pointer"
                     >
                       <Image
                         src={p.image || '/placeholder.svg'}
                         alt={p.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        style={{ mixBlendMode: 'multiply' }}
+                        className="object-cover transition-transform duration-500 group-hover:scale-110 z-10"
                         quality={75}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         placeholder="blur"
@@ -853,8 +852,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       src={p.image || '/placeholder.svg'}
                       alt={p.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      style={{ mixBlendMode: 'multiply' }}
+                      className="object-cover transition-transform duration-500 group-hover:scale-110 z-10"
                     />
                   )}
                 </div>
