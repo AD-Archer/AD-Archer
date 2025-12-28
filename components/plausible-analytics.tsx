@@ -8,7 +8,7 @@ export default function PlausibleAnalytics() {
     if (typeof window !== 'undefined') {
       import('@plausible-analytics/tracker').then(({ init }) => {
         init({
-          domain: 'adarcher.app',
+          domain: 'plausible.adarcher.app',
           autoCapturePageviews: true,
           outboundLinks: true,
           fileDownloads: true,
