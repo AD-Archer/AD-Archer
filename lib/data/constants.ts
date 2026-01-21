@@ -16,6 +16,7 @@ export const technologyColors = {
   webAudio: 'bg-yellow-500',
   sharp: 'bg-red-500',
   golang: 'bg-blue-500',
+  rust: 'bg-orange-600',
 };
 
 export const tags: Tag[] = [
@@ -26,8 +27,7 @@ export const tags: Tag[] = [
   { id: 'node', name: 'Node.js', color: 'bg-green-500' },
   { id: 'python', name: 'Python', color: 'bg-yellow-600' },
   { id: 'golang', name: 'GoLang', color: 'bg-blue-500' },
+  { id: 'rust', name: 'Rust', color: 'bg-orange-600' },
   { id: 'devops', name: 'DevOps', color: 'bg-cyan-500' },
-  { id: 'typescript', name: 'TypeScript', color: 'bg-blue-500' },
-  { id: 'websockets', name: 'WebSockets', color: 'bg-yellow-500' },
   { id: 'bash', name: 'Bash', color: 'bg-gray-700' },
 ];

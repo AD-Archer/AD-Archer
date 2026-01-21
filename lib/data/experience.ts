@@ -2,12 +2,13 @@ import { Job, Education } from './types';
 
 export const jobs: Job[] = [
   {
-    title: 'AI Intern',
+    title: 'AI and Software Developer',
     company: 'Seer Interactive',
     duration: 'Oct 2025 - Present',
     location: 'Philadelphia, PA',
     achievements: [
       'Serve as AI overseer and ideation partner, translating leadership goals into actionable AI initiatives that support client growth',
+      'Develop RAG mcp to streamline information retrieval and enhance AI-driven content generation for marketing campaigns',
       'Prototype retrieval-augmented generation (RAG) workflows that ground large language models in agency knowledge bases and campaign data',
       'Optimize data warehouse pipelines to ensure reliable, real-time context for internal AI copilots and experimentation sandboxes',
       'Facilitate cross-team discovery sessions to surface high-impact AI use cases and guide implementation roadmaps',

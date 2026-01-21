@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { ExternalLink, Github, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import ProjectDemoDialog from '@/app/projects/components/project-demo-dialog';
 
 export default function ProjectsPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -237,14 +238,7 @@ export default function ProjectsPage() {
                         <Link href={`/projects/${project.slug}`}>View Details</Link>
                       </Button>
                     )}
-                    {project.link && (
-                      <Button asChild size="sm" variant="outline">
-                        <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-1" />
-                          Demo
-                        </Link>
-                      </Button>
-                    )}
+                    {project.link && <ProjectDemoDialog url={project.link} title={project.title} />}
                     {project.github && (
                       <Button asChild size="sm" variant="outline">
                         <Link href={project.github} target="_blank" rel="noopener noreferrer">

@@ -11,6 +11,7 @@ import { ExternalLink, Github, ArrowRight, Code } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { withClientSide } from '../app/contact/components/client-component';
+import ProjectDemoDialog from '@/app/projects/components/project-demo-dialog';
 
 function ProjectShowcase() {
   // Get featured projects sorted by priority
@@ -158,14 +159,7 @@ function ProjectShowcase() {
                         <Link href={`/projects/${activeProject.slug}`}>View Details</Link>
                       </Button>
                     )}
-                    {activeProject.link && (
-                      <Button asChild size="sm" variant="outline">
-                        <Link href={activeProject.link} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-1" />
-                          Demo
-                        </Link>
-                      </Button>
-                    )}
+                    {activeProject.link && <ProjectDemoDialog url={activeProject.link} title={activeProject.title} />}
                     {activeProject.github && (
                       <Button asChild size="sm" variant="outline">
                         <Link href={activeProject.github} target="_blank" rel="noopener noreferrer">

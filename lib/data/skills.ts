@@ -1,30 +1,6 @@
 import { Skill, SkillCategory } from './types';
 
 export const skills: SkillCategory = {
-  frontend: [
-    {
-      name: 'React',
-      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-      power: 100,
-    },
-    { name: 'EJS', icon: '/icons/ejs.svg', power: 85 },
-    {
-      name: 'Vite',
-      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
-      power: 99,
-    },
-    {
-      name: 'Next.js',
-      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-      power: 90,
-    },
-    { name: 'TailwindCSS', icon: '/images/tailwindcss-original.svg', power: 99 },
-    {
-      name: 'Typescript',
-      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-      power: 99,
-    },
-  ],
   backend: [
     {
       name: 'Node.js',
@@ -42,14 +18,43 @@ export const skills: SkillCategory = {
       power: 99,
     },
     {
-      name: 'Express',
-      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-      power: 90,
+      name: 'Rust',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg',
+      power: 85,
+    },
+    {
+      name: 'Go',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original-wordmark.svg',
+      power: 80,
     },
     {
       name: 'Bash Scripting',
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
       power: 80,
+    },
+  ],
+  frontend: [
+    {
+      name: 'React',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+      power: 100,
+    },
+    { name: 'EJS', icon: '/icons/ejs.svg', power: 85 },
+    {
+      name: 'Vite',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
+      power: 99,
+    },
+    {
+      name: 'Next.js',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+      power: 90,
+    },
+    { name: 'TailwindCSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original-wordmark.svg', power: 99 },
+    {
+      name: 'Typescript',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+      power: 99,
     },
   ],
   databases: [
@@ -72,6 +77,16 @@ export const skills: SkillCategory = {
       name: 'PostgreSQL',
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
       power: 100,
+    },
+    {
+      name: 'Appwrite',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/appwrite/appwrite-original.svg',
+      power: 75,
+    },
+    {
+      name: 'Supabase',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
+      power: 80,
     },
   ],
   tools: [
@@ -138,9 +153,9 @@ export const skills: SkillCategory = {
 
 // For backward compatibility with existing components
 export const skillsList: Skill[] = [
-  ...skills.frontend.map(skill => ({ ...skill, category: 'frontend' as const })),
   ...skills.backend.map(skill => ({ ...skill, category: 'backend' as const })),
-  ...skills.databases.map(skill => ({ ...skill, category: 'backend' as const })),
+  ...skills.frontend.map(skill => ({ ...skill, category: 'frontend' as const })),
+  ...skills.databases.map(skill => ({ ...skill, category: 'databases' as const })),
   ...skills.tools.map(skill => ({ ...skill, category: 'tools' as const })),
   ...skills.hosting.map(skill => ({ ...skill, category: 'tools' as const })),
 ];

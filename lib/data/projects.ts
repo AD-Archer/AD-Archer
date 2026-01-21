@@ -369,7 +369,7 @@ export const projects: Project[] = [
     slug: 'archer-health',
     link: 'https://health.adarcher.app/',
     github: 'https://github.com/AD-Archer/archer-health',
-    featured: true,
+    featured: false,
     featuredPriority: 2,
     gallery: [
       {
@@ -1244,7 +1244,7 @@ export const projects: Project[] = [
     slug: 'ecora',
     link: 'https://itwin-ecora.vercel.app/',
     github: 'https://github.com/Building21-iTwin/itwin-ecora',
-    featured: true,
+    featured: false,
     featuredPriority: 2,
     features: [
       'Functional extension for iTwin.js platform',
@@ -1419,30 +1419,52 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: '27',
-    title: 'Disk Files RAG',
+    id: '29',
+    title: 'RustySound',
     description:
-      'A RAG system that automatically sends text reminders and enables reading files from disk for intelligent document processing and notifications.',
+      'A Subsonic API (Navidrome) music player built with Rust and Dioxus framework. Supports desktop, mobile, and web deployments with Tailwind CSS styling.',
     longDescription:
-      'This Retrieval-Augmented Generation system combines automated reminder functionality with disk file reading capabilities. It can scan local files, extract relevant information, and send intelligent text-based reminders based on content analysis and user-defined triggers.',
-    image:
-      'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n-color.png',
-    tags: ['ai', 'automation', 'file-system', 'rag'],
+      'RustySound is a cross-platform music player that connects to Subsonic-compatible servers like Navidrome. Built using Rust and the Dioxus framework, it provides a native-like experience across desktop, mobile, and web platforms. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers for a unified music experience.',
+    image: '/images/projects/rustysound/main.webp',
+    tags: ['frontend', 'rust'],
     technologies: [
-      { name: 'Node.js', color: technologyColors.nodejs },
-      { name: 'RAG', color: technologyColors.openai },
-      { name: 'File System API', color: technologyColors.typescript },
-      { name: 'SMS/Text Integration', color: technologyColors.react },
+      { name: 'Rust', color: technologyColors.rust },
+      { name: 'Dioxus', color: technologyColors.rust },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
     ],
-    slug: 'disk-files-rag',
-    github: 'https://github.com/AD-Archer/disk-files-rag',
+    slug: 'rustysound',
+    link: 'https://rustysound-demo.adarcher.app/',
     featured: false,
+    gallery: [
+      {
+        src: '/images/projects/rustysound/home.webp',
+        alt: 'RustySound Home Screen',
+        caption: 'Main interface showing music library and controls',
+      },
+      {
+        src: '/images/projects/rustysound/album.webp',
+        alt: 'RustySound Album View',
+        caption: 'Album browsing and track listing',
+      },
+      {
+        src: '/images/projects/rustysound/favorites.webp',
+        alt: 'RustySound Favorites',
+        caption: 'Favorite songs and playlists management',
+      },
+      {
+        src: '/images/projects/rustysound/radio.webp',
+        alt: 'RustySound Radio',
+        caption: 'Radio stations and streaming features',
+      },
+    ],
     features: [
-      'Automated text reminder system',
-      'Local disk file reading and processing',
-      'Intelligent content analysis and summarization',
-      'Customizable reminder triggers',
-      'Privacy-focused local processing',
+      'Cross-platform support (desktop, mobile, web)',
+      'Subsonic API integration for Navidrome compatibility',
+      'Native performance with Rust',
+      'Responsive design with Tailwind CSS',
+      'Seamless music streaming and playback',
+      'Clean, modern user interface',
+      'Multiple client connections support',
     ],
   },
 ];

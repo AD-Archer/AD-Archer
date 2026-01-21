@@ -19,9 +19,9 @@ export default function ProjectDemoDialog({ url, title }: ProjectDemoDialogProps
     <>
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild>
-          <Button size="sm" className="shadow-md hover:shadow-lg transition-shadow w-full sm:w-auto">
-            <Monitor className="mr-2 h-4 w-4" />
-            View Live Demo
+          <Button size="sm" variant="outline" className="shadow-md hover:shadow-lg transition-shadow w-full sm:w-auto">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            Demo
           </Button>
         </Dialog.Trigger>
         <Dialog.Portal>
