@@ -111,6 +111,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/project',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/project/:slug',
+        destination: '/projects/:slug',
+        permanent: true,
+      },
+      {
         source: '/:path*',
         has: [
           {

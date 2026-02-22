@@ -61,30 +61,50 @@ export async function generateMetadata({
     project.description ? `&subtitle=${encodeURIComponent(project.description)}` : ''
   }${mainImage ? `&image=${encodeURIComponent(mainImage)}` : ''}`;
 
-  const images: { url: string; alt?: string }[] = [];
+  const images: NonNullable<Metadata['openGraph']>['images'] = [
+    {
+      url: ogGenerated,
+      width: 1200,
+      height: 630,
+      alt: `${project.title} preview`,
+      type: 'image/png',
+    },
+  ];
   if (mainImage) {
-    images.push({ url: mainImage, alt: `${project.title} hero image` });
+    images.push({
+      url: mainImage,
+      width: 1200,
+      height: 630,
+      alt: `${project.title} hero image`,
+    });
   }
-  images.push({ url: ogGenerated, alt: `${project.title} generated preview` });
 
-  const twitterImages = images.map(image => image.url);
+  const twitterImages = images.map(image => {
+    if (typeof image === 'string') return image;
+    if (image instanceof URL) return image.toString();
+    return image.url;
+  });
+  const pageTitle = `${project.title} | Antonio Archer`;
 
   return {
-    title: `Antonio Archer - ${project.title}`,
+    title: pageTitle,
     description: project.description,
     alternates: { canonical: url },
     openGraph: {
-      title: project.title,
+      title: pageTitle,
       description: project.description,
       type: 'website',
       url,
+      siteName: 'Antonio Archer Portfolio',
+      locale: 'en_US',
       images,
     },
     twitter: {
       card: 'summary_large_image',
-      title: project.title,
+      title: pageTitle,
       description: project.description,
       images: twitterImages,
+      creator: '@ad_archer_',
     },
   };
 }

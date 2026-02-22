@@ -1433,7 +1433,10 @@ export const projects: Project[] = [
       { name: 'TailwindCSS', color: technologyColors.typescript },
     ],
     slug: 'rustysound',
+    // the demo / live preview for RustySound
     link: 'https://rustysound-demo.adarcher.app/',
+    // repository for the project so we can render the "Code" button alongside demo/visit
+    github: 'https://github.com/AD-Archer/RustySound',
     featured: false,
     gallery: [
       {
