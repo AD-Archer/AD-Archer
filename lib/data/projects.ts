@@ -1425,7 +1425,7 @@ export const projects: Project[] = [
       'A Subsonic API (Navidrome) music player built with Rust and Dioxus framework. Supports desktop, mobile, and web deployments with Tailwind CSS styling.',
     longDescription:
       'RustySound is a cross-platform music player that connects to Subsonic-compatible servers like Navidrome. Built using Rust and the Dioxus framework, it provides a native-like experience across desktop, mobile, and web platforms. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers for a unified music experience.',
-    image: '/images/projects/rustysound/main.webp',
+    image: '/images/projects/rustysound/desktop/sound_menu.webp',
     tags: ['frontend', 'rust'],
     technologies: [
       { name: 'Rust', color: technologyColors.rust },
@@ -1440,22 +1440,27 @@ export const projects: Project[] = [
     featured: false,
     gallery: [
       {
-        src: '/images/projects/rustysound/home.webp',
+        src: '/images/projects/rustysound/desktop/main.webp',
         alt: 'RustySound Home Screen',
         caption: 'Main interface showing music library and controls',
       },
       {
-        src: '/images/projects/rustysound/album.webp',
+        src: '/images/projects/rustysound/desktop/home.webp',
+        alt: 'RustySound Home Screen',
+        caption: 'Main interface showing music library and controls',
+      },
+      {
+        src: '/images/projects/rustysound/mobile/album.webp',
         alt: 'RustySound Album View',
         caption: 'Album browsing and track listing',
       },
       {
-        src: '/images/projects/rustysound/favorites.webp',
+        src: '/images/projects/rustysound/mobile/favorites.webp',
         alt: 'RustySound Favorites',
         caption: 'Favorite songs and playlists management',
       },
       {
-        src: '/images/projects/rustysound/radio.webp',
+        src: '/images/projects/rustysound/desktop/radio.webp',
         alt: 'RustySound Radio',
         caption: 'Radio stations and streaming features',
       },
