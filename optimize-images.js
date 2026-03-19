@@ -41,7 +41,7 @@ async function optimizeImages(dir) {
       if (sizeInMB > 0.1) {
         console.log(`🔄 Optimizing ${file.name} (${sizeInMB.toFixed(2)}MB)...`);
 
-        const outputPath = filePath.replace(/\.(jpg|jpeg|png|gif|bmp|tiff)$/i, '.webp');
+        const outputPath = filePath.replace(/\.(jpg|jpeg|png|bmp|tiff)$/i, '.webp');
 
         // Skip if output path would be the same as input (already webp)
         if (outputPath === filePath) {

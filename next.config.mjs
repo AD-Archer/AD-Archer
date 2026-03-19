@@ -93,6 +93,18 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'launchpadphilly.org',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i0.wp.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'registry.npmmirror.com',
         port: '',
         pathname: '/**',

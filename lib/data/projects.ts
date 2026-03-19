@@ -1339,7 +1339,7 @@ export const projects: Project[] = [
       'Have you ever said the phrase "I take stock in that" or "my stock in *blank* is going to the moon" about something that isn\'t really stock? Well, this is an app for that. While mostly based on anime, this is a market to trade whatever you want.',
     longDescription:
       'The Anime Stock Market is a unique trading platform where users can create and trade "stocks" in anything imaginable - anime characters, memes, hobbies, or even abstract concepts. Built with a self-hosted Appwrite instance for real-time data management, it features live stock buys, calls, puts, and social media integration with comments and direct messages. Whether you\'re investing in your favorite anime waifu or betting on the next viral trend, this platform turns opinions into tradable assets.',
-    image: '/images/projects/animestockmarket/lander2.webp',
+    image: '/images/projects/animestockmarket/banner.webp',
     tags: ['fullstack', 'realtime', 'social', 'finance'],
     technologies: [
       { name: 'Appwrite', color: technologyColors.nodejs },
@@ -1360,6 +1360,11 @@ export const projects: Project[] = [
       'Real-time market updates and notifications',
     ],
     gallery: [
+      {
+        src: '/images/projects/animestockmarket/banner.webp',
+        alt: 'Banner',
+        caption: 'Banner for the Anime Stock Market project',
+      },
       {
         src: '/images/projects/animestockmarket/lander.webp',
         alt: 'Landing page',
@@ -1422,9 +1427,9 @@ export const projects: Project[] = [
     id: '29',
     title: 'RustySound',
     description:
-      'A Subsonic API (Navidrome) music player built with Rust and Dioxus framework. Supports desktop, mobile, and web deployments with Tailwind CSS styling.',
+      'RustySound is a lightweight (<10MB) cross-platform music player available on Android, iOS, macOS, Windows, and Linux. It connects to Subsonic-compatible servers like Navidrome and delivers a native, responsive experience across devices.',
     longDescription:
-      'RustySound is a cross-platform music player that connects to Subsonic-compatible servers like Navidrome. Built using Rust and the Dioxus framework, it provides a native-like experience across desktop, mobile, and web platforms. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers for a unified music experience.',
+      'RustySound is a lightweight music player (under 10MB) that connects to Subsonic-compatible servers like Navidrome. Built with Rust and the Dioxus framework, it provides a native-like experience across Android, iOS, macOS, Windows, and Linux. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers for a unified music experience.',
     image: '/images/projects/rustysound/desktop/sound_menu.webp',
     tags: ['frontend', 'rust'],
     technologies: [
@@ -1439,6 +1444,26 @@ export const projects: Project[] = [
     github: 'https://github.com/AD-Archer/RustySound',
     featured: false,
     gallery: [
+      {
+        src: '/images/projects/rustysound/desktop/shot.gif',
+        alt: 'RustySound playback animation',
+        caption: 'Animated playback controls demo (gif)',
+      },
+      {
+        src: '/images/projects/rustysound/desktop/preview-shot.gif',
+        alt: 'RustySound browsing animation',
+        caption: 'Animated browsing through playlists and library (gif)',
+      },
+      {
+        src: '/images/projects/rustysound/mobile/lyrics.webp',
+        alt: 'RustySound Lyrics View',
+        caption: 'Lyrics display for the currently playing song',
+      },
+      {
+        src: '/images/projects/rustysound/mobile/song_menu.webp',
+        alt: 'RustySound Song Menu',
+        caption: 'Song actions menu for adding/delete/queue controls',
+      },
       {
         src: '/images/projects/rustysound/desktop/main.webp',
         alt: 'RustySound Home Screen',
@@ -1466,6 +1491,8 @@ export const projects: Project[] = [
       },
     ],
     features: [
+      'Lightweight install (<10MB) across all platforms',
+      'Available on Android, iOS, macOS, Windows, and Linux',
       'Cross-platform support (desktop, mobile, web)',
       'Subsonic API integration for Navidrome compatibility',
       'Native performance with Rust',
