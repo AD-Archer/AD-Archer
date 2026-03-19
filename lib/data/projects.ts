@@ -30,7 +30,7 @@ export const projects: Project[] = [
       { name: 'Kubernetes', color: technologyColors.typescript },
     ],
     slug: 'archer-life',
-    featured: true,
+    featured: false,
     featuredPriority: 0,
     features: [
       'Story-first landing page summarizing the 2024-25 transformation journey',
