@@ -982,7 +982,7 @@ export const projects: Project[] = [
       { name: 'phraser', color: technologyColors.typescript },
     ],
     slug: 'win-or-lose-philly',
-    link: 'https://winorlosephilly.verecl.app/',
+    link: 'https://winorlosephilly.vercel.app/',
     github: 'https://github.com/AD-Archer/winorlosephilly',
     featured: false,
     features: ['Retro-styled browser game', 'Built for 2024 Super Bowl', 'Built with Phaser.js'],
