@@ -24,17 +24,17 @@ export default function PublicationsPage() {
   }, []);
 
   // Define available categories (including 'All')
-  const categories = ['All', 'Self', 'Mention', 'Quote', 'Article'];
+  const categories = ['All', 'Self', 'Mention', 'Quote', 'Article', 'Video'];
 
   // Filter by selected category first
   const filteredByCategory =
     selectedCategory === 'All'
       ? publications
-      : publications.filter((pub) => pub.category === selectedCategory);
+      : publications.filter(pub => pub.category === selectedCategory);
 
   // Apply search filter on top of category filter
   const filteredPublications = searchQuery.trim()
-    ? filteredByCategory.filter((pub) => {
+    ? filteredByCategory.filter(pub => {
         const q = searchQuery.toLowerCase();
         return (
           pub.title.toLowerCase().includes(q) ||
@@ -44,14 +44,28 @@ export default function PublicationsPage() {
       })
     : filteredByCategory;
 
+  const formatPublicationDate = (rawDate: string) => {
+    const d = new Date(rawDate);
+    if (Number.isNaN(d.getTime())) {
+      return rawDate;
+    }
+    return d.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  };
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-muted/50 to-background">
       <div className="container px-4 md:px-6 py-16">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Publications &amp; Mentions</h1>
           <p className="text-muted-foreground max-w-[800px] mb-8 mx-auto">
-            A collection of articles, mentions, and technical writing where I&apos;ve been featured or contributed.
+            A collection of articles, mentions, and technical writing where I&apos;ve been featured
+            or contributed.
           </p>
         </motion.div>
 
@@ -59,7 +73,7 @@ export default function PublicationsPage() {
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="mb-6">
           <div className="flex justify-center">
             <TabsList>
-              {categories.map((cat) => (
+              {categories.map(cat => (
                 <TabsTrigger key={cat} value={cat}>
                   {cat}
                 </TabsTrigger>
@@ -81,7 +95,7 @@ export default function PublicationsPage() {
               type="text"
               placeholder="Search publications..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="pl-10 pr-10"
             />
             {searchQuery && (
@@ -110,17 +124,26 @@ export default function PublicationsPage() {
                 whileHover={{ scale: 1.02 }}
               >
                 <Card className="overflow-hidden h-full flex flex-col">
-                  <Link href={pub.link} target="_blank" rel="noopener noreferrer" className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer block">
+                  <Link
+                    href={pub.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer block"
+                  >
                     {pub.image ? (
                       <Image
                         src={pub.image}
                         alt={pub.title}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
-                        onError={(e) => {
+                        onError={e => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
-                          target.parentElement!.classList.add('bg-gradient-to-br', 'from-primary/20', 'to-secondary/20');
+                          target.parentElement!.classList.add(
+                            'bg-gradient-to-br',
+                            'from-primary/20',
+                            'to-secondary/20'
+                          );
                         }}
                       />
                     ) : (
@@ -136,13 +159,13 @@ export default function PublicationsPage() {
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
                       <Badge variant="outline">{pub.publisher}</Badge>
                       <span>•</span>
-                      <span>{pub.date}</span>
+                      <span>{formatPublicationDate(pub.date)}</span>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-muted-foreground line-clamp-3">{pub.description}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      {pub.tags?.map((tag) => (
+                      {pub.tags?.map(tag => (
                         <Badge key={tag} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>
@@ -165,7 +188,11 @@ export default function PublicationsPage() {
 
         {/* Empty state */}
         {filteredPublications.length === 0 && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
             <p className="text-muted-foreground">No publications match your search.</p>
           </motion.div>
         )}

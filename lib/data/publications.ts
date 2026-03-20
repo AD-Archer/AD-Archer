@@ -27,4 +27,40 @@ export const publications: Publication[] = [
       'https://i0.wp.com/launchpadphilly.org/wp-content/uploads/2025/11/Launchpad-Graduation-2025-3.jpg?fit=2400%2C1601&ssl=1',
     category: 'Mention',
   },
+  {
+    id: '3',
+    title: 'UrbEd Blog | March School Board RECAP!',
+    description:
+      'March 2023 recap of the Philadelphia School Board meeting from UrbEd Advocates covering student achievement, equity, language access, budget priorities, and civic participation.',
+    date: '2023-03-15',
+    publisher: 'UrbEd Advocates',
+    link: 'https://www.urbedadvocates.org/blog/march-school-board-recap',
+    tags: ['Mention', 'Education', 'School Board', 'Policy', 'K-12'],
+    image: '/images/publications/March-board-meeting.png',
+    category: 'Article',
+  },
+  {
+    id: '4',
+    title: 'The Philly Way (GeocachePhilly)',
+    description:
+      'GeocachePhilly (The Philly Way) is a Devpost project featuring an interactive neighborhood treasure-hunt experience to discover hidden gems, culture, and community in Philadelphia.',
+    date: '2024-01-01',
+    publisher: 'Devpost',
+    link: 'https://devpost.com/software/geocachephilly',
+    tags: ['Self', 'Devpost', 'Philly', 'Map', 'Community'],
+    image: '/images/publications/geocache.png',
+    category: 'Self',
+  },
+  {
+    id: '5',
+    title: 'BCHS Graduation Class of 2024 - Valedictorian Speech',
+    description:
+      'Valedictorian graduation speech from Belmont Charter High School Class of 2024, focusing on leadership, resilience, community, and future-ready education goals.',
+    date: '2024-06-13',
+    publisher: 'Belmont Charter Events Live',
+    link: 'https://www.youtube.com/watch?v=Y8GJvQwy790',
+    tags: ['Video', 'Speech', 'Education', 'Graduation', 'Public Speaking'],
+    image: '/images/publications/graduation.png',
+    category: 'Video',
+  },
 ];
