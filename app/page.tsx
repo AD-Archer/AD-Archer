@@ -27,6 +27,10 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <h1 className="sr-only">
+        Antonio Archer portfolio showcasing full-stack development, DevOps engineering, AI projects,
+        and technical writing
+      </h1>
       <Hero3D />
       <GitHubStats />
       <ProjectShowcase />

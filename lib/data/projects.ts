@@ -6,6 +6,7 @@ export const projects: Project[] = [
   //   id: "",
   //   title: "",
   //   description: "",
+  //   retiredSlugs: [''],
   //   image: "",
   //   tags: [],
   //   featured: false,
@@ -1349,6 +1350,7 @@ export const projects: Project[] = [
     ],
     slug: 'stockmarket',
     link: 'https://animestockmarket.tech',
+    retiredSlugs: ['animestockmarket'],
     featured: true,
     featuredPriority: 2,
     features: [
@@ -1394,6 +1396,110 @@ export const projects: Project[] = [
         roleLink: 'https://github.com/AD-Archer',
       },
     ],
+  },
+
+  {
+    id: '26',
+    title: 'LLM RAG Visualization Dashboard',
+    description:
+      'React dashboard for visualizing JSON-based RAG pipeline output, with optional n8n orchestration and support for open-source model runtimes like Ollama and llama.cpp.',
+    longDescription:
+      'The LLM RAG Visualization Dashboard is a lightweight React and Node.js application built to make Retrieval-Augmented Generation pipelines easier to inspect, explain, and debug. It can run as a simple raw Node backend or plug into n8n when a workflow layer makes orchestration easier. The dashboard renders JSON pipeline data into a readable interface so teams can trace retrieval, generation, and response flow without digging through logs.\n\nThis implementation was deployed on DigitalOcean, but the architecture is intentionally portable. It supports open-source model runtimes including Ollama and llama.cpp, making it practical for private infrastructure, budget-friendly hosting, and teams that want control over their own AI stack.',
+    image: '/images/projects/llm-visi/example.webp',
+    tags: ['fullstack', 'ai', 'node', 'devops'],
+    technologies: [
+      { name: 'React.js', color: technologyColors.react },
+      { name: 'Node.js', color: technologyColors.nodejs },
+      { name: 'n8n', color: technologyColors.nodejs },
+      { name: 'Ollama', color: technologyColors.python },
+      { name: 'llama.cpp', color: technologyColors.python },
+      { name: 'JSON', color: technologyColors.typescript },
+      { name: 'DigitalOcean', color: technologyColors.typescript },
+    ],
+    slug: 'llm-rag-visualization-dashboard',
+    featured: false,
+    featuredPriority: 4,
+    retiredSlugs: ['llm-vision'],
+    features: [
+      'JSON-driven dashboard for visualizing RAG pipeline state and outputs',
+      'Works as a plain Node.js backend or with n8n for workflow orchestration',
+      'Supports open-source model runtimes including Ollama and llama.cpp',
+      'Portable infrastructure design despite the original DigitalOcean deployment',
+      'Simple React frontend for explaining complex AI flows to non-technical stakeholders',
+      'Useful for tracing retrieval, prompt context, generation steps, and final responses',
+    ],
+    gallery: [
+      {
+        src: '/images/projects/llm-visi/example.webp',
+        alt: 'LLM RAG Visualization Dashboard interface',
+        caption: 'Dashboard view showing JSON-backed RAG pipeline visualization.',
+      },
+    ],
+    video: {
+      url: 'https://youtu.be/nhqPZ9hSjs8',
+      title: 'LLM RAG Visualization Dashboard Walkthrough',
+      provider: 'youtube',
+    },
+    caseStudy: {
+      problem: [
+        'RAG workflows are hard to inspect when the only source of truth is raw JSON, logs, or disconnected automation runs.',
+        'Teams using open-source models need a simpler way to explain and validate how retrieval and generation steps are behaving.',
+        'Some deployments need the flexibility to run directly on a small Node backend, while others benefit from n8n orchestration.',
+      ],
+      solution: [
+        'Built a React dashboard that turns raw JSON pipeline output into a readable visualization for debugging and demos.',
+        'Kept the backend simple so the project can run standalone or attach to n8n workflows when orchestration is useful.',
+        'Designed the system around open-source model runtimes so teams can self-host with Ollama, llama.cpp, or comparable stacks.',
+      ],
+      architecture: [
+        'React frontend renders JSON payloads from RAG executions into a dashboard-oriented interface.',
+        'Node.js backend exposes the pipeline data directly and can also act as a bridge for n8n-driven workflows.',
+        'Deployment ran on DigitalOcean, but the stack stays portable across VPS, homelab, or other cloud environments.',
+      ],
+      results: [
+        'Made it easier to understand RAG behavior without reading raw logs line by line.',
+        'Reduced setup friction by supporting both direct Node usage and optional n8n integration.',
+        'Created a practical demo surface for open-source LLM workflows powered by self-hosted infrastructure.',
+      ],
+    },
+    team: [
+      {
+        name: 'Antonio Archer',
+        role: 'Full-Stack Developer & AI Engineer',
+        link: 'https://www.linkedin.com/in/antonio-archer/',
+        roleLink: 'https://github.com/AD-Archer',
+      },
+      {
+        name: 'Mohamed Souare',
+        role: 'Data Source Team',
+        link: 'https://www.linkedin.com/in/mohamed-souare-8a61a2259/',
+        roleLink: 'https://github.com/mo-fr',
+      },
+      {
+        name: 'Demitri DeLuca-Lyons',
+        role: 'Full-Stack Developer',
+        link: 'https://www.linkedin.com/in/demitri-deluca-lyons-747312319/',
+        roleLink: 'https://github.com/DDeluca06',
+      },
+      {
+        name: 'Bryan Gunawan',
+        role: 'Data Source Team',
+        link: 'https://www.linkedin.com/in/bryan-gunawan-a537132b9/',
+        roleLink: 'https://github.com/manineedtosleep',
+      },
+    ],
+    architecture: {
+      summary:
+        'Portable RAG visualization stack using a React frontend, Node.js backend, optional n8n orchestration, and open-source model runtimes such as Ollama and llama.cpp.',
+      notes: [
+        'React.js frontend translates raw JSON execution data into a readable dashboard',
+        'Node.js backend can run standalone without workflow tooling',
+        'n8n support adds optional orchestration rather than being a hard dependency',
+        'DigitalOcean was used for the original deployment, but the architecture is provider-agnostic',
+        'Open-source runtime support keeps the stack compatible with Ollama and llama.cpp',
+        'Useful for debugging retrieval flow, context construction, and generation output',
+      ],
+    },
   },
 
   {

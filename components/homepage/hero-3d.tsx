@@ -78,12 +78,12 @@ export default function Hero3D() {
                 />
               </div>
             </motion.div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-2 text-foreground drop-shadow-md font-sans">
+            <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-2 text-foreground drop-shadow-md font-sans">
               Antonio Archer
-            </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-primary drop-shadow-md font-sans">
-              Full Stack Developer & AI Enthusiast
             </h2>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-primary drop-shadow-md font-sans">
+              Full Stack Developer & AI Enthusiast
+            </p>
             <p className="mt-4 text-foreground/90 text-lg leading-relaxed font-medium px-4 drop-shadow-sm font-sans">
               Building innovative web solutions with modern technologies
             </p>

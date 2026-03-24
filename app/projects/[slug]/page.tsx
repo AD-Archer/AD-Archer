@@ -1,5 +1,5 @@
-import { projects, tags } from '@/lib/data';
-import { notFound } from 'next/navigation';
+import { getProjectBySlug, hasProjectSlug, isRetiredProjectSlug, projects, tags } from '@/lib/data';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -30,15 +30,10 @@ import type { VideoWalkthrough } from '@/lib/data';
 import { MarkdownContent } from '@/components/markdown-content';
 import { isMarkdown } from '@/lib/utils';
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
-  return projects
-    .filter(
-      (project): project is typeof project & { slug: string } =>
-        typeof project.slug === 'string' && project.slug.length > 0
-    )
-    .map(project => ({
-      slug: project.slug,
-    }));
+  return projects.filter(hasProjectSlug).map(project => ({ slug: project.slug }));
 }
 
 // SEO metadata per project
@@ -48,10 +43,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const project = projects.find(p => p.slug === resolvedParams.slug);
+  const project = getProjectBySlug(resolvedParams.slug);
   if (!project) return {};
   const siteUrl = 'https://www.antonioarcher.com';
-  const url = `${siteUrl}/projects/${resolvedParams.slug}`;
+  const url = `${siteUrl}/projects/${project.slug}`;
   const mainImage = project.image
     ? project.image.startsWith('http')
       ? project.image
@@ -112,14 +107,18 @@ export async function generateMetadata({
 // Following Next.js convention for App Router pages
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const project = projects.find(p => p.slug === resolvedParams.slug);
+  const project = getProjectBySlug(resolvedParams.slug);
 
   if (!project) {
     notFound();
   }
 
+  if (isRetiredProjectSlug(project, resolvedParams.slug)) {
+    permanentRedirect(`/projects/${project.slug}`);
+  }
+
   const siteUrl = 'https://www.antonioarcher.com';
-  const projectUrl = `${siteUrl}/projects/${resolvedParams.slug}`;
+  const projectUrl = `${siteUrl}/projects/${project.slug}`;
 
   // Get related projects (excluding current project), prioritizing featured ones
   const relatedProjects = getSimilarProjects(
@@ -301,7 +300,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       asChild
                       variant="outline"
                       size="sm"
-                      className="shadow-md hover:shadow-lg transition-shadow w-full sm:w-auto"
+                      className="hidden shadow-md transition-shadow hover:shadow-lg sm:inline-flex sm:w-auto"
                     >
                       <Link href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="mr-2 h-4 w-4" />

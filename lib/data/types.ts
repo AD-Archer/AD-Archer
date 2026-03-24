@@ -22,6 +22,7 @@ export type Project = {
   link?: string;
   github?: string;
   slug?: string;
+  retiredSlugs?: string[];
   features?: string[];
   // Optional extended case study fields (all optional, render only if present)
   gallery?: GalleryImage[];
