@@ -106,6 +106,7 @@ export const projects: Project[] = [
       title: 'Archer Life Walkthrough',
       provider: 'youtube',
     },
+    showVideoInPublications: true,
   },
   {
     id: '22',
@@ -237,6 +238,7 @@ export const projects: Project[] = [
       title: 'Archer Fitness Walkthrough',
       provider: 'youtube',
     },
+    showVideoInPublications: false,
   },
   {
     id: '23',
@@ -347,6 +349,7 @@ export const projects: Project[] = [
       title: 'Archer Aqua Walkthrough',
       provider: 'youtube',
     },
+    showVideoInPublications: false,
   },
   {
     id: '24',
@@ -458,6 +461,7 @@ export const projects: Project[] = [
       title: 'Archer Health Walkthrough',
       provider: 'youtube',
     },
+    showVideoInPublications: false,
   },
   {
     id: '1',

@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { ExternalLink, Github, Search, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ProjectDemoDialog from '@/app/projects/components/project-demo-dialog';
@@ -239,14 +239,6 @@ export default function ProjectsPage() {
                       </Button>
                     )}
                     {project.link && <ProjectDemoDialog url={project.link} title={project.title} />}
-                    {project.github && (
-                      <Button asChild size="sm" variant="outline">
-                        <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-1" />
-                          Code
-                        </Link>
-                      </Button>
-                    )}
                   </CardFooter>
                 </Card>
               </motion.div>

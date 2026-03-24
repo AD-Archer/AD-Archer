@@ -36,7 +36,7 @@ export const publications: Publication[] = [
     publisher: 'UrbEd Advocates',
     link: 'https://www.urbedadvocates.org/blog/march-school-board-recap',
     tags: ['Mention', 'Education', 'School Board', 'Policy', 'K-12'],
-    image: '/images/publications/March-board-meeting.png',
+    image: '/images/publications/March-board-meeting.webp',
     category: 'Article',
   },
   {
@@ -48,7 +48,7 @@ export const publications: Publication[] = [
     publisher: 'Devpost',
     link: 'https://devpost.com/software/geocachephilly',
     tags: ['Self', 'Devpost', 'Philly', 'Map', 'Community'],
-    image: '/images/publications/geocache.png',
+    image: '/images/publications/geocache.webp',
     category: 'Self',
   },
   {
@@ -60,7 +60,7 @@ export const publications: Publication[] = [
     publisher: 'Belmont Charter Events Live',
     link: 'https://www.youtube.com/watch?v=Y8GJvQwy790',
     tags: ['Video', 'Speech', 'Education', 'Graduation', 'Public Speaking'],
-    image: '/images/publications/graduation.png',
+    image: '/images/publications/graduation.webp',
     category: 'Video',
   },
 ];

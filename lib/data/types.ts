@@ -32,6 +32,7 @@ export type Project = {
   team?: TeamMember[];
   architecture?: ArchitectureSection;
   video?: VideoWalkthrough;
+  showVideoInPublications?: boolean;
   codeSnippets?: CodeSnippet[];
 };
 
@@ -133,10 +134,11 @@ export type Education = {
 
 export type Publication = {
   category: string;
+  additionalCategories?: string[];
   id: string;
   title: string;
   description: string;
-  date: string;
+  date?: string;
   publisher: string;
   link: string;
   image?: string;
