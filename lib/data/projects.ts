@@ -1314,14 +1314,17 @@ export const projects: Project[] = [
         roleLink: 'https://github.com/JamirOng',
       },
     ],
-    // architecture: {
-    //   summary: 'Composable grid filters mapped to ECSQL, decoupled from the viewer, with API routes mediating data access.',
-    //   images: [
-    //     { src: '/images/diagrams/itwin-arch.webp', alt: 'High-level architecture', caption: 'Client, API, iTwin platform' },
-    //   ],
-    //   notes: ['Uses SSR for SEO on catalog pages', 'Caches query metadata in memory', 'Feature flags for beta filters'],
-    // },
-    // video: { url: 'https://youtu.be/dQw4w9WgXcQ', title: 'iTwin Grid Search Walkthrough' },
+    architecture: {
+      summary:
+        'Composable ECSQL-driven filters are mapped into a modern React UI, with API routes mediating data access between the iTwin viewer and large BIM query results.',
+      notes: [
+        'iTwin.js viewer integration keeps 3D exploration and query results tightly connected',
+        'React and TypeScript components replaced legacy patterns and improved maintainability',
+        'ECSQL filter composition made it easier to add new search controls for non-technical users',
+        'API routes mediate query execution and result shaping before data reaches the frontend',
+        'URL-driven state and modern component architecture improved deep-linking and debugging',
+      ],
+    },
     codeSnippets: [
       {
         title: 'ECSQL filter builder',
