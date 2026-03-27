@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
-import { projects, skills, certifications, jobs, education } from '@/lib/data';
+import {
+  projects,
+  skills,
+  certifications,
+  jobs,
+  education,
+  getPublicationsWithProjectVideos,
+} from '@/lib/data';
 import type { Project, Technology } from '@/lib/data';
 
 export async function GET() {
   try {
+    const publications = getPublicationsWithProjectVideos();
+
     // Flatten skills to a single list of unique names
     const skillsFlat = Array.from(
       new Set(
@@ -41,11 +50,12 @@ export async function GET() {
     }
 
     const data = {
-  skills: skillsFlat,
+      skills: skillsFlat,
+      publications,
       certifications,
       jobs,
       education,
-  projects: sanitizedProjects,
+      projects: sanitizedProjects,
       meta: {
         name: 'Antonio Archer',
         age,
