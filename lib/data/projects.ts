@@ -463,51 +463,7 @@ export const projects: Project[] = [
     },
     showVideoInPublications: false,
   },
-  {
-    id: '26',
-    title: 'RustySound',
-    description:
-      'Cross-platform music player UI concept with desktop and mobile themes, built as a portfolio design system experiment.',
-    longDescription:
-      'RustySound is a visual and UX concept for a modern music player interface featuring dark mode gradients, album carousels, and responsive layouts. It was created as part of a brand identity exploration for digital audio experiences and includes themeable desktop/mobile layouts.',
-    image: '/images/projects/rustysound/desktop/desktoptheme1.webp',
-    tags: ['design', 'ui', 'frontend'],
-    technologies: [
-      { name: 'Figma', color: technologyColors.typescript },
-      { name: 'Next.js', color: technologyColors.react },
-      { name: 'TypeScript', color: technologyColors.typescript },
-      { name: 'TailwindCSS', color: technologyColors.typescript },
-    ],
-    slug: 'rustysound',
-    link: 'https://www.antonioarcher.com/projects/rustysound',
-    github: 'https://github.com/AD-Archer/rustysound',
-    featured: true,
-    featuredPriority: 2,
-    gallery: [
-      {
-        src: '/images/projects/rustysound/desktop/desktoptheme1.webp',
-        alt: 'RustySound desktop theme 1',
-        caption: 'RustySound desktop theme 1 preview',
-      },
-      {
-        src: '/images/projects/rustysound/desktop/desktoptheme2.webp',
-        alt: 'RustySound desktop theme 2',
-        caption: 'RustySound desktop theme 2 dark mode',
-      },
-      {
-        src: '/images/projects/rustysound/mobile/mobiletheme1.webp',
-        alt: 'RustySound mobile theme',
-        caption: 'RustySound mobile layout with responsive controls',
-      },
-    ],
-    features: [
-      'Desktop and mobile theme exploration for modern music playback UI',
-      'Immersive album carousel and recently played widgets',
-      'Clear low-contrast visual hierarchy for night mode aesthetics',
-      'Responsive controls and mobile-first navigation patterns',
-    ],
-    showVideoInPublications: false,
-  },
+
   {
     id: '1',
     title: 'Philly Social',
@@ -1646,6 +1602,21 @@ export const projects: Project[] = [
         src: '/images/projects/rustysound/desktop/radio.webp',
         alt: 'RustySound Radio',
         caption: 'Radio stations and streaming features',
+      },
+      {
+        src: '/images/projects/rustysound/desktop/desktoptheme1.webp',
+        alt: 'RustySound desktop theme 1',
+        caption: 'RustySound desktop theme 1 preview',
+      },
+      {
+        src: '/images/projects/rustysound/desktop/desktoptheme2.webp',
+        alt: 'RustySound desktop theme 2',
+        caption: 'RustySound desktop theme 2 dark mode',
+      },
+      {
+        src: '/images/projects/rustysound/mobile/mobiletheme1.webp',
+        alt: 'RustySound mobile theme',
+        caption: 'RustySound mobile layout with responsive controls',
       },
     ],
     features: [
