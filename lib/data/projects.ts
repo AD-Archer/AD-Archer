@@ -464,6 +464,51 @@ export const projects: Project[] = [
     showVideoInPublications: false,
   },
   {
+    id: '26',
+    title: 'RustySound',
+    description:
+      'Cross-platform music player UI concept with desktop and mobile themes, built as a portfolio design system experiment.',
+    longDescription:
+      'RustySound is a visual and UX concept for a modern music player interface featuring dark mode gradients, album carousels, and responsive layouts. It was created as part of a brand identity exploration for digital audio experiences and includes themeable desktop/mobile layouts.',
+    image: '/images/projects/rustysound/desktop/desktoptheme1.webp',
+    tags: ['design', 'ui', 'frontend'],
+    technologies: [
+      { name: 'Figma', color: technologyColors.typescript },
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+    ],
+    slug: 'rustysound',
+    link: 'https://www.antonioarcher.com/projects/rustysound',
+    github: 'https://github.com/AD-Archer/rustysound',
+    featured: true,
+    featuredPriority: 2,
+    gallery: [
+      {
+        src: '/images/projects/rustysound/desktop/desktoptheme1.webp',
+        alt: 'RustySound desktop theme 1',
+        caption: 'RustySound desktop theme 1 preview',
+      },
+      {
+        src: '/images/projects/rustysound/desktop/desktoptheme2.webp',
+        alt: 'RustySound desktop theme 2',
+        caption: 'RustySound desktop theme 2 dark mode',
+      },
+      {
+        src: '/images/projects/rustysound/mobile/mobiletheme1.webp',
+        alt: 'RustySound mobile theme',
+        caption: 'RustySound mobile layout with responsive controls',
+      },
+    ],
+    features: [
+      'Desktop and mobile theme exploration for modern music playback UI',
+      'Immersive album carousel and recently played widgets',
+      'Clear low-contrast visual hierarchy for night mode aesthetics',
+      'Responsive controls and mobile-first navigation patterns',
+    ],
+    showVideoInPublications: false,
+  },
+  {
     id: '1',
     title: 'Philly Social',
     description:
@@ -1540,9 +1585,9 @@ export const projects: Project[] = [
     id: '29',
     title: 'RustySound',
     description:
-      'RustySound is a lightweight (<10MB) cross-platform music player available on Android, iOS, macOS, Windows, and Linux. It connects to Subsonic-compatible servers like Navidrome and delivers a native, responsive experience across devices.',
+      'RustySound is a lightweight (<15MB) cross-platform music player available on Android, iOS, macOS, Windows, and Linux. It connects to Subsonic-compatible servers like Navidrome and delivers a native, responsive experience across devices.',
     longDescription:
-      'RustySound is a lightweight music player (under 10MB) that connects to Subsonic-compatible servers like Navidrome. Built with Rust and the Dioxus framework, it provides a native-like experience across Android, iOS, macOS, Windows, and Linux. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers for a unified music experience.',
+      'RustySound is a lightweight music player (under 10MB) that connects to Subsonic-compatible servers like Navidrome. Built with Rust and the Dioxus framework, it provides a native-like experience across Android, iOS, macOS, Windows, and Linux. The application features a clean, responsive interface styled with Tailwind CSS and offers seamless music streaming and library management. You can connect multiple clients to different servers, View Lyrics, Apply custom themes, share lyric previews, and download music  .',
     image: '/images/projects/rustysound/desktop/sound_menu.webp',
     tags: ['frontend', 'rust'],
     technologies: [
