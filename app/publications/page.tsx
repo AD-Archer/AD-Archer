@@ -11,6 +11,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ExternalLink, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 export default function PublicationsPage() {
   const publicationEntries = getPublicationsWithProjectVideos();
@@ -172,14 +173,28 @@ export default function PublicationsPage() {
                     <p className="text-muted-foreground line-clamp-3">{pub.description}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {pub.tags?.map(tag => (
-                        <Badge key={tag} variant="secondary" className="text-xs">
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className={cn(
+                            'text-xs',
+                            tag.toLowerCase() === 'video' &&
+                              'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300'
+                          )}
+                        >
                           {tag}
                         </Badge>
                       ))}
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button asChild className="w-full">
+                    <Button
+                      asChild
+                      className={cn(
+                        'w-full',
+                        pub.category === 'Video' && 'bg-green-600 text-white hover:bg-green-700'
+                      )}
+                    >
                       <Link href={pub.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         {pub.category === 'Video' ? 'Watch Video' : 'Read Article'}
