@@ -2,18 +2,31 @@ import { Project } from './types';
 import { technologyColors } from './constants';
 
 export const projects: Project[] = [
-  // {
-  //   id: "",
-  //   title: "",
-  //   description: "",
-  //   retiredSlugs: [''],
-  //   image: "",
-  //   tags: [],
-  //   featured: false,
-  //   slug: "",
-  //   link: "",
-  //   features: []
-  // },
+  {
+    id: '30',
+    title: 'Headgame',
+    description:
+      'An opensource party game where people use their phones/laptops to guess people, places, and events, with custom features allowing for custom inside jokes, memes, etc.',
+    image: 'https://headgame.adarcher.app/images/logo.png',
+    tags: ['fullstack', 'frontend', 'realtime'],
+    technologies: [
+      { name: 'Next.js', color: technologyColors.react },
+      { name: 'TypeScript', color: technologyColors.typescript },
+      { name: 'TailwindCSS', color: technologyColors.typescript },
+      { name: 'Node.js', color: technologyColors.nodejs },
+    ],
+    slug: 'headgame',
+    link: 'https://headgame.adarcher.app/',
+    github: 'https://github.com/AD-Archer/headgame',
+    featured: true,
+    featuredPriority: 1,
+    features: [
+      'Multiplayer party game played via mobile or laptop',
+      'Custom categories and inside joke support',
+      'Real-time interaction and guessing mechanics',
+      'Open-source and fully customizable',
+    ],
+  },
   {
     id: '25',
     title: 'Archer Life',
@@ -1360,7 +1373,7 @@ export const projects: Project[] = [
     link: 'https://animestockmarket.tech',
     retiredSlugs: ['animestockmarket'],
     featured: true,
-    featuredPriority: 2,
+    featuredPriority: 3,
     features: [
       'Real-time stock trading with buys, calls, and puts',
       'Self-hosted Appwrite instance for data management',

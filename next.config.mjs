@@ -27,6 +27,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'headgame.adarcher.app',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'socialmetrics.adarcher.app',
         port: '',
         pathname: '/img/**',

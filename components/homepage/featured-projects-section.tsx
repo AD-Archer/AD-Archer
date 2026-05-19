@@ -40,7 +40,7 @@ export default function FeaturedProjectsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="overflow-hidden h-full comic-panel">
+              <Card className="overflow-hidden h-full comic-panel flex flex-col">
                 <div className="relative aspect-video overflow-hidden">
                   {project.slug ? (
                     <Link
@@ -100,7 +100,7 @@ export default function FeaturedProjectsSection() {
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1">
                   <p className="text-muted-foreground">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {project.tags.map(tagId => {

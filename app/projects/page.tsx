@@ -153,7 +153,7 @@ export default function ProjectsPage() {
                 layout
                 whileHover={{ scale: 1.05 }}
               >
-                <Card className="overflow-hidden h-full">
+                <Card className="overflow-hidden h-full flex flex-col">
                   <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
                     {project.slug ? (
                       <Link
@@ -215,7 +215,7 @@ export default function ProjectsPage() {
                   <CardHeader>
                     <CardTitle>{project.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1">
                     <p className="text-muted-foreground">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {project.tags.map(tagId => {
