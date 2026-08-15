@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
+import { enabledProjects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,8 +25,8 @@ export default function ProjectsPage() {
   // Filter by tags first
   let filteredProjects = sortProjectsByFeaturedPriority(
     selectedTags.length > 0
-      ? projects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
-      : projects
+      ? enabledProjects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
+      : enabledProjects
   );
 
   // Then filter by search query
@@ -159,12 +159,13 @@ export default function ProjectsPage() {
                       <Link
                         href={`/projects/${project.slug}`}
                         aria-label={`Open ${project.title} details`}
-                        className="block cursor-pointer"
+                        className="relative block h-full w-full cursor-pointer"
                       >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-contain transition-transform duration-300"
                         />
                       </Link>
@@ -174,12 +175,13 @@ export default function ProjectsPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Open ${project.title} demo`}
-                        className="block cursor-pointer"
+                        className="relative block h-full w-full cursor-pointer"
                       >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-contain transition-transform duration-300"
                         />
                       </Link>
@@ -189,12 +191,13 @@ export default function ProjectsPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Open ${project.title} repository`}
-                        className="block cursor-pointer"
+                        className="relative block h-full w-full cursor-pointer"
                       >
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-contain transition-transform duration-300"
                         />
                       </Link>
@@ -203,6 +206,7 @@ export default function ProjectsPage() {
                         src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-contain transition-transform duration-300"
                       />
                     )}

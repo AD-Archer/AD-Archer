@@ -1,5 +1,5 @@
 import { Project, Publication } from './types';
-import { projects } from './projects';
+import { enabledProjects } from './projects';
 import { publications } from './publications';
 
 export const hasProjectSlug = (project: Project): project is Project & { slug: string } =>
@@ -14,7 +14,7 @@ export const getProjectRouteSlugs = (project: Project) => {
 };
 
 export const getProjectBySlug = (slug: string) =>
-  projects.find(
+  enabledProjects.find(
     (project): project is Project & { slug: string } =>
       hasProjectSlug(project) && getProjectRouteSlugs(project).includes(slug)
   );
@@ -41,9 +41,9 @@ export const sortProjectsByFeaturedPriority = (projects: Project[]) => {
   });
 };
 
-export const getFeaturedProjects = (projectList: Project[] = projects) => {
+export const getFeaturedProjects = (projectList: Project[] = enabledProjects) => {
   return projectList
-    .filter(project => project.featured)
+    .filter(project => project.disabled !== true && project.featured)
     .sort((a, b) => {
       const aPriority = a.featuredPriority ?? 999;
       const bPriority = b.featuredPriority ?? 999;
@@ -51,12 +51,12 @@ export const getFeaturedProjects = (projectList: Project[] = projects) => {
     });
 };
 
-export const getNonFeaturedProjects = (projectList: Project[] = projects) => {
-  return projectList.filter(project => !project.featured);
+export const getNonFeaturedProjects = (projectList: Project[] = enabledProjects) => {
+  return projectList.filter(project => project.disabled !== true && !project.featured);
 };
 
 export const getPublicationsWithProjectVideos = (): Publication[] => {
-  const projectVideos: Publication[] = projects
+  const projectVideos: Publication[] = enabledProjects
     .filter(
       (project): project is Project & { video: NonNullable<Project['video']> } =>
         !!project.video && project.showVideoInPublications !== false

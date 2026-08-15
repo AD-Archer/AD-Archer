@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
+import { enabledProjects, tags, sortProjectsByFeaturedPriority } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,8 +15,8 @@ export default function ProjectsSection() {
 
   const filteredProjects = sortProjectsByFeaturedPriority(
     selectedTags.length > 0
-      ? projects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
-      : projects
+      ? enabledProjects.filter(project => selectedTags.some(tag => project.tags.includes(tag)))
+      : enabledProjects
   );
 
   const toggleTag = (tagId: string) => {
@@ -87,31 +87,34 @@ export default function ProjectsSection() {
                 <Card className="overflow-hidden h-full comic-panel">
                   <div className="relative aspect-video overflow-hidden">
                     {project.slug ? (
-                      <Link href={`/projects/${project.slug}`} aria-label={`Open ${project.title} details`} className="block cursor-pointer">
+                      <Link href={`/projects/${project.slug}`} aria-label={`Open ${project.title} details`} className="relative block h-full w-full cursor-pointer">
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-300 hover:scale-105"
                           priority={index < 3}
                         />
                       </Link>
                     ) : project.link ? (
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} demo`} className="block cursor-pointer">
+                      <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} demo`} className="relative block h-full w-full cursor-pointer">
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-300 hover:scale-105"
                           priority={index < 3}
                         />
                       </Link>
                     ) : project.github ? (
-                      <Link href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} repository`} className="block cursor-pointer">
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} repository`} className="relative block h-full w-full cursor-pointer">
                         <Image
                           src={project.image || '/placeholder.svg'}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-300 hover:scale-105"
                           priority={index < 3}
                         />
@@ -121,6 +124,7 @@ export default function ProjectsSection() {
                         src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         priority={index < 3}
                       />

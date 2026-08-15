@@ -70,11 +70,6 @@
   transform: translateY(-2px);
 }
 
-.comic-dots {
-  background-image: radial-gradient(circle, hsl(var(--muted-foreground)) 1px, transparent 1px);
-  background-size: 10px 10px;
-}
-
 .comic-panel {
   position: relative;
   overflow: hidden;

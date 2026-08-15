@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { projects } from '@/lib/data';
+import { enabledProjects } from '@/lib/data';
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Project routes
-  const projectRoutes: SitemapEntry[] = projects
+  const projectRoutes: SitemapEntry[] = enabledProjects
     .filter(project => project.slug)
     .map(project => ({
       url: `${baseUrl}/projects/${project.slug}`,

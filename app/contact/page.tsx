@@ -21,18 +21,6 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <motion.div
-            className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-          />
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-primary">Get In Touch</h1>
           <p className="text-muted-foreground max-w-[800px] text-lg">
             Have a project in mind, want to collaborate, or hire? Feel free to reach out!
@@ -75,19 +63,17 @@ export default function ContactPage() {
         </div>
         {/* Add Me To Contacts Button */}
         <motion.a
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.03, rotate: -1 }}
           whileTap={{ scale: 0.97 }}
           href="https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control"
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#ff6f61] via-[#ff4d4d] to-[#ff9966] px-7 py-3 text-sm md:text-base font-medium text-white shadow-lg shadow-[#ff6f6155] hover:shadow-[#ff4d4d66] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#ff6f61]"
+          className="group comic-border mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm md:text-base font-bold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           aria-label="Add Antonio Archer to your contacts"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20">
-            <IdCard className="h-4 w-4" />
-          </span>
+          <IdCard className="h-4 w-4" />
           <span>Add Me To Your Contacts</span>
-          <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-white/80">→</span>
+          <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
         </motion.a>
         <p className="mt-2 text-xs md:text-sm text-muted-foreground max-w-sm text-center">Save my digital card so you always have my latest details.</p>
       </motion.div>
@@ -101,20 +87,8 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <motion.div
-            className="absolute -top-4 -left-4 w-32 h-32 bg-primary/5 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-          />
-          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-transparent">
+          <Card className="comic-border h-full">
+            <CardHeader>
               <CardTitle className="text-2xl">Send a Message</CardTitle>
               <CardDescription>
                 Fill out the form below and I&apos;ll get back to you as soon as possible.
@@ -133,98 +107,74 @@ export default function ContactPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative"
         >
-          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-transparent">
+          <Card className="comic-border h-full">
+            <CardHeader>
               <CardTitle className="text-2xl">Connect With Me</CardTitle>
               <CardDescription>Reach out directly or follow me on social media</CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
               <div className="flex flex-col space-y-6">
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col divide-y divide-border">
                   {/* Email */}
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
-                    <a
-                      href="mailto:antonioarcher.dev@gmail.com"
-                      className="text-foreground hover:text-primary transition-colors"
-                    >
-                      antonioarcher.dev@gmail.com
-                    </a>
-                  </div>
+                  <a
+                    href="mailto:antonioarcher.dev@gmail.com"
+                    className="group flex items-center gap-4 py-3 first:pt-0 text-foreground hover:text-primary transition-colors"
+                  >
+                    <Mail className="h-5 w-5 shrink-0 text-primary" />
+                    <span>antonioarcher.dev@gmail.com</span>
+                  </a>
 
                   {/* Phone */}
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Phone className="h-5 w-5 text-primary" />
-                    </div>
-                    <a
-                      href="tel:+12672256778"
-                      className="text-foreground hover:text-primary transition-colors"
-                    >
-                      +1 (267) 225-6778
-                    </a>
-                  </div>
+                  <a
+                    href="tel:+12672256778"
+                    className="group flex items-center gap-4 py-3 text-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone className="h-5 w-5 shrink-0 text-primary" />
+                    <span>+1 (267) 225-6778</span>
+                  </a>
 
                   {/* Location */}
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-foreground">Philadelphia, PA, USA</span>
+                  <div className="flex items-center gap-4 py-3 text-foreground">
+                    <MapPin className="h-5 w-5 shrink-0 text-primary" />
+                    <span>Philadelphia, PA, USA</span>
                   </div>
 
                   {/* Digital Card */}
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
-                    <a
-                      href="https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:text-primary transition-colors"
-                    >
-                      Save my contact card
-                    </a>
-                  </div>
+                  <a
+                    href="https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 py-3 last:pb-0 text-foreground hover:text-primary transition-colors"
+                  >
+                    <IdCard className="h-5 w-5 shrink-0 text-primary" />
+                    <span>Save my contact card</span>
+                  </a>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <p className="text-sm text-muted-foreground mb-4">
                     Response time: Usually within 48 hours
                   </p>
                   <div className="flex gap-4">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                    <Link
+                      href="https://github.com/ad-archer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="comic-border flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-muted transition-colors"
                     >
-                      <Link
-                        href="https://github.com/ad-archer"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 p-3 bg-background rounded-lg border hover:bg-muted transition-colors"
-                      >
-                        <Github className="h-6 w-6 text-primary" />
-                        <span className="text-sm font-medium">GitHub</span>
-                      </Link>
-                    </motion.div>
+                      <Github className="h-6 w-6 text-primary" />
+                      <span className="text-sm font-medium">GitHub</span>
+                    </Link>
 
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                    <Link
+                      href="https://linkedin.com/in/antonio-archer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="comic-border flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-muted transition-colors"
                     >
-                      <Link
-                        href="https://linkedin.com/in/antonio-archer"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 p-3 bg-background rounded-lg border hover:bg-muted transition-colors"
-                      >
-                        <Linkedin className="h-6 w-6 text-primary" />
-                        <span className="text-sm font-medium">LinkedIn</span>
-                      </Link>
-                    </motion.div>
+                      <Linkedin className="h-6 w-6 text-primary" />
+                      <span className="text-sm font-medium">LinkedIn</span>
+                    </Link>
                   </div>
                 </div>
               </div>

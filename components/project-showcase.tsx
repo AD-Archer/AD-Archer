@@ -4,7 +4,7 @@ import type React from 'react';
 
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { projects, tags, getFeaturedProjects } from '@/lib/data';
+import { tags, getFeaturedProjects } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, ArrowRight, Code } from 'lucide-react';
@@ -15,7 +15,7 @@ import ProjectDemoDialog from '@/app/projects/components/project-demo-dialog';
 
 function ProjectShowcase() {
   // Get featured projects sorted by priority
-  const featuredProjects = getFeaturedProjects(projects);
+  const featuredProjects = getFeaturedProjects();
   
   const [activeProject, setActiveProject] = useState(featuredProjects[0]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -35,6 +35,10 @@ function ProjectShowcase() {
     setMousePosition({ x: 0, y: 0 });
   };
 
+  if (!activeProject) {
+    return null;
+  }
+
   return (
     <section className="py-16">
       <div className="container px-4 md:px-6">
@@ -53,7 +57,7 @@ function ProjectShowcase() {
           </motion.div>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Project selector */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
@@ -95,31 +99,34 @@ function ProjectShowcase() {
               <div className="comic-border rounded-lg overflow-hidden bg-background shadow-xl h-full transform-style-3d flex flex-col">
                 <div className="relative aspect-video overflow-hidden">
                   {activeProject.slug ? (
-                    <Link href={`/projects/${activeProject.slug}`} aria-label={`Open ${activeProject.title} details`} className="block cursor-pointer">
+                    <Link href={`/projects/${activeProject.slug}`} aria-label={`Open ${activeProject.title} details`} className="relative block h-full w-full cursor-pointer">
                       <Image
                         src={activeProject.image || '/placeholder.svg'}
                         alt={activeProject.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         priority
                       />
                     </Link>
                   ) : activeProject.link ? (
-                    <Link href={activeProject.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} demo`} className="block cursor-pointer">
+                    <Link href={activeProject.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} demo`} className="relative block h-full w-full cursor-pointer">
                       <Image
                         src={activeProject.image || '/placeholder.svg'}
                         alt={activeProject.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         priority
                       />
                     </Link>
                   ) : activeProject.github ? (
-                    <Link href={activeProject.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} repository`} className="block cursor-pointer">
+                    <Link href={activeProject.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${activeProject.title} repository`} className="relative block h-full w-full cursor-pointer">
                       <Image
                         src={activeProject.image || '/placeholder.svg'}
                         alt={activeProject.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         priority
                       />
@@ -129,6 +136,7 @@ function ProjectShowcase() {
                       src={activeProject.image || '/placeholder.svg'}
                       alt={activeProject.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover transition-transform duration-300 hover:scale-105"
                       priority
                     />

@@ -300,9 +300,10 @@ export default function ThreeBackground() {
   return (
     <div ref={containerRef} className="absolute inset-0 -z-10" aria-hidden="true">
       {loadError && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-muted-foreground text-sm">Could not load 3D background</div>
-        </div>
+        // Decorative background only: fail silently rather than showing debug text,
+        // which would otherwise sit centered behind the hero card and bleed through
+        // its semi-transparent backdrop.
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
       )}
     </div>
   );

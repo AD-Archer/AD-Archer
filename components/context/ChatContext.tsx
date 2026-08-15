@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { projects, jobs, skills, certifications, education } from '@/lib/data';
+import { enabledProjects, jobs, skills, certifications, education } from '@/lib/data';
 
 // Define the message type
 export type Message = {
@@ -18,7 +18,7 @@ type ChatContextType = {
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
   userData: {
-    projects: typeof projects;
+    projects: typeof enabledProjects;
     jobs: typeof jobs;
     skills: typeof skills;
     certifications: typeof certifications;
@@ -73,7 +73,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         isLoading,
         setIsLoading,
         userData: {
-          projects,
+          projects: enabledProjects,
           jobs,
           skills,
           certifications,

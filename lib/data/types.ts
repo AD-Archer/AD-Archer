@@ -11,6 +11,7 @@ export type Technology = {
 
 export type Project = {
   id: string;
+  disabled?: boolean; // Set to true to hide the project from the public site and APIs
   title: string;
   description: string; // Short description for SEO, sharing, and hero section
   longDescription?: string; // Detailed description for project details section
@@ -119,6 +120,7 @@ export type Certification = {
 export type Job = {
   title: string;
   company: string;
+  companyUrl?: string;
   duration: string;
   location: string;
   achievements: string[];

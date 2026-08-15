@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, BookOpen, Code, Database, Layers, PenToolIcon as Tool, Server } from "lucide-react"
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { CompanyLink } from '@/components/company-link';
 
 // Helper function to render skill icon with fallback
 function SkillIcon({
@@ -79,7 +80,7 @@ export default function SkillsSection() {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column: Skills */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -355,7 +356,11 @@ export default function SkillsSection() {
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
                       <div>
                         <CardTitle className="text-xl">{job.title}</CardTitle>
-                        <p className="text-muted-foreground">{job.company}</p>
+                        <CompanyLink
+                          name={job.company}
+                          url={job.companyUrl}
+                          className="text-muted-foreground"
+                        />
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-medium">{job.duration}</p>

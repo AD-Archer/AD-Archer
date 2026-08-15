@@ -138,6 +138,7 @@ export default function PublicationsPage() {
                         src={pub.image}
                         alt={pub.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         onError={e => {
                           const target = e.target as HTMLImageElement;

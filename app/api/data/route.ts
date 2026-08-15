@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import {
-  projects,
+  enabledProjects,
   skills,
   certifications,
   jobs,
@@ -21,7 +21,7 @@ export async function GET() {
     );
 
     // Sanitize projects (remove sensitive/heavy fields)
-    const sanitizedProjects = projects.map((p: Project) => {
+    const sanitizedProjects = enabledProjects.map((p: Project) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { id: _id, image: _image, team: _team, codeSnippets: _codeSnippets, video: _video, changelog: _changelog, milestones: _milestones, gallery: _gallery, technologies, ...rest } = p;
 

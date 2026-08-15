@@ -1,4 +1,10 @@
-import { getProjectBySlug, hasProjectSlug, isRetiredProjectSlug, projects, tags } from '@/lib/data';
+import {
+  enabledProjects,
+  getProjectBySlug,
+  hasProjectSlug,
+  isRetiredProjectSlug,
+  tags,
+} from '@/lib/data';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -33,7 +39,7 @@ import { isMarkdown } from '@/lib/utils';
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return projects.filter(hasProjectSlug).map(project => ({ slug: project.slug }));
+  return enabledProjects.filter(hasProjectSlug).map(project => ({ slug: project.slug }));
 }
 
 // SEO metadata per project
@@ -123,7 +129,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   // Get related projects (excluding current project), prioritizing featured ones
   const relatedProjects = getSimilarProjects(
     project,
-    projects.filter(p => p.id !== project.id)
+    enabledProjects.filter(p => p.id !== project.id)
   ).slice(0, 3);
 
   // Helper for GitHub repo info + cached stats
@@ -340,7 +346,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         />
 
         {/* Project Tabs Section */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="md:col-span-2 space-y-6">
             {availableTabs.length > 0 && (
               <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 md:p-5 shadow-md border border-border/50">
@@ -860,6 +866,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       src={p.image || '/placeholder.svg'}
                       alt={p.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-110 z-10"
                     />
                   )}

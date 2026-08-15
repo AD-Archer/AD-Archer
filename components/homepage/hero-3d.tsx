@@ -73,6 +73,7 @@ export default function Hero3D() {
                   src="/images/antonioarcher.webp"
                   alt="Antonio Archer"
                   fill
+                  sizes="192px"
                   className="rounded-full border-4 border-primary/10 shadow-xl object-cover"
                   priority
                 />

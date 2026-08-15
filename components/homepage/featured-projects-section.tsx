@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { projects, getFeaturedProjects } from '@/lib/data';
+import { getFeaturedProjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,7 +11,11 @@ import Image from 'next/image';
 
 export default function FeaturedProjectsSection() {
   // Get featured projects sorted by priority
-  const featuredProjects = getFeaturedProjects(projects);
+  const featuredProjects = getFeaturedProjects();
+
+  if (featuredProjects.length === 0) {
+    return null;
+  }
 
   return (
     <section id="projects" className="py-16 scroll-mt-16">
@@ -46,12 +50,13 @@ export default function FeaturedProjectsSection() {
                     <Link
                       href={`/projects/${project.slug}`}
                       aria-label={`Open ${project.title} details`}
-                      className="block cursor-pointer"
+                      className="relative block h-full w-full cursor-pointer"
                     >
                       <Image
                         src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                       />
                     </Link>
@@ -61,12 +66,13 @@ export default function FeaturedProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open ${project.title} demo`}
-                      className="block cursor-pointer"
+                      className="relative block h-full w-full cursor-pointer"
                     >
                       <Image
                         src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                       />
                     </Link>
@@ -76,12 +82,13 @@ export default function FeaturedProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open ${project.title} repository`}
-                      className="block cursor-pointer"
+                      className="relative block h-full w-full cursor-pointer"
                     >
                       <Image
                         src={project.image || '/placeholder.svg'}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 hover:scale-105"
                       />
                     </Link>
@@ -90,6 +97,7 @@ export default function FeaturedProjectsSection() {
                       src={project.image || '/placeholder.svg'}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-300 hover:scale-105"
                     />
                   )}

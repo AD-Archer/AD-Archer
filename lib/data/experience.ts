@@ -2,8 +2,27 @@ import { Job, Education } from './types';
 
 export const jobs: Job[] = [
   {
+    title: 'Gap Year Fellow',
+    company: 'Hack Club',
+    companyUrl: 'https://hackclub.com/',
+    duration: 'Jul 2026 - Present',
+    location: 'Burlington, VT',
+    achievements: [
+      'Design and launch hands-on programs that help young people learn technology by building real projects',
+      'Plan and run events for young makers across Hack Club’s global community',
+      'Support students as they turn their ideas into completed technical projects',
+    ],
+    techStack: [
+      'Program Design',
+      'Event Production',
+      'Community Building',
+      'Project-Based Learning',
+    ],
+  },
+  {
     title: 'AI and Software Developer',
     company: 'Seer Interactive',
+    companyUrl: 'https://www.seerinteractive.com/',
     duration: 'Oct 2025 - Present',
     location: 'Philadelphia, PA',
     achievements: [
@@ -39,6 +58,7 @@ export const jobs: Job[] = [
   {
     title: 'Full Stack Developer',
     company: 'Launchpad Philly',
+    companyUrl: 'https://launchpadphilly.org/',
     duration: 'Jan 2023 - Jun 2025',
     location: 'Philadelphia, PA',
     achievements: [
@@ -54,6 +74,7 @@ export const jobs: Job[] = [
   {
     title: 'Technical Mentor',
     company: 'Launchpad Philly',
+    companyUrl: 'https://launchpadphilly.org/',
     duration: 'Jan 2025 - May 2025',
     location: 'Philadelphia, PA',
     achievements: [
@@ -73,6 +94,7 @@ export const jobs: Job[] = [
   {
     title: 'Cybersecurity Solutions Engineer (Intern)',
     company: 'Accenture',
+    companyUrl: 'https://www.accenture.com/us-en',
     duration: 'Jun 2024 - Aug 2024',
     location: 'Philadelphia, PA',
     achievements: [
@@ -86,6 +108,7 @@ export const jobs: Job[] = [
   {
     title: 'Infrastructure & Systems Engineer',
     company: 'Belmont Charter Network',
+    companyUrl: 'https://www.belmontcharternetwork.org/',
     duration: 'Jun 2022 - Aug 2022',
     location: 'Philadelphia, PA',
     achievements: [

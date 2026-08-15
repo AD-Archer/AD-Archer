@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { projects, jobs, skills, certifications, education } from '@/lib/data';
+import { enabledProjects, jobs, skills, certifications, education } from '@/lib/data';
 
 // Define message type
 interface ChatMessage {
@@ -35,7 +35,7 @@ setInterval(() => {
 // Generate a detailed system prompt from the data
 function generateSystemPrompt() {
   // Format projects for the prompt
-  const projectsText = projects
+  const projectsText = enabledProjects
     .map((project, index) => {
       const technologies = project.technologies
         ? project.technologies.map(tech => tech.name).join(', ')

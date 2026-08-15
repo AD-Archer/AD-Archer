@@ -3,6 +3,7 @@
 import { withClientSide } from '../../app/contact/components/client-component';
 import { motion } from 'framer-motion';
 import { jobs } from '@/lib/data';
+import { CompanyLink } from '@/components/company-link';
 
 function InteractiveTimeline() {
   return (
@@ -42,6 +43,7 @@ function InteractiveTimeline() {
                     <TimelineContent
                       title={job.title}
                       company={job.company}
+                      companyUrl={job.companyUrl}
                       duration={job.duration}
                       location={job.location}
                       achievements={job.achievements}
@@ -62,6 +64,7 @@ function InteractiveTimeline() {
                     <TimelineContent
                       title={job.title}
                       company={job.company}
+                      companyUrl={job.companyUrl}
                       duration={job.duration}
                       location={job.location}
                       achievements={job.achievements}
@@ -81,6 +84,7 @@ function InteractiveTimeline() {
 function TimelineContent({
   title,
   company,
+  companyUrl,
   duration,
   location,
   achievements,
@@ -88,6 +92,7 @@ function TimelineContent({
 }: {
   title: string;
   company: string;
+  companyUrl?: string;
   duration: string;
   location: string;
   achievements: string[];
@@ -96,7 +101,9 @@ function TimelineContent({
   return (
     <div className="bg-card p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
       <h3 className="font-bold text-xl">{title}</h3>
-      <p className="text-lg text-primary font-medium">{company}</p>
+      <div>
+        <CompanyLink name={company} url={companyUrl} className="text-lg text-primary font-medium" />
+      </div>
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
         <span>{duration}</span>
         <span>•</span>

@@ -1,6 +1,7 @@
 import { Project } from './types';
 import { technologyColors } from './constants';
 
+// Add `disabled: true` to any project below to hide it from the public portfolio.
 export const projects: Project[] = [
   {
     id: '30',
@@ -724,6 +725,7 @@ export const projects: Project[] = [
   {
     id: '5',
     title: 'AI Stock Market Analysis',
+    disabled: true,
     description: 'AI-powered stock recommendation tool with self-hosted deployment.',
     image: '/images/projects/stockapp.webp',
     tags: ['fullstack', 'ai', 'python', 'devops'],
@@ -767,6 +769,7 @@ export const projects: Project[] = [
   {
     id: '6',
     title: 'Orange Field University',
+    disabled: true,
     description: 'Student management system with course enrollment and academic tracking.',
     image: '/images/projects/uof.webp',
     tags: ['fullstack', 'backend', 'node'],
@@ -866,6 +869,7 @@ export const projects: Project[] = [
   {
     id: '16',
     title: 'Qoutey',
+    disabled: true,
     description: 'Automated email service for daily motivational quotes and journal reminders.',
     image:
       'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2023-11/short-quotes-swl-231117-11-e139f1.jpg',
@@ -885,6 +889,7 @@ export const projects: Project[] = [
   {
     id: '8',
     title: 'Corra',
+    disabled: true,
     description:
       'AI-powered RPG game that creates personalized adventures based on personality tests.',
     image: '/images/projects/corra.webp',
@@ -910,6 +915,7 @@ export const projects: Project[] = [
     title: 'Fintech App',
     description: 'Modern finance dashboard for managing personal finances and investments.',
     image: '/images/projects/fintech.webp',
+    disabled: true,
     tags: ['fullstack', 'node'],
     technologies: [
       { name: 'React', color: technologyColors.react },
@@ -932,6 +938,7 @@ export const projects: Project[] = [
   {
     id: '10',
     title: 'Dynasty Defense',
+    disabled: true,
     description: 'IoT security alarm management system with visual dashboard.',
     image: '/images/projects/dynasty-defense.webp',
     tags: ['frontend', 'node'],
@@ -971,6 +978,7 @@ export const projects: Project[] = [
   {
     id: '11',
     title: 'FortifyNow',
+    disabled: true,
     description: 'Cybersecurity education platform for password security and 2FA.',
     image: '/images/projects/fortifynow.webp',
     tags: ['frontend', 'node'],
@@ -993,6 +1001,7 @@ export const projects: Project[] = [
   {
     id: '12',
     title: 'Win or Lose Philly',
+    disabled: true,
     description: 'Retro browser game celebrating Philadelphia sports culture.',
     image: '/images/projects/winorlosephilly.webp',
     tags: ['frontend', 'node'],
@@ -1034,6 +1043,7 @@ export const projects: Project[] = [
       { name: 'Express', color: technologyColors.express },
     ],
     slug: 'retro-audio-maker',
+    disabled: true,
     link: 'https://retroaudiomaker.adarcher.app/',
     github: 'https://github.com/AD-Archer/retroaudiomaker',
     featured: false,
@@ -1046,6 +1056,7 @@ export const projects: Project[] = [
   {
     id: '15',
     title: 'Quick Convert',
+    disabled: true,
     description: 'Fast file format converter supporting SVG, HEIC, WEBP to PNG.',
     image: '/images/projects/quickconvert.webp',
     tags: ['frontend', 'node'],
@@ -1067,6 +1078,7 @@ export const projects: Project[] = [
   {
     id: '17',
     title: 'GitHub Issue Automation Script',
+    disabled: true,
     description: 'Bash script for automating GitHub issue creation from CSV files.',
     image: '/images/projects/githubissues.webp',
     tags: ['backend', 'bash'],
@@ -1086,6 +1098,7 @@ export const projects: Project[] = [
   {
     id: '18',
     title: 'Social Metrics',
+    disabled: true,
     description: 'Social media analytics dashboard with real-time YouTube insights.',
     image: 'https://socialmetrics.adarcher.app/img/exampleimageofsite.png',
     tags: ['fullstack', 'ai', 'frontend'],
@@ -1152,6 +1165,7 @@ export const projects: Project[] = [
   {
     id: '19',
     title: 'Launchpad Student Interaction Form',
+    disabled: true,
     description: 'AI-powered student interaction tracking system for educational organizations.',
     image: '/images/projects/lsf(launchpadstudentform)/finaldashboard.webp',
     tags: ['fullstack', 'ai', 'frontend'],
@@ -1422,6 +1436,7 @@ export const projects: Project[] = [
   {
     id: '26',
     title: 'LLM RAG Visualization Dashboard',
+    disabled: true,
     description:
       'React dashboard for visualizing JSON-based RAG pipeline output, with optional n8n orchestration and support for open-source model runtimes like Ollama and llama.cpp.',
     longDescription:
@@ -1645,3 +1660,5 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const enabledProjects = projects.filter(project => project.disabled !== true);
